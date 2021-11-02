@@ -1,0 +1,34 @@
+{
+  "name": "tenup-plugin",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "10up-toolkit start",
+    "watch": "10up-toolkit watch",
+    "build": "10up-toolkit build",
+    "format-js": "10up-toolkit format-js",
+    "lint-js": "10up-toolkit lint-js",
+    "lint-style": "10up-toolkit lint-style",
+    "test": "10up-toolkit test-unit-jest",
+    "clean-dist": "rm -rf ./dist"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "10up-toolkit": "^1.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "10up-toolkit": {
+    "devURL": "https://my-project.test",
+    "entry": {
+      "admin": "./assets/js/admin/admin.js",
+      "frontend": "./assets/js/frontend/frontend.js",
+      "shared": "./assets/js/shared/shared.js",
+      "admin-style": "./assets/css/admin/admin-style.css",
+      "shared-style": "./assets/css/shared/shared-style.css",
+      "style": "./assets/css/frontend/style.css"
+    }
+  }
+}
