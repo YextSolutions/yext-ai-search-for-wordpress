@@ -11,11 +11,29 @@
     "test": "10up-toolkit test-unit-jest",
     "clean-dist": "rm -rf ./dist"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "includes/**/*.js": [
+      "npm run lint-js"
+    ],
+    "/includes/**/*.css": [
+      "lint-style"
+    ],
+    "*.php": [
+      "./vendor/bin/phpcs . --extensions=php --standard=phpcs.xml --warning-severity=8 -s"
+    ]
+  },
   "engines": {
     "node": ">=12.0.0"
   },
   "devDependencies": {
-    "10up-toolkit": "^1.0.0"
+    "10up-toolkit": "^1.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
@@ -24,6 +42,7 @@
     "devURL": "https://yext.test",
     "entry": {
       "admin": "./assets/js/admin/admin.js",
+      "blocks": "./includes/block-editor/blocks.js",
       "frontend": "./assets/js/frontend/frontend.js",
       "shared": "./assets/js/shared/shared.js",
       "admin-style": "./assets/css/admin/admin-style.css",
