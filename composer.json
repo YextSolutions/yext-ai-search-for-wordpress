@@ -12,7 +12,7 @@
   },
   "autoload": {
     "psr-4": {
-      "TenUpPlugin\\": "includes/classes/"
+      "Yext\\": "includes/classes/"
     }
   }
 }

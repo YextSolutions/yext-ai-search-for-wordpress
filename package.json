@@ -1,5 +1,5 @@
 {
-  "name": "tenup-plugin",
+  "name": "yext",
   "version": "1.0.0",
   "scripts": {
     "start": "10up-toolkit start",

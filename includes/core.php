@@ -2,10 +2,10 @@
 /**
  * Core plugin functionality.
  *
- * @package TenUpPlugin
+ * @package Yext
  */
 
-namespace TenUpPlugin\Core;
+namespace Yext\Core;
 
 use \WP_Error;
 
@@ -31,7 +31,7 @@ function setup() {
 	// Hook to allow async or defer on asset loading.
 	add_filter( 'script_loader_tag', $n( 'script_loader_tag' ), 10, 2 );
 
-	do_action( 'tenup_plugin_loaded' );
+	do_action( 'YEXT_loaded' );
 }
 
 /**
@@ -40,9 +40,9 @@ function setup() {
  * @return void
  */
 function i18n() {
-	$locale = apply_filters( 'plugin_locale', get_locale(), 'tenup-plugin' );
-	load_textdomain( 'tenup-plugin', WP_LANG_DIR . '/tenup-plugin/tenup-plugin-' . $locale . '.mo' );
-	load_plugin_textdomain( 'tenup-plugin', false, plugin_basename( TENUP_PLUGIN_PATH ) . '/languages/' );
+	$locale = apply_filters( 'plugin_locale', get_locale(), 'yext' );
+	load_textdomain( 'yext', WP_LANG_DIR . '/yext/yext-' . $locale . '.mo' );
+	load_plugin_textdomain( 'yext', false, plugin_basename( YEXT_PATH ) . '/languages/' );
 }
 
 /**
@@ -51,7 +51,7 @@ function i18n() {
  * @return void
  */
 function init() {
-	do_action( 'tenup_plugin_init' );
+	do_action( 'YEXT_init' );
 }
 
 /**
@@ -97,10 +97,10 @@ function get_enqueue_contexts() {
 function script_url( $script, $context ) {
 
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
-		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in TenUpPlugin script loader.' );
+		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext script loader.' );
 	}
 
-	return TENUP_PLUGIN_URL . "dist/js/${script}.js";
+	return YEXT_URL . "dist/js/${script}.js";
 
 }
 
@@ -115,10 +115,10 @@ function script_url( $script, $context ) {
 function style_url( $stylesheet, $context ) {
 
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
-		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in TenUpPlugin stylesheet loader.' );
+		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext stylesheet loader.' );
 	}
 
-	return TENUP_PLUGIN_URL . "dist/css/${stylesheet}.css";
+	return YEXT_URL . "dist/css/${stylesheet}.css";
 
 }
 
@@ -130,18 +130,18 @@ function style_url( $stylesheet, $context ) {
 function scripts() {
 
 	wp_enqueue_script(
-		'tenup_plugin_shared',
+		'YEXT_shared',
 		script_url( 'shared', 'shared' ),
 		[],
-		TENUP_PLUGIN_VERSION,
+		YEXT_VERSION,
 		true
 	);
 
 	wp_enqueue_script(
-		'tenup_plugin_frontend',
+		'YEXT_frontend',
 		script_url( 'frontend', 'frontend' ),
 		[],
-		TENUP_PLUGIN_VERSION,
+		YEXT_VERSION,
 		true
 	);
 
@@ -155,18 +155,18 @@ function scripts() {
 function admin_scripts() {
 
 	wp_enqueue_script(
-		'tenup_plugin_shared',
+		'YEXT_shared',
 		script_url( 'shared', 'shared' ),
 		[],
-		TENUP_PLUGIN_VERSION,
+		YEXT_VERSION,
 		true
 	);
 
 	wp_enqueue_script(
-		'tenup_plugin_admin',
+		'YEXT_admin',
 		script_url( 'admin', 'admin' ),
 		[],
-		TENUP_PLUGIN_VERSION,
+		YEXT_VERSION,
 		true
 	);
 
@@ -180,25 +180,25 @@ function admin_scripts() {
 function styles() {
 
 	wp_enqueue_style(
-		'tenup_plugin_shared',
+		'YEXT_shared',
 		style_url( 'shared-style', 'shared' ),
 		[],
-		TENUP_PLUGIN_VERSION
+		YEXT_VERSION
 	);
 
 	if ( is_admin() ) {
 		wp_enqueue_style(
-			'tenup_plugin_admin',
+			'YEXT_admin',
 			style_url( 'admin-style', 'admin' ),
 			[],
-			TENUP_PLUGIN_VERSION
+			YEXT_VERSION
 		);
 	} else {
 		wp_enqueue_style(
-			'tenup_plugin_frontend',
+			'YEXT_frontend',
 			style_url( 'style', 'frontend' ),
 			[],
-			TENUP_PLUGIN_VERSION
+			YEXT_VERSION
 		);
 	}
 
@@ -212,17 +212,17 @@ function styles() {
 function admin_styles() {
 
 	wp_enqueue_style(
-		'tenup_plugin_shared',
+		'YEXT_shared',
 		style_url( 'shared-style', 'shared' ),
 		[],
-		TENUP_PLUGIN_VERSION
+		YEXT_VERSION
 	);
 
 	wp_enqueue_style(
-		'tenup_plugin_admin',
+		'YEXT_admin',
 		style_url( 'admin-style', 'admin' ),
 		[],
-		TENUP_PLUGIN_VERSION
+		YEXT_VERSION
 	);
 
 }
@@ -238,7 +238,7 @@ function mce_css( $stylesheets ) {
 		$stylesheets .= ',';
 	}
 
-	return $stylesheets . TENUP_PLUGIN_URL . ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ?
+	return $stylesheets . YEXT_URL . ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ?
 			'assets/css/frontend/editor-style.css' :
 			'dist/css/editor-style.min.css' );
 }
