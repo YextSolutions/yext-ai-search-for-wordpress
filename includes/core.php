@@ -31,7 +31,7 @@ function setup() {
 	// Hook to allow async or defer on asset loading.
 	add_filter( 'script_loader_tag', $n( 'script_loader_tag' ), 10, 2 );
 
-	do_action( 'YEXT_loaded' );
+	do_action( 'yext_loaded' );
 }
 
 /**
@@ -51,7 +51,7 @@ function i18n() {
  * @return void
  */
 function init() {
-	do_action( 'YEXT_init' );
+	do_action( 'yext_init' );
 }
 
 /**
