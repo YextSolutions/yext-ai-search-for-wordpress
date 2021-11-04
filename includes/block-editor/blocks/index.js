@@ -3,4 +3,4 @@
  */
 
 // Registration Script
-import { registerBlocks } from '../utils';
+// import { registerBlocks } from '../utils';
