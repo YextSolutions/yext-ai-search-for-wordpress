@@ -1,4 +1,7 @@
 {
+	"apiProperties": {
+		"apiKey": ""
+	},
 	"styles": {
 		"searchBar": {
 			"backgroundColor": {
