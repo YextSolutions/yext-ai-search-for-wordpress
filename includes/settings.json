@@ -1,0 +1,10 @@
+{
+	"styles": {
+		"searchBar": {
+			"backgroundColor": {
+				"default" : "#000000",
+				"hover": "#222222"
+			}
+		}
+	}
+}

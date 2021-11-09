@@ -60,6 +60,16 @@ function init() {
  * @return void
  */
 function activate() {
+
+	// Register default settings
+	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
+
+	if ( ! is_wp_error( $response ) ) {
+		$settings = wp_remote_retrieve_body( $response );
+
+		update_option( 'yext_plugin_settings', $settings, false );
+	}
+
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
 	flush_rewrite_rules();
