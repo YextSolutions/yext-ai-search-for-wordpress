@@ -1,0 +1,17 @@
+{
+  "apiVersion": 2,
+  "title": "Yext Search Bar",
+  "description": "Display YEXT search bar.",
+  "name": "yext/search-bar",
+  "category": "yext-blocks",
+  "text-domain": "yext",
+  "supports": {
+    "className": false,
+    "align": [ "full" ]
+  },
+  "attributes": {
+	"backgroundColor": {
+    	"type": "string"
+    }
+  }
+}
