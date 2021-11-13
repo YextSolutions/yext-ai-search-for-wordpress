@@ -50,7 +50,7 @@ function blocks_editor_scripts() {
 	wp_enqueue_script(
 		'blocks-editor',
 		YEXT_URL . '/dist/js/blocks.js',
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ],
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor', 'wp-editor' ],
 		YEXT_VERSION,
 		false
 	);

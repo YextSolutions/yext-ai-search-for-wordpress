@@ -10,6 +10,13 @@
     "align": [ "full" ]
   },
   "attributes": {
+	"buttonText": {
+    	"type": "string",
+    	"default": "Search"
+    },
+	"placeholder": {
+    	"type": "string"
+    },
 	"backgroundColor": {
     	"type": "string"
     }
