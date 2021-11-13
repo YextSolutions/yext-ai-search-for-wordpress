@@ -19,6 +19,18 @@
     },
 	"backgroundColor": {
     	"type": "string"
+    },
+	"buttonTextColor": {
+    	"type": "string"
+    },
+	"buttonBackgroundColor": {
+    	"type": "string"
+    },
+	"buttonHoverTextColor": {
+    	"type": "string"
+    },
+	"buttonHoverBackgroundColor": {
+    	"type": "string"
     }
   }
 }

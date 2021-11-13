@@ -1,3 +1,5 @@
+import Inspector from './inspector';
+
 /**
  * WordPress dependencies
  */
@@ -13,6 +15,7 @@ const Edit = (props) => {
 
 	return (
 		<>
+			<Inspector {...props} />
 			<div {...blockProps}>
 				<RichText
 					className="components-text-control__input"
