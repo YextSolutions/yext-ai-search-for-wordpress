@@ -36,6 +36,7 @@
     "lint-staged": "^11.2.6"
   },
   "dependencies": {
+    "@10up/component-tabs": "^2.0.0",
     "prop-types": "^15.7.2"
   },
   "10up-toolkit": {
