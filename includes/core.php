@@ -53,7 +53,7 @@ function i18n() {
  */
 function init() {
 	// initialize admin settings
-	$admin_settings = new Settings();
+	$admin_settings = Settings::instance();
 	$admin_settings->setup();
 	do_action( 'yext_init' );
 }
