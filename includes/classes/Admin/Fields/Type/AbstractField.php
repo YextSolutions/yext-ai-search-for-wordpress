@@ -30,11 +30,11 @@ abstract class AbstractField {
 	public $title;
 
 	/**
-	 * Field type
+	 * Type of field
 	 *
 	 * @var string Field type
 	 */
-	public $field_type;
+	public $type;
 
 	/**
 	 * Section id
@@ -46,25 +46,55 @@ abstract class AbstractField {
 	public $section_id;
 
 	/**
+	 * Allowed settings html tags for usage in wp_kses
+	 *
+	 * @var array
+	 */
+	protected $allowed_html_tags = [
+		'option' => [
+			'selected' => true,
+		],
+	];
+
+	/**
+	 * Default constructor args
+	 *
+	 * @var array
+	 */
+	protected $default_args = [
+		'parent_field' => '',
+		'value'        => '',
+		'section_id'   => '',
+	];
+
+	/**
 	 * Field current value from options
 	 *
 	 * @var string
 	 */
-	protected $current_value = '';
+	protected $value = '';
 
 	/**
 	 * Field constructor
 	 *
 	 * @param string $id            Setting id
 	 * @param string $title         Setting title
-	 * @param string $current_value Setting title
-	 * @param string $section_id    Section Id
+	 * @param array  $args {
+	 *     Optional. Arguments for the field
+	 *     Available arguments:
+	 *
+	 *     @type string $parent_field  Parent field
+	 *     @type string $value         Setting current value if any
+	 *     @type string $section_id    Section Id
+	 * }
 	 */
-	public function __construct( $id, $title, $current_value, $section_id ) {
-		$this->id            = $id;
-		$this->title         = $title;
-		$this->current_value = $current_value;
-		$this->section_id    = $section_id;
+	public function __construct( $id, $title, $args ) {
+		$args               = wp_parse_args( $args, $this->get_default_args() );
+		$this->id           = $id;
+		$this->title        = $title;
+		$this->parent_field = $args['parent'];
+		$this->section_id   = $args['section_id'];
+		$this->value        = $args['value'];
 		$this->setup();
 	}
 
@@ -84,7 +114,7 @@ abstract class AbstractField {
 			$this->id, // id
 			$this->title, // title
 			[ $this, 'add_field_callback' ], // callback
-			'yext-settings-plugin-settings-tab', // page
+			"yext-settings-{$this->section_id}",
 			$this->section_id // section
 		);
 	}
@@ -105,7 +135,12 @@ abstract class AbstractField {
 	 * @return string            Field name for setting.
 	 */
 	public function setting_name() {
-		return sprintf( '%s[%s]', Settings::SETTINGS_NAME, $this->id );
+		return sprintf(
+			'%s%s[%s]',
+			Settings::SETTINGS_NAME,
+			! empty( $this->parent_field ) ? "[{$this->parent_field}]" : '',
+			$this->id
+		);
 	}
 
 	/**
@@ -115,4 +150,21 @@ abstract class AbstractField {
 	 */
 	abstract public function render();
 
+	/**
+	 * Getter for default field args
+	 *
+	 * @return array
+	 */
+	public function get_default_args() {
+		return $this->default_args;
+	}
+
+	/**
+	 * Return the list of allowed HTML tags for settings
+	 *
+	 * @return array
+	 */
+	public function allowed_html_tags() {
+		return $this->allowed_html_tags;
+	}
 }

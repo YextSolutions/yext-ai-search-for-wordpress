@@ -90,7 +90,6 @@ final class Tab {
 	public function render_tab_content() {
 		?>
 		<div class="tab-content" id="<?php echo esc_attr( $this->tab_id ); ?>" role="tabpanel">
-			<p><?php echo esc_html( $this->tab_id ); ?></p>
 			<?php
 			do_settings_sections( "yext-settings-{$this->tab_id}" )
 			?>

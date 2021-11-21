@@ -8,11 +8,12 @@
 namespace Yext\Admin\Fields\Type;
 
 use Yext\Admin\Fields\Type\AbstractField;
+use Yext\Admin\Settings;
 
 /**
  * Field type input
  */
-class InputField extends AbstractField {
+class InputFieldReadOnly extends AbstractField {
 
 	/**
 	 * Field constructor
@@ -22,10 +23,9 @@ class InputField extends AbstractField {
 	 * @param array  $args  Field args
 	 */
 	public function __construct( $id, $title, $args ) {
-		$this->type = 'input';
+		$this->type = 'input-read-only';
 		parent::__construct( $id, $title, $args );
 	}
-
 
 	/**
 	 * Render an input text field used on settings.
@@ -38,12 +38,9 @@ class InputField extends AbstractField {
 			'<input
 				class="regular-text"
 				type="text"
-				name="%s"
-				id="%s"
+				readonly="readonly"
 				value="%s"
 				autocomplete="off">',
-			esc_attr( $this->setting_name( $this->id ) ),
-			esc_attr( $this->id ),
 			esc_attr( $value )
 		);
 	}

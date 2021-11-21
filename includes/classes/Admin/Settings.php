@@ -20,9 +20,24 @@ final class Settings {
 	use Singleton;
 
 	/**
-	 * Settings name
+	 * The key for storing setting values in the options table
 	 */
 	const SETTINGS_NAME = 'yext_plugin_settings';
+
+	/**
+	 * Plugin settings section name
+	 */
+	const PLUGIN_SETTINGS_SECTION_NAME = 'plugin-settings-tab';
+
+	/**
+	 * Search bar settings section name
+	 */
+	const SEARCH_BAR_SECTION_NAME = 'search-bar-settings-tab';
+
+	/**
+	 * Search bar settings section name
+	 */
+	const SEARCH_RESULTS_SECTION_NAME = 'search-results-settings-tab';
 
 	/**
 	 * Settings
@@ -39,6 +54,13 @@ final class Settings {
 	private $tabs;
 
 	/**
+	 * svg icon for menu
+	 *
+	 * @var string
+	 */
+	private $menu_icon = YEXT_URL . '/assets/images/menu-icon.svg';
+
+	/**
 	 * Return plugin options from the DB
 	 *
 	 * @return array
@@ -53,9 +75,9 @@ final class Settings {
 	public function setup() {
 		$this->settings = $this->get_settings();
 
-		$plugin_tab     = new Tab( 'plugin-settings-tab', __( 'Plugin settings', 'yext' ) );
-		$search_bar_tab = new Tab( 'search-bar-settings-tab', __( 'Search bar settings', 'yext' ) );
-		$search_res_tab = new Tab( 'search-results-settings-tab', __( 'Search results settings', 'yext' ) );
+		$plugin_tab     = new Tab( self::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin settings', 'yext' ) );
+		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ) );
+		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
 
 		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];
 
@@ -69,12 +91,29 @@ final class Settings {
 	 * * @return void
 	 */
 	public function add_plugin_page() {
-		add_options_page(
-			'Yext connector', // page_title
-			'Yext connector', // menu_title
-			'manage_options', // capability
-			'yext-connector', // menu_slug
-			[ $this, 'create_admin_page' ] // function
+		add_menu_page(
+			__( 'Yext connector', 'yext' ),
+			__( 'Yext connector', 'yext' ),
+			'manage_options',
+			'yext-connector',
+			[ $this, 'render_settings_page' ],
+			$this->menu_icon
+		);
+		add_submenu_page(
+			'yext-connector',
+			__( 'Settings', 'yext' ),
+			__( 'Settings', 'yext' ),
+			'manage_options',
+			'yext-connector',
+			[ $this, 'render_settings_page' ]
+		);
+		add_submenu_page(
+			'yext-connector',
+			__( 'Wizard', 'yext' ),
+			__( 'Wizard', 'yext' ),
+			'manage_options',
+			'yext-connector-wizard',
+			[ $this, 'render_settings_page' ]
 		);
 	}
 
@@ -120,7 +159,7 @@ final class Settings {
 	 *
 	 * @return void
 	 */
-	public function create_admin_page() {
+	public function render_settings_page() {
 
 		?>
 		<div id="yext-settings">
@@ -155,16 +194,5 @@ final class Settings {
 			</form>
 		</div>
 		<?php
-	}
-
-	/**
-	 * Sanitize settings callback
-	 *
-	 * @param  array $input     New values
-	 * @return array $sanitized Sanitized settings values
-	 */
-	public function sanitize_setting_values( $input ) {
-		// TODO: sanitize values
-		return $input;
 	}
 }

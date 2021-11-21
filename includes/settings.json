@@ -4,7 +4,7 @@
 		"experience_key": "",
 		"business_id" : "",
 		"answers_iframe_url"   : "",
-		"answers_version"   : ""
+		"experience_version"   : ""
 	},
 	"search_bar": {
 		"override_core_search": "1",
@@ -21,7 +21,7 @@
 			"hover_bg_color": "#f2f2f2",
 			"active_bg_color": "#ffffff",
 			"text_color": "#000000",
-			"text_active_color": "#000000",
+			"text_active_color": "#000000"
 		},
 		"autocomplete": {
 			"bg_color": "#ffffff",	
@@ -32,7 +32,7 @@
 			"font_weight": "normal",
 			"line_height": "22",
 			"text_color": "#000000",
-			"header_font_weight": "normal",
+			"header_font_weight": "normal"
 		},
 		"create": {
 			"placeholder": "Search...",
