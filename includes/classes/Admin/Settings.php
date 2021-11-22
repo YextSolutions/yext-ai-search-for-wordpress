@@ -27,17 +27,17 @@ final class Settings {
 	/**
 	 * Plugin settings section name
 	 */
-	const PLUGIN_SETTINGS_SECTION_NAME = 'plugin-settings-tab';
+	const PLUGIN_SETTINGS_SECTION_NAME = 'plugin';
 
 	/**
 	 * Search bar settings section name
 	 */
-	const SEARCH_BAR_SECTION_NAME = 'search-bar-settings-tab';
+	const SEARCH_BAR_SECTION_NAME = 'search_bar';
 
 	/**
 	 * Search bar settings section name
 	 */
-	const SEARCH_RESULTS_SECTION_NAME = 'search-results-settings-tab';
+	const SEARCH_RESULTS_SECTION_NAME = 'search_results';
 
 	/**
 	 * Settings
@@ -75,8 +75,15 @@ final class Settings {
 	public function setup() {
 		$this->settings = $this->get_settings();
 
-		$plugin_tab     = new Tab( self::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin settings', 'yext' ) );
-		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ) );
+		$plugin_tab = new Tab( self::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin settings', 'yext' ) );
+		// Child sections for this tab
+		// Array of slug => title to display in front end
+		$child_sections = [
+			'button'       => __( 'Button', 'yext' ),
+			'autocomplete' => __( 'Autocomplete', 'yext' ),
+			'create'       => __( 'Create', 'yext' ),
+		];
+		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
 
 		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];

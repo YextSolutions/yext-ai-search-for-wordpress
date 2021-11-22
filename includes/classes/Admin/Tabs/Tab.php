@@ -27,14 +27,25 @@ final class Tab {
 	public $title;
 
 	/**
+	 * Additional Child settings sections
+	 * to rendering inside the tab
+	 *
+	 * @var array Tab title
+	 */
+	public $child_sections = [];
+
+	/**
 	 * Tab constructor
 	 *
-	 * @param string $tab_id Tab id
-	 * @param string $title  Tab title
+	 * @param string $tab_id         Tab id
+	 * @param string $title          Tab title
+	 * @param array  $child_sections Additional Child settings sections
+	 *                               to rendering inside the tab
 	 */
-	public function __construct( $tab_id, $title ) {
-		$this->tab_id = $tab_id;
-		$this->title  = $title;
+	public function __construct( $tab_id, $title, $child_sections = [] ) {
+		$this->child_sections = $child_sections;
+		$this->tab_id         = $tab_id;
+		$this->title          = $title;
 		$this->setup();
 	}
 
@@ -54,11 +65,19 @@ final class Tab {
 	 */
 	public function register_setting_section() {
 		add_settings_section(
-			$this->tab_id, // id
-			$this->title, // title
-			[ $this, 'section_info' ], // callback
-			'yext-settings-' . $this->tab_id // page
+			$this->tab_id,
+			$this->title,
+			[ $this, 'section_info' ],
+			'yext-settings-' . $this->tab_id
 		);
+		foreach ( $this->child_sections as $child_section_id => $title ) {
+			add_settings_section(
+				$this->tab_id . '-' . $child_section_id,
+				$title,
+				[ $this, 'section_info' ],
+				'yext-settings-' . $this->tab_id . '-' . $child_section_id
+			);
+		}
 	}
 
 	/**
@@ -91,7 +110,8 @@ final class Tab {
 		?>
 		<div class="tab-content" id="<?php echo esc_attr( $this->tab_id ); ?>" role="tabpanel">
 			<?php
-			do_settings_sections( "yext-settings-{$this->tab_id}" )
+			do_settings_sections( "yext-settings-{$this->tab_id}" );
+			$this->do_child_sections();
 			?>
 		</div>
 		<?php
@@ -106,5 +126,16 @@ final class Tab {
 	 */
 	public function get_id() {
 		return $this->tab_id;
+	}
+
+	/**
+	 * Do the child sections for a tab
+	 *
+	 * @return void
+	 */
+	protected function do_child_sections() {
+		foreach ( $this->child_sections as $id => $title ) {
+			do_settings_sections( "yext-settings-{$this->tab_id}-{$id}" );
+		}
 	}
 }

@@ -53,6 +53,7 @@ abstract class AbstractField {
 	protected $allowed_html_tags = [
 		'option' => [
 			'selected' => true,
+			'value'    => true,
 		],
 	];
 
@@ -110,13 +111,25 @@ abstract class AbstractField {
 	 * Add the field to the section
 	 */
 	public function add_field() {
-		add_settings_field(
-			$this->id, // id
-			$this->title, // title
-			[ $this, 'add_field_callback' ], // callback
-			"yext-settings-{$this->section_id}",
-			$this->section_id // section
-		);
+		if ( ! empty( $this->parent_field ) ) {
+			// pretty_debug( "yext-settings-{$this->section_id}-{$this->parent_field}" );
+			add_settings_field(
+				$this->parent_field . '-' . $this->id, // id
+				$this->title, // title
+				[ $this, 'add_field_callback' ], // callback
+				"yext-settings-{$this->section_id}-{$this->parent_field}",
+				"{$this->section_id}-{$this->parent_field}",
+				// $this->section_id // section
+			);
+		} else {
+			add_settings_field(
+				$this->id, // id
+				$this->title, // title
+				[ $this, 'add_field_callback' ], // callback
+				"yext-settings-{$this->section_id}",
+				$this->section_id // section
+			);
+		}
 	}
 
 	/**
@@ -136,8 +149,9 @@ abstract class AbstractField {
 	 */
 	public function setting_name() {
 		return sprintf(
-			'%s%s[%s]',
+			'%s[%s]%s[%s]',
 			Settings::SETTINGS_NAME,
+			$this->section_id,
 			! empty( $this->parent_field ) ? "[{$this->parent_field}]" : '',
 			$this->id
 		);

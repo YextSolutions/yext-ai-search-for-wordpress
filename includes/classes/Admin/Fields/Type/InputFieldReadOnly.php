@@ -11,7 +11,7 @@ use Yext\Admin\Fields\Type\AbstractField;
 use Yext\Admin\Settings;
 
 /**
- * Field type input
+ * Field type input read only
  */
 class InputFieldReadOnly extends AbstractField {
 
@@ -28,7 +28,7 @@ class InputFieldReadOnly extends AbstractField {
 	}
 
 	/**
-	 * Render an input text field used on settings.
+	 * Render the field used on settings.
 	 *
 	 * @return void
 	 */

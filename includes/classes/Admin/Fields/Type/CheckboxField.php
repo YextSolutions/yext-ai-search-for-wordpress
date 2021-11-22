@@ -10,9 +10,23 @@ namespace Yext\Admin\Fields\Type;
 use Yext\Admin\Fields\Type\AbstractField;
 
 /**
- * Field type input
+ * Field type checkbox
  */
-class InputField extends AbstractField {
+class CheckboxField extends AbstractField {
+
+	/**
+	 * Array of value => text options for the select
+	 *
+	 * @var array
+	 */
+	protected $options = [];
+
+	/**
+	 * The default value for checkboxes
+	 *
+	 * @var string
+	 */
+	protected $checkbox_default_value = '1';
 
 	/**
 	 * Field constructor
@@ -22,7 +36,10 @@ class InputField extends AbstractField {
 	 * @param array  $args  Field args
 	 */
 	public function __construct( $id, $title, $args ) {
-		$this->type = 'input';
+		$this->type = 'checkbox';
+		if ( isset( $args['options'] ) ) {
+			$this->options = $args['options'];
+		}
 		parent::__construct( $id, $title, $args );
 	}
 
@@ -33,19 +50,11 @@ class InputField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$value = $this->value;
 		printf(
-			'<input
-				class="regular-text"
-				type="text"
-				name="%s"
-				id="%s"
-				value="%s"
-				autocomplete="off">',
+			'<input type="checkbox" name="%s" value="%s" %s>',
 			esc_attr( $this->setting_name( $this->id ) ),
-			esc_attr( $this->id ),
-			esc_attr( $value )
+			esc_attr( $this->checkbox_default_value ),
+			checked( $this->value, 1, false )
 		);
 	}
-
 }

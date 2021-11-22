@@ -10,7 +10,7 @@ namespace Yext\Admin\Fields\Type;
 use Yext\Admin\Fields\Type\AbstractField;
 
 /**
- * Field type input
+ * Field type select
  */
 class SelectField extends AbstractField {
 
@@ -39,7 +39,7 @@ class SelectField extends AbstractField {
 
 
 	/**
-	 * Render an input text field used on settings.
+	 * Render the field used on settings.
 	 *
 	 * @return void
 	 */

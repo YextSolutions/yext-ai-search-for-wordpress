@@ -10,9 +10,9 @@ namespace Yext\Admin\Fields\Type;
 use Yext\Admin\Fields\Type\AbstractField;
 
 /**
- * Field type input
+ * Field type color
  */
-class InputField extends AbstractField {
+class ColorField extends AbstractField {
 
 	/**
 	 * Field constructor
@@ -22,7 +22,7 @@ class InputField extends AbstractField {
 	 * @param array  $args  Field args
 	 */
 	public function __construct( $id, $title, $args ) {
-		$this->type = 'input';
+		$this->type = 'color';
 		parent::__construct( $id, $title, $args );
 	}
 
@@ -36,8 +36,7 @@ class InputField extends AbstractField {
 		$value = $this->value;
 		printf(
 			'<input
-				class="regular-text"
-				type="text"
+				type="color"
 				name="%s"
 				id="%s"
 				value="%s"
