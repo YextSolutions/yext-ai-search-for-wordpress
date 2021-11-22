@@ -3,3 +3,6 @@
  * https://project-website.tld
  *
  */
+
+/* Resets - installed via NPM */
+@import url("@10up/component-tabs");

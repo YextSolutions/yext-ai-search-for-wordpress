@@ -8,6 +8,7 @@
 namespace Yext\Core;
 
 use \WP_Error;
+use \Yext\Admin\Settings;
 
 /**
  * Default setup routine
@@ -51,6 +52,9 @@ function i18n() {
  * @return void
  */
 function init() {
+	// initialize admin settings
+	$admin_settings = Settings::instance();
+	$admin_settings->setup();
 	do_action( 'yext_init' );
 }
 
