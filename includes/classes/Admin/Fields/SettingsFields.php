@@ -37,8 +37,8 @@ final class SettingsFields {
 	public function __construct( $values ) {
 		$this->values = $values;
 		$settings     = $this->get_setting_config();
-		foreach ( $settings as $tab => $fields ) {
-			array_walk( $fields, [ $this, 'init_field' ], $tab );
+		foreach ( $settings as $tab => $tab_fields ) {
+			array_walk( $tab_fields, [ $this, 'init_field' ], $tab );
 		}
 	}
 
@@ -317,7 +317,7 @@ final class SettingsFields {
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 
-		return new $class_handler(
+		$this->fields[] = new $class_handler(
 			$field_config['id'],
 			$field_config['title'],
 			$field_args

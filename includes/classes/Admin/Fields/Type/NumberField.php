@@ -48,4 +48,16 @@ class NumberField extends AbstractField {
 		);
 	}
 
+	/**
+	 * Sanitize field value
+	 * Check if value is a number
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		$value = parent::sanitize_value( $value );
+		return is_numeric( $value ) ? $value : '';
+	}
+
 }
