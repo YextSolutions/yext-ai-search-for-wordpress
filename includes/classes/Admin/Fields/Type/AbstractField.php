@@ -105,6 +105,7 @@ abstract class AbstractField {
 	public function setup() {
 		// Priority set to a higher value than the one used in Settings class
 		add_action( 'admin_init', [ $this, 'add_field' ], 20 );
+		add_filter( 'yext_sanitize_settings', [ $this, 'sanitize_field' ], 10, 2 );
 	}
 
 	/**
@@ -112,14 +113,12 @@ abstract class AbstractField {
 	 */
 	public function add_field() {
 		if ( ! empty( $this->parent_field ) ) {
-			// pretty_debug( "yext-settings-{$this->section_id}-{$this->parent_field}" );
 			add_settings_field(
 				$this->parent_field . '-' . $this->id, // id
 				$this->title, // title
 				[ $this, 'add_field_callback' ], // callback
 				"yext-settings-{$this->section_id}-{$this->parent_field}",
-				"{$this->section_id}-{$this->parent_field}",
-				// $this->section_id // section
+				"{$this->section_id}-{$this->parent_field}"
 			);
 		} else {
 			add_settings_field(
@@ -152,7 +151,7 @@ abstract class AbstractField {
 			'%s[%s]%s[%s]',
 			Settings::SETTINGS_NAME,
 			$this->section_id,
-			! empty( $this->parent_field ) ? "[{$this->parent_field}]" : '',
+			$this->has_parent_field() ? "[{$this->parent_field}]" : '',
 			$this->id
 		);
 	}
@@ -180,5 +179,58 @@ abstract class AbstractField {
 	 */
 	public function allowed_html_tags() {
 		return $this->allowed_html_tags;
+	}
+
+	/**
+	 * Sanitize field value for saving
+	 *
+	 * @param  array $sanitized   Array of sanitized values
+	 * @param  array $posted_data Values from $_POST
+	 * @return array $sanitized   Sanitized values
+	 */
+	public function sanitize_field( $sanitized, $posted_data ) {
+		$value = $this->get_posted_value( $posted_data );
+		if ( $this->has_parent_field() ) {
+			$sanitized[ $this->section_id ][ $this->parent_field ][ $this->id ] = $this->sanitize_value( $value );
+		} else {
+			$sanitized[ $this->section_id ][ $this->id ] = $this->sanitize_value( $value );
+		}
+		return $sanitized;
+	}
+
+	/**
+	 * Return the field value from the values passed to 'setting_callback'
+	 * Used for data sanitization before saving a setting
+	 *
+	 * @param  array $posted_data Values from $_POST
+	 * @return string
+	 */
+	protected function get_posted_value( $posted_data ) {
+		$value = '';
+		if ( $this->has_parent_field() ) {
+			$value = $posted_data[ $this->section_id ][ $this->parent_field ][ $this->id ];
+		} else {
+			$value = $posted_data[ $this->section_id ][ $this->id ];
+		}
+		return $value;
+	}
+
+	/**
+	 * Check if fields has a parent field
+	 *
+	 * @return boolean
+	 */
+	protected function has_parent_field() {
+		return ! empty( $this->parent_field );
+	}
+
+	/**
+	 * Sanitize field value
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		return sanitize_text_field( $value );
 	}
 }

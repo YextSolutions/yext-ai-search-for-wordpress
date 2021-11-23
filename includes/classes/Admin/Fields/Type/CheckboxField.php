@@ -37,9 +37,6 @@ class CheckboxField extends AbstractField {
 	 */
 	public function __construct( $id, $title, $args ) {
 		$this->type = 'checkbox';
-		if ( isset( $args['options'] ) ) {
-			$this->options = $args['options'];
-		}
 		parent::__construct( $id, $title, $args );
 	}
 
@@ -56,5 +53,17 @@ class CheckboxField extends AbstractField {
 			esc_attr( $this->checkbox_default_value ),
 			checked( $this->value, 1, false )
 		);
+	}
+
+	/**
+	 * Sanitize field value
+	 * Check if value matches with field options
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		$value = parent::sanitize_value( $value );
+		return '1' === $value ? $value : '';
 	}
 }

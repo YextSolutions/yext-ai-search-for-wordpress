@@ -15,6 +15,11 @@ use Yext\Admin\Fields\Type\AbstractField;
 class ColorField extends AbstractField {
 
 	/**
+	 * Regex for access token validation on save.
+	 */
+	const FORMAT_REGEX = '/^(#)([a-fA-F0-9]){6}/';
+
+	/**
 	 * Field constructor
 	 *
 	 * @param string $id    Setting id
@@ -47,4 +52,15 @@ class ColorField extends AbstractField {
 		);
 	}
 
+	/**
+	 * Sanitize field value
+	 * Check if value matches the color format
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		$value = parent::sanitize_value( $value );
+		return 1 === preg_match( self::FORMAT_REGEX, $value ) ? $value : '';
+	}
 }

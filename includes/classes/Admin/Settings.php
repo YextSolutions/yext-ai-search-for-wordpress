@@ -54,6 +54,14 @@ final class Settings {
 	private $tabs;
 
 	/**
+	 * Settings fields
+	 * Instance of SettingsFields
+	 *
+	 * @var mixed
+	 */
+	private $settings_fields;
+
+	/**
 	 * svg icon for menu
 	 *
 	 * @var string
@@ -133,10 +141,21 @@ final class Settings {
 		register_setting(
 			'yext_option_group', // option_group
 			self::SETTINGS_NAME, // option_name
-			[ __CLASS__, 'sanitize_setting_values' ] // sanitize_callback
+			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 
-		$fields = new SettingsFields( $this->settings );
+		$this->settings_fields = new SettingsFields( $this->settings );
+	}
+
+	/**
+	 * Sanitize settings callback
+	 *
+	 * @param  array $input     New values
+	 * @return array $sanitized Sanitized settings values
+	 */
+	public function sanitize_setting_values( $input ) {
+		$sanitized = apply_filters( 'yext_sanitize_settings', [], $input );
+		return $sanitized;
 	}
 
 	/**

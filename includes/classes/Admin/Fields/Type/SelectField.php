@@ -70,4 +70,16 @@ class SelectField extends AbstractField {
 		return $html;
 	}
 
+	/**
+	 * Sanitize field value
+	 * Check if value matches with field options
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		$value = parent::sanitize_value( $value );
+		return in_array( $value, array_keys( $this->options ), true ) ? $value : '';
+	}
+
 }
