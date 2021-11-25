@@ -9,10 +9,10 @@
 	"search_bar": {
 		"override_core_search": "1",
 		"use_custom_style": "0",
-		"bg_color": "#fff",
+		"background_color": "#fff",
 		"border_color": "#000000",
 		"border_radius": "0",
-		"text_color": "#000000",
+		"color": "#000000",
 		"font_size": "16",
 		"font_weight": "normal",
 		"line_height": "22",

@@ -113,7 +113,7 @@ final class SettingsFields {
 				'type'  => 'CheckboxField',
 			],
 			[
-				'id'    => 'bg_color',
+				'id'    => 'background_color',
 				'title' => __( 'Background color', 'yext' ),
 				'type'  => 'ColorField',
 			],
@@ -128,7 +128,7 @@ final class SettingsFields {
 				'type'  => 'NumberField',
 			],
 			[
-				'id'    => 'text_color',
+				'id'    => 'color',
 				'title' => __( 'Text color', 'yext' ),
 				'type'  => 'ColorField',
 			],
