@@ -208,9 +208,9 @@ abstract class AbstractField {
 	protected function get_posted_value( $posted_data ) {
 		$value = '';
 		if ( $this->has_parent_field() ) {
-			$value = $posted_data[ $this->section_id ][ $this->parent_field ][ $this->id ];
+			$value = $posted_data[ $this->section_id ][ $this->parent_field ][ $this->id ] ?? '';
 		} else {
-			$value = $posted_data[ $this->section_id ][ $this->id ];
+			$value = $posted_data[ $this->section_id ][ $this->id ] ?? '';
 		}
 		return $value;
 	}
