@@ -140,11 +140,11 @@ final class Settings {
 	public function admin_page_init() {
 		register_setting(
 			'yext_option_group', // option_group
-			self::SETTINGS_NAME, // option_name
+			static::SETTINGS_NAME, // option_name
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
-
 		$this->settings_fields = new SettingsFields( $this->settings );
+
 	}
 
 	/**
@@ -154,7 +154,8 @@ final class Settings {
 	 * @return array $sanitized Sanitized settings values
 	 */
 	public function sanitize_setting_values( $input ) {
-		$sanitized = apply_filters( 'yext_sanitize_settings', [], $input );
+		$sanitized = [];
+		$sanitized = apply_filters( 'yext_sanitize_settings', $sanitized, $input );
 		return $sanitized;
 	}
 
@@ -187,6 +188,8 @@ final class Settings {
 	 */
 	public function render_settings_page() {
 
+			settings_errors( static::SETTINGS_NAME );
+			settings_errors( 'general' );
 		?>
 		<div id="yext-settings">
 			<h2>
