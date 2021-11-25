@@ -29,7 +29,7 @@ export default class YextSearchBarPreview {
 		}
 
 		for (let i = 0; i < form.elements.length; i++) {
-			form.elements[i].addEventListener('change', (e) => {
+			form.elements[i].addEventListener('input', (e) => {
 				if (e.target.name.includes('search_bar')) {
 					this.updatePreview(e.target.id, e.target.value);
 				}
@@ -53,7 +53,10 @@ export default class YextSearchBarPreview {
 		});
 
 		searchInputs.forEach((searchInput) => {
-			searchInput.style[camelCased] = Number.isNaN(value) || ['font_weight'].includes(target) ? value : `${value}px`;
+			searchInput.style[camelCased] =
+				Number.isNaN(value) || value.includes('#') || ['font_weight'].includes(target)
+					? value
+					: `${value}px`;
 		});
 	}
 }
