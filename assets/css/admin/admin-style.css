@@ -6,3 +6,6 @@
 
 /* Resets - installed via NPM */
 @import url("@10up/component-tabs");
+
+/* Local Copy of Yext answer.css */
+@import url("answers.css");

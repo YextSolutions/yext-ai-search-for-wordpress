@@ -110,6 +110,8 @@ final class Tab {
 		?>
 		<div class="tab-content" id="<?php echo esc_attr( $this->tab_id ); ?>" role="tabpanel">
 			<?php
+				do_action( 'yext_before_plugin_settings', $this->tab_id );
+
 				do_settings_sections( "yext-settings-{$this->tab_id}" );
 				$this->do_child_sections();
 

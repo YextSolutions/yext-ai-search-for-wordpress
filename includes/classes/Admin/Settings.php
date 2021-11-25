@@ -98,7 +98,7 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'yext_after_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
+		add_action( 'yext_before_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
 	}
 
 	/**
@@ -233,19 +233,41 @@ final class Settings {
 			return;
 		}
 		?>
-			<div class="yext-preview-search-form">
-				<div class="yext-preview-search-bar">
-					<input type="text" placeholder="<?php esc_attr_e( 'Search....', 'yext' ); ?>" />
-					<button type="submit" class="yext-preview-submit-button">
-						<?php esc_html_e( 'Search', 'yext' ); ?>
-					</button>
-				</div>
-				<div class="yext-preview-search-autocomplete-wrapper">
-					<div class="yext-preview-search-autocomplete">
-						<ul>
-							<li><?php esc_html_e( 'Search results preview item.', 'yext' ); ?></li>
-							<li><?php esc_html_e( 'Auto complete preview item.', 'yext' ); ?></li>
-						</ul>
+			<div class="search-bar-container component yxt-SearchBar-wrapper">
+				<div class="yxt-SearchBar">
+					<div class="yxt-SearchBar-container">
+						<div class="yxt-SearchBar-form">
+							<input class="js-yext-query yxt-SearchBar-input" type="text" name="query" value="" aria-label="Conduct a search" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search...">
+							<button type="submit" class="js-yext-submit yxt-SearchBar-button">
+								<div class="js-yxt-AnimatedForward component yxt-SearchBar-AnimatedIcon--inactive">
+									<div class="Icon Icon--yext_animated_forward Icon--lg" aria-hidden="true"></div>
+
+								</div>
+								<div class="js-yxt-AnimatedReverse component" data-component="IconComponent">
+									<div class="Icon Icon--yext_animated_reverse Icon--lg" aria-hidden="true">
+										<img src ="<?php echo esc_url( YEXT_URL ); ?>/assets/svg/logo.svg"/>
+									</div>
+
+								</div>
+								<span class="yxt-SearchBar-buttonText sr-only">
+									<?php esc_html_e( 'Submit', 'yext' ); ?>
+								</span>
+							</button>
+						</div>
+						<div class="yxt-SearchBar-autocomplete yxt-AutoComplete-wrapper js-yxt-AutoComplete-wrapper component">
+							<div class="yxt-AutoComplete">
+
+								<ul class="yxt-AutoComplete-results">
+									<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
+										<?php esc_html_e( 'Example autocomplete results', 'yext' ); ?>
+									</li>
+
+									<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
+										<?php esc_html_e( 'Search results dropdown example', 'yext' ); ?>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
