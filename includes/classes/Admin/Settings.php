@@ -161,28 +161,6 @@ final class Settings {
 	}
 
 	/**
-	 * Render settings
-	 *
-	 * @return void
-	 */
-	public function enabled_setting_render() {
-		$setting_name = 'enabled';
-		printf(
-			'<input
-				type="checkbox"
-				name="%s"
-				id="%s"
-				value="1" %s>
-				<label for="%s">%s</label>',
-			esc_attr( $this->setting_name( $setting_name ) ),
-			esc_attr( $this->setting_name( $setting_name ) ),
-			checked( $this->settings[ $setting_name ], 1, false ),
-			esc_attr( $this->setting_name( $setting_name ) ),
-			esc_html__( 'Enabled', 'yext' )
-		);
-	}
-
-	/**
 	 * Create admin settings page callback
 	 *
 	 * @return void
