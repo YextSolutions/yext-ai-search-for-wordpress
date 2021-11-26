@@ -98,12 +98,13 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
+		add_action( 'yext_after_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
 	}
 
 	/**
 	 * Add plugin page
 	 *
-	 * * @return void
+	 * @return void
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
@@ -187,7 +188,6 @@ final class Settings {
 	 * @return void
 	 */
 	public function render_settings_page() {
-
 			settings_errors( static::SETTINGS_NAME );
 			settings_errors( 'general' );
 		?>
@@ -221,6 +221,36 @@ final class Settings {
 					submit_button();
 				?>
 			</form>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Create search bar preview
+	 *
+	 * @param string $tab_id Tab id
+	 * @return void
+	 */
+	public function search_bar_preview( $tab_id ) {
+		if ( 'search_bar' !== $tab_id ) {
+			return;
+		}
+		?>
+		<div class="yext-preview-search-form">
+			<div class="yext-preview-search-bar">
+				<input type="text" placeholder="<?php esc_attr_e( 'Search....', 'yext' ); ?>" />
+				<button type="submit" class="yext-preview-submit-button">
+					<?php esc_html_e( 'Search', 'yext' ); ?>
+				</button>
+			</div>
+			<div class="yext-preview-search-autocomplete-wrapper">
+				<div class="yext-preview-search-autocomplete">
+					<ul>
+						<li><?php esc_html_e( 'Search results preview item.', 'yext' ); ?></li>
+						<li><?php esc_html_e( 'Auto complete preview item.', 'yext' ); ?></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<?php
 	}

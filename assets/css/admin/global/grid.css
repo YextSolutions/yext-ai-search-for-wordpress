@@ -1,0 +1,5 @@
+:root {
+	--grid-column-width: 1fr;
+	--grid-column-count: 12;
+	--grid-gap: 1.25rem;
+}
