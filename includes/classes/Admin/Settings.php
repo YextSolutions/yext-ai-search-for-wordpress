@@ -161,7 +161,7 @@ final class Settings {
 	}
 
 	/**
-	 * Create admin settings page callback
+	 * Admin settings page callback
 	 *
 	 * @return void
 	 */
@@ -204,7 +204,7 @@ final class Settings {
 	}
 
 	/**
-	 * Create wizard admin page callback
+	 * Wizard admin page callback
 	 *
 	 * @return void
 	 */
