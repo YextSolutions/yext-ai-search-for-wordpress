@@ -73,7 +73,7 @@ final class Settings {
 	 *
 	 * @return array
 	 */
-	public function get_settings() {
+	public static function get_settings() {
 		return get_option( static::SETTINGS_NAME, [] );
 	}
 
@@ -81,7 +81,7 @@ final class Settings {
 	 * Settings page Setup
 	 */
 	public function setup() {
-		$this->settings = $this->get_settings();
+		$this->settings = self::get_settings();
 
 		$plugin_tab = new Tab( self::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin settings', 'yext' ) );
 		// Child sections for this tab
@@ -98,7 +98,7 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'yext_after_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
+		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
 	/**
@@ -129,7 +129,7 @@ final class Settings {
 			__( 'Wizard', 'yext' ),
 			'manage_options',
 			'yext-connector-wizard',
-			[ $this, 'render_settings_page' ]
+			[ $this, 'render_wizard_page' ]
 		);
 	}
 
@@ -183,7 +183,7 @@ final class Settings {
 	}
 
 	/**
-	 * Create admin page callback
+	 * Create admin settings page callback
 	 *
 	 * @return void
 	 */
@@ -226,32 +226,61 @@ final class Settings {
 	}
 
 	/**
-	 * Create search bar preview
+	 * Create wizard admin page callback
+	 *
+	 * @return void
+	 */
+	public function render_wizard_page() {
+			settings_errors( static::SETTINGS_NAME );
+			settings_errors( 'general' );
+		?>
+		<div id="yext-settings-wizard">
+			<form method="post" action="options.php">
+				<?php
+				foreach ( $this->tabs as $tab ) {
+					$tab->render_content();
+				}
+				settings_fields( 'yext_option_group' );
+				submit_button();
+				?>
+			</form>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Called after plugin settings
 	 *
 	 * @param string $tab_id Tab id
 	 * @return void
 	 */
-	public function search_bar_preview( $tab_id ) {
-		if ( 'search_bar' !== $tab_id ) {
-			return;
+	public function after_plugin_settings( $tab_id ) {
+		switch ( $tab_id ) {
+			case 'search_bar':
+				$this->search_bar_preview();
+				break;
+			default:
+				break;
 		}
-		?>
-		<div class="yext-preview-search-form">
-			<div class="yext-preview-search-bar">
-				<input type="text" placeholder="<?php esc_attr_e( 'Search....', 'yext' ); ?>" />
-				<button type="submit" class="yext-preview-submit-button">
-					<?php esc_html_e( 'Search', 'yext' ); ?>
-				</button>
-			</div>
-			<div class="yext-preview-search-autocomplete-wrapper">
-				<div class="yext-preview-search-autocomplete">
-					<ul>
-						<li><?php esc_html_e( 'Search results preview item.', 'yext' ); ?></li>
-						<li><?php esc_html_e( 'Auto complete preview item.', 'yext' ); ?></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<?php
+	}
+
+	/**
+	 * Load the search bar preview
+	 *
+	 * @return void
+	 */
+	public function search_bar_preview() {
+		include_once YEXT_INC . 'partials/preview/search-bar.php';
+	}
+
+	/**
+	 * Localized settings passed to front-end
+	 *
+	 * @return array $settings
+	 */
+	public static function localized_settings() {
+		$settings = self::get_settings();
+		// TODO: review needed settings passed to FE
+		return $settings['search_bar'];
 	}
 }

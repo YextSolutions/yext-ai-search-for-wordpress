@@ -159,6 +159,8 @@ function scripts() {
 		true
 	);
 
+	wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
+
 }
 
 /**

@@ -112,8 +112,7 @@ final class Tab {
 			<div class="grid">
 				<div class="col">
 					<?php
-					do_settings_sections( "yext-settings-{$this->tab_id}" );
-					$this->do_child_sections();
+					$this->render_content();
 					?>
 				</div>
 				<div class="col">
@@ -122,6 +121,16 @@ final class Tab {
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Helper for render the settings
+	 *
+	 * @return void
+	 */
+	public function render_content() {
+		do_settings_sections( "yext-settings-{$this->tab_id}" );
+		$this->do_child_sections();
 	}
 
 	/**
