@@ -30,8 +30,14 @@ export default class YextSearchBarPreview {
 
 		for (let i = 0; i < form.elements.length; i++) {
 			form.elements[i].addEventListener('input', (e) => {
-				if (e.target.name.includes('search_bar')) {
-					this.updatePreview(e.target.id, e.target.value);
+				let targetType = '';
+				if (e.target.name.includes('[search_bar]')) {
+					targetType = '';
+					if (e.target.name.includes('[button]')) {
+						targetType = 'button';
+					}
+
+					this.updatePreview(e.target.id, e.target.value, targetType);
 				}
 			});
 		}
@@ -43,20 +49,16 @@ export default class YextSearchBarPreview {
 	 *
 	 * @param {string} target The target element.
 	 * @param {string} value The new value.
+	 * @param {string} type The field type.
 	 * 
 	 */
-	updatePreview(target, value) {
-		const previewContainer = this.previewContainer[0];
-		const searchInputs = previewContainer.querySelectorAll('.yxt-SearchBar-input');
-		const camelCased = target.replace(/_([a-z])/g, function (g) {
-			return g[1].toUpperCase();
-		});
-
-		searchInputs.forEach((searchInput) => {
-			searchInput.style[camelCased] =
+	updatePreview(target, value, type = '') {
+		this.previewContainer.forEach((container) => {
+			const cssValue =
 				Number.isNaN(value) || value.includes('#') || ['font_weight'].includes(target)
 					? value
 					: `${value}px`;
+			container.style.setProperty(`--yext-${type + target}`, cssValue);
 		});
 	}
 }

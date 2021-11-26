@@ -152,7 +152,7 @@ final class SettingsFields {
 				'type'  => 'NumberField',
 			],
 			[
-				'id'     => 'bg_color',
+				'id'     => 'background_color',
 				'parent' => 'button',
 				'title'  => __( 'Background color', 'yext' ),
 				'type'   => 'ColorField',
@@ -170,7 +170,7 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'text_color',
+				'id'     => 'color',
 				'parent' => 'button',
 				'title'  => __( 'Text color', 'yext' ),
 				'type'   => 'ColorField',

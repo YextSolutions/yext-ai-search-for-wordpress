@@ -98,6 +98,7 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
+		add_action( 'admin_head', [ $this, 'admin_css_variables' ], 10 );
 		add_action( 'yext_before_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
 	}
 
@@ -146,6 +147,32 @@ final class Settings {
 		);
 
 		$this->settings_fields = new SettingsFields( $this->settings );
+	}
+
+	/**
+	 * Add style variables
+	 *
+	 * @return void
+	 */
+	public function admin_css_variables() {
+		?>
+		<style>
+		:root {
+			<?php
+				if ( isset( $this->settings['search_bar'] ) ) {
+					foreach ( $this->settings['search_bar'] as $key => $value ) {
+						if ( ! is_array( $value ) ) {
+							if ( in_array( $key, [ 'border_radius', 'font_size', 'line_height' ] ) ) {
+								$value = $value . 'px';
+							}
+							echo '--yext-' . $key . ':' . $value . ';';
+						}
+					}
+				}
+			?>
+		}
+		</style>
+		<?php
 	}
 
 	/**

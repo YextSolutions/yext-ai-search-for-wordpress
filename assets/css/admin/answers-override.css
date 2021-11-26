@@ -1,0 +1,11 @@
+body {
+	& #yext-settings {
+
+		& .yxt-SearchBar-input {
+			background-color: var(--yext-background_color);
+			border: 1px solid var(--yext-border_color);
+			border-radius: var(--yext-border_radius);
+			color: var(--yext-color);
+		}
+	}
+}
