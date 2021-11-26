@@ -24,7 +24,7 @@ const init = () => {
 	const refererInputField = yextForm.querySelector('input[name="_wp_http_referer"]');
 	const refererUrl = refererInputField.value;
 	// eslint-disable-next-line new-cap, no-unused-vars
-	window.settingsTabs = new tabs('#yext-settings .tabs', {
+	const settingsTabs = new tabs('#yext-settings .tabs', {
 		onCreate: () => {
 			if (!hasQueryArg(window.location.href, TAB_QUERY_VAR)) {
 				return;
