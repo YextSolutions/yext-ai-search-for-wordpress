@@ -37,10 +37,12 @@
   },
   "dependencies": {
     "@10up/component-tabs": "^2.0.0",
+    "@wordpress/url": "^3.3.1",
     "prop-types": "^15.7.2"
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",
+    "wpDependencyExternals": false,
     "entry": {
       "admin": "./assets/js/admin/admin.js",
       "blocks": "./includes/block-editor/blocks.js",
