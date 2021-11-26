@@ -261,4 +261,41 @@ final class Settings {
 		// TODO: review needed settings passed to FE
 		return $settings['search_bar'];
 	}
+
+	/**
+	 * Generate CSS rules from settings
+	 * Used for wp_add_inline_style
+	 *
+	 * @return string
+	 * @see Yext\Core\styles()
+	 */
+	public static function get_inline_styles() {
+		$settings = self::get_settings();
+		// return if override styles is not enebled
+		if ( '1' !== $settings['search_bar']['use_custom_style'] ) {
+			return '';
+		}
+		$css    = self::get_base_inline_css();
+		$search = [
+			"['search_bar']['bg_color']",
+		];
+
+		$replace = [
+			esc_html( $settings['search_bar']['bg_color'] ),
+		];
+
+		// TODO: review and update the css code
+		return str_replace( $search, $replace, $css );
+	}
+
+	/**
+	 * Get the css file used for templating the inline styles
+	 *
+	 * @return string
+	 */
+	public static function get_base_inline_css() {
+		ob_start();
+		include_once YEXT_INC . 'partials/inline-css.php';
+		return ob_get_clean();
+	}
 }

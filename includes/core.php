@@ -216,6 +216,7 @@ function styles() {
 			[],
 			YEXT_VERSION
 		);
+		wp_add_inline_style( 'YEXT_frontend', settings::get_inline_styles() );
 	}
 
 }
