@@ -5,5 +5,6 @@
 
 /* Global - global pieces like media queries, mixins and placholders */
 @import url("global/index.css");
+@import url("base/index.css");
 @import url("components/index.css");
 @import url("@10up/component-tabs");

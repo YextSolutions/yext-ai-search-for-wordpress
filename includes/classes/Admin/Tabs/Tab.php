@@ -151,7 +151,14 @@ final class Tab {
 	 */
 	protected function do_child_sections() {
 		foreach ( $this->child_sections as $id => $title ) {
+			$wrapper_class = sprintf(
+				'yext-child-settings-%s-%s',
+				esc_attr( sanitize_title_with_dashes( $this->get_id() ) ),
+				esc_attr( $id )
+			);
+			echo '<div class=" ' . esc_attr( $wrapper_class ) . '">';
 			do_settings_sections( "yext-settings-{$this->tab_id}-{$id}" );
+			echo '</div>';
 		}
 	}
 }

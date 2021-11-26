@@ -14,7 +14,7 @@ function getTabIndex(node) {
 	return [...node.parentElement.children].indexOf(node);
 }
 
-const init = () => {
+const initTabs = () => {
 	const yextForm = document.querySelector('#yext-settings form');
 	// do nothing if not Yext settings form
 	if (!yextForm) {
@@ -45,8 +45,4 @@ const init = () => {
 	});
 };
 
-// safe to ignore, this is not a react component
-// eslint-disable-next-line @wordpress/no-global-event-listener
-window.addEventListener('DOMContentLoaded', () => {
-	init();
-});
+export default initTabs;
