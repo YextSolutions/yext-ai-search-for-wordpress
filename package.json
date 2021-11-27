@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@10up/component-tabs": "^2.0.0",
+    "dompurify": "^2.3.3",
     "prop-types": "^15.7.2"
   },
   "10up-toolkit": {

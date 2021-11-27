@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 /**
  * Search Bar Preview
  */
@@ -37,6 +39,8 @@ export default class YextSearchBarPreview {
 						targetType = 'button-';
 					} else if (e.target.name.includes('[autocomplete]')) {
 						targetType = 'autocomplete-';
+					} else if (e.target.name.includes('[create]')) {
+						targetType = 'create';
 					}
 
 					this.updatePreview(e.target.id, e.target.value, targetType);
@@ -56,11 +60,22 @@ export default class YextSearchBarPreview {
 	 */
 	updatePreview(target, value, type = '') {
 		this.previewContainer.forEach((container) => {
-			const cssValue =
-				Number.isNaN(value) || value.includes('#') || ['font_weight'].includes(target)
-					? value
-					: `${value}px`;
-			container.style.setProperty(`--yext-${type + target}`, cssValue);
+			if (type === 'create') {
+				if (target === 'placeholder') {
+					container
+						.querySelector('.yxt-SearchBar-input')
+						.setAttribute('placeholder', DOMPurify.sanitize(value));
+				} else if (target === 'submit_text') {
+					container.querySelector('.yxt-SearchBar-button').innerHTML =
+						DOMPurify.sanitize(value);
+				}
+			} else {
+				const cssValue =
+					Number.isNaN(value) || value.includes('#') || ['font_weight'].includes(target)
+						? value
+						: `${value}px`;
+				container.style.setProperty(`--yext-${type + target}`, cssValue);
+			}
 		});
 	}
 }
