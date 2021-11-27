@@ -158,13 +158,13 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'hover_bg_color',
+				'id'     => 'hover_background_color',
 				'parent' => 'button',
 				'title'  => __( 'Hover background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'active_bg_color',
+				'id'     => 'active_background_color',
 				'parent' => 'button',
 				'title'  => __( 'Active background color', 'yext' ),
 				'type'   => 'ColorField',
@@ -182,19 +182,19 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'bg_color',
+				'id'     => 'background_color',
 				'parent' => 'autocomplete',
 				'title'  => __( 'Background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'option_selected_bg_color',
+				'id'     => 'option_selected_background_color',
 				'parent' => 'autocomplete',
 				'title'  => __( 'Opption selected background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'option_hover_bg_color',
+				'id'     => 'option_hover_background_color',
 				'parent' => 'autocomplete',
 				'title'  => __( 'Option hovered background color', 'yext' ),
 				'type'   => 'ColorField',
@@ -228,10 +228,10 @@ final class SettingsFields {
 				'type'   => 'NumberField',
 			],
 			[
-				'id'     => 'text_color',
+				'id'     => 'hover_color',
 				'parent' => 'autocomplete',
 				'parent' => 'button',
-				'title'  => __( 'Text color', 'yext' ),
+				'title'  => __( 'Hover text color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[

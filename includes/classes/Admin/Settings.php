@@ -161,12 +161,7 @@ final class Settings {
 			<?php
 				if ( isset( $this->settings['search_bar'] ) ) {
 					foreach ( $this->settings['search_bar'] as $key => $value ) {
-						if ( ! is_array( $value ) ) {
-							if ( in_array( $key, [ 'border_radius', 'font_size', 'line_height' ] ) ) {
-								$value = $value . 'px';
-							}
-							echo '--yext-' . $key . ':' . $value . ';';
-						}
+						$this->variable_values( $key, $value );
 					}
 				}
 			?>
@@ -299,5 +294,28 @@ final class Settings {
 				</div>
 			</div>
 		<?php
+	}
+
+	/**
+	 * Add style variables
+	 */
+	public function variable_values( $key, $value, $type = '' ) {
+		$pixel_value = [ 'border_radius', 'font_size', 'line_height' ];
+
+		if ( 'create' === $key ) {
+			return;
+		}
+		
+		if ( is_array( $value ) ) {
+			foreach ( $value as $inner_key => $val ) {
+				echo $this->variable_values( $inner_key, $val, $key . '-' );
+			}
+		} else {
+			if ( in_array( $key, $pixel_value ) ) {
+				$value = $value . 'px';
+			}
+
+			echo '--yext-' . $type . $key . ':' . $value . ';';
+		}
 	}
 }

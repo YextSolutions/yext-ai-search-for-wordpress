@@ -34,7 +34,9 @@ export default class YextSearchBarPreview {
 				if (e.target.name.includes('[search_bar]')) {
 					targetType = '';
 					if (e.target.name.includes('[button]')) {
-						targetType = 'button';
+						targetType = 'button-';
+					} else if (e.target.name.includes('[autocomplete]')) {
+						targetType = 'autocomplete-';
 					}
 
 					this.updatePreview(e.target.id, e.target.value, targetType);
@@ -50,7 +52,7 @@ export default class YextSearchBarPreview {
 	 * @param {string} target The target element.
 	 * @param {string} value The new value.
 	 * @param {string} type The field type.
-	 * 
+	 *
 	 */
 	updatePreview(target, value, type = '') {
 		this.previewContainer.forEach((container) => {
