@@ -130,9 +130,6 @@ const searchBar = (props = {}) => {
 			submitText,
 			placeholderText,
 			redirectUrl,
-            /**
-             * Test
-             */
 		});
 
 		searchBars.forEach((searchBar) => {
