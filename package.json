@@ -18,10 +18,10 @@
     }
   },
   "lint-staged": {
-    "includes/**/*.js": [
+    "*.js": [
       "npm run lint-js"
     ],
-    "/includes/**/*.css": [
+    "*.css": [
       "lint-style"
     ],
     "*.php": [
