@@ -41,7 +41,8 @@ const Answers = ({ config, components }) => {
 	 * and instantiate the corresponsing component.
 	 */
 	const onReady = async () => {
-        for (const [component, { props }] of Object.entries(components)) {
+		for (const [component, { props }] of Object.entries(components)) {
+            /* eslint-disable-next-line no-await-in-loop */
 			await import(`./${kebabCase(component)}`)
 				.then(({ default: Component }) => {
 					const YextComponent = Component(props);
@@ -51,7 +52,7 @@ const Answers = ({ config, components }) => {
 					/* eslint-disable-next-line no-console */
 					console.error(`Yext: Error importing component ${component}: ${error}`);
 				});
-        }
+		}
 	};
 
 	/**

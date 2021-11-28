@@ -7,24 +7,149 @@ import '@testing-library/jest-dom';
 /**
  * Internal dependencies
  */
- import { render } from './utils/dom';
+import { render } from './utils/dom';
 import Answers from '../components/answers';
 
 let globalContainer;
+let globalAnswers;
 
 const globalConfig = {
-	apiKey: process.env.YEXT_ANSWERS_API_KEY,
-	experienceKey: process.env.YEXT_ANSWERS_EXPERIENCE_KEY,
-	businessId: process.env.YEXT_ANSWERS_BUSINESS_ID,
-    locale: 'en',
-	templateBundle: global.TemplateBundle.default,
+	config: {
+		apiKey: 'test',
+		experienceKey: 'test',
+		businessId: '123',
+		locale: 'en',
+		templateBundle: global.TemplateBundle.default,
+	},
+	components: {
+		searchBar: {
+			props: {},
+		},
+	},
 };
 
 describe('Yext Search Bar UI SDK Component', () => {
-    beforeEach(() => {
-        const { container } = render(`
+	beforeEach(async () => {
+		const { container } = render(`
             <div class="yext-search-bar" data-testid="yext-search-bar-1"></div>
-            <div class="yext-search-bar" data-testid="yext-search-bar-2"></div>
+        `);
+
+		globalContainer = container;
+	});
+
+	afterEach(() => {
+		document.body.removeChild(globalContainer);
+		global.ANSWERS.components._activeComponents = [];
+		global.ANSWERS.components._componentIdCounter = 0;
+		globalAnswers = null;
+	});
+
+	test('search bar fails without valid credentials', async () => {
+		globalAnswers = Answers({
+			...globalConfig,
+			config: {
+				...globalConfig.config,
+				apiKey: '',
+			},
+		});
+
+		expect(globalAnswers).toHaveProperty('error');
+	});
+
+	test('search bar renders', async () => {
+		globalAnswers = Answers(globalConfig);
+		await globalAnswers.init();
+
+		const search1 = screen.getByTestId('yext-search-bar-1');
+
+		expect(search1.querySelector('label')).toBeInTheDocument();
+		expect(search1.querySelector('input')).toBeInTheDocument();
+		expect(search1.querySelector('button[type="submit"]')).toBeInTheDocument();
+
+		expect(
+			global.ANSWERS.components._activeComponents.filter(
+				(component) => component._templateName === 'search/search',
+			),
+		).toHaveLength(1);
+		expect(globalContainer).toMatchSnapshot();
+	});
+
+	test('search bar renders multiple instances', async () => {
+		globalContainer.innerHTML +=
+			'<div class="yext-search-bar" data-testid="yext-search-bar-2"></div>';
+		globalAnswers = Answers(globalConfig);
+		await globalAnswers.init();
+
+		const search1 = screen.getByTestId('yext-search-bar-1');
+		const search2 = screen.getByTestId('yext-search-bar-2');
+
+		expect(search1.querySelector('label')).toBeInTheDocument();
+		expect(search1.querySelector('input')).toBeInTheDocument();
+		expect(search1.querySelector('button[type="submit"]')).toBeInTheDocument();
+
+		expect(search2.querySelector('label')).toBeInTheDocument();
+		expect(search2.querySelector('input')).toBeInTheDocument();
+		expect(search2.querySelector('button[type="submit"]')).toBeInTheDocument();
+
+		expect(
+			global.ANSWERS.components._activeComponents.filter(
+				(component) => component._templateName === 'search/search',
+			),
+		).toHaveLength(2);
+		expect(globalContainer).toMatchSnapshot();
+	});
+
+	test('search bar renders custom element', async () => {
+		globalContainer.innerHTML += `
+            <div class="custom-search-bar" data-testid="custom-search-bar"></div>
+        `;
+		globalAnswers = Answers({
+			...globalConfig,
+			components: {
+				searchBar: {
+					props: {
+						cssClass: 'custom-search-bar',
+					},
+				},
+			},
+		});
+		await globalAnswers.init();
+
+		const customSearch = screen.getByTestId('custom-search-bar');
+
+		expect(customSearch.querySelector('label')).toBeInTheDocument();
+		expect(customSearch.querySelector('input')).toBeInTheDocument();
+		expect(customSearch.querySelector('button[type="submit"]')).toBeInTheDocument();
+
+		expect(globalContainer).toMatchSnapshot();
+	});
+
+	test('search bar uses default props', async () => {
+		globalAnswers = Answers({
+			...globalConfig,
+			components: {
+				searchBar: {
+					props: {
+						labelText: 'Label Text',
+						placeholderText: 'Placeholder Text',
+						submitText: 'Submit Text',
+					},
+				},
+			},
+		});
+		await globalAnswers.init();
+
+		const search1 = screen.getByTestId('yext-search-bar-1');
+
+		expect(search1.querySelector('label')).toHaveTextContent('Label Text');
+		expect(search1.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
+		expect(search1.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
+
+		expect(globalContainer).toMatchSnapshot();
+	});
+
+	test('search bar uses data attributes as props', async () => {
+		globalContainer.innerHTML += `
             <div
                 class="custom-search-bar"
                 data-placeholder-text="Custom Placeholder Text"
@@ -32,62 +157,33 @@ describe('Yext Search Bar UI SDK Component', () => {
                 data-submit-text="Custom Submit Text"
                 data-testid="custom-search-bar"
             ></div>
-        `);
-    
-        globalContainer = container;
-    });
-    
-    afterEach(() => {
-        document.body.removeChild(globalContainer);
-    });
+        `;
+		globalAnswers = Answers({
+			...globalConfig,
+			components: {
+				searchBar: {
+					props: {
+						cssClass: 'custom-search-bar',
+						labelText: 'Custom Label Text',
+						placeholderText: 'Custom Placeholder Text',
+						submitText: 'Custom Submit Text',
+					},
+				},
+			},
+		});
+		await globalAnswers.init();
 
-    test('search bar fails without valid credentials', () => {
-        const AnswersSDK = Answers({
-            config: {
-                ...globalConfig,
-                apiKey: '',
-            },
-            components: {
-                searchBar: {},
-            },
-        });
-    
-        expect(AnswersSDK).toHaveProperty('error');
-    });
-    
-    test('search bar renders', async () => {
-        const AnswersSDK = Answers({
-            config: globalConfig,
-            components: {
-                searchBar: {
-                    props: {
-                        cssClass: 'custom-search-bar',
-                        labelText: 'Label Text',
-                        placeholderText: 'Placeholder Text',
-                        submitText: 'Submit Text',
-                    },
-                },
-            },
-        });
-    
-        await AnswersSDK.init();
-    
-        const search1 = screen.getByTestId('yext-search-bar-1');
-        const search2 = screen.getByTestId('yext-search-bar-2');
-        const customSearch = screen.getByTestId('custom-search-bar');
+		const customSearch = screen.getByTestId('custom-search-bar');
 
-        expect(search1.querySelector('label')).toHaveTextContent('Label Text');
-        expect(search1.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
-        expect(search1.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
+		expect(customSearch.querySelector('label')).toHaveTextContent('Custom Label Text');
+		expect(customSearch.querySelector('input')).toHaveAttribute(
+			'placeholder',
+			'Custom Placeholder Text',
+		);
+		expect(customSearch.querySelector('button[type="submit"]')).toHaveTextContent(
+			'Custom Submit Text',
+		);
 
-        expect(search2.querySelector('label')).toHaveTextContent('Label Text');
-        expect(search2.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
-        expect(search2.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
-
-        expect(customSearch.querySelector('label')).toHaveTextContent('Custom Label Text');
-        expect(customSearch.querySelector('input')).toHaveAttribute('placeholder', 'Custom Placeholder Text');
-        expect(customSearch.querySelector('button[type="submit"]')).toHaveTextContent('Custom Submit Text');
-
-        expect(globalContainer).toMatchSnapshot();
-    });
+		expect(globalContainer).toMatchSnapshot();
+	});
 });
