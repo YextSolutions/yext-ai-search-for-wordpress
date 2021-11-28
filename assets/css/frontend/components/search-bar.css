@@ -1,0 +1,71 @@
+body {
+
+	& .yxt-Answers-component.yxt-SearchBar-wrapper {
+
+		& .yxt-GeoLocationFilter-container,
+		& .yxt-SearchBar-container {
+
+			&:hover,
+			&:focus-within {
+				box-shadow: var(--yxt-searchbar-focus-shadow);
+			}
+		}
+
+		& button.yxt-GeoLocationFilter-button,
+		& button.yxt-GeoLocationFilter-clear,
+		& button.yxt-SearchBar-button,
+		& button.yxt-SearchBar-clear {
+			align-items: center;
+			background-color: var(--yxt-searchbar-button-background-color-base);
+			border: none;
+			color: var(--yxt-color-text-secondary);
+			cursor: pointer;
+			display: flex;
+			flex-shrink: 0;
+			font: inherit;
+			padding-bottom: calc(var(--yxt-base-spacing) / 2);
+			padding-top: calc(var(--yxt-base-spacing) / 2);
+
+			&:focus {
+				background-color: var(--yxt-searchbar-button-background-color-hover);
+			}
+		}
+
+		& input.yxt-GeoLocationFilter-input,
+		& input.yxt-SearchBar-input {
+			background-color: transparent;
+			border: none;
+			color: var(--yxt-searchbar-text-color);
+			font-family: var(--yxt-font-family);
+			font-size: var(--yxt-searchbar-text-font-size);
+			font-style: normal;
+			font-weight: var(--yxt-searchbar-text-font-weight);
+			line-height: var(--yxt-searchbar-text-line-height);
+			padding: calc(var(--yxt-base-spacing) / 2) var(--yxt-base-spacing);
+			width: 100%;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		& .yxt-AutoComplete-wrapper {
+			background-color: var(--yxt-autocomplete-background-color);
+		}
+
+		& .yxt-AutoComplete-option--item {
+			font-weight: var(--yxt-autocomplete-text-font-weight);
+
+			&:hover {
+				background-color: var(--yxt-autocomplete-option-hover-background-color);
+			}
+		}
+
+		& .yxt-AutoComplete-option--item,
+		& .yxt-AutoComplete-option--promptHeader {
+			color: var(--yxt-autocomplete-text-color);
+			font-size: var(--yxt-autocomplete-text-font-size);
+			line-height: var(--yxt-autocomplete-text-line-height);
+		}
+	}
+}
