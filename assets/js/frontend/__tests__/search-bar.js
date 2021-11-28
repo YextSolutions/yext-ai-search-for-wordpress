@@ -31,8 +31,8 @@ const globalConfig = {
 describe('Yext Search Bar UI SDK Component', () => {
 	beforeEach(async () => {
 		const { container } = render(`
-            <div class="yext-search-bar" data-testid="yext-search-bar-1"></div>
-        `);
+			<div class="yext-search-bar" data-testid="yext-search-bar-1"></div>
+		`);
 
 		globalContainer = container;
 	});
@@ -101,8 +101,8 @@ describe('Yext Search Bar UI SDK Component', () => {
 
 	test('search bar renders custom element', async () => {
 		globalContainer.innerHTML += `
-            <div class="custom-search-bar" data-testid="custom-search-bar"></div>
-        `;
+			<div class="custom-search-bar" data-testid="custom-search-bar"></div>
+		`;
 		globalAnswers = Answers({
 			...globalConfig,
 			components: {
@@ -121,7 +121,7 @@ describe('Yext Search Bar UI SDK Component', () => {
 		expect(customSearch.querySelector('input')).toBeInTheDocument();
 		expect(customSearch.querySelector('button[type="submit"]')).toBeInTheDocument();
 
-        expect(
+		expect(
 			global.ANSWERS.components._activeComponents.filter(
 				(component) => component._templateName === 'search/search',
 			),
@@ -150,7 +150,7 @@ describe('Yext Search Bar UI SDK Component', () => {
 		expect(search1.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
 		expect(search1.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
 
-        expect(
+		expect(
 			global.ANSWERS.components._activeComponents.filter(
 				(component) => component._templateName === 'search/search',
 			),
@@ -158,32 +158,32 @@ describe('Yext Search Bar UI SDK Component', () => {
 		expect(globalContainer).toMatchSnapshot();
 	});
 
-	test('search bar uses data attributes as props', async () => {
+	test('search bar prefers data attributes as props', async () => {
 		globalContainer.innerHTML += `
-            <div
-                class="custom-search-bar"
-                data-placeholder-text="Custom Placeholder Text"
-                data-label-text="Custom Label Text"
-                data-submit-text="Custom Submit Text"
-                data-testid="custom-search-bar"
-            ></div>
-        `;
+			<div
+				class="custom-search-bar"
+				data-placeholder-text="Custom Placeholder Text"
+				data-label-text="Custom Label Text"
+				data-submit-text="Custom Submit Text"
+				data-testid="custom-search-bar"
+			></div>
+		`;
 		globalAnswers = Answers({
 			...globalConfig,
 			components: {
 				searchBar: {
 					props: {
 						cssClass: 'custom-search-bar',
-						labelText: 'Custom Label Text',
-						placeholderText: 'Custom Placeholder Text',
-						submitText: 'Custom Submit Text',
+						labelText: 'Label Text',
+						placeholderText: 'Placeholder Text',
+						submitText: 'Submit Text',
 					},
 				},
 			},
 		});
 		await globalAnswers.init();
 
-        const search1 = screen.getByTestId('yext-search-bar-1');
+		const search1 = screen.getByTestId('yext-search-bar-1');
 		const customSearch = screen.getByTestId('custom-search-bar');
 
 		expect(search1.querySelector('label')).toHaveTextContent('Label Text');
@@ -199,7 +199,7 @@ describe('Yext Search Bar UI SDK Component', () => {
 			'Custom Submit Text',
 		);
 
-        expect(
+		expect(
 			global.ANSWERS.components._activeComponents.filter(
 				(component) => component._templateName === 'search/search',
 			),

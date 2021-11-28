@@ -42,8 +42,11 @@ const Answers = ({ config, components }) => {
 	 */
 	const onReady = async () => {
 		for (const [component, { props }] of Object.entries(components)) {
-            /* eslint-disable-next-line no-await-in-loop */
-			await import(`./${kebabCase(component)}`)
+			/* eslint-disable-next-line no-await-in-loop */
+			await import(
+				/* webpackChunkName: "[request]" */
+				`./${kebabCase(component)}`
+			)
 				.then(({ default: Component }) => {
 					const YextComponent = Component(props);
 					YextComponent.register();

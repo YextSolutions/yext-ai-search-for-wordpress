@@ -12,22 +12,6 @@
     "clean-dist": "rm -rf ./dist",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint-js && npm run test"
-    ],
-    "*.css": [
-      "lint-style"
-    ],
-    "*.php": [
-      "./vendor/bin/phpcs . --extensions=php --standard=phpcs.xml --warning-severity=8 -s"
-    ]
-  },
   "engines": {
     "node": ">=12.0.0"
   },

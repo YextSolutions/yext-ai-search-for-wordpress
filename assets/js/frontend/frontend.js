@@ -47,7 +47,7 @@ const init = () => {
 	}
 
 	import(
-		/* webpackChunkName: answers */
+		/* webpackChunkName: "answers" */
 		'./components/answers'
 	).then(({ default: Answers }) => {
 		/**
