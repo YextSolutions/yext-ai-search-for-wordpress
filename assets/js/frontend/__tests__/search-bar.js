@@ -121,6 +121,11 @@ describe('Yext Search Bar UI SDK Component', () => {
 		expect(customSearch.querySelector('input')).toBeInTheDocument();
 		expect(customSearch.querySelector('button[type="submit"]')).toBeInTheDocument();
 
+        expect(
+			global.ANSWERS.components._activeComponents.filter(
+				(component) => component._templateName === 'search/search',
+			),
+		).toHaveLength(2);
 		expect(globalContainer).toMatchSnapshot();
 	});
 
@@ -145,6 +150,11 @@ describe('Yext Search Bar UI SDK Component', () => {
 		expect(search1.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
 		expect(search1.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
 
+        expect(
+			global.ANSWERS.components._activeComponents.filter(
+				(component) => component._templateName === 'search/search',
+			),
+		).toHaveLength(1);
 		expect(globalContainer).toMatchSnapshot();
 	});
 
@@ -173,7 +183,12 @@ describe('Yext Search Bar UI SDK Component', () => {
 		});
 		await globalAnswers.init();
 
+        const search1 = screen.getByTestId('yext-search-bar-1');
 		const customSearch = screen.getByTestId('custom-search-bar');
+
+		expect(search1.querySelector('label')).toHaveTextContent('Label Text');
+		expect(search1.querySelector('input')).toHaveAttribute('placeholder', 'Placeholder Text');
+		expect(search1.querySelector('button[type="submit"]')).toHaveTextContent('Submit Text');
 
 		expect(customSearch.querySelector('label')).toHaveTextContent('Custom Label Text');
 		expect(customSearch.querySelector('input')).toHaveAttribute(
@@ -184,6 +199,11 @@ describe('Yext Search Bar UI SDK Component', () => {
 			'Custom Submit Text',
 		);
 
+        expect(
+			global.ANSWERS.components._activeComponents.filter(
+				(component) => component._templateName === 'search/search',
+			),
+		).toHaveLength(2);
 		expect(globalContainer).toMatchSnapshot();
 	});
 });
