@@ -14,5 +14,12 @@
     "psr-4": {
       "Yext\\": "includes/classes/"
     }
+  },
+  "require-dev": {
+    "10up/phpcs-composer": "dev-master",
+    "sirbrillig/phpcs-variable-analysis": "^2.11"
+  },
+  "config": {
+    "sort-packages": true
   }
 }
