@@ -9,6 +9,7 @@ namespace Yext\Core;
 
 use \WP_Error;
 use \Yext\UI\SearchBar;
+use \Yext\Admin\Settings;
 
 /**
  * Default setup routine
@@ -54,6 +55,9 @@ function i18n() {
  * @return void
  */
 function init() {
+	// initialize admin settings
+	$admin_settings = Settings::instance();
+	$admin_settings->setup();
 	do_action( 'yext_init' );
 }
 
@@ -102,7 +106,7 @@ function get_enqueue_contexts() {
 /**
  * Helper for rendering a tab nav item
  *
- * @return void
+ * @return string
  */
 function render_search_form() {
 	return '<div class="yext-search-bar"></div>';
@@ -159,7 +163,7 @@ function scripts() {
 		true
 	);
 
-	wp_enqueue_script(
+	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar',
 		'https://assets.sitescdn.net/answers-search-bar/v1/answers.min.js',
 		[],
@@ -167,7 +171,7 @@ function scripts() {
 		true
 	);
 
-	wp_enqueue_script(
+	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar-templates',
 		'https://assets.sitescdn.net/answers-search-bar/v1/answerstemplates-iife.compiled.min.js',
 		[],
@@ -189,7 +193,6 @@ function scripts() {
 	wp_localize_script(
 		'yext-frontend',
 		'YEXT',
-
 		/**
 		 * 🚨🚨  ***** TODO ***** 🚨🚨
 		 *
@@ -200,6 +203,7 @@ function scripts() {
 		]
 	);
 
+	// wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
 }
 
 /**
@@ -233,28 +237,18 @@ function admin_scripts() {
  * @return void
  */
 function styles() {
+	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+		[],
+		null
+	);
 
 	wp_enqueue_style(
 		'yext-shared',
 		style_url( 'shared-style', 'shared' ),
 		[],
 		YEXT_VERSION
-	);
-
-	// if ( is_admin() ) {
-	// 	wp_enqueue_style(
-	// 		'YEXT_admin',
-	// 		style_url( 'admin-style', 'admin' ),
-	// 		[],
-	// 		YEXT_VERSION
-	// 	);
-	// } else {
-
-	wp_enqueue_style(
-		'yext-search-bar',
-		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
-		[],
-		null
 	);
 
 	wp_enqueue_style(
@@ -264,8 +258,7 @@ function styles() {
 		YEXT_VERSION
 	);
 
-	// }
-
+	wp_add_inline_style( 'yext-frontend', Settings::get_inline_styles() );
 }
 
 /**
