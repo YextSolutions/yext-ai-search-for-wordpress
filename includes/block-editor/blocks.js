@@ -4,4 +4,4 @@
  */
 
 // Custom Blocks
-// import './blocks';
+import './blocks/index';
