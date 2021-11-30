@@ -1,0 +1,6 @@
+#yext-settings {
+
+	& .toggled-settings-hidden {
+		display: none;
+	}
+}

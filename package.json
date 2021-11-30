@@ -31,15 +31,18 @@
     "node": ">=12.0.0"
   },
   "devDependencies": {
-    "10up-toolkit": "^1.0.0",
+    "10up-toolkit": "^1.0.13",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6"
   },
   "dependencies": {
+    "@10up/component-tabs": "^2.0.0",
+    "@wordpress/url": "^3.3.1",
     "prop-types": "^15.7.2"
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",
+    "wpDependencyExternals": false,
     "entry": {
       "admin": "./assets/js/admin/admin.js",
       "blocks": "./includes/block-editor/blocks.js",

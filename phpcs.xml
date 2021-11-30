@@ -3,6 +3,10 @@
 	<description>10up PHPCS extended.</description>
 
 	<rule ref="10up-Default" />
-
+	<rule ref="VariableAnalysis" />
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+	<!-- PHP version check. -->
+	<config name="testVersion" value="7.4-"/>
+	<arg name="extensions" value="php"/>
 	<arg name="colors"/>
 </ruleset>
