@@ -1,10 +1,12 @@
 /**
  * Yext - Admin only styles
- * https://project-website.tld
  *
  */
 
-/* Resets - installed via NPM */
+/* Global - global pieces like media queries, mixins and placholders */
+@import url("global/index.css");
+@import url("base/index.css");
+@import url("components/index.css");
 @import url("@10up/component-tabs");
 
 /* Local Copy of Yext answer.css */

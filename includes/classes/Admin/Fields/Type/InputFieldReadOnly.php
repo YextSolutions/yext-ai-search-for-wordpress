@@ -45,4 +45,16 @@ class InputFieldReadOnly extends AbstractField {
 		);
 	}
 
+	/**
+	 * Sanitize field value for saving
+	 *
+	 * @param  array $sanitized   Array of sanitized values
+	 * @param  array $posted_data Values from $_POST
+	 * @return array $sanitized   Sanitized values
+	 */
+	public function sanitize_field( $sanitized, $posted_data ) {
+		// TODO: this should be updated based on other settings
+		return $sanitized;
+	}
+
 }

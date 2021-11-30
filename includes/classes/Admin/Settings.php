@@ -73,7 +73,7 @@ final class Settings {
 	 *
 	 * @return array
 	 */
-	public function get_settings() {
+	public static function get_settings() {
 		return get_option( static::SETTINGS_NAME, [] );
 	}
 
@@ -81,7 +81,7 @@ final class Settings {
 	 * Settings page Setup
 	 */
 	public function setup() {
-		$this->settings = $this->get_settings();
+		$this->settings = self::get_settings();
 
 		$plugin_tab = new Tab( self::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin settings', 'yext' ) );
 		// Child sections for this tab
@@ -98,14 +98,14 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'admin_head', [ $this, 'admin_css_variables' ], 10 );
-		add_action( 'yext_after_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
+		add_action( 'admin_head', [ $this, 'print_css_variables' ], 10 );
+		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
 	/**
 	 * Add plugin page
 	 *
-	 * * @return void
+	 * @return void
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
@@ -130,7 +130,7 @@ final class Settings {
 			__( 'Wizard', 'yext' ),
 			'manage_options',
 			'yext-connector-wizard',
-			[ $this, 'render_settings_page' ]
+			[ $this, 'render_wizard_page' ]
 		);
 	}
 
@@ -142,11 +142,11 @@ final class Settings {
 	public function admin_page_init() {
 		register_setting(
 			'yext_option_group', // option_group
-			self::SETTINGS_NAME, // option_name
+			static::SETTINGS_NAME, // option_name
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
-
 		$this->settings_fields = new SettingsFields( $this->settings );
+
 	}
 
 	/**
@@ -154,19 +154,22 @@ final class Settings {
 	 *
 	 * @return void
 	 */
-	public function admin_css_variables() {
+	public static function print_css_variables() {
+
+		$settings        = self::get_settings();
+		$settings_fields = new SettingsFields( $settings );
 		
-		if ( ! isset ( $this->settings_fields->fields ) ) {
+		if ( ! isset ( $settings_fields->fields ) ) {
 			return;
 		}
 		?>
 		<style>
 		:root {
 			<?php
-				foreach ( $this->settings_fields->fields as $field ) {
+				foreach ( $settings_fields->fields as $field ) {
 					if ( $field->variable ) {
-						$value = isset( $field->parent_field ) && $field->parent_field ? $this->settings[$field->section_id][$field->parent_field][$field->id] : $this->settings[$field->section_id][$field->id];
-						$this->variable_values( $field->variable, $value );
+						$value = isset( $field->parent_field ) && $field->parent_field ? $settings[$field->section_id][$field->parent_field][$field->id] : $settings[$field->section_id][$field->id];
+						self::variable_values( $field->variable, $value );
 					}
 				}
 			?>
@@ -182,39 +185,19 @@ final class Settings {
 	 * @return array $sanitized Sanitized settings values
 	 */
 	public function sanitize_setting_values( $input ) {
-		$sanitized = apply_filters( 'yext_sanitize_settings', [], $input );
+		$sanitized = [];
+		$sanitized = apply_filters( 'yext_sanitize_settings', $sanitized, $input );
 		return $sanitized;
 	}
 
 	/**
-	 * Render settings
-	 *
-	 * @return void
-	 */
-	public function enabled_setting_render() {
-		$setting_name = 'enabled';
-		printf(
-			'<input
-				type="checkbox"
-				name="%s"
-				id="%s"
-				value="1" %s>
-				<label for="%s">%s</label>',
-			esc_attr( $this->setting_name( $setting_name ) ),
-			esc_attr( $this->setting_name( $setting_name ) ),
-			checked( $this->settings[ $setting_name ], 1, false ),
-			esc_attr( $this->setting_name( $setting_name ) ),
-			esc_html__( 'Enabled', 'yext' )
-		);
-	}
-
-	/**
-	 * Create admin page callback
+	 * Admin settings page callback
 	 *
 	 * @return void
 	 */
 	public function render_settings_page() {
-
+			settings_errors( static::SETTINGS_NAME );
+			settings_errors( 'general' );
 		?>
 		<div id="yext-settings">
 			<h2>
@@ -251,60 +234,9 @@ final class Settings {
 	}
 
 	/**
-	 * Create search bar preview
-	 *
-	 * @return void
-	 */
-	public function search_bar_preview( $tab_id ) {
-		if ( 'search_bar' !== $tab_id ) {
-			return;
-		}
-		?>
-			<div class="yxt-Answers-component yxt-SearchBar-wrapper">
-				<div class="yxt-SearchBar">
-					<div class="yxt-SearchBar-container">
-						<div class="yxt-SearchBar-form">
-							<input class="js-yext-query yxt-SearchBar-input" type="text" name="query" value="" aria-label="Conduct a search" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search...">
-							<button type="submit" class="js-yext-submit yxt-SearchBar-button">
-								<div class="js-yxt-AnimatedForward component yxt-SearchBar-AnimatedIcon--inactive">
-									<div class="Icon Icon--yext_animated_forward Icon--lg" aria-hidden="true"></div>
-
-								</div>
-								<div class="js-yxt-AnimatedReverse component" data-component="IconComponent">
-									<div class="Icon Icon--yext_animated_reverse Icon--lg" aria-hidden="true">
-										<img src ="<?php echo esc_url( YEXT_URL ); ?>/assets/svg/logo.svg"/>
-									</div>
-
-								</div>
-								<span class="yxt-SearchBar-buttonText sr-only">
-									<?php esc_html_e( 'Submit', 'yext' ); ?>
-								</span>
-							</button>
-						</div>
-						<div class="yxt-SearchBar-autocomplete yxt-AutoComplete-wrapper js-yxt-AutoComplete-wrapper component">
-							<div class="yxt-AutoComplete">
-
-								<ul class="yxt-AutoComplete-results">
-									<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
-										<?php esc_html_e( 'Example autocomplete results', 'yext' ); ?>
-									</li>
-
-									<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
-										<?php esc_html_e( 'Search results dropdown example', 'yext' ); ?>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<?php
-	}
-
-	/**
 	 * Add style variables
 	 */
-	public function variable_values( $key, $value ) {
+	public static function variable_values( $key, $value ) {
 		$pixel_value = [
 			'--yxt-base-radius',
 			'--yxt-base-spacing',
@@ -318,7 +250,7 @@ final class Settings {
 		
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
-				echo $this->variable_values( $inner_key, $val, $key . '-' );
+				echo self::variable_values( $inner_key, $val, $key . '-' );
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
@@ -327,5 +259,64 @@ final class Settings {
 
 			echo sanitize_text_field( $key . ':' . $value . ';' );
 		}
+	}
+	
+		/**
+	 * Wizard admin page callback
+	 *
+	 * @return void
+	 */
+	public function render_wizard_page() {
+			settings_errors( static::SETTINGS_NAME );
+			settings_errors( 'general' );
+		?>
+		<div id="yext-settings-wizard">
+			<form method="post" action="options.php">
+				<?php
+				foreach ( $this->tabs as $tab ) {
+					$tab->render_content();
+				}
+				settings_fields( 'yext_option_group' );
+				submit_button();
+				?>
+			</form>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Called after plugin settings
+	 *
+	 * @param string $tab_id Tab id
+	 * @return void
+	 */
+	public function after_plugin_settings( $tab_id ) {
+		switch ( $tab_id ) {
+			case 'search_bar':
+				$this->search_bar_preview();
+				break;
+			default:
+				break;
+		}
+	}
+
+	/**
+	 * Load the search bar preview
+	 *
+	 * @return void
+	 */
+	public function search_bar_preview() {
+		include_once YEXT_INC . 'partials/preview/search-bar.php';
+	}
+
+	/**
+	 * Localized settings passed to front-end
+	 *
+	 * @return array $settings
+	 */
+	public static function localized_settings() {
+		$settings = self::get_settings();
+		// TODO: review needed settings passed to FE
+		return $settings['search_bar'];
 	}
 }

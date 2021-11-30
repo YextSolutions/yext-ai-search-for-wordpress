@@ -15,6 +15,11 @@ use Yext\Admin\Fields\Type\AbstractField;
 class SelectPagesField extends SelectField {
 
 	/**
+	 * The post type key used in the dropdown
+	 */
+	const POST_TYPE = 'page';
+
+	/**
 	 * Render the field used on settings.
 	 *
 	 * @return void
@@ -29,5 +34,16 @@ class SelectPagesField extends SelectField {
 				'selected'          => esc_attr( $this->value ),
 			]
 		);
+	}
+
+	/**
+	 * Sanitize field value
+	 * Check if value matches with field options
+	 *
+	 * @param string $value  Field value
+	 * @return string $value Sanitized fField value
+	 */
+	protected function sanitize_value( $value ) {
+		return self::POST_TYPE === get_post_type( $value ) && is_numeric( $value ) ? $value : '';
 	}
 }

@@ -159,6 +159,8 @@ function scripts() {
 		true
 	);
 
+	wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
+
 }
 
 /**
@@ -214,6 +216,7 @@ function styles() {
 			[],
 			YEXT_VERSION
 		);
+		wp_add_inline_style( 'YEXT_frontend', Settings::print_css_variables() );
 	}
 
 }
