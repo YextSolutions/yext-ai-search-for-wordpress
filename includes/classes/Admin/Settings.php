@@ -99,7 +99,7 @@ final class Settings {
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
 		add_action( 'admin_head', [ $this, 'admin_css_variables' ], 10 );
-		add_action( 'yext_before_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
+		add_action( 'yext_after_plugin_settings', [ $this, 'search_bar_preview' ], 10 );
 	}
 
 	/**
@@ -260,7 +260,7 @@ final class Settings {
 			return;
 		}
 		?>
-			<div class="search-bar-container component yxt-SearchBar-wrapper">
+			<div class="yxt-Answers-component yxt-SearchBar-wrapper">
 				<div class="yxt-SearchBar">
 					<div class="yxt-SearchBar-container">
 						<div class="yxt-SearchBar-form">

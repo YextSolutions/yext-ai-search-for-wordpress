@@ -35,7 +35,7 @@ export default class YextSearchBarPreview {
 				const cssVariable = e.target.getAttribute('data-variable');
 
 				if (cssVariable) {
-					this.updatePreview(cssVariable, e.target.value);
+					this.updateVariables(cssVariable, e.target.value);
 				}
 			});
 		}
@@ -43,13 +43,13 @@ export default class YextSearchBarPreview {
 	}
 
 	/**
-	 * Form change listener
+	 * Update CSS variable inline
 	 *
 	 * @param {string} key The CSS variable name.
 	 * @param {string} value The new value.
 	 *
 	 */
-	updatePreview(key, value) {
+	updateVariables(key, value) {
 		this.previewContainer.forEach((container) => {
 			const cssValue =
 				Number.isNaN(value) || value.includes('#') || key.includes('font-weight')

@@ -168,7 +168,7 @@ final class SettingsFields {
 				'parent'   => 'button',
 				'title'    => __( 'Active background color', 'yext' ),
 				'type'     => 'ColorField',
-				'variable' => '--yxt-searchbar-button-background-color-base'
+				'variable' => '--yxt-searchbar-button-background-color-base',
 			],
 			[
 				'id'     => 'color',
@@ -183,10 +183,11 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'background_color',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'background_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-background-color',
 			],
 			[
 				'id'     => 'option_selected_background_color',
