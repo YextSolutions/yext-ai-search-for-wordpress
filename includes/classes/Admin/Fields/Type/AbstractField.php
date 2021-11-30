@@ -66,6 +66,7 @@ abstract class AbstractField {
 		'parent_field' => '',
 		'value'        => '',
 		'section_id'   => '',
+		'variable'     => '',
 	];
 
 	/**
@@ -96,6 +97,7 @@ abstract class AbstractField {
 		$this->parent_field = $args['parent'];
 		$this->section_id   = $args['section_id'];
 		$this->value        = $args['value'];
+		$this->variable     = $args['variable'];
 		$this->setup();
 	}
 

@@ -164,10 +164,11 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'active_background_color',
-				'parent' => 'button',
-				'title'  => __( 'Active background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'active_background_color',
+				'parent'   => 'button',
+				'title'    => __( 'Active background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-background-color-base'
 			],
 			[
 				'id'     => 'color',
@@ -314,6 +315,7 @@ final class SettingsFields {
 			'parent'     => $field_config['parent'] ?? '',
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
+			'variable'   => $field_config['variable'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

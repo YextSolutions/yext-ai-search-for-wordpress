@@ -9,4 +9,4 @@
 
 /* Local Copy of Yext answer.css */
 @import url("answers.css");
-@import url("answers-override.css");
+@import url("../frontend/components/search-bar.css");

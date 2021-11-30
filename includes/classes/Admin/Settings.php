@@ -155,13 +155,18 @@ final class Settings {
 	 * @return void
 	 */
 	public function admin_css_variables() {
+		
+		if ( ! isset ( $this->settings_fields->fields ) ) {
+			return;
+		}
 		?>
 		<style>
 		:root {
 			<?php
-				if ( isset( $this->settings['search_bar'] ) ) {
-					foreach ( $this->settings['search_bar'] as $key => $value ) {
-						$this->variable_values( $key, $value );
+				foreach ( $this->settings_fields->fields as $field ) {
+					if ( $field->variable ) {
+						$value = isset( $field->parent_field ) && $field->parent_field ? $this->settings[$field->section_id][$field->parent_field][$field->id] : $this->settings[$field->section_id][$field->id];
+						$this->variable_values( $field->variable, $value );
 					}
 				}
 			?>
@@ -299,8 +304,13 @@ final class Settings {
 	/**
 	 * Add style variables
 	 */
-	public function variable_values( $key, $value, $type = '' ) {
-		$pixel_value = [ 'border_radius', 'font_size', 'line_height' ];
+	public function variable_values( $key, $value ) {
+		$pixel_value = [
+			'--yxt-base-radius',
+			'--yxt-base-spacing',
+			'--yxt-searchbar-text-font-weight',
+			'--yxt-searchbar-text-line-height'
+		];
 
 		if ( 'create' === $key ) {
 			return;
@@ -315,7 +325,7 @@ final class Settings {
 				$value = $value . 'px';
 			}
 
-			echo '--yext-' . $type . $key . ':' . $value . ';';
+			echo sanitize_text_field( $key . ':' . $value . ';' );
 		}
 	}
 }
