@@ -7,6 +7,8 @@
 
 namespace Yext\Blocks;
 
+use \Yext\Admin\Settings;
+
 /**
  * Set up blocks
  *
@@ -48,19 +50,21 @@ function blocks_scripts() {
 function blocks_editor_scripts() {
 
 	wp_enqueue_script(
-		'blocks-editor',
+		'yext-blocks-editor',
 		YEXT_URL . '/dist/js/blocks.js',
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor', 'wp-editor' ],
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ],
 		YEXT_VERSION,
 		false
 	);
 
 	wp_enqueue_style(
-		'editor-style',
+		'yext-editor-style',
 		YEXT_URL . '/dist/css/editor-style.css',
 		[],
 		YEXT_VERSION
 	);
+
+	wp_localize_script( 'yext-blocks-editor', 'YEXT_settings', Settings::localized_settings() );
 }
 
 /**
@@ -90,9 +94,7 @@ function blocks_categories( $categories, $post ) {
  * @return void
  */
 function register_blocks() {
-	require_once YEXT_INC . 'block-editor/blocks/search-bar/register.php';
 	require_once YEXT_INC . 'block-editor/blocks/search-results/register.php';
 
-	SearchBar\register();
 	SearchResults\register();
 }
