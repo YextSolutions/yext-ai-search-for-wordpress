@@ -66,6 +66,7 @@ abstract class AbstractField {
 		'parent_field' => '',
 		'value'        => '',
 		'section_id'   => '',
+		'variable'     => '',
 	];
 
 	/**
@@ -96,6 +97,7 @@ abstract class AbstractField {
 		$this->parent_field = $args['parent'];
 		$this->section_id   = $args['section_id'];
 		$this->value        = $args['value'];
+		$this->variable     = $args['variable'];
 		$this->setup();
 	}
 
@@ -208,9 +210,9 @@ abstract class AbstractField {
 	protected function get_posted_value( $posted_data ) {
 		$value = '';
 		if ( $this->has_parent_field() ) {
-			$value = $posted_data[ $this->section_id ][ $this->parent_field ][ $this->id ];
+			$value = $posted_data[ $this->section_id ][ $this->parent_field ][ $this->id ] ?? '';
 		} else {
-			$value = $posted_data[ $this->section_id ][ $this->id ];
+			$value = $posted_data[ $this->section_id ][ $this->id ] ?? '';
 		}
 		return $value;
 	}
