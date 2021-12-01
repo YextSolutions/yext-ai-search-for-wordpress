@@ -1,13 +1,15 @@
 import Controls from './controls';
 
+const { answers_iframe_url } = YEXT_SETTINGS;
+
 /**
  * WordPress dependencies
  */
-
 const { useBlockProps } = wp.blockEditor;
 const { __ } = wp.i18n;
 const { useState } = wp.element;
 const { Placeholder, Button } = wp.components;
+
 
 const Edit = (props) => {
 	const { attributes, setAttributes } = props;
@@ -15,7 +17,7 @@ const Edit = (props) => {
 	const { url } = attributes;
 	const blockProps = useBlockProps();
 
-	const [pageUrl, setPageUrl] = useState(url);
+	const [pageUrl, setPageUrl] = useState(url ?? answers_iframe_url);
 	return (
 		<>
 			<Controls {...props} />
