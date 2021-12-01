@@ -20,13 +20,6 @@ function setup() {
 	add_action( 'enqueue_block_editor_assets', $n( 'blocks_editor_scripts' ) );
 
 	add_filter( 'block_categories', $n( 'blocks_categories' ), 10, 2 );
-
-	/**
-	 * Override the search bar block
-	 *
-	 * TODO: Wrap this in a conditional
-	 */
-	add_filter( 'render_block', $n( 'render_search_form' ), 10, 2 );
 }
 
 /**
@@ -35,7 +28,6 @@ function setup() {
  * @return void
  */
 function blocks_scripts() {
-
 	wp_enqueue_script(
 		'blocks',
 		YEXT_URL . '/dist/js/blocks.js',
@@ -52,7 +44,6 @@ function blocks_scripts() {
  * @return void
  */
 function blocks_editor_scripts() {
-
 	wp_enqueue_script(
 		'blocks-editor',
 		YEXT_URL . '/dist/js/blocks-editor.js',
@@ -78,34 +69,17 @@ function blocks_editor_scripts() {
  * @return array Filtered categories.
  */
 function blocks_categories( $categories, $post ) {
-	if ( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
+	if ( ! in_array( $post->post_type, [ 'post', 'page' ], true ) ) {
 		return $categories;
 	}
 
 	return array_merge(
 		$categories,
-		array(
-			array(
+		[
+			[
 				'slug'  => 'yext-blocks',
 				'title' => __( 'Yext Blocks', 'yext' ),
-			),
-		)
+			],
+		]
 	);
-}
-
-/**
- * Add wrapper to Group block.
- *
- * @param  string $block_content Block content to be added.
- * @param  array  $block         Block attributes.
- * @return string
- */
-function render_search_form( $block_content = '', $block = [] ) {
-
-	if ( isset( $block['blockName'] ) && 'core/search' === $block['blockName'] ) {
-
-		return '<div class="yext-search-bar"></div>';
-	}
-
-	return $block_content;
 }

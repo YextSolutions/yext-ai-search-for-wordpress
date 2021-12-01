@@ -108,8 +108,8 @@ final class Settings {
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
-			__( 'Yext connector', 'yext' ),
-			__( 'Yext connector', 'yext' ),
+			__( 'Yext', 'yext' ),
+			__( 'Yext', 'yext' ),
 			'manage_options',
 			'yext-connector',
 			[ $this, 'render_settings_page' ],
@@ -145,7 +145,6 @@ final class Settings {
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 		$this->settings_fields = new SettingsFields( $this->settings );
-
 	}
 
 	/**

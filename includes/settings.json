@@ -1,11 +1,10 @@
 {
 	"config": {
-		"api_key": "sandbox-8d1a0780570d9a43b4aed797a13d4432",
-		"experience_key": "wp_answers",
-		"business_id": "2675505",
+		"api_key": "",
+		"experience_key": "",
+		"business_id": "",
 		"answers_iframe_url": "",
-		"experience_version": "v1.11",
-		"locale": "en"
+		"experience_version": "1.0"
 	},
 	"components": {
 		"search_bar": {

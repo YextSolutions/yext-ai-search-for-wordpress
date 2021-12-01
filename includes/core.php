@@ -8,7 +8,7 @@
 namespace Yext\Core;
 
 use \WP_Error;
-use \Yext\UI\SearchBar;
+use \Yext\Components\SearchBar;
 use \Yext\Admin\Settings;
 
 /**
@@ -33,8 +33,6 @@ function setup() {
 	// Hook to allow async or defer on asset loading.
 	add_filter( 'script_loader_tag', $n( 'script_loader_tag' ), 10, 2 );
 
-	add_filter( 'get_search_form', $n( 'render_search_form' ), 15 );
-
 	do_action( 'yext_loaded' );
 }
 
@@ -58,6 +56,11 @@ function init() {
 	// initialize admin settings
 	$admin_settings = Settings::instance();
 	$admin_settings->setup();
+
+	// initialize search bar
+	$search_bar = SearchBar::instance();
+	$search_bar->setup();
+
 	do_action( 'yext_init' );
 }
 
@@ -67,7 +70,6 @@ function init() {
  * @return void
  */
 function activate() {
-
 	// Register default settings
 	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
 
@@ -104,15 +106,6 @@ function get_enqueue_contexts() {
 }
 
 /**
- * Helper for rendering a tab nav item
- *
- * @return string
- */
-function render_search_form() {
-	return '<div class="yext-search-bar"></div>';
-}
-
-/**
  * Generate an URL to a script, taking into account whether SCRIPT_DEBUG is enabled.
  *
  * @param string $script Script file name (no .js extension)
@@ -121,13 +114,11 @@ function render_search_form() {
  * @return string|WP_Error URL
  */
 function script_url( $script, $context ) {
-
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
 		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext script loader.' );
 	}
 
 	return YEXT_URL . "dist/js/${script}.js";
-
 }
 
 /**
@@ -139,13 +130,11 @@ function script_url( $script, $context ) {
  * @return string URL
  */
 function style_url( $stylesheet, $context ) {
-
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
 		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext stylesheet loader.' );
 	}
 
 	return YEXT_URL . "dist/css/${stylesheet}.css";
-
 }
 
 /**
@@ -154,6 +143,7 @@ function style_url( $stylesheet, $context ) {
  * @return void
  */
 function scripts() {
+	$settings = Settings::get_settings();
 
 	wp_enqueue_script(
 		'yext-shared',
@@ -193,17 +183,15 @@ function scripts() {
 	wp_localize_script(
 		'yext-frontend',
 		'YEXT',
-		/**
-		 * 🚨🚨  ***** TODO ***** 🚨🚨
-		 *
-		 * Replace with plugin options
-		 */
 		[
-			'settings' => json_decode( file_get_contents( YEXT_INC . '/settings.json' ) ),
+			'settings' => [
+				'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
+				'components' => [
+					'search_bar' => $settings['search_bar'],
+				],
+			],
 		]
 	);
-
-	// wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
 }
 
 /**
@@ -212,7 +200,6 @@ function scripts() {
  * @return void
  */
 function admin_scripts() {
-
 	wp_enqueue_script(
 		'yext-shared',
 		script_url( 'shared', 'shared' ),
@@ -228,7 +215,6 @@ function admin_scripts() {
 		YEXT_VERSION,
 		true
 	);
-
 }
 
 /**
@@ -257,8 +243,6 @@ function styles() {
 		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
-
-	wp_add_inline_style( 'yext-frontend', Settings::get_inline_styles() );
 }
 
 /**
@@ -267,7 +251,6 @@ function styles() {
  * @return void
  */
 function admin_styles() {
-
 	wp_enqueue_style(
 		'yext-shared',
 		style_url( 'shared-style', 'shared' ),
@@ -281,7 +264,6 @@ function admin_styles() {
 		[],
 		YEXT_VERSION
 	);
-
 }
 
 /**
