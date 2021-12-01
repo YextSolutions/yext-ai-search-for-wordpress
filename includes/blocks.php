@@ -64,7 +64,7 @@ function blocks_editor_scripts() {
 		YEXT_VERSION
 	);
 
-	wp_localize_script( 'yext-blocks-editor', 'YEXT_settings', Settings::localized_settings() );
+	wp_localize_script( 'yext-blocks-editor', 'YEXT_SETTINGS', Settings::localized_settings() );
 }
 
 /**

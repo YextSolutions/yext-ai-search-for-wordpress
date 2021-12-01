@@ -1,5 +1,7 @@
 import Inspector from './inspector';
 
+const { create } = YEXT_SETTINGS;
+
 /**
  * WordPress dependencies
  */
@@ -10,8 +12,15 @@ const { useBlockProps, RichText } = wp.blockEditor;
 const Edit = (props) => {
 	const { attributes, setAttributes } = props;
 
-	const { buttonText, placeholder } = attributes;
+	let { buttonText, placeholder } = attributes;
 	const blockProps = useBlockProps();
+
+	if (!buttonText) {
+		buttonText = create?.submit_text;
+	}
+	if (!placeholder) {
+		placeholder = create?.placeholder;
+	}
 
 	return (
 		<>
@@ -20,7 +29,7 @@ const Edit = (props) => {
 				<RichText
 					className="components-text-control__input"
 					value={placeholder}
-					placeholder={__('Add placeholder text..', 'yext')}
+					placeholder={placeholder}
 					onChange={(newPlaceholder) => {
 						setAttributes({ placeholder: newPlaceholder });
 					}}

@@ -1,10 +1,12 @@
+const { button, font_size, line_height, border_radius } = YEXT_SETTINGS;
+
 const { __ } = wp.i18n;
 const { InspectorControls, PanelColorSettings, LineHeightControl } = wp.blockEditor;
 const { PanelBody, PanelRow, FontSizePicker, RangeControl } = wp.components;
 
 const Inspector = (props) => {
-	const {
-		setAttributes,
+	const { setAttributes } = props;
+	let {
 		attributes: {
 			fontSize,
 			lineHeight,
@@ -31,6 +33,32 @@ const Inspector = (props) => {
 	];
 
 	const fallbackFontSize = 16;
+
+	// Set values from Plugin Settings
+	if (!fontSize && font_size) {
+		fontSize = parseInt(font_size, 10);
+	}
+	if (!lineHeight && line_height) {
+		lineHeight = parseInt(line_height, 10);
+	}
+	if (!borderRadius && border_radius) {
+		borderRadius = parseInt(border_radius, 10);
+	}
+	if (!buttonBackgroundColor) {
+		buttonBackgroundColor = button?.bg_color;
+	}
+	if (!buttonTextColor) {
+		buttonTextColor = button?.text_color;
+	}
+	if (!buttonBorderColor) {
+		buttonBorderColor = button?.border_color;
+	}
+	if (!buttonHoverTextColor) {
+		buttonHoverTextColor = button?.hover_text_color;
+	}
+	if (!buttonHoverBackgroundColor) {
+		buttonHoverBackgroundColor = button?.hover_bg_color;
+	}
 
 	return (
 		<InspectorControls>
