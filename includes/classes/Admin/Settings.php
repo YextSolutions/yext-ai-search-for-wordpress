@@ -109,8 +109,8 @@ final class Settings {
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
-			__( 'Yext connector', 'yext' ),
-			__( 'Yext connector', 'yext' ),
+			__( 'Yext', 'yext' ),
+			__( 'Yext', 'yext' ),
 			'manage_options',
 			'yext-connector',
 			[ $this, 'render_settings_page' ],
@@ -146,7 +146,6 @@ final class Settings {
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 		$this->settings_fields = new SettingsFields( $this->settings );
-
 	}
 
 	/**
@@ -158,20 +157,22 @@ final class Settings {
 
 		$settings        = self::get_settings();
 		$settings_fields = new SettingsFields( $settings );
-		
-		if ( ! isset ( $settings_fields->fields ) ) {
+
+		if ( ! isset( $settings_fields->fields ) ) {
 			return;
 		}
 		?>
 		<style>
 		:root {
 			<?php
-				foreach ( $settings_fields->fields as $field ) {
-					if ( $field->variable ) {
-						$value = isset( $field->parent_field ) && $field->parent_field ? $settings[$field->section_id][$field->parent_field][$field->id] : $settings[$field->section_id][$field->id];
-						self::variable_values( $field->variable, $value );
-					}
+			foreach ( $settings_fields->fields as $field ) {
+				if ( $field->variable ) {
+					$value = isset( $field->parent_field ) && $field->parent_field ?
+						$settings[ $field->section_id ][ $field->parent_field ][ $field->id ] :
+						$settings[ $field->section_id ][ $field->id ];
+					self::variable_values( $field->variable, $value );
 				}
+			}
 			?>
 		}
 		</style>
@@ -235,33 +236,36 @@ final class Settings {
 
 	/**
 	 * Add style variables
+	 *
+	 * @param string       $key   Key
+	 * @param array|string $value Input value
 	 */
 	public static function variable_values( $key, $value ) {
 		$pixel_value = [
 			'--yxt-base-radius',
 			'--yxt-base-spacing',
 			'--yxt-searchbar-text-font-weight',
-			'--yxt-searchbar-text-line-height'
+			'--yxt-searchbar-text-line-height',
 		];
 
-		if ( 'create' === $key ) {
+		if ( 'props' === $key ) {
 			return;
 		}
-		
+
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
-				echo self::variable_values( $inner_key, $val, $key . '-' );
+				echo self::variable_values( $inner_key, $val, $key . '-' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
 				$value = $value . 'px';
 			}
 
-			echo sanitize_text_field( $key . ':' . $value . ';' );
+			echo sanitize_text_field( $key . ':' . $value . ';' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
-	
-		/**
+
+	/**
 	 * Wizard admin page callback
 	 *
 	 * @return void

@@ -29,7 +29,6 @@ function setup() {
  * @return void
  */
 function blocks_scripts() {
-
 	wp_enqueue_script(
 		'blocks',
 		YEXT_URL . '/dist/js/blocks.js',
@@ -46,7 +45,6 @@ function blocks_scripts() {
  * @return void
  */
 function blocks_editor_scripts() {
-
 	wp_enqueue_script(
 		'blocks-editor',
 		YEXT_URL . '/dist/js/blocks.js',
@@ -72,14 +70,18 @@ function blocks_editor_scripts() {
  * @return array Filtered categories.
  */
 function blocks_categories( $categories, $post ) {
+	if ( ! in_array( $post->post_type, [ 'post', 'page' ], true ) ) {
+		return $categories;
+	}
+
 	return array_merge(
 		$categories,
-		array(
-			array(
+		[
+			[
 				'slug'  => 'yext-blocks',
 				'title' => __( 'Yext Blocks', 'yext' ),
-			),
-		)
+			],
+		]
 	);
 }
 
