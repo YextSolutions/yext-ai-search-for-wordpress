@@ -8,6 +8,7 @@
 namespace Yext\Core;
 
 use \WP_Error;
+use \Yext\Admin\Settings;
 
 /**
  * Default setup routine
@@ -51,6 +52,9 @@ function i18n() {
  * @return void
  */
 function init() {
+	// initialize admin settings
+	$admin_settings = Settings::instance();
+	$admin_settings->setup();
 	do_action( 'yext_init' );
 }
 
@@ -155,6 +159,8 @@ function scripts() {
 		true
 	);
 
+	wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
+
 }
 
 /**
@@ -210,6 +216,7 @@ function styles() {
 			[],
 			YEXT_VERSION
 		);
+		wp_add_inline_style( 'YEXT_frontend', Settings::get_inline_styles() );
 	}
 
 }
