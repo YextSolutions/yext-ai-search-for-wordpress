@@ -187,9 +187,23 @@ function scripts() {
 			'settings' => [
 				'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
 				'components' => [
-					'search_bar' => $settings['search_bar'],
+					'search_bar' => array_merge(
+						$settings['search_bar'],
+						[
+							'props' => array_merge(
+								$settings['search_bar']['props'],
+								[
+									'redirect_url' => get_post_field(
+										'post_name',
+										$settings['search_results']['results_page']
+									),
+								]
+							),
+						]
+					),
 				],
 			],
+			'raw' => $settings,
 		]
 	);
 }

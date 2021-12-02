@@ -63,7 +63,11 @@ const init = () => {
 		});
 
 		if (AnswersSDK.error) {
-			throw new Error(`Yext: ${AnswersSDK.error}`);
+			if (process.env.NODE_ENV === 'development') {
+				throw new Error(`Yext: ${AnswersSDK.error}`);
+			}
+
+			return;
 		}
 
 		AnswersSDK.init();
