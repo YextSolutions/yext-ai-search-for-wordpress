@@ -7,6 +7,8 @@
 
 namespace Yext\Blocks;
 
+use \Yext\Admin\Settings;
+
 /**
  * Set up blocks
  *
@@ -46,7 +48,7 @@ function blocks_scripts() {
  */
 function blocks_editor_scripts() {
 	wp_enqueue_script(
-		'blocks-editor',
+		'yext-blocks-editor',
 		YEXT_URL . '/dist/js/blocks.js',
 		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ],
 		YEXT_VERSION,
@@ -54,11 +56,13 @@ function blocks_editor_scripts() {
 	);
 
 	wp_enqueue_style(
-		'editor-style',
+		'yext-editor-style',
 		YEXT_URL . '/dist/css/editor-style.css',
 		[],
 		YEXT_VERSION
 	);
+
+	wp_localize_script( 'yext-blocks-editor', 'YEXT_SETTINGS', Settings::localized_settings() );
 }
 
 /**

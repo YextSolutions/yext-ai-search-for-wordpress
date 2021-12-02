@@ -321,6 +321,6 @@ final class Settings {
 	public static function localized_settings() {
 		$settings = self::get_settings();
 		// TODO: review needed settings passed to FE
-		return $settings['search_bar'];
+		return array_merge( $settings['plugin'], $settings['search_bar'] );
 	}
 }
