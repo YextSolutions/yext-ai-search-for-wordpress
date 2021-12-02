@@ -10,7 +10,6 @@ const { __ } = wp.i18n;
 const { useState } = wp.element;
 const { Placeholder, Button } = wp.components;
 
-
 const Edit = (props) => {
 	const { attributes, setAttributes } = props;
 

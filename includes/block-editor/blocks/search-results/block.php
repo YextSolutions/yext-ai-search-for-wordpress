@@ -7,6 +7,8 @@
 
 namespace Yext\Blocks\SearchResults;
 
+use \Yext\Admin\Settings;
+
 /**
  * Render Search Results Block
  *
@@ -15,11 +17,18 @@ namespace Yext\Blocks\SearchResults;
  */
 function render( $atts ) {
 
-	$url    = isset( $atts['url'] ) ? $atts['url'] : false;
-	$class  = 'yext-search-results';
-	$class .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
-	$class .= ! empty( $atts['align'] ) ? ' ' . $atts['align'] : '';
+	$url      = isset( $atts['url'] ) ? $atts['url'] : false;
+	$class    = 'yext-search-results';
+	$class   .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
+	$class   .= ! empty( $atts['align'] ) ? ' ' . $atts['align'] : '';
+	$settings = Settings::get_settings();
 
+	// Use Plugin Settings value when empty
+	if ( ! $url && isset( $settings['plugin']['answers_iframe_url'] ) ) {
+		$url = $settings['plugin']['answers_iframe_url'];
+	}
+
+	// Double check if there really is iFrame URL
 	if ( ! $url ) {
 		return;
 	}
