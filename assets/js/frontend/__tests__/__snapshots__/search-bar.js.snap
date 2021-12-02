@@ -3,7 +3,7 @@
 exports[`Yext Search Bar UI SDK Component search bar prefers data attributes as props 1`] = `
 <div>
   
-            
+			
   <div
     class="yext-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-1"
@@ -2292,8 +2292,8 @@ exports[`Yext Search Bar UI SDK Component search bar prefers data attributes as 
 
   </div>
   
-        
-            
+		
+			
   <div
     class="custom-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-label-text="Custom Label Text"
@@ -4585,14 +4585,14 @@ exports[`Yext Search Bar UI SDK Component search bar prefers data attributes as 
 
   </div>
   
-        
+		
 </div>
 `;
 
 exports[`Yext Search Bar UI SDK Component search bar renders 1`] = `
 <div>
   
-            
+			
   <div
     class="yext-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-1"
@@ -6880,14 +6880,14 @@ exports[`Yext Search Bar UI SDK Component search bar renders 1`] = `
 
   </div>
   
-        
+		
 </div>
 `;
 
 exports[`Yext Search Bar UI SDK Component search bar renders custom element 1`] = `
 <div>
   
-            
+			
   <div
     class="yext-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-1"
@@ -9175,8 +9175,8 @@ exports[`Yext Search Bar UI SDK Component search bar renders custom element 1`] 
 
   </div>
   
-        
-            
+		
+			
   <div
     class="custom-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="custom-search-bar"
@@ -11464,14 +11464,14 @@ exports[`Yext Search Bar UI SDK Component search bar renders custom element 1`] 
 
   </div>
   
-        
+		
 </div>
 `;
 
 exports[`Yext Search Bar UI SDK Component search bar renders multiple instances 1`] = `
 <div>
   
-            
+			
   <div
     class="yext-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-1"
@@ -13759,7 +13759,7 @@ exports[`Yext Search Bar UI SDK Component search bar renders multiple instances 
 
   </div>
   
-        
+		
   <div
     class="yext-search-bar-1 component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-2"
@@ -16052,7 +16052,7 @@ exports[`Yext Search Bar UI SDK Component search bar renders multiple instances 
 exports[`Yext Search Bar UI SDK Component search bar uses default props 1`] = `
 <div>
   
-            
+			
   <div
     class="yext-search-bar component yxt-Answers-component yxt-SearchBar-wrapper"
     data-testid="yext-search-bar-1"
@@ -18341,6 +18341,6 @@ exports[`Yext Search Bar UI SDK Component search bar uses default props 1`] = `
 
   </div>
   
-        
+		
 </div>
 `;

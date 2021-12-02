@@ -1,5 +1,5 @@
 {
-	"config": {
+	"plugin": {
 		"api_key": "",
 		"experience_key": "",
 		"business_id": "",
@@ -35,10 +35,9 @@
 			"header_font_weight": "normal"
 		},
 		"props": {
-			"placeholder": "Search...",
+			"placeholder_text": "Search...",
 			"submit_text": "Search",
 			"label_text": "Search",
-			"redirect_url": "",
 			"css_class": ""
 		}
 	},

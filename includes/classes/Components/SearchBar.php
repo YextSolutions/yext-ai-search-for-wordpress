@@ -32,12 +32,24 @@ final class SearchBar {
 	private $settings;
 
 	/**
+	 * Check if the Yext configuration is valid
+	 *
+	 * @return boolean
+	 */
+	public function is_valid() {
+		return '1' === $this->settings['search_bar']['override_core_search'] &&
+			! empty( $this->settings['plugin']['api_key'] ) &&
+			! empty( $this->settings['plugin']['experience_key'] ) &&
+			! empty( $this->settings['plugin']['business_id'] );
+	}
+
+	/**
 	 * Init the tab.
 	 */
 	public function setup() {
 		$this->settings = Settings::get_settings();
 
-		if ( '1' === $this->settings['search_bar']['override_core_search'] ) {
+		if ( $this->is_valid() ) {
 			add_filter( 'get_search_form', [ $this, 'render_search_bar' ], 15 );
 			add_filter( 'render_block', [ $this, 'render_search_bar_block' ], 10, 2 );
 		}
