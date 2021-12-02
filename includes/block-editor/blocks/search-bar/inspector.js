@@ -1,4 +1,4 @@
-const { button, font_size, line_height, border_radius } = YEXT_SETTINGS;
+const { button, font_size, line_height, border_radius } = YEXT_SETTINGS; // eslint-disable-line no-undef
 
 const { __ } = wp.i18n;
 const { InspectorControls, PanelColorSettings, LineHeightControl } = wp.blockEditor;

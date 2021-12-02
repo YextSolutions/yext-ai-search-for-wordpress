@@ -1,12 +1,11 @@
 import Inspector from './inspector';
 
-const { create } = YEXT_SETTINGS;
+const { create } = YEXT_SETTINGS; // eslint-disable-line no-undef
 
 /**
  * WordPress dependencies
  */
 
-const { __ } = wp.i18n;
 const { useBlockProps, RichText } = wp.blockEditor;
 
 const Edit = (props) => {
