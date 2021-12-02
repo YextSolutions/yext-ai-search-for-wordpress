@@ -80,7 +80,7 @@ final class SettingsFields {
 			[
 				'id'    => 'answers_iframe_url',
 				'title' => __( 'Answers iframe url', 'yext' ),
-				'type'  => 'InputFieldReadOnly',
+				'type'  => 'InputField',
 			],
 			[
 				'id'      => 'answers_version',
