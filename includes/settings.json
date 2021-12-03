@@ -1,10 +1,10 @@
 {
 	"plugin": {
-		"api_key" : "",
+		"api_key": "",
 		"experience_key": "",
-		"business_id" : "",
-		"answers_iframe_url"   : "",
-		"experience_version"   : ""
+		"business_id": "",
+		"answers_iframe_url": "",
+		"experience_version": "1.0"
 	},
 	"search_bar": {
 		"override_core_search": "1",
@@ -34,11 +34,10 @@
 			"text_color": "#000000",
 			"header_font_weight": "normal"
 		},
-		"create": {
-			"placeholder": "Search...",
+		"props": {
+			"placeholder_text": "Search...",
 			"submit_text": "Search",
 			"label_text": "Search",
-			"redirect_url": "",
 			"css_class": ""
 		}
 	},

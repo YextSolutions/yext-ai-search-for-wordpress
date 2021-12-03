@@ -80,7 +80,7 @@ final class SettingsFields {
 			[
 				'id'    => 'answers_iframe_url',
 				'title' => __( 'Answers iframe url', 'yext' ),
-				'type'  => 'InputFieldReadOnly',
+				'type'  => 'InputField',
 			],
 			[
 				'id'      => 'answers_version',
@@ -247,32 +247,32 @@ final class SettingsFields {
 				],
 			],
 			[
-				'id'     => 'placeholder',
-				'parent' => 'create',
+				'id'     => 'placeholder_text',
+				'parent' => 'props',
 				'title'  => __( 'Input placeholder text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'submit_text',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Submit button text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'label_text',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Label text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'redirect_url',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Redirect url', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'css_class',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'CSS additional classes', 'yext' ),
 				'type'   => 'InputField',
 			],
@@ -307,7 +307,7 @@ final class SettingsFields {
 	 * @param array  $field_config Config for the current field
 	 * @param int    $index        Loop index
 	 * @param string $section_id   The section the field belongs to
-	 * @return object              A field instance
+	 * @return void
 	 */
 	protected function init_field( $field_config, $index, $section_id ) {
 		$class_handler = 'Yext\\Admin\\Fields\\Type\\' . $field_config['type'];
