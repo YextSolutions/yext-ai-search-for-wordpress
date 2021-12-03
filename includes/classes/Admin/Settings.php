@@ -237,8 +237,10 @@ final class Settings {
 	/**
 	 * Add style variables
 	 *
-	 * @param string $key   Input key
-	 * @param string $value Input value
+	 * @param string $key   The variable key
+	 * @param string $value The value
+	 *
+	 * @return string Valid CSS variable and value
 	 */
 	public static function variable_values( $key, $value ) {
 		$pixel_value = [
@@ -254,14 +256,15 @@ final class Settings {
 
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
-				echo self::variable_values( $inner_key, $val, $key . '-' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				$css = self::variable_values( $inner_key, $val, $key . '-' );
+				echo esc_html( $css );
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
 				$value = $value . 'px';
 			}
 
-			echo sanitize_text_field( $key . ':' . $value . ';' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
 		}
 	}
 

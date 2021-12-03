@@ -236,6 +236,7 @@ function styles() {
 		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
+	wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
 }
 
 /**
