@@ -71,11 +71,10 @@ function blocks_editor_scripts() {
  * Filters the registered block categories.
  *
  * @param array  $categories Registered categories.
- * @param object $post       The post object.
  *
  * @return array Filtered categories.
  */
-function blocks_categories( $categories, $post ) {
+function blocks_categories( $categories ) {
 	return array_merge(
 		$categories,
 		array(
