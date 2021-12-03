@@ -31,7 +31,8 @@
     "camelcase-keys": "^6.2.2",
     "dompurify": "^2.3.3",
     "lodash.kebabcase": "^4.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2"
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",
