@@ -7,6 +7,8 @@
 
 namespace Yext\Blocks;
 
+use \Yext\Admin\Settings;
+
 /**
  * Set up blocks
  *
@@ -17,9 +19,10 @@ function setup() {
 		return __NAMESPACE__ . "\\$function";
 	};
 
+	add_action( 'init', $n( 'register_blocks' ) );
 	add_action( 'enqueue_block_editor_assets', $n( 'blocks_editor_scripts' ) );
 
-	add_filter( 'block_categories', $n( 'blocks_categories' ), 10, 2 );
+	add_filter( 'block_categories_all', $n( 'blocks_categories' ), 10, 2 );
 }
 
 /**
@@ -47,19 +50,21 @@ function blocks_scripts() {
 function blocks_editor_scripts() {
 
 	wp_enqueue_script(
-		'blocks-editor',
-		YEXT_URL . '/dist/js/blocks-editor.js',
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components' ],
+		'yext-blocks-editor',
+		YEXT_URL . '/dist/js/blocks.js',
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ],
 		YEXT_VERSION,
 		false
 	);
 
 	wp_enqueue_style(
-		'editor-style',
+		'yext-editor-style',
 		YEXT_URL . '/dist/css/editor-style.css',
 		[],
 		YEXT_VERSION
 	);
+
+	wp_localize_script( 'yext-blocks-editor', 'YEXT_SETTINGS', Settings::localized_settings() );
 }
 
 /**
@@ -71,10 +76,6 @@ function blocks_editor_scripts() {
  * @return array Filtered categories.
  */
 function blocks_categories( $categories, $post ) {
-	if ( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
-		return $categories;
-	}
-
 	return array_merge(
 		$categories,
 		array(
@@ -84,4 +85,16 @@ function blocks_categories( $categories, $post ) {
 			),
 		)
 	);
+}
+
+/**
+ * Register Server-Side Gutenberg Blocks
+ * Require the block register.php file and run the function
+ *
+ * @return void
+ */
+function register_blocks() {
+	require_once YEXT_INC . 'block-editor/blocks/search-results/register.php';
+
+	SearchResults\register();
 }

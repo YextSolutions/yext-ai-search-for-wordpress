@@ -1,0 +1,18 @@
+{
+  "apiVersion": 2,
+  "title": "Yext Search Results",
+  "description": "Display YEXT search results via iFrame.",
+  "name": "yext/search-results",
+  "category": "yext-blocks",
+  "text-domain": "yext",
+  "supports": {
+    "multiple": false,
+    "className": false,
+    "align": [ "full" ]
+  },
+  "attributes": {
+	"url": {
+    	"type": "string"
+    }
+  }
+}
