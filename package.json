@@ -9,23 +9,8 @@
     "lint-js": "10up-toolkit lint-js",
     "lint-style": "10up-toolkit lint-style",
     "test": "10up-toolkit test-unit-jest",
+    "prepare": "husky install",
     "clean-dist": "rm -rf ./dist"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "includes/**/*.js": [
-      "npm run lint-js"
-    ],
-    "/includes/**/*.css": [
-      "lint-style"
-    ],
-    "*.php": [
-      "./vendor/bin/phpcs . --extensions=php --standard=phpcs.xml --warning-severity=8 -s"
-    ]
   },
   "engines": {
     "node": ">=12.0.0"
