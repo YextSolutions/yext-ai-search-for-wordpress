@@ -89,7 +89,7 @@ final class Settings {
 		$child_sections = [
 			'button'       => __( 'Button', 'yext' ),
 			'autocomplete' => __( 'Autocomplete', 'yext' ),
-			'create'       => __( 'Create', 'yext' ),
+			'props'        => __( 'Create', 'yext' ),
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
@@ -108,27 +108,27 @@ final class Settings {
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
-			__( 'Yext connector', 'yext' ),
-			__( 'Yext connector', 'yext' ),
+			__( 'Yext', 'yext' ),
+			__( 'Yext', 'yext' ),
 			'manage_options',
 			'yext-connector',
 			[ $this, 'render_settings_page' ],
 			$this->menu_icon
 		);
 		add_submenu_page(
-			'yext-connector',
+			'yext',
 			__( 'Settings', 'yext' ),
 			__( 'Settings', 'yext' ),
 			'manage_options',
-			'yext-connector',
+			'yext',
 			[ $this, 'render_settings_page' ]
 		);
 		add_submenu_page(
-			'yext-connector',
+			'yext',
 			__( 'Wizard', 'yext' ),
 			__( 'Wizard', 'yext' ),
 			'manage_options',
-			'yext-connector-wizard',
+			'yext-wizard',
 			[ $this, 'render_wizard_page' ]
 		);
 	}
@@ -145,7 +145,6 @@ final class Settings {
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 		$this->settings_fields = new SettingsFields( $this->settings );
-
 	}
 
 	/**

@@ -28,6 +28,7 @@ if ( file_exists( YEXT_PATH . 'vendor/autoload.php' ) ) {
 
 // Include files.
 require_once YEXT_INC . '/core.php';
+require_once YEXT_INC . '/blocks.php';
 
 // Activation/Deactivation.
 register_activation_hook( __FILE__, '\Yext\Core\activate' );
@@ -35,3 +36,4 @@ register_deactivation_hook( __FILE__, '\Yext\Core\deactivate' );
 
 // Bootstrap.
 Yext\Core\setup();
+Yext\Blocks\setup();
