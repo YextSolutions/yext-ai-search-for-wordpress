@@ -320,7 +320,25 @@ final class Settings {
 	 */
 	public static function localized_settings() {
 		$settings = self::get_settings();
-		// TODO: review needed settings passed to FE
-		return array_merge( $settings['plugin'], $settings['search_bar'] );
+
+		return [
+			'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
+			'components' => [
+				'search_bar' => array_merge(
+					$settings['search_bar'],
+					[
+						'props' => array_merge(
+							$settings['search_bar']['props'],
+							[
+								'redirect_url' => get_post_field(
+									'post_name',
+									$settings['search_results']['results_page']
+								),
+							]
+						),
+					]
+				),
+			],
+		];
 	}
 }

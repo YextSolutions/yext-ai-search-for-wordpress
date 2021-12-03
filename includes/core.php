@@ -183,28 +183,7 @@ function scripts() {
 	wp_localize_script(
 		'yext-frontend',
 		'YEXT',
-		[
-			'settings' => [
-				'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
-				'components' => [
-					'search_bar' => array_merge(
-						$settings['search_bar'],
-						[
-							'props' => array_merge(
-								$settings['search_bar']['props'],
-								[
-									'redirect_url' => get_post_field(
-										'post_name',
-										$settings['search_results']['results_page']
-									),
-								]
-							),
-						]
-					),
-				],
-			],
-			'raw' => $settings,
-		]
+		[ 'settings' => Settings::localized_settings() ]
 	);
 }
 
