@@ -251,12 +251,22 @@ function styles() {
 		YEXT_VERSION
 	);
 
-	wp_enqueue_style(
-		'yext-frontend',
-		style_url( 'style', 'frontend' ),
-		[ 'yext-search-bar' ],
-		YEXT_VERSION
-	);
+	if ( is_admin() ) {
+		wp_enqueue_style(
+			'yext-admin',
+			style_url( 'admin-style', 'admin' ),
+			[],
+			YEXT_VERSION
+		);
+	} else {
+		wp_enqueue_style(
+			'yext-frontend',
+			style_url( 'style', 'frontend' ),
+			[ 'yext-search-bar' ],
+			YEXT_VERSION
+		);
+		wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
+	}
 }
 
 /**
