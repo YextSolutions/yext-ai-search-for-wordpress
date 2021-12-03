@@ -29,6 +29,7 @@
     "@10up/component-tabs": "^2.0.0",
     "@wordpress/url": "^3.3.1",
     "camelcase-keys": "^6.2.2",
+    "dompurify": "^2.3.3",
     "lodash.kebabcase": "^4.1.1",
     "prop-types": "^15.7.2"
   },
