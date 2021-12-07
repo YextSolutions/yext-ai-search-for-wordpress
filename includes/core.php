@@ -70,14 +70,18 @@ function init() {
  * @return void
  */
 function activate() {
+	$settings = false;
+
 	// Register default settings
-	$response = wp_remote_get( YEXT_INC . 'settings.json', true );
-
-	if ( ! is_wp_error( $response ) ) {
-		$settings = wp_remote_retrieve_body( $response );
-
-		update_option( 'yext_plugin_settings', $settings, false );
+	if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+		$settings = file_get_contents( YEXT_INC . 'settings.json', false );
 	}
+
+	update_option(
+		'yext_plugin_settings',
+		$settings ? json_decode( $settings, true ) : [],
+		false
+	);
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
