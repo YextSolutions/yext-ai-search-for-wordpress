@@ -7,7 +7,7 @@ import camelcaseKeys from 'camelcase-keys';
 const { wp, YEXT } = window;
 
 const { __ } = wp.i18n;
-const { InspectorControls, PanelColorSettings, LineHeightControl } = wp.blockEditor;
+const { InspectorControls, LineHeightControl, useSetting } = wp.blockEditor;
 const {
 	PanelBody,
 	PanelRow,
@@ -16,6 +16,7 @@ const {
 	ColorPalette,
 	TextControl,
 	SelectControl,
+	BaseControl,
 } = wp.components;
 
 const { components } = YEXT.settings;
@@ -142,6 +143,7 @@ const Inspector = (props) => {
 			autocompleteHeaderFontWeight = defaultAutocompleteHeaderFontWeight ?? null,
 		},
 	} = props;
+	const colors = useSetting('color.palette');
 
 	return (
 		<InspectorControls>
@@ -194,11 +196,6 @@ const Inspector = (props) => {
 						setAttributes({ fontWeight: newFontWeight });
 					}}
 				/>
-				<ColorPalette
-					label={__('Text Color', 'yext')}
-					value={textColor}
-					onChange={(color) => setAttributes({ textColor: color })}
-				/>
 				<LineHeightControl
 					value={lineHeight}
 					onChange={(newLineHeight) => {
@@ -214,86 +211,102 @@ const Inspector = (props) => {
 						setAttributes({ borderRadius: newBorderRadius });
 					}}
 				/>
-				<ColorPalette
-					label={__('Border Color', 'yext')}
-					value={borderColor}
-					onChange={(color) => setAttributes({ borderColor: color })}
-				/>
-				<ColorPalette
-					label={__('Background Color', 'yext')}
-					value={backgroundColor}
-					onChange={(color) => setAttributes({ backgroundColor: color })}
-				/>
+				<BaseControl id="yext-text-color" label={__('Text Color', 'yext')}>
+					<ColorPalette
+						value={textColor}
+						colors={colors}
+						onChange={(color) => setAttributes({ textColor: color })}
+					/>
+				</BaseControl>
+				<BaseControl id="yext-border-color" label={__('Border Color', 'yext')}>
+					<ColorPalette
+						colors={colors}
+						value={borderColor}
+						onChange={(color) => setAttributes({ borderColor: color })}
+					/>
+				</BaseControl>
+				<BaseControl id="yext-background-color" label={__('Background Color', 'yext')}>
+					<ColorPalette
+						colors={colors}
+						value={backgroundColor}
+						onChange={(color) => setAttributes({ backgroundColor: color })}
+					/>
+				</BaseControl>
 			</PanelBody>
-			<PanelColorSettings
-				title={__('Button Styles', 'yext')}
-				initialOpen={false}
-				colorSettings={[
-					{
-						value: buttonTextColor,
-						onChange: (colorValue) => {
+			<PanelBody title={__('Button Styles', 'yext')} initialOpen={false}>
+				<BaseControl id="yext-button-color" label={__('Button Text Color', 'yext')}>
+					<ColorPalette
+						colors={colors}
+						value={buttonTextColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonTextColor: colorValue });
-						},
-						label: __('Text Color', 'yext'),
-					},
-					{
-						value: buttonHoverTextColor,
-						onChange: (colorValue) => {
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-button-hover-color"
+					label={__('Button Text Hover Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={buttonHoverTextColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonHoverTextColor: colorValue });
-						},
-						label: __('Hover Text Color', 'yext'),
-					},
-					{
-						value: buttonActiveTextColor,
-						onChange: (colorValue) => {
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-button-active-color"
+					label={__('Button Text Active Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={buttonActiveTextColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonActiveTextColor: colorValue });
-						},
-						label: __('Active Text Color', 'yext'),
-					},
-					{
-						value: buttonBackgroundColor,
-						onChange: (colorValue) => {
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-button-background-color"
+					label={__('Button Background Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={buttonBackgroundColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonBackgroundColor: colorValue });
-						},
-						label: __('Background Color', 'yext'),
-					},
-					{
-						value: buttonHoverBackgroundColor,
-						onChange: (colorValue) => {
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-button-background-hover-color"
+					label={__('Button Background Hover Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={buttonHoverBackgroundColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonHoverBackgroundColor: colorValue });
-						},
-						label: __('Hover Background Color', 'yext'),
-					},
-					{
-						value: buttonActiveBackgroundColor,
-						onChange: (colorValue) => {
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-button-background-active-color"
+					label={__('Button Background Active Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={buttonActiveBackgroundColor}
+						onChange={(colorValue) => {
 							setAttributes({ buttonActiveBackgroundColor: colorValue });
-						},
-						label: __('Active Background Color', 'yext'),
-					},
-				]}
-			/>
+						}}
+					/>
+				</BaseControl>
+			</PanelBody>
 			<PanelBody title={__('Autocomplete Styles', 'yext')} initialOpen={false}>
-				<ColorPalette
-					label={__('Background Color', 'yext')}
-					value={autocompleteBackgroundColor}
-					onChange={(color) => setAttributes({ autocompleteBackgroundColor: color })}
-				/>
-				<ColorPalette
-					label={__('Separator Color', 'yext')}
-					value={autocompleteSeparatorColor}
-					onChange={(color) => setAttributes({ autocompleteSeparatorColor: color })}
-				/>
-				<ColorPalette
-					label={__('Option Hover Background Color', 'yext')}
-					value={autocompleteOptionHoverBackgroundColor}
-					onChange={(color) =>
-						setAttributes({ autocompleteOptionHoverBackgroundColor: color })
-					}
-				/>
 				<PanelRow>
 					<FontSizePicker
-						label={__('Option Font Size', 'yext')}
 						fontSizes={fontSizes}
 						fallbackFontSize={FALLBACK_FONT_SIZE}
 						value={autocompleteOptionFontSize}
@@ -303,7 +316,7 @@ const Inspector = (props) => {
 					/>
 				</PanelRow>
 				<SelectControl
-					label={__('Option Font Weight', 'yext')}
+					label={__('Font Weight', 'yext')}
 					value={autocompleteOptionFontWeight}
 					options={fontWeights}
 					onChange={(newFontWeight) => {
@@ -311,7 +324,6 @@ const Inspector = (props) => {
 					}}
 				/>
 				<LineHeightControl
-					label={__('Option Line Height', 'yext')}
 					value={autocompleteOptionLineHeight}
 					onChange={(newLineHeight) => {
 						setAttributes({ autocompleteOptionLineHeight: newLineHeight });
@@ -325,6 +337,42 @@ const Inspector = (props) => {
 						setAttributes({ autocompleteHeaderFontWeight: newFontWeight });
 					}}
 				/>
+				<BaseControl
+					id="yext-autocomplete-background-color"
+					label={__('Autocomplete Background Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={autocompleteBackgroundColor}
+						onChange={(colorValue) => {
+							setAttributes({ autocompleteBackgroundColor: colorValue });
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-autocomplete-separator-color"
+					label={__('Autocomplete Separator Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={autocompleteSeparatorColor}
+						onChange={(colorValue) => {
+							setAttributes({ autocompleteSeparatorColor: colorValue });
+						}}
+					/>
+				</BaseControl>
+				<BaseControl
+					id="yext-autocomplete-option-background-hover-color"
+					label={__('Autocomplete Option Background Hover Color', 'yext')}
+				>
+					<ColorPalette
+						colors={colors}
+						value={autocompleteOptionHoverBackgroundColor}
+						onChange={(colorValue) => {
+							setAttributes({ autocompleteOptionHoverBackgroundColor: colorValue });
+						}}
+					/>
+				</BaseControl>
 			</PanelBody>
 		</InspectorControls>
 	);
