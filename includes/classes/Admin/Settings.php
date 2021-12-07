@@ -324,6 +324,10 @@ final class Settings {
 	public static function localized_settings() {
 		$settings = self::get_settings();
 
+		if ( ! isset( $settings['plugin'] ) || ! isset( $settings['search_bar'] ) ) {
+			return $settings;
+		}
+
 		return [
 			'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
 			'components' => [

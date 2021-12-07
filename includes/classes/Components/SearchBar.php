@@ -37,7 +37,12 @@ final class SearchBar {
 	 * @return boolean
 	 */
 	public function is_valid() {
-		return '1' === $this->settings['search_bar']['override_core_search'] &&
+		if ( ! $this->settings ) {
+			return false;
+		}
+
+		return isset( $this->settings['plugin'] ) && isset( $this->settings['search_bar'] ) &&
+			'1' === $this->settings['search_bar']['override_core_search'] &&
 			! empty( $this->settings['plugin']['api_key'] ) &&
 			! empty( $this->settings['plugin']['experience_key'] ) &&
 			! empty( $this->settings['plugin']['business_id'] );

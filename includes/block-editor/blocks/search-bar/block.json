@@ -1,47 +1,83 @@
 {
   "apiVersion": 2,
   "title": "Yext Search Bar",
-  "description": "Display YEXT search bar.",
+  "description": "Display a Yext search bar.",
   "name": "yext/search-bar",
   "category": "yext-blocks",
   "text-domain": "yext",
   "supports": {
     "className": false,
-    "align": [ "full" ]
+    "align": false
   },
   "attributes": {
-	"buttonText": {
-    	"type": "string"
+    "submitText": {
+      "type": "string"
     },
-	"placeholder": {
-    	"type": "string"
+    "placeholderText": {
+      "type": "string"
     },
-	"backgroundColor": {
-    	"type": "string"
+    "labelText": {
+      "type": "string"
     },
-	"buttonTextColor": {
-    	"type": "string"
+    "textColor": {
+      "type": "string"
     },
-	"buttonBackgroundColor": {
-    	"type": "string"
+    "fontSize": {
+      "type": "string"
     },
-	"buttonBorderColor": {
-    	"type": "string"
+    "fontWeight": {
+      "type": "string"
     },
-	"buttonHoverTextColor": {
-    	"type": "string"
+    "lineHeight": {
+      "type": "string"
     },
-	"buttonHoverBackgroundColor": {
-    	"type": "string"
+    "borderRadius": {
+      "type": "string"
     },
-	"fontSize": {
-    	"type": "string"
+    "borderColor": {
+      "type": "string"
     },
-	"lineHeight": {
-    	"type": "string"
+    "backgroundColor": {
+      "type": "string"
     },
-	"borderRadius": {
-    	"type": "string"
+    "buttonBackgroundColor": {
+      "type": "string"
+    },
+    "buttonHoverBackgroundColor": {
+      "type": "string"
+    },
+    "buttonActiveBackgroundColor": {
+      "type": "string"
+    },
+    "buttonTextColor": {
+      "type": "string"
+    },
+    "buttonHoverTextColor": {
+      "type": "string"
+    },
+    "buttonActiveTextColor": {
+      "type": "string"
+    },
+    "autocompleteBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteSeparatorColor": {
+      "type": "string"
+    },
+    "autocompleteOptionHoverBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteOptionFontSize": {
+      "type": "string"
+    },
+    "autocompleteOptionFontWeight": {
+      "type": "string"
+    },
+    "autocompleteOptionLineHeight": {
+      "type": "string"
+    },
+    "autocompleteHeaderFontWeight": {
+      "type": "string"
     }
   }
 }

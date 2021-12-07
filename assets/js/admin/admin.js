@@ -8,5 +8,7 @@ import { initTabs, initToggler } from './components';
 window.addEventListener('DOMContentLoaded', () => {
 	initTabs();
 	initToggler();
+
+	/* eslint-disable-next-line no-new */
 	new YextSearchBarPreview();
 });

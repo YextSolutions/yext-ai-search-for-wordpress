@@ -71,7 +71,7 @@ function init() {
  */
 function activate() {
 	// Register default settings
-	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
+	$response = wp_remote_get( YEXT_INC . 'settings.json', true );
 
 	if ( ! is_wp_error( $response ) ) {
 		$settings = wp_remote_retrieve_body( $response );

@@ -13,15 +13,16 @@ const CSS_TOGGLE_CLASS = 'toggled-settings-hidden';
 const getToggleables = () => {
 	let toHide = [];
 	// child sections
-	const childSettingsSections = document.querySelectorAll(
-		'[class^=" yext-child-settings-search_bar-"]',
+	const buttonSettings = document.querySelectorAll('.yext-child-settings-search_bar-button');
+	const autocompleteSettings = document.querySelectorAll(
+		'.yext-child-settings-search_bar-autocomplete',
 	);
 	// get inputs
 	const inputs = [
-		'input[name="yext_plugin_settings[search_bar][bg_color]"]',
+		'input[name="yext_plugin_settings[search_bar][background_color]"]',
 		'input[name="yext_plugin_settings[search_bar][border_color]"]',
 		'input[name="yext_plugin_settings[search_bar][border_radius]"]',
-		'input[name="yext_plugin_settings[search_bar][text_color]"]',
+		'input[name="yext_plugin_settings[search_bar][color]"]',
 		'input[name="yext_plugin_settings[search_bar][font_size]"]',
 		'select[name="yext_plugin_settings[search_bar][font_weight]"]',
 		'input[name="yext_plugin_settings[search_bar][line_height]"]',
@@ -31,7 +32,7 @@ const getToggleables = () => {
 	document.querySelectorAll(selectors).forEach((input) => {
 		toHide = [input.closest('tr'), ...toHide];
 	});
-	return [...toHide, ...childSettingsSections];
+	return [...toHide, ...buttonSettings, ...autocompleteSettings];
 };
 
 /**
