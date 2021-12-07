@@ -55,17 +55,24 @@ function blocks_editor_scripts() {
 		false
 	);
 
+	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+		[],
+		null
+	);
+
 	wp_enqueue_style(
 		'yext-editor-style',
 		YEXT_URL . '/dist/css/editor-style.css',
-		[],
+		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
 
 	wp_localize_script(
 		'yext-blocks-editor',
 		'YEXT',
-		[ 'settings' => Settings::localized_settings() ]
+		[ 'settings'  => Settings::localized_settings() ]
 	);
 }
 

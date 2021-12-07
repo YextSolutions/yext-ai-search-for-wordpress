@@ -3,6 +3,9 @@
  */
 import camelcaseKeys from 'camelcase-keys';
 
+// @ts-ignore
+const { wp, YEXT } = window;
+
 const { __ } = wp.i18n;
 const { InspectorControls, PanelColorSettings, LineHeightControl } = wp.blockEditor;
 const {
@@ -15,32 +18,38 @@ const {
 	SelectControl,
 } = wp.components;
 
-const { components } = window.YEXT.settings;
+const { components } = YEXT.settings;
 const {
 	searchBar: {
-		submitText: defaultSubmitText,
-		placeholderText: defaultPlaceholderText,
-		labelText: defaultLabelText,
-		textColor: defaultTextColor,
+		color: defaultTextColor,
 		fontSize: defaultFontSize,
 		fontWeight: defaultFontWeight,
 		lineHeight: defaultLineHeight,
 		borderRadius: defaultBorderRadius,
 		borderColor: defaultBorderColor,
 		backgroundColor: defaultBackgroundColor,
-		buttonBackgroundColor: defaultButtonBackgroundColor,
-		buttonHoverBackgroundColor: defaultButtonHoverBackgroundColor,
-		buttonActiveBackgroundColor: defaultButtonActiveBackgroundColor,
-		buttonTextColor: defaultButtonTextColor,
-		buttonHoverTextColor: defaultButtonHoverTextColor,
-		buttonActiveTextColor: defaultButtonActiveTextColor,
-		autocompleteBackgroundColor: defaultAutocompleteBackgroundColor,
-		autocompleteSeparatorColor: defaultAutocompleteSeparatorColor,
-		autocompleteOptionHoverBackgroundColor: defaultAutocompleteOptionHoverBackgroundColor,
-		autocompleteOptionFontSize: defaultAutocompleteOptionFontSize,
-		autocompleteOptionFontWeight: defaultAutocompleteOptionFontWeight,
-		autocompleteOptionLineHeight: defaultAutocompleteOptionLineHeight,
-		autocompleteHeaderFontWeight: defaultAutocompleteHeaderFontWeight,
+		props: {
+			submitText: defaultSubmitText,
+			placeholderText: defaultPlaceholderText,
+			labelText: defaultLabelText,
+		},
+		button: {
+			backgroundColor: defaultButtonBackgroundColor,
+			hoverBackgroundColor: defaultButtonHoverBackgroundColor,
+			activeBackgroundColor: defaultButtonActiveBackgroundColor,
+			color: defaultButtonTextColor,
+			hoverColor: defaultButtonHoverTextColor,
+			textActiveColor: defaultButtonActiveTextColor,
+		},
+		autocomplete: {
+			backgroundColor: defaultAutocompleteBackgroundColor,
+			separatorColor: defaultAutocompleteSeparatorColor,
+			optionHoverBackgroundColor: defaultAutocompleteOptionHoverBackgroundColor,
+			fontSize: defaultAutocompleteOptionFontSize,
+			fontWeight: defaultAutocompleteOptionFontWeight,
+			lineHeight: defaultAutocompleteOptionLineHeight,
+			headerFontWeight: defaultAutocompleteHeaderFontWeight,
+		},
 	},
 } = camelcaseKeys(components, { deep: true });
 

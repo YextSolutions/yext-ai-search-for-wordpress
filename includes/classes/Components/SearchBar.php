@@ -37,7 +37,7 @@ final class SearchBar {
 	 * @return boolean
 	 */
 	public function is_valid() {
-		if ( ! $this->settings ) {
+		if ( ! $this->settings || ! is_array( $this->settings ) ) {
 			return false;
 		}
 

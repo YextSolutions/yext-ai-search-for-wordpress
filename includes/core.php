@@ -197,18 +197,17 @@ function scripts() {
  * @return void
  */
 function admin_scripts() {
-	wp_enqueue_script(
-		'yext-shared',
-		script_url( 'shared', 'shared' ),
+	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
 		[],
-		YEXT_VERSION,
-		true
+		null
 	);
 
 	wp_enqueue_script(
 		'yext-admin',
 		script_url( 'admin', 'admin' ),
-		[],
+		[ 'yext-search-bar' ],
 		YEXT_VERSION,
 		true
 	);
@@ -225,13 +224,6 @@ function styles() {
 		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
 		[],
 		null
-	);
-
-	wp_enqueue_style(
-		'yext-shared',
-		style_url( 'shared-style', 'shared' ),
-		[],
-		YEXT_VERSION
 	);
 
 	wp_enqueue_style(

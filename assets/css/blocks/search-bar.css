@@ -1,0 +1,12 @@
+/**
+ * Gutenberg Blocks Styles
+ * https://project-website.tld
+ *
+ */
+
+input.yxt-SearchBar-input {
+
+	&:focus {
+		box-shadow: none !important;
+	}
+}

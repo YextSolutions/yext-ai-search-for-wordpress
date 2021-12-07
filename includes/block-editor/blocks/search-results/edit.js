@@ -1,8 +1,9 @@
+/**
+ * Internal dependencies
+ */
 import Controls from './controls';
 
-/**
- * WordPress dependencies
- */
+const { wp } = window;
 
 const { useBlockProps } = wp.blockEditor;
 const { __ } = wp.i18n;
