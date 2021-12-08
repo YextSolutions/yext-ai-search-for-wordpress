@@ -99,7 +99,6 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'admin_head', [ $this, 'print_css_variables' ], 10 );
 		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
@@ -127,8 +126,8 @@ final class Settings {
 		);
 		add_submenu_page(
 			'yext',
-			__( 'Wizard', 'yext' ),
-			__( 'Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
 			'manage_options',
 			'yext-wizard',
 			[ $this, 'render_wizard_page' ]
@@ -152,32 +151,35 @@ final class Settings {
 	/**
 	 * Add style variables
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public static function print_css_variables() {
 
+		$css             = '';
 		$settings        = self::get_settings();
 		$settings_fields = new SettingsFields( $settings );
 
 		if ( ! isset( $settings_fields->fields ) ) {
-			return;
+			return $css;
 		}
-		?>
-		<style>
-		:root {
-			<?php
-			foreach ( $settings_fields->fields as $field ) {
-				if ( $field->variable ) {
-					$value = isset( $field->parent_field ) && $field->parent_field
-						? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ]
-						: $settings[ $field->section_id ][ $field->id ];
-					self::variable_values( $field->variable, $value );
+
+		$css .= ':root {';
+
+		foreach ( $settings_fields->fields as $field ) {
+			if ( $field->variable ) {
+				$value = isset( $field->parent_field ) && $field->parent_field
+					? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ]
+					: $settings[ $field->section_id ][ $field->id ];
+
+				if ( $value ) {
+					$css .= self::variable_values( $field->variable, $value );
 				}
 			}
-			?>
 		}
-		</style>
-		<?php
+
+		$css .= '}';
+
+		return $css;
 	}
 
 	/**
@@ -251,20 +253,20 @@ final class Settings {
 		];
 
 		if ( 'create' === $key ) {
-			return;
+			return '';
 		}
 
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
 				$css = self::variable_values( $inner_key, $val, $key . '-' );
-				echo esc_html( $css );
+				return esc_html( $css );
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
 				$value = $value . 'px';
 			}
 
-			echo esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
+			return esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
 		}
 	}
 

@@ -147,8 +147,6 @@ function style_url( $stylesheet, $context ) {
  * @return void
  */
 function scripts() {
-	$settings = Settings::get_settings();
-
 	wp_enqueue_script(
 		'yext-shared',
 		script_url( 'shared', 'shared' ),
@@ -225,6 +223,9 @@ function styles() {
 		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
+	/**
+	 * TODO: add filter for CSS variable output
+	 */
 	wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
 }
 
@@ -254,6 +255,10 @@ function admin_styles() {
 		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
+	/**
+	 * TODO: add filter for CSS variable output
+	 */
+	wp_add_inline_style( 'yext-admin', Settings::print_css_variables() );
 }
 
 /**
