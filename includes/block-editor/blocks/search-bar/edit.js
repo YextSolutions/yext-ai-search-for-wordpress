@@ -26,7 +26,7 @@ const {
 const { __ } = wp.i18n;
 const { useBlockProps } = wp.blockEditor;
 const { Notice } = wp.components;
-const { useRef } = wp.element;
+const { useRef, useState, useEffect } = wp.element;
 
 const isValid = apiKey && experienceKey && businessId;
 
@@ -45,9 +45,24 @@ const Edit = (props) => {
 		},
 	} = props;
 	const blockProps = useBlockProps();
+	const [inputValue, setInputValue] = useState('');
 	const searchIcon = useRef(null);
 	const submitIcon = useRef(null);
 	const searchBar = useRef(null);
+	const autocomplete = useRef(null);
+
+	useEffect(() => {
+		autocomplete.current.classList[inputValue.trim() ? 'remove' : 'add'](
+			'component--is-hidden',
+		);
+
+		searchIcon.current.classList[inputValue.trim() ? 'add' : 'remove'](
+			'yxt-SearchBar-Icon--inactive',
+		);
+		submitIcon.current.classList[inputValue.trim() ? 'remove' : 'add'](
+			'yxt-SearchBar-Icon--inactive',
+		);
+	}, [inputValue]);
 
 	return (
 		<>
@@ -72,9 +87,12 @@ const Edit = (props) => {
 									id="yxt-SearchBar-input--search-bar"
 									type="text"
 									name="query"
-									value={null}
+									value={inputValue}
 									placeholder={placeholderText}
 									aria-label={labelText}
+									onChange={(event) => {
+										setInputValue(event.target.value);
+									}}
 									onFocus={() => {
 										searchIcon.current.classList.remove(
 											'yxt-SearchBar-Icon--inactive',
@@ -82,6 +100,12 @@ const Edit = (props) => {
 										submitIcon.current.classList.add(
 											'yxt-SearchBar-Icon--inactive',
 										);
+
+										if (inputValue) {
+											autocomplete.current.classList.remove(
+												'component--is-hidden',
+											);
+										}
 									}}
 									onBlur={() => {
 										submitIcon.current.classList.remove(
@@ -90,6 +114,8 @@ const Edit = (props) => {
 										searchIcon.current.classList.add(
 											'yxt-SearchBar-Icon--inactive',
 										);
+
+										autocomplete.current.classList.add('component--is-hidden');
 									}}
 								/>
 								<button
@@ -1127,6 +1153,24 @@ const Edit = (props) => {
 										{submitText}
 									</span>
 								</button>
+							</div>
+							<div
+								ref={autocomplete}
+								className="yxt-SearchBar-autocomplete yxt-AutoComplete-wrapper js-yxt-AutoComplete-wrapper component component--is-hidden"
+							>
+								<div className="yxt-AutoComplete">
+									<div className="yxt-AutoComplete-results">
+										<div className="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
+											{__('Option Item 1', 'yext')}
+										</div>
+										<div className="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
+											{__('Option Item 2', 'yext')}
+										</div>
+										<div className="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
+											{__('Another Option Item', 'yext')}
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
