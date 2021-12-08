@@ -26,6 +26,7 @@
     "lint-staged": "^11.2.6"
   },
   "dependencies": {
+    "@10up/component-accordion": "^2.0.1",
     "@10up/component-tabs": "^2.0.0",
     "@wordpress/url": "^3.3.1",
     "camelcase-keys": "^6.2.2",

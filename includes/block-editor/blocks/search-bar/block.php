@@ -28,23 +28,23 @@ function render( $atts ) {
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
 
 	$styles = [
-		'--yxt-searchbar-text-color' => $atts['textColor'],
+		'--yxt-searchbar-text-color' => $atts['textColor'] ?? null,
 		'--yxt-searchbar-text-font-size' => $atts['fontSize'] ? $atts['fontSize'] . 'px' : null,
-		'--yxt-searchbar-text-font-weight' => $atts['fontWeight'],
-		'--yxt-searchbar-text-line-height' => $atts['lineHeight'],
-		'--yxt-searchbar-form-outline-color-base' => $atts['borderColor'],
+		'--yxt-searchbar-text-font-weight' => $atts['fontWeight'] ?? null,
+		'--yxt-searchbar-text-line-height' => $atts['lineHeight'] ?? null,
+		'--yxt-searchbar-form-outline-color-base' => $atts['borderColor'] ?? null,
 		'--yxt-searchbar-form-border-radius' => $atts['borderRadius'] ? $atts['borderRadius'] . 'px' : null,
-		'--yxt-searchbar-form-background-color' => $atts['backgroundColor'],
-		'--yxt-searchbar-button-background-color-base' => $atts['buttonBackgroundColor'],
-		'--yxt-searchbar-button-background-color-hover' => $atts['buttonHoverBackgroundColor'],
-		'--yxt-autocomplete-background-color' => $atts['autocompleteBackgroundColor'],
+		'--yxt-searchbar-form-background-color' => $atts['backgroundColor'] ?? null,
+		'--yxt-searchbar-button-background-color-base' => $atts['buttonBackgroundColor'] ?? null,
+		'--yxt-searchbar-button-background-color-hover' => $atts['buttonHoverBackgroundColor'] ?? null,
+		'--yxt-autocomplete-background-color' => $atts['autocompleteBackgroundColor'] ?? null,
 		// '--yxt-autocomplete-text-color' => $atts['autocompleteTextColor'],
-		'--yxt-autocomplete-separator-color' => $atts['autocompleteSeparatorColor'],
-		'--yxt-autocomplete-option-hover-background-color' => $atts['autocompleteOptionHoverBackgroundColor'],
+		'--yxt-autocomplete-separator-color' => $atts['autocompleteSeparatorColor'] ?? null,
+		'--yxt-autocomplete-option-hover-background-color' => $atts['autocompleteOptionHoverBackgroundColor'] ?? null,
 		'--yxt-autocomplete-text-font-size' => $atts['autocompleteOptionFontSize'] ? $atts['autocompleteOptionFontSize'] . 'px' : null,
-		'--yxt-autocomplete-text-font-weight' => $atts['autocompleteOptionFontWeight'],
-		'--yxt-autocomplete-text-line-height' => $atts['autocompleteOptionLineHeight'],
-		'--yxt-autocomplete-prompt-header-font-weight' => $atts['autocompleteHeaderFontWeight'],
+		'--yxt-autocomplete-text-font-weight' => $atts['autocompleteOptionFontWeight'] ?? null,
+		'--yxt-autocomplete-text-line-height' => $atts['autocompleteOptionLineHeight'] ?? null,
+		'--yxt-autocomplete-prompt-header-font-weight' => $atts['autocompleteHeaderFontWeight'] ?? null,
 	];
 
 	$filtered_styles = array_filter(

@@ -87,9 +87,10 @@ final class Settings {
 		// Child sections for this tab
 		// Array of slug => title to display in front end
 		$child_sections = [
-			'button'       => __( 'Button', 'yext' ),
-			'autocomplete' => __( 'Autocomplete', 'yext' ),
-			'props'        => __( 'Create', 'yext' ),
+			'props'        => __( 'Display Settings', 'yext' ),
+			'style'        => __( 'Base Styles', 'yext' ),
+			'button'       => __( 'Button Styles', 'yext' ),
+			'autocomplete' => __( 'Autocomplete Styles', 'yext' ),
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
@@ -112,7 +113,7 @@ final class Settings {
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
-			'yext-connector',
+			'yext',
 			[ $this, 'render_settings_page' ],
 			$this->menu_icon
 		);
@@ -203,7 +204,7 @@ final class Settings {
 		<div id="yext-settings">
 			<h2>
 				<?php
-					echo esc_html__( 'Yext connector', 'yext' );
+					echo esc_html__( 'Yext', 'yext' );
 				?>
 			</h2>
 			<form method="post" action="options.php">
@@ -244,10 +245,9 @@ final class Settings {
 	 */
 	public static function variable_values( $key, $value ) {
 		$pixel_value = [
-			'--yxt-base-radius',
-			'--yxt-base-spacing',
-			'--yxt-searchbar-text-font-weight',
-			'--yxt-searchbar-text-line-height',
+			'--yxt-searchbar-form-border-radius',
+			'--yxt-searchbar-text-font-size',
+			'--yxt-autocomplete-text-font-size',
 		];
 
 		if ( 'create' === $key ) {

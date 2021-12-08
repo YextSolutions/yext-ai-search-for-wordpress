@@ -1,14 +1,13 @@
 // Components
-import './components/tabs';
-import YextSearchBarPreview from './components/search-bar-preview';
-import { initTabs, initToggler } from './components';
+import SearchBarPreview from './components/search-bar-preview';
+import { initTabs, initAccordion } from './components';
 
 // safe to ignore, this is not a react component
 // eslint-disable-next-line @wordpress/no-global-event-listener
 window.addEventListener('DOMContentLoaded', () => {
 	initTabs();
-	initToggler();
+	initAccordion();
 
-	/* eslint-disable-next-line no-new */
-	new YextSearchBarPreview();
+	const preview = new SearchBarPreview();
+	preview.init();
 });
