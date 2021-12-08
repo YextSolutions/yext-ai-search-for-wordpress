@@ -27,46 +27,59 @@ function render( $atts ) {
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
 
-	$data_attrs = [
-		'data-placeholder-text' => $placeholder_text,
-		'data-submit-text'      => $submit_text,
-		'data-label-text'       => $label_text,
-	];
-
 	$styles = [
-		'--yxt-searchbar-text-color' => $atts['textColor'] ?? $search_bar_settings['color'],
-		'--yxt-searchbar-text-font-size' => $atts['fontSize'] . 'px' ?? $search_bar_settings['font_size'],
-		'--yxt-searchbar-text-font-weight' => $atts['fontWeight'] ?? $search_bar_settings['font_weight'],
-		'--yxt-searchbar-text-line-height' => $atts['lineHeight'] ?? $search_bar_settings['line_height'],
-		'--yxt-searchbar-form-outline-color-base' => $atts['borderColor'] ?? $search_bar_settings['border_color'],
-		'--yxt-searchbar-form-border-radius' => $atts['borderRadius'] . 'px' ?? $search_bar_settings['border_radius'],
-		'--yxt-searchbar-form-background-color' => $atts['backgroundColor'] ?? $search_bar_settings['background_color'],
-		'--yxt-searchbar-button-background-color-base' => $atts['buttonBackgroundColor'] ?? $search_bar_settings['button']['background_color'],
-		'--yxt-searchbar-button-background-color-hover' => $atts['buttonHoverBackgroundColor'] ?? $search_bar_settings['button']['hover_background_color'],
-		'--yxt-autocomplete-background-color' => $atts['autocompleteBackgroundColor'] ?? $search_bar_settings['autocomplete']['background_color'],
-		// '--yxt-autocomplete-text-color' => $atts['autocompleteTextColor'] ?? $search_bar_settings['autocomplete']['text_color'],
-		'--yxt-autocomplete-separator-color' => $atts['autocompleteSeparatorColor'] ?? $search_bar_settings['autocomplete']['separator_color'],
-		'--yxt-autocomplete-option-hover-background-color' => $atts['autocompleteOptionHoverBackgroundColor'] ?? $search_bar_settings['autocomplete']['option_hover_background_color'],
-		'--yxt-autocomplete-text-font-size' => $atts['autocompleteOptionFontSize'] . 'px' ?? $search_bar_settings['autocomplete']['font_size'],
-		'--yxt-autocomplete-text-font-weight' => $atts['autocompleteOptionFontWeight'] ?? $search_bar_settings['autocomplete']['font_weight'],
-		'--yxt-autocomplete-text-line-height' => $atts['autocompleteOptionLineHeight'] ?? $search_bar_settings['autocomplete']['line_height'],
-		'--yxt-autocomplete-prompt-header-font-weight' => $atts['autocompleteHeaderFontWeight'] ?? $search_bar_settings['autocomplete']['header_font_weight'],
+		'--yxt-searchbar-text-color' => $atts['textColor'],
+		'--yxt-searchbar-text-font-size' => $atts['fontSize'] ? $atts['fontSize'] . 'px' : null,
+		'--yxt-searchbar-text-font-weight' => $atts['fontWeight'],
+		'--yxt-searchbar-text-line-height' => $atts['lineHeight'],
+		'--yxt-searchbar-form-outline-color-base' => $atts['borderColor'],
+		'--yxt-searchbar-form-border-radius' => $atts['borderRadius'] ? $atts['borderRadius'] . 'px' : null,
+		'--yxt-searchbar-form-background-color' => $atts['backgroundColor'],
+		'--yxt-searchbar-button-background-color-base' => $atts['buttonBackgroundColor'],
+		'--yxt-searchbar-button-background-color-hover' => $atts['buttonHoverBackgroundColor'],
+		'--yxt-autocomplete-background-color' => $atts['autocompleteBackgroundColor'],
+		// '--yxt-autocomplete-text-color' => $atts['autocompleteTextColor'],
+		'--yxt-autocomplete-separator-color' => $atts['autocompleteSeparatorColor'],
+		'--yxt-autocomplete-option-hover-background-color' => $atts['autocompleteOptionHoverBackgroundColor'],
+		'--yxt-autocomplete-text-font-size' => $atts['autocompleteOptionFontSize'] ? $atts['autocompleteOptionFontSize'] . 'px' : null,
+		'--yxt-autocomplete-text-font-weight' => $atts['autocompleteOptionFontWeight'],
+		'--yxt-autocomplete-text-line-height' => $atts['autocompleteOptionLineHeight'],
+		'--yxt-autocomplete-prompt-header-font-weight' => $atts['autocompleteHeaderFontWeight'],
 	];
 
-	$filtered_attrs = array_map(
-		function ( $key, $value ) {
-			return ! empty( $value )
-				? $key . '="' . $value . '"'
-				: null;
-		},
-		array_keys( $data_attrs ),
-		$data_attrs
+	$filtered_styles = array_filter(
+		array_map(
+			function ( $key, $value ) {
+				return ! empty( $value )
+					? $key . ':' . $value
+					: null;
+			},
+			array_keys( $styles ),
+			$styles
+		),
+		function ( $value ) {
+			return ! ! $value;
+		}
 	);
 
 	// Start the output buffer for rendering
 	ob_start();
 	?>
-	<div class="<?php echo esc_attr( $class ); ?>"<?php echo implode( ' ', $filtered_attrs ); ?> data-styles="<?php echo esc_attr( json_encode( $styles ) ); ?>"></div> <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<div
+		class="<?php echo esc_attr( $class ); ?>"
+	<?php if ( ! empty( $placeholder_text ) ) : ?>
+		data-placeholder-text="<?php echo esc_attr( $placeholder_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $submit_text ) ) : ?>
+		data-submit-text="<?php echo esc_attr( $submit_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $label_text ) ) : ?>
+		data-label-text="<?php echo esc_attr( $label_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $filtered_styles ) ) : ?>
+		style="<?php echo esc_attr( implode( ';', $filtered_styles ) ); ?>"
+	<?php endif; ?>
+	></div>
 	<?php
 
 	return ob_get_clean();

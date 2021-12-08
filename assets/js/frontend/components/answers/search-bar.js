@@ -97,17 +97,6 @@ const searchBar = (props = {}) => {
 					node.classList.add(uid);
 				}
 
-				if (node.hasAttribute('data-styles')) {
-					try {
-						const styleObject = JSON.parse(node.getAttribute('data-styles'));
-
-						Object.entries(styleObject).forEach(([key, value]) => {
-							node.style.setProperty(key, value);
-						});
-						/* eslint-disable-next-line no-empty */
-					} catch (error) {}
-				}
-
 				/**
 				 * @type {SearchBarOptions}
 				 */
