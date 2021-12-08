@@ -21,6 +21,19 @@ export default class SearchBarPreview {
 		this.handleFormChange();
 		this.handleIconChange();
 		this.handleInputChange();
+		this.initStickyBits();
+	}
+
+	/**
+	 * Initialize Sticky Bits
+	 *
+	 */
+	initStickyBits() {
+		import('stickybits').then(({ default: stickybits }) => {
+			stickybits('.yxt-SearchBar-wrapper', {
+				noStyles: true,
+			});
+		});
 	}
 
 	/**
@@ -63,6 +76,11 @@ export default class SearchBarPreview {
 		);
 	}
 
+	/**
+	 * Handle Input Change.
+	 *
+	 * Used to toggle the autocomplete component.
+	 */
 	handleInputChange() {
 		this.previewContainer.forEach(
 			/**
@@ -76,6 +94,8 @@ export default class SearchBarPreview {
 				 */
 				const input = container.querySelector('.yxt-SearchBar-input');
 				const autocomplete = container.querySelector('.yxt-SearchBar-autocomplete');
+				const searchIcon = container.querySelector('.js-yxt-AnimatedForward');
+				const yextIcon = container.querySelector('.js-yxt-AnimatedReverse');
 
 				input.addEventListener(
 					'input',
@@ -85,6 +105,13 @@ export default class SearchBarPreview {
 					() => {
 						autocomplete.classList[input.value.trim() ? 'remove' : 'add'](
 							'component--is-hidden',
+						);
+
+						searchIcon.classList[input.value.trim() ? 'add' : 'remove'](
+							'yxt-SearchBar-Icon--inactive',
+						);
+						yextIcon.classList[input.value.trim() ? 'remove' : 'add'](
+							'yxt-SearchBar-Icon--inactive',
 						);
 					},
 				);
@@ -122,35 +149,33 @@ export default class SearchBarPreview {
 	handleFormChange() {
 		const form = this.settings.querySelector('form');
 
-		if (form instanceof HTMLFormElement === false) {
-			return;
-		}
+		if (form instanceof HTMLFormElement) {
+			for (let i = 0; i < form.elements.length; i++) {
+				form.elements[i].addEventListener(
+					'input',
 
-		for (let i = 0; i < form.elements.length; i++) {
-			form.elements[i].addEventListener(
-				'input',
+					/**
+					 * Input event handler
+					 *
+					 * @param {Event} event Input event
+					 */
+					(event) => {
+						const { target } = event;
 
-				/**
-				 * Input event handler
-				 *
-				 * @param {Event} event Input event
-				 */
-				(event) => {
-					const { target } = event;
+						if (target instanceof HTMLInputElement) {
+							const cssVariable = target.getAttribute('data-variable');
 
-					if (target instanceof HTMLInputElement) {
-						const cssVariable = target.getAttribute('data-variable');
+							if (cssVariable) {
+								this.updateCSSVariable(cssVariable, target.value);
+							}
 
-						if (cssVariable) {
-							this.updateVariables(cssVariable, target.value);
+							if (target.name.includes('[props]')) {
+								this.updateElementPreview(target.id, target.value);
+							}
 						}
-
-						if (target.name.includes('[props]')) {
-							this.updateElementPreview(target.id, target.value);
-						}
-					}
-				},
-			);
+					},
+				);
+			}
 		}
 	}
 
@@ -161,7 +186,7 @@ export default class SearchBarPreview {
 	 * @param {string} value The new value.
 	 *
 	 */
-	updateVariables(key, value) {
+	updateCSSVariable(key, value) {
 		this.previewContainer.forEach(
 			/**
 			 * Update CSS variables on each preview container.
@@ -180,11 +205,10 @@ export default class SearchBarPreview {
 	}
 
 	/**
-	 * Form change listener
+	 * Form change listener.
 	 *
 	 * @param {string} target The target element.
 	 * @param {string} value The new value.
-	 *
 	 */
 	updateElementPreview(target, value) {
 		this.previewContainer.forEach(

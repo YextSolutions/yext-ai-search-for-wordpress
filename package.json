@@ -33,7 +33,8 @@
     "dompurify": "^2.3.3",
     "lodash.kebabcase": "^4.1.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "stickybits": "^3.7.9"
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",

@@ -6,6 +6,10 @@
 
 .editor-styles-wrapper {
 
+	& .yxt-SearchBar {
+		height: 100%;
+	}
+
 	& input.yxt-SearchBar-input {
 
 		&:focus {
@@ -13,7 +17,7 @@
 		}
 	}
 
-	& .yxt-SearchBar {
-		height: 100%;
+	& .component--is-hidden {
+		display: none;
 	}
 }
