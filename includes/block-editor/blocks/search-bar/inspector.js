@@ -18,6 +18,7 @@ const {
 	SelectControl,
 	BaseControl,
 } = wp.components;
+const { useEffect } = wp.element;
 
 const { components } = YEXT.settings;
 const {
@@ -37,10 +38,6 @@ const {
 		button: {
 			backgroundColor: defaultButtonBackgroundColor,
 			hoverBackgroundColor: defaultButtonHoverBackgroundColor,
-			activeBackgroundColor: defaultButtonActiveBackgroundColor,
-			color: defaultButtonTextColor,
-			hoverColor: defaultButtonHoverTextColor,
-			textActiveColor: defaultButtonActiveTextColor,
 		},
 		autocomplete: {
 			backgroundColor: defaultAutocompleteBackgroundColor,
@@ -115,6 +112,7 @@ const fontWeights = [
  */
 const Inspector = (props) => {
 	const {
+		searchBar,
 		setAttributes,
 		attributes: {
 			submitText = defaultSubmitText ?? null,
@@ -124,26 +122,113 @@ const Inspector = (props) => {
 			fontSize = defaultFontSize ? parseInt(defaultFontSize, 10) : FALLBACK_FONT_SIZE,
 			fontWeight = defaultFontWeight ? parseInt(defaultFontWeight, 10) : null,
 			lineHeight = defaultLineHeight ? parseInt(defaultLineHeight, 10) : null,
-			borderRadius = defaultBorderRadius ?? null,
+			borderRadius = defaultBorderRadius ? parseInt(defaultBorderRadius, 10) : null,
 			borderColor = defaultBorderColor ?? null,
 			backgroundColor = defaultBackgroundColor ?? null,
 			buttonBackgroundColor = defaultButtonBackgroundColor ?? null,
 			buttonHoverBackgroundColor = defaultButtonHoverBackgroundColor ?? null,
-			buttonActiveBackgroundColor = defaultButtonActiveBackgroundColor ?? null,
-			buttonTextColor = defaultButtonTextColor ?? null,
-			buttonHoverTextColor = defaultButtonHoverTextColor ?? null,
-			buttonActiveTextColor = defaultButtonActiveTextColor ?? null,
 			autocompleteBackgroundColor = defaultAutocompleteBackgroundColor ?? null,
 			autocompleteSeparatorColor = defaultAutocompleteSeparatorColor ?? null,
 			autocompleteOptionHoverBackgroundColor = defaultAutocompleteOptionHoverBackgroundColor ??
 				null,
-			autocompleteOptionFontSize = defaultAutocompleteOptionFontSize ?? null,
-			autocompleteOptionFontWeight = defaultAutocompleteOptionFontWeight ?? null,
-			autocompleteOptionLineHeight = defaultAutocompleteOptionLineHeight ?? null,
-			autocompleteHeaderFontWeight = defaultAutocompleteHeaderFontWeight ?? null,
+			autocompleteOptionFontSize = defaultAutocompleteOptionFontSize
+				? parseInt(defaultAutocompleteOptionFontSize, 10)
+				: FALLBACK_FONT_SIZE,
+			autocompleteOptionFontWeight = defaultAutocompleteOptionFontWeight
+				? parseInt(defaultAutocompleteOptionFontWeight, 10)
+				: null,
+			autocompleteOptionLineHeight = defaultAutocompleteOptionLineHeight
+				? parseInt(defaultAutocompleteOptionLineHeight, 10)
+				: null,
+			autocompleteHeaderFontWeight = defaultAutocompleteHeaderFontWeight
+				? parseInt(defaultAutocompleteHeaderFontWeight, 10)
+				: null,
 		},
 	} = props;
+
 	const colors = useSetting('color.palette');
+
+	const cssVariables = {
+		fontSize: ['--yxt-searchbar-text-font-size', `${fontSize}px`],
+		fontWeight: ['--yxt-searchbar-text-font-weight', fontWeight],
+		lineHeight: ['--yxt-searchbar-text-line-height', lineHeight],
+		textColor: ['--yxt-searchbar-text-color', textColor],
+		borderColor: ['--yxt-searchbar-form-outline-color-base', borderColor],
+		borderRadius: ['--yxt-searchbar-form-border-radius', `${borderRadius}px`],
+		backgroundColor: ['--yxt-searchbar-form-background-color', backgroundColor],
+		buttonBackgroundColor: [
+			'--yxt-searchbar-button-background-color-base',
+			buttonBackgroundColor,
+		],
+		buttonHoverBackgroundColor: [
+			'--yxt-searchbar-button-background-color-hover',
+			buttonHoverBackgroundColor,
+		],
+		autocompleteBackgroundColor: [
+			'--yxt-autocomplete-background-color',
+			autocompleteBackgroundColor,
+		],
+		autocompleteSeparatorColor: [
+			'--yxt-autocomplete-separator-color',
+			autocompleteSeparatorColor,
+		],
+		autocompleteOptionHoverBackgroundColor: [
+			'--yxt-autocomplete-option-hover-background-color',
+			autocompleteOptionHoverBackgroundColor,
+		],
+		autocompleteOptionFontSize: [
+			'--yxt-autocomplete-text-font-size',
+			`${autocompleteOptionFontSize}px`,
+		],
+		autocompleteOptionFontWeight: [
+			'--yxt-autocomplete-text-font-weight',
+			autocompleteOptionFontWeight,
+		],
+		autocompleteOptionLineHeight: [
+			'--yxt-autocomplete-text-line-height',
+			autocompleteOptionLineHeight,
+		],
+		autocompleteHeaderFontWeight: [
+			'--yxt-autocomplete-prompt-header-font-weight',
+			autocompleteHeaderFontWeight,
+		],
+	};
+
+	/**
+	 * Update search form CSS variable
+	 *
+	 * @param {string} attribute Block attribute.
+	 * @param {string} value Attribute value.
+	 */
+	const updateCSSVariableFromAttribute = (attribute, value) => {
+		const [variable] = cssVariables[attribute] ?? [];
+
+		if (variable && value) {
+			searchBar.current.style.setProperty(variable, value);
+		}
+	};
+
+	/**
+	 * Style attribute update handler.
+	 *
+	 * @param {string} attribute Block attribute.
+	 * @param {string} value Attribute value.
+	 * @param {Function} formatter Value formatter used for CSS values.
+	 */
+	const handleStyleUpdate = (attribute, value, formatter = null) => {
+		setAttributes({ [attribute]: value });
+		updateCSSVariableFromAttribute(
+			attribute,
+			typeof formatter === 'function' ? formatter(value) : value,
+		);
+	};
+
+	useEffect(() => {
+		Object.values(cssVariables).forEach(([key, value]) => {
+			searchBar.current.style.setProperty(key, value);
+		});
+		/* eslint-disable-next-line react-hooks/exhaustive-deps */
+	}, []);
 
 	return (
 		<InspectorControls>
@@ -184,7 +269,7 @@ const Inspector = (props) => {
 						fallbackFontSize={FALLBACK_FONT_SIZE}
 						value={fontSize}
 						onChange={(newFontSize) => {
-							setAttributes({ fontSize: newFontSize });
+							handleStyleUpdate('fontSize', newFontSize, (value) => `${value}px`);
 						}}
 					/>
 				</PanelRow>
@@ -193,77 +278,50 @@ const Inspector = (props) => {
 					value={fontWeight}
 					options={fontWeights}
 					onChange={(newFontWeight) => {
-						setAttributes({ fontWeight: newFontWeight });
+						handleStyleUpdate('fontWeight', newFontWeight);
 					}}
 				/>
 				<LineHeightControl
 					value={lineHeight}
 					onChange={(newLineHeight) => {
-						setAttributes({ lineHeight: newLineHeight });
+						handleStyleUpdate('lineHeight', newLineHeight);
 					}}
 				/>
 				<RangeControl
 					label={__('Border Radius', 'yext')}
 					value={borderRadius}
 					min={0}
-					max={100}
+					max={30}
 					onChange={(newBorderRadius) => {
-						setAttributes({ borderRadius: newBorderRadius });
+						handleStyleUpdate('borderRadius', newBorderRadius, (value) => `${value}px`);
 					}}
 				/>
+			</PanelBody>
+			<PanelBody title={__('Color Settings', 'yext')}>
 				<BaseControl id="yext-text-color" label={__('Text Color', 'yext')}>
 					<ColorPalette
 						value={textColor}
 						colors={colors}
-						onChange={(color) => setAttributes({ textColor: color })}
+						onChange={(color) => {
+							handleStyleUpdate('textColor', color);
+						}}
 					/>
 				</BaseControl>
 				<BaseControl id="yext-border-color" label={__('Border Color', 'yext')}>
 					<ColorPalette
 						colors={colors}
 						value={borderColor}
-						onChange={(color) => setAttributes({ borderColor: color })}
+						onChange={(color) => {
+							handleStyleUpdate('borderColor', color);
+						}}
 					/>
 				</BaseControl>
 				<BaseControl id="yext-background-color" label={__('Background Color', 'yext')}>
 					<ColorPalette
 						colors={colors}
 						value={backgroundColor}
-						onChange={(color) => setAttributes({ backgroundColor: color })}
-					/>
-				</BaseControl>
-			</PanelBody>
-			<PanelBody title={__('Button Styles', 'yext')} initialOpen={false}>
-				<BaseControl id="yext-button-color" label={__('Button Text Color', 'yext')}>
-					<ColorPalette
-						colors={colors}
-						value={buttonTextColor}
-						onChange={(colorValue) => {
-							setAttributes({ buttonTextColor: colorValue });
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
-					id="yext-button-hover-color"
-					label={__('Button Text Hover Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonHoverTextColor}
-						onChange={(colorValue) => {
-							setAttributes({ buttonHoverTextColor: colorValue });
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
-					id="yext-button-active-color"
-					label={__('Button Text Active Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonActiveTextColor}
-						onChange={(colorValue) => {
-							setAttributes({ buttonActiveTextColor: colorValue });
+						onChange={(color) => {
+							handleStyleUpdate('backgroundColor', color);
 						}}
 					/>
 				</BaseControl>
@@ -275,36 +333,24 @@ const Inspector = (props) => {
 						colors={colors}
 						value={buttonBackgroundColor}
 						onChange={(colorValue) => {
-							setAttributes({ buttonBackgroundColor: colorValue });
+							handleStyleUpdate('buttonBackgroundColor', colorValue);
 						}}
 					/>
 				</BaseControl>
 				<BaseControl
 					id="yext-button-background-hover-color"
-					label={__('Button Background Hover Color', 'yext')}
+					label={__('Button Background Focus Color', 'yext')}
 				>
 					<ColorPalette
 						colors={colors}
 						value={buttonHoverBackgroundColor}
 						onChange={(colorValue) => {
-							setAttributes({ buttonHoverBackgroundColor: colorValue });
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
-					id="yext-button-background-active-color"
-					label={__('Button Background Active Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonActiveBackgroundColor}
-						onChange={(colorValue) => {
-							setAttributes({ buttonActiveBackgroundColor: colorValue });
+							handleStyleUpdate('buttonHoverBackgroundColor', colorValue);
 						}}
 					/>
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Autocomplete Styles', 'yext')} initialOpen={false}>
+			<PanelBody title={__('Autocomplete Settings', 'yext')} initialOpen={false}>
 				<PanelRow>
 					<FontSizePicker
 						fontSizes={fontSizes}

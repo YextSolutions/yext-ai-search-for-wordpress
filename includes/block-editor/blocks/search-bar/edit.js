@@ -47,10 +47,11 @@ const Edit = (props) => {
 	const blockProps = useBlockProps();
 	const searchIcon = useRef(null);
 	const submitIcon = useRef(null);
+	const searchBar = useRef(null);
 
 	return (
 		<>
-			<Inspector {...props} />
+			<Inspector searchBar={searchBar} {...props} />
 			<div {...blockProps}>
 				{!isValid && (
 					<Notice status="warning" isDismissible={false}>
@@ -62,7 +63,7 @@ const Edit = (props) => {
 						</p>
 					</Notice>
 				)}
-				<div className="yxt-Answers-component yxt-SearchBar-wrapper">
+				<div ref={searchBar} className="yxt-Answers-component yxt-SearchBar-wrapper">
 					<div className="yxt-SearchBar">
 						<div className="yxt-SearchBar-container">
 							<div className="yxt-SearchBar-form">

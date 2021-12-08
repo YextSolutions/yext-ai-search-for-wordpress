@@ -4,9 +4,16 @@
  *
  */
 
-input.yxt-SearchBar-input {
+.editor-styles-wrapper {
 
-	&:focus {
-		box-shadow: none !important;
+	& input.yxt-SearchBar-input {
+
+		&:focus {
+			box-shadow: none !important;
+		}
+	}
+
+	& .yxt-SearchBar {
+		height: 100%;
 	}
 }

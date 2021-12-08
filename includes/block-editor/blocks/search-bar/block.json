@@ -23,16 +23,16 @@
       "type": "string"
     },
     "fontSize": {
-      "type": "string"
+      "type": "number"
     },
     "fontWeight": {
-      "type": "string"
+      "type": "number"
     },
     "lineHeight": {
-      "type": "string"
+      "type": "number"
     },
     "borderRadius": {
-      "type": "string"
+      "type": "number"
     },
     "borderColor": {
       "type": "string"
@@ -46,18 +46,6 @@
     "buttonHoverBackgroundColor": {
       "type": "string"
     },
-    "buttonActiveBackgroundColor": {
-      "type": "string"
-    },
-    "buttonTextColor": {
-      "type": "string"
-    },
-    "buttonHoverTextColor": {
-      "type": "string"
-    },
-    "buttonActiveTextColor": {
-      "type": "string"
-    },
     "autocompleteBackgroundColor": {
       "type": "string"
     },
@@ -68,16 +56,16 @@
       "type": "string"
     },
     "autocompleteOptionFontSize": {
-      "type": "string"
+      "type": "number"
     },
     "autocompleteOptionFontWeight": {
-      "type": "string"
+      "type": "number"
     },
     "autocompleteOptionLineHeight": {
-      "type": "string"
+      "type": "number"
     },
     "autocompleteHeaderFontWeight": {
-      "type": "string"
+      "type": "number"
     }
   }
 }
