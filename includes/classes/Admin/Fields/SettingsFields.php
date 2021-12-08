@@ -202,6 +202,27 @@ final class SettingsFields {
 				'variable' => '--yxt-searchbar-button-background-color-hover',
 			],
 			[
+				'id'       => 'text_color',
+				'parent'   => 'button',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-text-color',
+			],
+			[
+				'id'       => 'hover_text_color',
+				'parent'   => 'button',
+				'title'    => __( 'Hover text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-text-color-hover',
+			],
+			[
+				'id'       => 'text_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-text-color',
+			],
+			[
 				'id'       => 'background_color',
 				'parent'   => 'autocomplete',
 				'title'    => __( 'Background color', 'yext' ),

@@ -1,6 +1,15 @@
+:root {
+	--yxt-searchbar-button-text-color: #000;
+	--yxt-searchbar-button-text-color-hover: #000;
+}
+
 body {
 
 	& .yxt-Answers-component.yxt-SearchBar-wrapper {
+
+		& .yxt-SearchBar {
+			height: 100%;
+		}
 
 		& .yxt-GeoLocationFilter-container,
 		& .yxt-SearchBar-container {
@@ -18,7 +27,7 @@ body {
 			align-items: center;
 			background-color: var(--yxt-searchbar-button-background-color-base);
 			border: none;
-			color: var(--yxt-color-text-secondary);
+			color: var(--yxt-searchbar-button-text-color);
 			cursor: pointer;
 			display: flex;
 			flex-shrink: 0;
@@ -26,8 +35,31 @@ body {
 			padding-bottom: calc(var(--yxt-base-spacing) / 2);
 			padding-top: calc(var(--yxt-base-spacing) / 2);
 
+			&[type="submit"] {
+
+				& svg {
+					color: var(--yxt-searchbar-button-text-color);
+
+					& path {
+						stroke: var(--yxt-searchbar-button-text-color);
+					}
+				}
+			}
+
 			&:focus {
 				background-color: var(--yxt-searchbar-button-background-color-hover);
+				color: var(--yxt-searchbar-button-text-color-hover);
+
+				&[type="submit"] {
+
+					& svg {
+						color: var(--yxt-searchbar-button-text-color-hover);
+	
+						& path {
+							stroke: var(--yxt-searchbar-button-text-color-hover);
+						}
+					}
+				}
 			}
 		}
 
