@@ -24,9 +24,7 @@ class SearchBar extends Component {
 /**
  * Search bar component factory.
  *
- * @param {Object} props Props.
- * @param {string[]} props.classnames List of classnames to transform into search bars.
- * @param {SearchBarOptions} props.props Default component props.
+ * @param {SearchBarOptions} props Default component props.
  *
  * @return {{register: () => void}} Object with `register` method.
  */
@@ -97,6 +95,17 @@ const searchBar = (props = {}) => {
 					uid = `${uid}-${index}`;
 					node.classList.remove(classname.replace('.', ''));
 					node.classList.add(uid);
+				}
+
+				if (node.hasAttribute('data-styles')) {
+					try {
+						const styleObject = JSON.parse(node.getAttribute('data-styles'));
+
+						Object.entries(styleObject).forEach(([key, value]) => {
+							node.style.setProperty(key, value);
+						});
+						/* eslint-disable-next-line no-empty */
+					} catch (error) {}
 				}
 
 				/**

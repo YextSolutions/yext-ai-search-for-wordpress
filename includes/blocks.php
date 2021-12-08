@@ -102,7 +102,9 @@ function blocks_categories( $categories ) {
  * @return void
  */
 function register_blocks() {
+	require_once YEXT_INC . 'block-editor/blocks/search-bar/register.php';
 	require_once YEXT_INC . 'block-editor/blocks/search-results/register.php';
 
+	SearchBar\register();
 	SearchResults\register();
 }

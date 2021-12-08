@@ -213,7 +213,7 @@ const Inspector = (props) => {
 	 *
 	 * @param {string} attribute Block attribute.
 	 * @param {string} value Attribute value.
-	 * @param {Function} formatter Value formatter used for CSS values.
+	 * @param {Function} formatter Value formatter used for CSS
 	 */
 	const handleStyleUpdate = (attribute, value, formatter = null) => {
 		setAttributes({ [attribute]: value });
