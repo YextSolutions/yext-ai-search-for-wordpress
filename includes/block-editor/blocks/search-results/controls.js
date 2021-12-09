@@ -1,3 +1,4 @@
+// @ts-ignore
 const { wp } = window;
 
 const { __ } = wp.i18n;

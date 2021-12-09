@@ -28,7 +28,11 @@ function render( $atts ) {
 	ob_start();
 	?>
 	<div class="<?php echo esc_attr( $class ); ?>">
-		<iframe src="<?php echo esc_url_raw( $url ); ?>" height="100%" width="100%" frameborder="0"></iframe>
+		<iframe
+			class="yext-search-results-iframe"
+			src="<?php echo esc_url_raw( $url ); ?>"
+			frameborder="0"
+		></iframe>
 	</div>
 	<?php
 

@@ -3,7 +3,15 @@
  */
 import camelcaseKeys from 'camelcase-keys';
 
-const init = () => {
+/**
+ * Internal dependencies
+ */
+import SearchResults from './components/search-results';
+
+/**
+ * Initialize Answers UI SDK.
+ */
+const initAnswers = () => {
 	/**
 	 * Bail if our plugin namespace is missing.
 	 */
@@ -72,6 +80,21 @@ const init = () => {
 
 		AnswersSDK.init();
 	});
+};
+
+/**
+ * Initialize Search Results.
+ */
+const initSearchResults = () => {
+	SearchResults().init();
+};
+
+/**
+ * Initialize plugin scripts.
+ */
+const init = () => {
+	initSearchResults();
+	initAnswers();
 };
 
 /**
