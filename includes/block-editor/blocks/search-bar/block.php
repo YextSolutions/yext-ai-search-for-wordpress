@@ -7,18 +7,13 @@
 
 namespace Yext\Blocks\SearchBar;
 
-use Yext\Admin\Settings;
-
 /**
  * Render Search Bar Block
  *
  * @param  array $atts Block Attributes
- * @return string       Block Markup
+ * @return string      Block Markup
  */
 function render( $atts ) {
-
-	$settings            = Settings::localized_settings();
-	$search_bar_settings = $settings['components']['search_bar'];
 
 	$class  = 'yext-search-bar';
 	$class .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';

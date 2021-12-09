@@ -242,8 +242,7 @@ const Inspector = (props) => {
 		Object.values(cssVariables).forEach(([key, value]) => {
 			searchBar.current.style.setProperty(key, value);
 		});
-		/* eslint-disable-next-line react-hooks/exhaustive-deps */
-	}, []);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<InspectorControls>
