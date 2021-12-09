@@ -42,7 +42,7 @@ final class SearchBar {
 		}
 
 		return isset( $this->settings['plugin'] ) && isset( $this->settings['search_bar'] ) &&
-			'1' === $this->settings['search_bar']['override_core_search'] &&
+			'1' === $this->settings['search_bar']['props']['override_core_search'] &&
 			! empty( $this->settings['plugin']['api_key'] ) &&
 			! empty( $this->settings['plugin']['experience_key'] ) &&
 			! empty( $this->settings['plugin']['business_id'] );

@@ -197,7 +197,7 @@ final class SettingsFields {
 			[
 				'id'       => 'hover_background_color',
 				'parent'   => 'button',
-				'title'    => __( 'Hover background color', 'yext' ),
+				'title'    => __( 'Focus background color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-searchbar-button-background-color-hover',
 			],
@@ -211,7 +211,7 @@ final class SettingsFields {
 			[
 				'id'       => 'hover_text_color',
 				'parent'   => 'button',
-				'title'    => __( 'Hover text color', 'yext' ),
+				'title'    => __( 'Focus text color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-searchbar-button-text-color-hover',
 			],
@@ -232,7 +232,7 @@ final class SettingsFields {
 			[
 				'id'       => 'option_hover_background_color',
 				'parent'   => 'autocomplete',
-				'title'    => __( 'Option hovered background color', 'yext' ),
+				'title'    => __( 'Option hover background color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-autocomplete-option-hover-background-color',
 			],

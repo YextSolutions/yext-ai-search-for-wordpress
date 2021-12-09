@@ -19,8 +19,12 @@ const {
 	BaseControl,
 } = wp.components;
 const { useEffect } = wp.element;
+const { Notice } = wp.components;
 
-const { components } = YEXT.settings;
+const { config, components } = YEXT.settings;
+const { apiKey, experienceKey, businessId } = camelcaseKeys(config);
+const isValid = apiKey && experienceKey && businessId;
+
 const {
 	searchBar: {
 		style: {
@@ -244,6 +248,16 @@ const Inspector = (props) => {
 	return (
 		<InspectorControls>
 			<PanelBody title={__('Display Settings', 'yext')}>
+				{!isValid && (
+					<Notice status="error" isDismissible={false}>
+						<p>
+							{__(
+								'Please enter API Key, Experience Key, and Business ID in plugin settings.',
+								'yext',
+							)}
+						</p>
+					</Notice>
+				)}
 				<PanelRow>
 					<TextControl
 						label={__('Placeholder Text', 'yext')}

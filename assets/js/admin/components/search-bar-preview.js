@@ -47,6 +47,9 @@ export default class SearchBarPreview {
 			 * @param {HTMLElement} container Preview container.
 			 */
 			(container) => {
+				/**
+				 * @type {HTMLInputElement}
+				 */
 				const input = container.querySelector('.yxt-SearchBar-input');
 				const searchIcon = container.querySelector('.js-yxt-AnimatedForward');
 				const yextIcon = container.querySelector('.js-yxt-AnimatedReverse');
@@ -94,8 +97,6 @@ export default class SearchBarPreview {
 				 */
 				const input = container.querySelector('.yxt-SearchBar-input');
 				const autocomplete = container.querySelector('.yxt-SearchBar-autocomplete');
-				const searchIcon = container.querySelector('.js-yxt-AnimatedForward');
-				const yextIcon = container.querySelector('.js-yxt-AnimatedReverse');
 
 				input.addEventListener(
 					'input',
@@ -105,13 +106,6 @@ export default class SearchBarPreview {
 					() => {
 						autocomplete.classList[input.value.trim() ? 'remove' : 'add'](
 							'component--is-hidden',
-						);
-
-						searchIcon.classList[input.value.trim() ? 'add' : 'remove'](
-							'yxt-SearchBar-Icon--inactive',
-						);
-						yextIcon.classList[input.value.trim() ? 'remove' : 'add'](
-							'yxt-SearchBar-Icon--inactive',
 						);
 					},
 				);

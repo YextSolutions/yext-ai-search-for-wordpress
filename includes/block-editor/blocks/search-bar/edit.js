@@ -11,8 +11,7 @@ import Inspector from './inspector';
 // @ts-ignore
 const { wp, YEXT } = window;
 
-const { config, components } = YEXT.settings;
-const { apiKey, experienceKey, businessId } = camelcaseKeys(config);
+const { components } = YEXT.settings;
 const {
 	searchBar: {
 		props: {
@@ -25,10 +24,7 @@ const {
 
 const { __ } = wp.i18n;
 const { useBlockProps } = wp.blockEditor;
-const { Notice } = wp.components;
 const { useRef, useState, useEffect } = wp.element;
-
-const isValid = apiKey && experienceKey && businessId;
 
 /**
  * Search bar component for block editor.
@@ -55,29 +51,12 @@ const Edit = (props) => {
 		autocomplete.current.classList[inputValue.trim() ? 'remove' : 'add'](
 			'component--is-hidden',
 		);
-
-		searchIcon.current.classList[inputValue.trim() ? 'add' : 'remove'](
-			'yxt-SearchBar-Icon--inactive',
-		);
-		submitIcon.current.classList[inputValue.trim() ? 'remove' : 'add'](
-			'yxt-SearchBar-Icon--inactive',
-		);
 	}, [inputValue]);
 
 	return (
 		<>
 			<Inspector searchBar={searchBar} {...props} />
 			<div {...blockProps}>
-				{!isValid && (
-					<Notice status="warning" isDismissible={false}>
-						<p>
-							{__(
-								'Please enter API Key, Experience Key, and Business ID in plugin settings.',
-								'yext',
-							)}
-						</p>
-					</Notice>
-				)}
 				<div ref={searchBar} className="yxt-Answers-component yxt-SearchBar-wrapper">
 					<div className="yxt-SearchBar">
 						<div className="yxt-SearchBar-container">
@@ -101,7 +80,7 @@ const Edit = (props) => {
 											'yxt-SearchBar-Icon--inactive',
 										);
 
-										if (inputValue) {
+										if (inputValue.trim()) {
 											autocomplete.current.classList.remove(
 												'component--is-hidden',
 											);
