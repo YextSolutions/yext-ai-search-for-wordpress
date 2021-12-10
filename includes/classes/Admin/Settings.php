@@ -11,7 +11,6 @@ use Yext\Admin\Fields\SettingsFields;
 use Yext\Admin\Tabs\Tab;
 use Yext\Traits\Singleton;
 
-
 /**
  * Settings for the plugin
  */
@@ -75,6 +74,23 @@ final class Settings {
 	 */
 	public static function get_settings() {
 		return get_option( static::SETTINGS_NAME, [] );
+	}
+
+	/**
+	 * Update plugin options
+	 * The param '$settings' must follow the settings array structure in order to not break
+	 * how the settings are stored.
+	 * Ex:
+	 *    For updating the 'redirect_url' on the 'search_results' settings group the following format is expected
+	 *    $settings = [ 'search_results' =>  [ 'redirect_url' => '111', ] ]
+	 *
+	 * @param array $settings New settings, partial or full array of settings
+	 * @return bool
+	 */
+	public static function update_settings( $settings ) {
+		// Merge current with new values
+		$new_settings = array_replace_recursive( self::get_settings(), $settings );
+		return update_option( static::SETTINGS_NAME, $new_settings );
 	}
 
 	/**

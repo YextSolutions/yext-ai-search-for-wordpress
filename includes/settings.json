@@ -4,12 +4,12 @@
 		"experience_key": "",
 		"business_id" : "",
 		"answers_iframe_url"   : "",
-		"experience_version"   : ""
+		"answers_version"   : "v2"
 	},
 	"search_bar": {
 		"override_core_search": "1",
 		"use_custom_style": "0",
-		"bg_color": "#fff",
+		"bg_color": "#ffffff",
 		"border_color": "#000000",
 		"border_radius": "0",
 		"text_color": "#000000",

@@ -8,7 +8,10 @@
 namespace Yext\Core;
 
 use \WP_Error;
+use \Yext\Install;
+use \Yext\Uninstall;
 use \Yext\Admin\Settings;
+use \Yext\Templates\SearchPageTemplate;
 
 /**
  * Default setup routine
@@ -55,6 +58,11 @@ function init() {
 	// initialize admin settings
 	$admin_settings = Settings::instance();
 	$admin_settings->setup();
+
+	// register Yext custom search template
+	$search_template = SearchPageTemplate::instance();
+	$search_template->setup();
+
 	do_action( 'yext_init' );
 }
 
@@ -65,14 +73,7 @@ function init() {
  */
 function activate() {
 
-	// Register default settings
-	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
-
-	if ( ! is_wp_error( $response ) ) {
-		$settings = wp_remote_retrieve_body( $response );
-
-		update_option( 'yext_plugin_settings', $settings, false );
-	}
+	Install::instance()->run();
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
@@ -87,7 +88,7 @@ function activate() {
  * @return void
  */
 function deactivate() {
-
+	Uninstall::run();
 }
 
 
