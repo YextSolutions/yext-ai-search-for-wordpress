@@ -1,6 +1,6 @@
 <?php
 /**
- * Search page template register
+ * Abstract template register
  * Sourced from: https://github.com/wpexplorer/page-templater
  *
  * @package Yext\Templates
@@ -11,7 +11,7 @@ namespace Yext\Templates;
 use Yext\Traits\Singleton;
 
 /**
- * Register Yext custom search template
+ *  Yext custom template abstract class
  */
 abstract class AbstractTemplate {
 

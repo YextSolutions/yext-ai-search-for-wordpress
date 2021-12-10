@@ -45,7 +45,7 @@ final class Install {
 			return;
 		}
 		// Get default settings
-		$response = wp_remote_get( YEXT_URL . '/includes/settings.json', [ 'sslverify' => false ] );
+		$response = wp_remote_get( YEXT_URL . '/includes/settings.json' );
 
 		if ( ! is_wp_error( $response ) ) {
 			$settings = wp_remote_retrieve_body( $response );
@@ -59,7 +59,6 @@ final class Install {
 	 * @return void
 	 */
 	public function create_search_results_page() {
-		$this->add_notice( __( 'Error creating search page', 'yext' ), 'error' );
 		$page = wp_insert_post(
 			[
 				'post_content' => $this->yext_search_page_content(),

@@ -10,7 +10,7 @@ namespace Yext;
 use Yext\Admin\Settings;
 
 /**
- * Settings for the plugin
+ * Uninstall plugin methods
  */
 final class Uninstall {
 
