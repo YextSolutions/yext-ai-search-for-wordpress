@@ -293,9 +293,10 @@ final class SettingsFields {
 				'type'  => 'CheckboxField',
 			],
 			[
-				'id'    => 'results_page',
-				'title' => __( 'Display results page', 'yext' ),
-				'type'  => 'SelectPagesField',
+				'id'        => 'results_page',
+				'title'     => __( 'Display results page', 'yext' ),
+				'type'      => 'SelectPagesField',
+				'show_link' => true,
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
@@ -317,6 +318,7 @@ final class SettingsFields {
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
+			'show_link'  => $field_config['show_link'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

@@ -203,7 +203,7 @@ function scripts() {
 					),
 				],
 			],
-			'raw' => $settings,
+			'raw'      => $settings,
 		]
 	);
 }
@@ -229,6 +229,17 @@ function admin_scripts() {
 		YEXT_VERSION,
 		true
 	);
+
+	$params  = [
+		'siteUrl' => esc_js( get_site_url() ),
+	];
+	$js_data = sprintf(
+		'const %s = %s;',
+		'YEXT_ADMIN',
+		wp_json_encode( $params )
+	);
+	// define params for admin script
+	wp_add_inline_script( 'yext-admin', $js_data, 'before' );
 }
 
 /**
