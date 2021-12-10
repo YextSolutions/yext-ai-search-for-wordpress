@@ -11,8 +11,6 @@ namespace Yext\Templates;
 use \Yext\Admin\Settings;
 use Yext\Traits\Singleton;
 
-
-
 /**
  * Register Yext custom search template
  */
