@@ -55,29 +55,35 @@ function blocks_editor_scripts() {
 		false
 	);
 
+	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+		[],
+		null
+	);
+
 	wp_enqueue_style(
 		'yext-editor-style',
 		YEXT_URL . '/dist/css/editor-style.css',
-		[],
+		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
 
-	wp_localize_script( 'yext-blocks-editor', 'YEXT_SETTINGS', Settings::localized_settings() );
+	wp_localize_script(
+		'yext-blocks-editor',
+		'YEXT',
+		[ 'settings'  => Settings::localized_settings() ]
+	);
 }
 
 /**
  * Filters the registered block categories.
  *
- * @param array  $categories Registered categories.
- * @param object $post       The post object.
+ * @param array $categories Registered categories.
  *
  * @return array Filtered categories.
  */
-function blocks_categories( $categories, $post ) {
-	if ( ! in_array( $post->post_type, [ 'post', 'page' ], true ) ) {
-		return $categories;
-	}
-
+function blocks_categories( $categories ) {
 	return array_merge(
 		$categories,
 		[
@@ -96,7 +102,9 @@ function blocks_categories( $categories, $post ) {
  * @return void
  */
 function register_blocks() {
+	require_once YEXT_INC . 'block-editor/blocks/search-bar/register.php';
 	require_once YEXT_INC . 'block-editor/blocks/search-results/register.php';
 
+	SearchBar\register();
 	SearchResults\register();
 }
