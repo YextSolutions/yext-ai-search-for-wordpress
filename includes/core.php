@@ -10,6 +10,7 @@ namespace Yext\Core;
 use \WP_Error;
 use \Yext\Install;
 use \Yext\Uninstall;
+use \Yext\Components\SearchBar;
 use \Yext\Admin\Settings;
 use \Yext\Templates\SearchPageTemplate;
 
@@ -63,6 +64,10 @@ function init() {
 	$search_template = SearchPageTemplate::instance();
 	$search_template->setup();
 
+	// initialize search bar
+	$search_bar = SearchBar::instance();
+	$search_bar->setup();
+
 	do_action( 'yext_init' );
 }
 
@@ -74,6 +79,15 @@ function init() {
 function activate() {
 
 	Install::instance()->run();
+
+	// Register default settings
+	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
+
+	if ( ! is_wp_error( $response ) ) {
+		$settings = wp_remote_retrieve_body( $response );
+
+		update_option( 'yext_plugin_settings', $settings, false );
+	}
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
@@ -110,13 +124,11 @@ function get_enqueue_contexts() {
  * @return string|WP_Error URL
  */
 function script_url( $script, $context ) {
-
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
 		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext script loader.' );
 	}
 
 	return YEXT_URL . "dist/js/${script}.js";
-
 }
 
 /**
@@ -128,13 +140,11 @@ function script_url( $script, $context ) {
  * @return string URL
  */
 function style_url( $stylesheet, $context ) {
-
 	if ( ! in_array( $context, get_enqueue_contexts(), true ) ) {
 		return new WP_Error( 'invalid_enqueue_context', 'Invalid $context specified in Yext stylesheet loader.' );
 	}
 
 	return YEXT_URL . "dist/css/${stylesheet}.css";
-
 }
 
 /**
@@ -143,25 +153,69 @@ function style_url( $stylesheet, $context ) {
  * @return void
  */
 function scripts() {
+	$settings = Settings::get_settings();
 
 	wp_enqueue_script(
-		'YEXT_shared',
+		'yext-shared',
 		script_url( 'shared', 'shared' ),
 		[],
 		YEXT_VERSION,
 		true
 	);
 
-	wp_enqueue_script(
-		'YEXT_frontend',
-		script_url( 'frontend', 'frontend' ),
+	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.min.js',
 		[],
+		null,
+		true
+	);
+
+	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar-templates',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answerstemplates-iife.compiled.min.js',
+		[],
+		null,
+		true
+	);
+
+	wp_enqueue_script(
+		'yext-frontend',
+		script_url( 'frontend', 'frontend' ),
+		[
+			'yext-search-bar',
+			'yext-search-bar-templates',
+		],
 		YEXT_VERSION,
 		true
 	);
 
-	wp_localize_script( 'YEXT_frontend', 'YEXT_settings', Settings::localized_settings() );
-
+	wp_localize_script(
+		'yext-frontend',
+		'YEXT',
+		[
+			'settings' => [
+				'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
+				'components' => [
+					'search_bar' => array_merge(
+						$settings['search_bar'],
+						[
+							'props' => array_merge(
+								$settings['search_bar']['props'],
+								[
+									'redirect_url' => get_post_field(
+										'post_name',
+										$settings['search_results']['results_page']
+									),
+								]
+							),
+						]
+					),
+				],
+			],
+			'raw' => $settings,
+		]
+	);
 }
 
 /**
@@ -170,9 +224,8 @@ function scripts() {
  * @return void
  */
 function admin_scripts() {
-
 	wp_enqueue_script(
-		'YEXT_shared',
+		'yext-shared',
 		script_url( 'shared', 'shared' ),
 		[],
 		YEXT_VERSION,
@@ -180,13 +233,12 @@ function admin_scripts() {
 	);
 
 	wp_enqueue_script(
-		'YEXT_admin',
+		'yext-admin',
 		script_url( 'admin', 'admin' ),
 		[],
 		YEXT_VERSION,
 		true
 	);
-
 }
 
 /**
@@ -195,9 +247,15 @@ function admin_scripts() {
  * @return void
  */
 function styles() {
+	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+		[],
+		null
+	);
 
 	wp_enqueue_style(
-		'YEXT_shared',
+		'yext-shared',
 		style_url( 'shared-style', 'shared' ),
 		[],
 		YEXT_VERSION
@@ -205,21 +263,20 @@ function styles() {
 
 	if ( is_admin() ) {
 		wp_enqueue_style(
-			'YEXT_admin',
+			'yext-admin',
 			style_url( 'admin-style', 'admin' ),
 			[],
 			YEXT_VERSION
 		);
 	} else {
 		wp_enqueue_style(
-			'YEXT_frontend',
+			'yext-frontend',
 			style_url( 'style', 'frontend' ),
-			[],
+			[ 'yext-search-bar' ],
 			YEXT_VERSION
 		);
-		wp_add_inline_style( 'YEXT_frontend', Settings::get_inline_styles() );
+		wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
 	}
-
 }
 
 /**
@@ -228,21 +285,19 @@ function styles() {
  * @return void
  */
 function admin_styles() {
-
 	wp_enqueue_style(
-		'YEXT_shared',
+		'yext-shared',
 		style_url( 'shared-style', 'shared' ),
 		[],
 		YEXT_VERSION
 	);
 
 	wp_enqueue_style(
-		'YEXT_admin',
+		'yext-admin',
 		style_url( 'admin-style', 'admin' ),
 		[],
 		YEXT_VERSION
 	);
-
 }
 
 /**

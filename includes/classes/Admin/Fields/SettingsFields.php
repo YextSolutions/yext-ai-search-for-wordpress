@@ -113,7 +113,7 @@ final class SettingsFields {
 				'type'  => 'CheckboxField',
 			],
 			[
-				'id'    => 'bg_color',
+				'id'    => 'background_color',
 				'title' => __( 'Background color', 'yext' ),
 				'type'  => 'ColorField',
 			],
@@ -128,7 +128,7 @@ final class SettingsFields {
 				'type'  => 'NumberField',
 			],
 			[
-				'id'    => 'text_color',
+				'id'    => 'color',
 				'title' => __( 'Text color', 'yext' ),
 				'type'  => 'ColorField',
 			],
@@ -152,25 +152,26 @@ final class SettingsFields {
 				'type'  => 'NumberField',
 			],
 			[
-				'id'     => 'bg_color',
+				'id'     => 'background_color',
 				'parent' => 'button',
 				'title'  => __( 'Background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'hover_bg_color',
+				'id'     => 'hover_background_color',
 				'parent' => 'button',
 				'title'  => __( 'Hover background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'active_bg_color',
-				'parent' => 'button',
-				'title'  => __( 'Active background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'active_background_color',
+				'parent'   => 'button',
+				'title'    => __( 'Active background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-background-color-base',
 			],
 			[
-				'id'     => 'text_color',
+				'id'     => 'color',
 				'parent' => 'button',
 				'title'  => __( 'Text color', 'yext' ),
 				'type'   => 'ColorField',
@@ -182,19 +183,20 @@ final class SettingsFields {
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'bg_color',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'background_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-background-color',
 			],
 			[
-				'id'     => 'option_selected_bg_color',
+				'id'     => 'option_selected_background_color',
 				'parent' => 'autocomplete',
 				'title'  => __( 'Opption selected background color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
-				'id'     => 'option_hover_bg_color',
+				'id'     => 'option_hover_background_color',
 				'parent' => 'autocomplete',
 				'title'  => __( 'Option hovered background color', 'yext' ),
 				'type'   => 'ColorField',
@@ -228,10 +230,10 @@ final class SettingsFields {
 				'type'   => 'NumberField',
 			],
 			[
-				'id'     => 'text_color',
+				'id'     => 'hover_color',
 				'parent' => 'autocomplete',
 				'parent' => 'button',
-				'title'  => __( 'Text color', 'yext' ),
+				'title'  => __( 'Hover text color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[
@@ -245,32 +247,32 @@ final class SettingsFields {
 				],
 			],
 			[
-				'id'     => 'placeholder',
-				'parent' => 'create',
+				'id'     => 'placeholder_text',
+				'parent' => 'props',
 				'title'  => __( 'Input placeholder text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'submit_text',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Submit button text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'label_text',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Label text', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'redirect_url',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'Redirect url', 'yext' ),
 				'type'   => 'InputField',
 			],
 			[
 				'id'     => 'css_class',
-				'parent' => 'create',
+				'parent' => 'props',
 				'title'  => __( 'CSS additional classes', 'yext' ),
 				'type'   => 'InputField',
 			],
@@ -305,7 +307,7 @@ final class SettingsFields {
 	 * @param array  $field_config Config for the current field
 	 * @param int    $index        Loop index
 	 * @param string $section_id   The section the field belongs to
-	 * @return object              A field instance
+	 * @return void
 	 */
 	protected function init_field( $field_config, $index, $section_id ) {
 		$class_handler = 'Yext\\Admin\\Fields\\Type\\' . $field_config['type'];
@@ -314,6 +316,7 @@ final class SettingsFields {
 			'parent'     => $field_config['parent'] ?? '',
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
+			'variable'   => $field_config['variable'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 
