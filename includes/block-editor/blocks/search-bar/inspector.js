@@ -248,7 +248,7 @@ const Inspector = (props) => {
 		<InspectorControls>
 			<PanelBody title={__('Display Settings', 'yext')}>
 				{!isValid && (
-					<Notice status="error" isDismissible={false}>
+					<Notice status="warning" isDismissible={false}>
 						<p>
 							{__(
 								'Please enter API Key, Experience Key, and Business ID in plugin settings.',
