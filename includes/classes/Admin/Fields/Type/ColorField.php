@@ -51,7 +51,7 @@ class ColorField extends AbstractField {
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
-			esc_attr( $variable ),
+			esc_attr( $variable )
 		);
 	}
 
