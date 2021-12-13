@@ -1,0 +1,47 @@
+{
+  "apiVersion": 2,
+  "title": "Yext Search Bar",
+  "description": "Display YEXT search bar.",
+  "name": "yext/search-bar",
+  "category": "yext-blocks",
+  "text-domain": "yext",
+  "supports": {
+    "className": false,
+    "align": [ "full" ]
+  },
+  "attributes": {
+	"buttonText": {
+    	"type": "string"
+    },
+	"placeholder": {
+    	"type": "string"
+    },
+	"backgroundColor": {
+    	"type": "string"
+    },
+	"buttonTextColor": {
+    	"type": "string"
+    },
+	"buttonBackgroundColor": {
+    	"type": "string"
+    },
+	"buttonBorderColor": {
+    	"type": "string"
+    },
+	"buttonHoverTextColor": {
+    	"type": "string"
+    },
+	"buttonHoverBackgroundColor": {
+    	"type": "string"
+    },
+	"fontSize": {
+    	"type": "string"
+    },
+	"lineHeight": {
+    	"type": "string"
+    },
+	"borderRadius": {
+    	"type": "string"
+    }
+  }
+}
