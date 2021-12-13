@@ -1,7 +1,7 @@
 node_modules
 bower_components
 release
-vendor
+/vendor
 .idea
 *.log
 

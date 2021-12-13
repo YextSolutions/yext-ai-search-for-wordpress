@@ -38,17 +38,20 @@ class ColorField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$value = $this->value;
+		$value    = $this->value;
+		$variable = isset( $this->variable ) ? $this->variable : '';
 		printf(
 			'<input
 				type="color"
 				name="%s"
 				id="%s"
 				value="%s"
+				data-variable="%s"
 				autocomplete="off">',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
-			esc_attr( $value )
+			esc_attr( $value ),
+			esc_attr( $variable )
 		);
 	}
 

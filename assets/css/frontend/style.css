@@ -4,13 +4,4 @@
  *
  */
 
-/* Global - global pieces like media queries, mixins and placholders */
-@import url("global/index.css");
-
-/* Base - base styles such as fonts, typography, and wordpress overrides */
-
-/* @import url("base/index.css"); */
-
-/* Components */
-
-/* @import url("components/index.css"); */
+@import url("components/index.css");
