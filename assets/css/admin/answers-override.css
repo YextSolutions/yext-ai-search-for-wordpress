@@ -1,0 +1,47 @@
+body {
+
+	& #yext-settings {
+
+		& .yxt-SearchBar-wrapper {
+			min-width: 500px;
+			position: fixed;
+			right: 50px;
+			top: 150px;
+		}
+
+		& .yxt-SearchBar-input {
+			background-color: var(--yext-background_color);
+			border: 1px solid var(--yext-border_color);
+			border-radius: var(--yext-border_radius);
+			color: var(--yext-color);
+			font-size: var(--yext-font_size);
+			font-weight: var(--yext-font_weight);
+			line-height: var(--yext-line_height);
+		}
+
+		& .yxt-SearchBar-button {
+			background-color: var(--yext-button-background_color);
+			color: var(--yext-button-color);
+
+			&:hover {
+				background-color: var(--yext-button-hover_background_color);
+				color: var(--yext-button-hover_color);
+			}
+		}
+
+		& .yxt-AutoComplete-wrapper {
+			background-color: var(--yext-autocomplete-background_color);
+			color: var(--yext-autocomplete-color);
+
+			& .js-yext-autocomplete-option {
+				font-size: var(--yext-autocomplete-font_size);
+				font-weight: var(--yext-autocomplete-font_weight);
+				line-height: var(--yext-autocomplete-line_height);
+				
+				&:hover {
+					background-color: var(--yext-autocomplete-option_hovered_background_color);
+				}
+			}
+		}
+	}
+}

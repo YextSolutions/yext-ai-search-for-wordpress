@@ -1,6 +1,6 @@
 import Controls from './controls';
 
-const { answers_iframe_url } = YEXT_SETTINGS;
+const { answers_iframe_url } = YEXT_SETTINGS; // eslint-disable-line no-undef
 
 /**
  * WordPress dependencies
