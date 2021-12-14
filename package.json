@@ -36,7 +36,6 @@
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",
-    "wpDependencyExternals": false,
     "entry": {
       "admin": "./assets/js/admin/admin.js",
       "blocks": "./includes/block-editor/blocks.js",

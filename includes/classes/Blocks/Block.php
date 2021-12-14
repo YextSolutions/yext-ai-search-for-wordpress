@@ -106,10 +106,10 @@ class Block {
 		}
 
 		$path     = self::block_path( $block );
-		$metadata = "$path/" . self::BLOCK_META;
+		$metadata = trailingslashit( $path ) . self::BLOCK_META;
 
 		if ( substr_compare( $block, '-item', -strlen( '-item' ) ) === 0 ) {
-			$metadata = "$path/" . self::CHILD_META;
+			$metadata = trailingslashit( $path ) . self::CHILD_META;
 		}
 
 		if ( file_exists( $metadata ) ) {
@@ -148,8 +148,8 @@ class Block {
 	 * @return string       Namespaced block name
 	 */
 	public static function block_name( $block ) {
-		if ( ! strpos( $block, '/' ) ) {
-			return self::NAMESPACE . "/{$block}";
+		if ( false === strpos( $block, '/' ) ) {
+			return trailingslashit( self::NAMESPACE ) . $block;
 		}
 
 		return $block;
