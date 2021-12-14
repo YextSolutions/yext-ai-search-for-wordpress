@@ -8,3 +8,7 @@
 @import url("base/index.css");
 @import url("components/index.css");
 @import url("@10up/component-tabs");
+
+/* Local Copy of Yext answer.css */
+@import url("answers.css");
+@import url("../frontend/components/search-bar.css");

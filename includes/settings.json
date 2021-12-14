@@ -1,32 +1,32 @@
 {
 	"plugin": {
-		"api_key" : "",
+		"api_key": "",
 		"experience_key": "",
-		"business_id" : "",
-		"answers_iframe_url"   : "",
+		"business_id": "",
+		"answers_iframe_url": "",
 		"answers_version"   : "v2"
 	},
 	"search_bar": {
 		"override_core_search": "1",
 		"use_custom_style": "0",
-		"bg_color": "#ffffff",
+		"background_color": "#ffffff",
 		"border_color": "#000000",
 		"border_radius": "0",
-		"text_color": "#000000",
+		"color": "#000000",
 		"font_size": "16",
 		"font_weight": "normal",
 		"line_height": "22",
 		"button": {
-			"bg_color": "#ffffff",
-			"hover_bg_color": "#f2f2f2",
-			"active_bg_color": "#ffffff",
-			"text_color": "#000000",
+			"background_color": "#ffffff",
+			"hover_background_color": "#f2f2f2",
+			"active_background_color": "#ffffff",
+			"color": "#000000",
 			"text_active_color": "#000000"
 		},
 		"autocomplete": {
 			"bg_color": "#ffffff",	
-			"option_selected_bg_color": "#f2f2f2",
-			"option_hover_bg_color": "#f2f2f2",
+			"option_selected_background_color": "#f2f2f2",
+			"option_hover_background_color": "#f2f2f2",
 			"separator_color": "#000",
 			"font_size": "16",
 			"font_weight": "normal",
@@ -34,11 +34,10 @@
 			"text_color": "#000000",
 			"header_font_weight": "normal"
 		},
-		"create": {
-			"placeholder": "Search...",
+		"props": {
+			"placeholder_text": "Search...",
 			"submit_text": "Search",
 			"label_text": "Search",
-			"redirect_url": "",
 			"css_class": ""
 		}
 	},
