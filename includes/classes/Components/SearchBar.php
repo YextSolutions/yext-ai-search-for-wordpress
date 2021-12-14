@@ -37,10 +37,10 @@ final class SearchBar {
 	 * @return boolean
 	 */
 	public function is_valid() {
-		return '1' === $this->settings['search_bar']['override_core_search'] &&
-			! empty( $this->settings['plugin']['api_key'] ) &&
-			! empty( $this->settings['plugin']['experience_key'] ) &&
-			! empty( $this->settings['plugin']['business_id'] );
+		return $this->is_override_core_search_enabled() &&
+			$this->has_integration_setting( 'api_key' ) &&
+			$this->has_integration_setting( 'experience_key' ) &&
+			$this->has_integration_setting( 'business_id' );
 	}
 
 	/**
@@ -80,5 +80,24 @@ final class SearchBar {
 		}
 
 		return $block_content;
+	}
+
+	/**
+	 * Is override search bar enabled
+	 *
+	 * @return bool
+	 */
+	protected function is_override_core_search_enabled() {
+		return isset( $this->settings['search_bar']['override_core_search'] ) && ( '1' === $this->settings['search_bar']['override_core_search'] );
+	}
+
+	/**
+	 * Check existance of a specific field within yext plugin section
+	 *
+	 * @param string $key Setting key
+	 * @return boolean    true if setting exist and has a value
+	 */
+	protected function has_integration_setting( $key ) {
+		return isset( ( $this->settings['plugin'][ $key ] ) ) && ! empty( $this->settings['plugin'][ $key ] );
 	}
 }

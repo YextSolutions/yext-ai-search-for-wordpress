@@ -174,7 +174,7 @@ final class Settings {
 		$settings        = self::get_settings();
 		$settings_fields = new SettingsFields( $settings );
 
-		if ( ! isset( $settings_fields->fields ) ) {
+		if ( empty( $settings ) || ! isset( $settings_fields->fields ) ) {
 			return;
 		}
 		?>
