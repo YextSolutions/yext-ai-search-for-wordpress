@@ -230,10 +230,10 @@ final class SettingsFields {
 				'type'   => 'NumberField',
 			],
 			[
-				'id'     => 'hover_color',
+				'id'     => 'text_color',
 				'parent' => 'autocomplete',
 				'parent' => 'button',
-				'title'  => __( 'Hover text color', 'yext' ),
+				'title'  => __( 'Text color', 'yext' ),
 				'type'   => 'ColorField',
 			],
 			[

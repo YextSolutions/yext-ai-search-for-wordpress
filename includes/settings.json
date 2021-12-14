@@ -24,7 +24,7 @@
 			"text_active_color": "#000000"
 		},
 		"autocomplete": {
-			"bg_color": "#ffffff",	
+			"background_color": "#ffffff",
 			"option_selected_background_color": "#f2f2f2",
 			"option_hover_background_color": "#f2f2f2",
 			"separator_color": "#000",
