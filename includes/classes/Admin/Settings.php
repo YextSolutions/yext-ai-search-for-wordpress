@@ -112,7 +112,7 @@ final class Settings {
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
-			'yext-connector',
+			'yext',
 			[ $this, 'render_settings_page' ],
 			$this->menu_icon
 		);
