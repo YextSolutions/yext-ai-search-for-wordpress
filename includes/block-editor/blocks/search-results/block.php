@@ -22,7 +22,6 @@ function render( $atts ) {
 	$class   .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
 	$class   .= ! empty( $atts['align'] ) ? ' ' . $atts['align'] : '';
 	$settings = Settings::get_settings();
-	$query    = get_query_var( 'query' );
 
 	// Use Plugin Settings value when empty
 	if ( ! $url && isset( $settings['plugin']['answers_iframe_url'] ) ) {
@@ -34,25 +33,15 @@ function render( $atts ) {
 		return;
 	}
 
-	// Append search string to the iFrame URL
-	$url = add_query_arg(
-		[
-			'query' => sanitize_text_field( $query ),
-		],
-		$url
-	);
-
 	// Start the output buffer for rendering
 	ob_start();
+
+	// phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 	?>
-	<div class="<?php echo esc_attr( $class ); ?>">
-		<iframe
-			class="yext-search-results-iframe"
-			src="<?php echo esc_url_raw( $url ); ?>"
-			frameborder="0"
-		></iframe>
-	</div>
+	<div id="answers-container" class="<?php echo esc_attr( $class ); ?>"></div>
+	<script src="<?php echo esc_url_raw( $url ); ?>/iframe.js"></script>
 	<?php
+	// phpcs:enable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 
 	return ob_get_clean();
 }

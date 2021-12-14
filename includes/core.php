@@ -54,11 +54,6 @@ function i18n() {
  */
 function init() {
 
-	global $wp;
-
-	// Add query parameter
-	$wp->add_query_var( 'query' );
-
 	// initialize admin settings
 	$admin_settings = Settings::instance();
 	$admin_settings->setup();
