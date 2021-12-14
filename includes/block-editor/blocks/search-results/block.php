@@ -22,6 +22,7 @@ function render( $atts ) {
 	$class   .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
 	$class   .= ! empty( $atts['align'] ) ? ' ' . $atts['align'] : '';
 	$settings = Settings::get_settings();
+	$query    = get_query_var( 'query' );
 
 	// Use Plugin Settings value when empty
 	if ( ! $url && isset( $settings['plugin']['answers_iframe_url'] ) ) {
@@ -32,6 +33,14 @@ function render( $atts ) {
 	if ( ! $url ) {
 		return;
 	}
+
+	// Append search string to the iFrame URL
+	$url = add_query_arg(
+		[
+			'query' => sanitize_text_field( $query ),
+		],
+		$url
+	);
 
 	// Start the output buffer for rendering
 	ob_start();
