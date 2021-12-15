@@ -22,7 +22,8 @@ function render( $atts ) {
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
 
-	$styles = [
+	$filtered_styles = [];
+	$styles          = [
 		'--yxt-searchbar-text-color' => isset( $atts['textColor'] ) ? $atts['textColor'] : null,
 		'--yxt-searchbar-text-font-size' => isset( $atts['fontSize'] ) ? $atts['fontSize'] . 'px' : null,
 		'--yxt-searchbar-text-font-weight' => isset( $atts['fontWeight'] ) ? $atts['fontWeight'] : null,
@@ -44,20 +45,11 @@ function render( $atts ) {
 		'--yxt-autocomplete-prompt-header-font-weight' => isset( $atts['autocompleteHeaderFontWeight'] ) ? $atts['autocompleteHeaderFontWeight'] : null,
 	];
 
-	$filtered_styles = array_filter(
-		array_map(
-			function ( $key, $value ) {
-				return ! empty( $value )
-					? $key . ':' . $value
-					: null;
-			},
-			array_keys( $styles ),
-			$styles
-		),
-		function ( $value ) {
-			return ! ! $value;
+	foreach ( $styles as $property => $value ) {
+		if ( $value ) {
+			$filtered_styles[] = $property . ':' . $value;
 		}
-	);
+	}
 
 	// Start the output buffer for rendering
 	ob_start();
