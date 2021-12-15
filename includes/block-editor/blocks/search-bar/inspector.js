@@ -402,7 +402,7 @@ const Inspector = (props) => {
 						fallbackFontSize={FALLBACK_FONT_SIZE}
 						value={autocompleteOptionFontSize}
 						onChange={(newFontSize) => {
-							setAttributes({ autocompleteOptionFontSize: newFontSize });
+							handleStyleUpdate('autocompleteOptionFontSize', newFontSize);
 						}}
 					/>
 				</PanelRow>
@@ -411,13 +411,13 @@ const Inspector = (props) => {
 					value={autocompleteOptionFontWeight}
 					options={fontWeights}
 					onChange={(newFontWeight) => {
-						setAttributes({ autocompleteOptionFontWeight: newFontWeight });
+						handleStyleUpdate('autocompleteOptionFontWeight', newFontWeight);
 					}}
 				/>
 				<LineHeightControl
 					value={autocompleteOptionLineHeight}
 					onChange={(newLineHeight) => {
-						setAttributes({ autocompleteOptionLineHeight: newLineHeight });
+						handleStyleUpdate('autocompleteOptionLineHeight', newLineHeight);
 					}}
 				/>
 				<SelectControl
@@ -425,7 +425,7 @@ const Inspector = (props) => {
 					value={autocompleteHeaderFontWeight}
 					options={fontWeights}
 					onChange={(newFontWeight) => {
-						setAttributes({ autocompleteHeaderFontWeight: newFontWeight });
+						handleStyleUpdate('autocompleteHeaderFontWeight', newFontWeight);
 					}}
 				/>
 				<BaseControl
@@ -436,7 +436,7 @@ const Inspector = (props) => {
 						colors={colors}
 						value={autocompleteTextColor}
 						onChange={(colorValue) => {
-							setAttributes({ autocompleteTextColor: colorValue });
+							handleStyleUpdate('autocompleteTextColor', colorValue);
 						}}
 					/>
 				</BaseControl>
@@ -448,7 +448,7 @@ const Inspector = (props) => {
 						colors={colors}
 						value={autocompleteBackgroundColor}
 						onChange={(colorValue) => {
-							setAttributes({ autocompleteBackgroundColor: colorValue });
+							handleStyleUpdate('autocompleteBackgroundColor', colorValue);
 						}}
 					/>
 				</BaseControl>
@@ -460,7 +460,7 @@ const Inspector = (props) => {
 						colors={colors}
 						value={autocompleteSeparatorColor}
 						onChange={(colorValue) => {
-							setAttributes({ autocompleteSeparatorColor: colorValue });
+							handleStyleUpdate('autocompleteSeparatorColor', colorValue);
 						}}
 					/>
 				</BaseControl>
@@ -472,7 +472,7 @@ const Inspector = (props) => {
 						colors={colors}
 						value={autocompleteOptionHoverBackgroundColor}
 						onChange={(colorValue) => {
-							setAttributes({ autocompleteOptionHoverBackgroundColor: colorValue });
+							handleStyleUpdate('autocompleteOptionHoverBackgroundColor', colorValue);
 						}}
 					/>
 				</BaseControl>
