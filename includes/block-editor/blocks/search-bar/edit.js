@@ -80,22 +80,16 @@ const Edit = (props) => {
 											INACTIVE_ICON_CLASSNAME,
 										);
 										submitIcon.current.classList.add(INACTIVE_ICON_CLASSNAME);
-
-										if (inputValue.trim()) {
-											autocomplete.current.classList.remove(
-												HIDDEN_COMPONENT_CLASSNAME,
-											);
-										}
 									}}
 									onBlur={() => {
-										submitIcon.current.classList.remove(
-											INACTIVE_ICON_CLASSNAME,
-										);
-										searchIcon.current.classList.add(INACTIVE_ICON_CLASSNAME);
-
-										autocomplete.current.classList.add(
-											HIDDEN_COMPONENT_CLASSNAME,
-										);
+										if (!inputValue.trim()) {
+											submitIcon.current.classList.remove(
+												INACTIVE_ICON_CLASSNAME,
+											);
+											searchIcon.current.classList.add(
+												INACTIVE_ICON_CLASSNAME,
+											);
+										}
 									}}
 								/>
 								<button

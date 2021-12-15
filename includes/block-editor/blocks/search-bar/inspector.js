@@ -3,21 +3,18 @@
  */
 import camelcaseKeys from 'camelcase-keys';
 
+/**
+ * Internal dependencies
+ */
+import ColorPicker from '../../components/color-picker';
+
 // @ts-ignore
 const { wp, YEXT } = window;
 
 const { __ } = wp.i18n;
 const { InspectorControls, LineHeightControl, useSetting } = wp.blockEditor;
-const {
-	PanelBody,
-	PanelRow,
-	FontSizePicker,
-	RangeControl,
-	ColorPalette,
-	TextControl,
-	SelectControl,
-	BaseControl,
-} = wp.components;
+const { PanelBody, PanelRow, FontSizePicker, RangeControl, TextControl, SelectControl } =
+	wp.components;
 const { useEffect } = wp.element;
 const { Notice } = wp.components;
 
@@ -322,78 +319,69 @@ const Inspector = (props) => {
 				/>
 			</PanelBody>
 			<PanelBody title={__('Color Settings', 'yext')}>
-				<BaseControl id="yext-text-color" label={__('Text Color', 'yext')}>
-					<ColorPalette
-						value={textColor}
-						colors={colors}
-						onChange={(color) => {
-							handleStyleUpdate('textColor', color);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl id="yext-border-color" label={__('Border Color', 'yext')}>
-					<ColorPalette
-						colors={colors}
-						value={borderColor}
-						onChange={(color) => {
-							handleStyleUpdate('borderColor', color);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl id="yext-background-color" label={__('Background Color', 'yext')}>
-					<ColorPalette
-						colors={colors}
-						value={backgroundColor}
-						onChange={(color) => {
-							handleStyleUpdate('backgroundColor', color);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+				<ColorPicker
+					id="yext-text-color"
+					label={__('Text Color', 'yext')}
+					value={textColor}
+					colors={colors}
+					onChange={(color) => {
+						handleStyleUpdate('textColor', color);
+					}}
+				/>
+				<ColorPicker
+					id="yext-border-color"
+					label={__('Border Color', 'yext')}
+					colors={colors}
+					value={borderColor}
+					onChange={(color) => {
+						handleStyleUpdate('borderColor', color);
+					}}
+				/>
+				<ColorPicker
+					id="yext-background-color"
+					label={__('Background Color', 'yext')}
+					colors={colors}
+					value={backgroundColor}
+					onChange={(color) => {
+						handleStyleUpdate('backgroundColor', color);
+					}}
+				/>
+				<ColorPicker
 					id="yext-button-background-color"
 					label={__('Button Background Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonBackgroundColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('buttonBackgroundColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+					colors={colors}
+					value={buttonBackgroundColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('buttonBackgroundColor', colorValue);
+					}}
+				/>
+				<ColorPicker
 					id="yext-button-background-hover-color"
 					label={__('Button Background Focus Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonHoverBackgroundColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('buttonHoverBackgroundColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl id="yext-button-text-color" label={__('Button Text Color', 'yext')}>
-					<ColorPalette
-						colors={colors}
-						value={buttonTextColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('buttonTextColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+					colors={colors}
+					value={buttonHoverBackgroundColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('buttonHoverBackgroundColor', colorValue);
+					}}
+				/>
+				<ColorPicker
+					id="yext-button-text-color"
+					label={__('Button Text Color', 'yext')}
+					colors={colors}
+					value={buttonTextColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('buttonTextColor', colorValue);
+					}}
+				/>
+				<ColorPicker
 					id="yext-button-text-hover-color"
 					label={__('Button Text Focus Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={buttonHoverTextColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('buttonHoverTextColor', colorValue);
-						}}
-					/>
-				</BaseControl>
+					colors={colors}
+					value={buttonHoverTextColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('buttonHoverTextColor', colorValue);
+					}}
+				/>
 			</PanelBody>
 			<PanelBody title={__('Autocomplete Settings', 'yext')} initialOpen={false}>
 				<PanelRow>
@@ -428,54 +416,42 @@ const Inspector = (props) => {
 						handleStyleUpdate('autocompleteHeaderFontWeight', newFontWeight);
 					}}
 				/>
-				<BaseControl
+				<ColorPicker
 					id="yext-autocomplete-text-color"
 					label={__('Autocomplete Text Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={autocompleteTextColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('autocompleteTextColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+					colors={colors}
+					value={autocompleteTextColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('autocompleteTextColor', colorValue);
+					}}
+				/>
+				<ColorPicker
 					id="yext-autocomplete-background-color"
 					label={__('Autocomplete Background Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={autocompleteBackgroundColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('autocompleteBackgroundColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+					colors={colors}
+					value={autocompleteBackgroundColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('autocompleteBackgroundColor', colorValue);
+					}}
+				/>
+				<ColorPicker
 					id="yext-autocomplete-separator-color"
 					label={__('Autocomplete Separator Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={autocompleteSeparatorColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('autocompleteSeparatorColor', colorValue);
-						}}
-					/>
-				</BaseControl>
-				<BaseControl
+					colors={colors}
+					value={autocompleteSeparatorColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('autocompleteSeparatorColor', colorValue);
+					}}
+				/>
+				<ColorPicker
 					id="yext-autocomplete-option-background-hover-color"
 					label={__('Autocomplete Option Background Hover Color', 'yext')}
-				>
-					<ColorPalette
-						colors={colors}
-						value={autocompleteOptionHoverBackgroundColor}
-						onChange={(colorValue) => {
-							handleStyleUpdate('autocompleteOptionHoverBackgroundColor', colorValue);
-						}}
-					/>
-				</BaseControl>
+					colors={colors}
+					value={autocompleteOptionHoverBackgroundColor}
+					onChange={(colorValue) => {
+						handleStyleUpdate('autocompleteOptionHoverBackgroundColor', colorValue);
+					}}
+				/>
 			</PanelBody>
 		</InspectorControls>
 	);
