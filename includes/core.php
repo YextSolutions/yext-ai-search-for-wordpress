@@ -10,6 +10,7 @@ namespace Yext\Core;
 use \WP_Error;
 use \Yext\Components\SearchBar;
 use \Yext\Admin\Settings;
+use \Yext\Utility;
 
 /**
  * Default setup routine
@@ -150,8 +151,8 @@ function scripts() {
 	wp_enqueue_script(
 		'yext-shared',
 		script_url( 'shared', 'shared' ),
-		[],
-		YEXT_VERSION,
+		Utility\get_asset_info( 'shared', 'dependencies' ),
+		Utility\get_asset_info( 'shared', 'version' ),
 		true
 	);
 
@@ -178,7 +179,7 @@ function scripts() {
 			'yext-search-bar',
 			'yext-search-bar-templates',
 		],
-		YEXT_VERSION,
+		Utility\get_asset_info( 'frontend', 'version' ),
 		true
 	);
 
