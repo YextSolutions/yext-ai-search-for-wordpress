@@ -22,40 +22,34 @@ function render( $atts ) {
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
 
-	$styles = [
-		'--yxt-searchbar-text-color' => $atts['textColor'] ?? null,
-		'--yxt-searchbar-text-font-size' => $atts['fontSize'] ? $atts['fontSize'] . 'px' : null,
-		'--yxt-searchbar-text-font-weight' => $atts['fontWeight'] ?? null,
-		'--yxt-searchbar-text-line-height' => $atts['lineHeight'] ?? null,
-		'--yxt-searchbar-form-outline-color-base' => $atts['borderColor'] ?? null,
-		'--yxt-searchbar-form-border-radius' => $atts['borderRadius'] ? $atts['borderRadius'] . 'px' : null,
-		'--yxt-searchbar-form-background-color' => $atts['backgroundColor'] ?? null,
-		'--yxt-searchbar-button-background-color-base' => $atts['buttonBackgroundColor'] ?? null,
-		'--yxt-searchbar-button-background-color-hover' => $atts['buttonHoverBackgroundColor'] ?? null,
-		'--yxt-autocomplete-background-color' => $atts['autocompleteBackgroundColor'] ?? null,
-		// '--yxt-autocomplete-text-color' => $atts['autocompleteTextColor'],
-		'--yxt-autocomplete-separator-color' => $atts['autocompleteSeparatorColor'] ?? null,
-		'--yxt-autocomplete-option-hover-background-color' => $atts['autocompleteOptionHoverBackgroundColor'] ?? null,
-		'--yxt-autocomplete-text-font-size' => $atts['autocompleteOptionFontSize'] ? $atts['autocompleteOptionFontSize'] . 'px' : null,
-		'--yxt-autocomplete-text-font-weight' => $atts['autocompleteOptionFontWeight'] ?? null,
-		'--yxt-autocomplete-text-line-height' => $atts['autocompleteOptionLineHeight'] ?? null,
-		'--yxt-autocomplete-prompt-header-font-weight' => $atts['autocompleteHeaderFontWeight'] ?? null,
+	$filtered_styles = [];
+	$styles          = [
+		'--yxt-searchbar-text-color' => isset( $atts['textColor'] ) ? $atts['textColor'] : null,
+		'--yxt-searchbar-text-font-size' => isset( $atts['fontSize'] ) ? $atts['fontSize'] . 'px' : null,
+		'--yxt-searchbar-text-font-weight' => isset( $atts['fontWeight'] ) ? $atts['fontWeight'] : null,
+		'--yxt-searchbar-text-line-height' => isset( $atts['lineHeight'] ) ? $atts['lineHeight'] : null,
+		'--yxt-searchbar-form-outline-color-base' => isset( $atts['borderColor'] ) ? $atts['borderColor'] : null,
+		'--yxt-searchbar-form-border-radius' => isset( $atts['borderRadius'] ) ? $atts['borderRadius'] . 'px' : null,
+		'--yxt-searchbar-form-background-color' => isset( $atts['backgroundColor'] ) ? $atts['backgroundColor'] : null,
+		'--yxt-searchbar-button-background-color-base' => isset( $atts['buttonBackgroundColor'] ) ? $atts['buttonBackgroundColor'] : null,
+		'--yxt-searchbar-button-background-color-hover' => isset( $atts['buttonHoverBackgroundColor'] ) ? $atts['buttonHoverBackgroundColor'] : null,
+		'--yxt-searchbar-button-text-color' => isset( $atts['buttonTextColor'] ) ? $atts['buttonTextColor'] : null,
+		'--yxt-searchbar-button-text-color-hover' => isset( $atts['buttonHoverTextColor'] ) ? $atts['buttonHoverTextColor'] : null,
+		'--yxt-autocomplete-background-color' => isset( $atts['autocompleteBackgroundColor'] ) ? $atts['autocompleteBackgroundColor'] : null,
+		'--yxt-autocomplete-text-color' => isset( $atts['autocompleteTextColor'] ) ? $atts['autocompleteTextColor'] : null,
+		'--yxt-autocomplete-separator-color' => isset( $atts['autocompleteSeparatorColor'] ) ? $atts['autocompleteSeparatorColor'] : null,
+		'--yxt-autocomplete-option-hover-background-color' => isset( $atts['autocompleteOptionHoverBackgroundColor'] ) ? $atts['autocompleteOptionHoverBackgroundColor'] : null,
+		'--yxt-autocomplete-text-font-size' => isset( $atts['autocompleteOptionFontSize'] ) ? $atts['autocompleteOptionFontSize'] . 'px' : null,
+		'--yxt-autocomplete-text-font-weight' => isset( $atts['autocompleteOptionFontWeight'] ) ? $atts['autocompleteOptionFontWeight'] : null,
+		'--yxt-autocomplete-text-line-height' => isset( $atts['autocompleteOptionLineHeight'] ) ? $atts['autocompleteOptionLineHeight'] : null,
+		'--yxt-autocomplete-prompt-header-font-weight' => isset( $atts['autocompleteHeaderFontWeight'] ) ? $atts['autocompleteHeaderFontWeight'] : null,
 	];
 
-	$filtered_styles = array_filter(
-		array_map(
-			function ( $key, $value ) {
-				return ! empty( $value )
-					? $key . ':' . $value
-					: null;
-			},
-			array_keys( $styles ),
-			$styles
-		),
-		function ( $value ) {
-			return ! ! $value;
+	foreach ( $styles as $property => $value ) {
+		if ( $value ) {
+			$filtered_styles[] = $property . ':' . $value;
 		}
-	);
+	}
 
 	// Start the output buffer for rendering
 	ob_start();

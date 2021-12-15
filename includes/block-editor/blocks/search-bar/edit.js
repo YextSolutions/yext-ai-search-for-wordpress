@@ -26,6 +26,9 @@ const { __ } = wp.i18n;
 const { useBlockProps } = wp.blockEditor;
 const { useRef, useState, useEffect } = wp.element;
 
+const INACTIVE_ICON_CLASSNAME = 'yxt-SearchBar-Icon--inactive';
+const HIDDEN_COMPONENT_CLASSNAME = 'component--is-hidden';
+
 /**
  * Search bar component for block editor.
  *
@@ -49,7 +52,7 @@ const Edit = (props) => {
 
 	useEffect(() => {
 		autocomplete.current.classList[inputValue.trim() ? 'remove' : 'add'](
-			'component--is-hidden',
+			HIDDEN_COMPONENT_CLASSNAME,
 		);
 	}, [inputValue]);
 
@@ -74,27 +77,19 @@ const Edit = (props) => {
 									}}
 									onFocus={() => {
 										searchIcon.current.classList.remove(
-											'yxt-SearchBar-Icon--inactive',
+											INACTIVE_ICON_CLASSNAME,
 										);
-										submitIcon.current.classList.add(
-											'yxt-SearchBar-Icon--inactive',
-										);
-
-										if (inputValue.trim()) {
-											autocomplete.current.classList.remove(
-												'component--is-hidden',
-											);
-										}
+										submitIcon.current.classList.add(INACTIVE_ICON_CLASSNAME);
 									}}
 									onBlur={() => {
-										submitIcon.current.classList.remove(
-											'yxt-SearchBar-Icon--inactive',
-										);
-										searchIcon.current.classList.add(
-											'yxt-SearchBar-Icon--inactive',
-										);
-
-										autocomplete.current.classList.add('component--is-hidden');
+										if (!inputValue.trim()) {
+											submitIcon.current.classList.remove(
+												INACTIVE_ICON_CLASSNAME,
+											);
+											searchIcon.current.classList.add(
+												INACTIVE_ICON_CLASSNAME,
+											);
+										}
 									}}
 								/>
 								<button
