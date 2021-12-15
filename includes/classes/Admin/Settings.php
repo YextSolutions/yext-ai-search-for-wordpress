@@ -97,6 +97,7 @@ final class Settings {
 		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
+		add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
 		add_action( 'admin_head', [ $this, 'print_css_variables' ], 10 );
 		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
@@ -146,6 +147,55 @@ final class Settings {
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 		$this->settings_fields = new SettingsFields( $this->settings );
+	}
+
+	/**
+	 * Registers the API endpoint to save setup wizard
+	 */
+	public function rest_api_init() {
+		$permission = current_user_can( 'manage_options' );
+
+		register_rest_route(
+			'yext/v1',
+			'wizard',
+			[
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'handle_setup_wizard' ],
+				'permission_callback' => function () use ( $permission ) {
+					return $permission;
+				},
+				'args'                => [
+					'settings' => [
+						'validate_callback' => function ( $param ) {
+							return ! empty( $param );
+						},
+						'required'          => true,
+					],
+				],
+			]
+		);
+	}
+
+	/**
+	 * Handles the setup wizard settings
+	 *
+	 * @param \WP_REST_Request $request Rest request
+	 * @return array
+	 */
+	public function handle_setup_wizard( $request ) {
+		$settings = $request->get_param( 'settings' );
+
+		if ( empty( $settings ) || ! is_array( $settings ) ) {
+			return new \WP_Error( 400 );
+		}
+
+		$updated_settings = array_merge_recursive( $this->settings, $settings );
+		$updated_settings = apply_filters( 'yext_rest_api_updated_settings', $updated_settings );
+
+		// update settings
+		update_option( 'yext_plugin_settings', $updated_settings, false );
+
+		return $updated_settings;
 	}
 
 	/**
