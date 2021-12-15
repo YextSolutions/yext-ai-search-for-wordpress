@@ -23,8 +23,7 @@
       "type": "string"
     },
     "fontSize": {
-      "type": "number",
-	  "default": 16
+      "type": "number"
     },
     "fontWeight": {
       "type": "number"
@@ -33,8 +32,7 @@
       "type": "number"
     },
     "borderRadius": {
-      "type": "number",
-	  "default": 6
+      "type": "number"
     },
     "borderColor": {
       "type": "string"
@@ -58,19 +56,16 @@
       "type": "string"
     },
     "autocompleteOptionFontSize": {
-      "type": "number",
-	  "default": 16
+      "type": "number"
     },
     "autocompleteOptionFontWeight": {
-      "type": "number",
-	  "default": 400
+      "type": "number"
     },
     "autocompleteOptionLineHeight": {
       "type": "number"
     },
     "autocompleteHeaderFontWeight": {
-      "type": "number",
-	  "default": 400
+      "type": "number"
     }
   }
 }
