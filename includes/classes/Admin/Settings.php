@@ -330,24 +330,28 @@ final class Settings {
 			return $settings;
 		}
 
+		// Merge existing settings and new props
+		$props      = array_merge(
+			$settings['search_bar']['props'],
+			[
+				'redirect_url' => get_post_field(
+					'post_name',
+					$settings['search_results']['results_page']
+				),
+			]
+		);
+		$components = [
+			'search_bar' => array_merge(
+				$settings['search_bar'],
+				[
+					'props' => $props,
+				]
+			),
+		];
+
 		return [
 			'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
-			'components' => [
-				'search_bar' => array_merge(
-					$settings['search_bar'],
-					[
-						'props' => array_merge(
-							$settings['search_bar']['props'],
-							[
-								'redirect_url' => get_post_field(
-									'post_name',
-									$settings['search_results']['results_page']
-								),
-							]
-						),
-					]
-				),
-			],
+			'components' => $components,
 		];
 	}
 }

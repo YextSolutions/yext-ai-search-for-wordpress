@@ -71,8 +71,10 @@ export default class SearchBarPreview {
 					 * Animate Yext icon
 					 */
 					() => {
-						searchIcon.classList.add('yxt-SearchBar-Icon--inactive');
-						yextIcon.classList.remove('yxt-SearchBar-Icon--inactive');
+						if (!input.value.trim()) {
+							searchIcon.classList.add('yxt-SearchBar-Icon--inactive');
+							yextIcon.classList.remove('yxt-SearchBar-Icon--inactive');
+						}
 					},
 				);
 			},
@@ -107,28 +109,6 @@ export default class SearchBarPreview {
 						autocomplete.classList[input.value.trim() ? 'remove' : 'add'](
 							'component--is-hidden',
 						);
-					},
-				);
-
-				input.addEventListener(
-					'blur',
-					/**
-					 * Animate Yext icon
-					 */
-					() => {
-						autocomplete.classList.add('component--is-hidden');
-					},
-				);
-
-				input.addEventListener(
-					'focus',
-					/**
-					 * Animate Yext icon
-					 */
-					() => {
-						if (input.value.trim()) {
-							autocomplete.classList.remove('component--is-hidden');
-						}
 					},
 				);
 			},
