@@ -32,7 +32,7 @@ const Edit = (props) => {
 
 	useEffect(() => {
 		IframeResize({ log: false }, iframeRef.current);
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [url, pageUrl]);
 
 	return (
 		<>
@@ -45,7 +45,12 @@ const Edit = (props) => {
 						className="wp-block-embed"
 						instructions={__('Add search results url.', 'yext')}
 					>
-						<form>
+						<form
+							onSubmit={() => {
+								setAttributes({ url: pageUrl });
+								setPageUrl(pageUrl);
+							}}
+						>
 							<input
 								type="url"
 								value={pageUrl || ''}
@@ -54,15 +59,11 @@ const Edit = (props) => {
 									if (event) {
 										event.preventDefault();
 									}
+
 									setPageUrl(event.target.value);
 								}}
 							/>
-							<Button
-								isPrimary
-								onClick={() => {
-									setAttributes({ url: pageUrl });
-								}}
-							>
+							<Button type="submit" isPrimary>
 								{__('Submit', 'yext')}
 							</Button>
 						</form>

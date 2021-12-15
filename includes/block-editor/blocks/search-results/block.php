@@ -35,15 +35,13 @@ function render( $atts ) {
 
 	// Start the output buffer for rendering
 	ob_start();
+
+	// phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 	?>
-	<div class="<?php echo esc_attr( $class ); ?>">
-		<iframe
-			class="yext-search-results-iframe"
-			src="<?php echo esc_url_raw( $url ); ?>"
-			frameborder="0"
-		></iframe>
-	</div>
+	<div id="answers-container" class="<?php echo esc_attr( $class ); ?>"></div>
+	<script src="<?php echo esc_url_raw( $url ); ?>/iframe.js"></script>
 	<?php
+	// phpcs:enable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 
 	return ob_get_clean();
 }
