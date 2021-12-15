@@ -4,11 +4,6 @@
 import camelcaseKeys from 'camelcase-keys';
 
 /**
- * Internal dependencies
- */
-import SearchResults from './components/search-results';
-
-/**
  * Initialize Answers UI SDK.
  */
 const initAnswers = () => {
@@ -83,17 +78,9 @@ const initAnswers = () => {
 };
 
 /**
- * Initialize Search Results.
- */
-const initSearchResults = () => {
-	SearchResults().init();
-};
-
-/**
  * Initialize plugin scripts.
  */
 const init = () => {
-	initSearchResults();
 	initAnswers();
 };
 
