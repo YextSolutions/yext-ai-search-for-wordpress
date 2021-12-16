@@ -1,0 +1,10 @@
+#yext-search-bar-preview {
+	background: #444;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 1rem;
+
+	& .yxt-SearchBar-wrapper {
+		top: 3rem;
+	}
+}
