@@ -28,5 +28,5 @@ export interface YextPluginConfig {
 
 export interface AnswersUIOptions extends YextPluginConfig {
 	templateBundle?: Object;
-	onReady: Function;
+	onReady?: Function;
 }
