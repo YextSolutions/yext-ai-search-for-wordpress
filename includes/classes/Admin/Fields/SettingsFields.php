@@ -104,7 +104,7 @@ final class SettingsFields {
 		$fields = [
 			[
 				'id'     => 'override_core_search',
-				'parent' => 'props',
+				'parent' => 'core',
 				'title'  => __( 'Override WordPress search', 'yext' ),
 				'type'   => 'CheckboxField',
 				'help'   => __( 'Enabling this will transform the search form and search block into Yext search bars, and the search results template into a Yext search results block.', 'yext' ),

@@ -1,0 +1,265 @@
+.yext-wizard {
+	margin-bottom: 80px;
+	padding-right: 20px;
+}
+
+.yext-wizard__header {
+	background: #fff;
+	height: 60px;
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+.yext-wizard__timeline {
+	display: flex;
+	padding-top: 24px;
+
+	&::before {
+		border-bottom: 1px solid #ddd;
+		content: "";
+		height: 10px;
+		left: 0;
+		position: absolute;
+		right: 20px;
+	}
+
+	@nest .yext-wizard[data-progress-id="0"] & {
+		display: none;
+	}
+}
+
+.yext-wizard__timeline-step {
+	flex: 1;
+	text-align: center;
+}
+
+.yext-wizard__timeline-step-circle {
+	background: #f1f1f1;
+	border: 1px solid #333;
+	border-radius: 30px;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	width: 20px;
+	z-index: 1;
+
+	@nest .yext-wizard__timeline-step:first-child & {
+		margin-left: 0;
+	}
+	
+	@nest .yext-wizard__timeline-step:last-child & {
+		margin-right: 0;
+	}
+
+	@nest .yext-wizard__timeline-step--complete & {
+
+		&::before {
+			background-image: url("data:image/svg+xml,%3Csvg width='9' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.96.41 3.226 5.333 1.019 3.127 0 4.145 3.395 7.54 8.149 1.43 6.959.41Z' fill='black'/%3E%3C/svg%3E");
+			background-position: center;
+			background-repeat: no-repeat;
+			content: "";
+			height: 20px;
+			left: 0;
+			position: absolute;
+			width: 20px;
+		}
+	}
+
+	@nest .yext-wizard__timeline-step--active & {
+		
+		&::before {
+			background: #0f70f0;
+			border-radius: 30px;
+			content: "";
+			height: 6px;
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 6px;
+		}
+	}
+}
+
+.yext-wizard__timeline-step-circle-wrapper {
+	position: relative;
+
+	@nest .yext-wizard__timeline-step--complete & {
+
+		&::before {
+			border-bottom: 1px solid #a9a9a9;
+			content: "";
+			height: 10px;
+			left: 0;
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	@nest .yext-wizard__timeline-step--active & {
+
+		&::before {
+			border-bottom: 1px solid #a9a9a9;
+			content: "";
+			height: 10px;
+			left: 0;
+			position: absolute;
+			right: 50%;
+		}
+	}
+}
+
+.yext-wizard__timeline-step-title {
+	margin-top: 12px;
+
+	@nest .yext-wizard__timeline-step:first-child & {
+		text-align: left;
+	}
+
+	@nest .yext-wizard__timeline-step:last-child & {
+		text-align: right;
+	}
+}
+
+.yext-wizard__form {
+	padding-top: 40px;
+}
+
+.yext-wizard__footer {
+	background: #fff;
+	bottom: 0;
+	display: flex;
+	justify-content: flex-end;
+	left: 0;
+	margin-left: 160px;
+	padding: 16px 40px;
+	position: fixed;
+	right: 0;
+	z-index: 1;
+
+	@media only screen and (max-width: 960px) {
+
+		@nest .auto-fold & {
+			margin-left: 36px;
+		}
+	}
+}
+
+.yext-wizard__footer-back {
+	align-items: center;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	margin-right: 32px;
+	padding: 0 12px;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	& svg {
+		margin-right: 8px;
+	}
+}
+
+input[type="submit"].yext-wizard__footer-submit {
+	background: #0f70f0;
+	border-radius: 30px;
+	color: #fff; /* stylelint-disable sh-waqar/declaration-use-variable */
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	line-height: 1.5;
+	padding: 10px 40px;
+	text-transform: uppercase;
+}
+
+.yext-wizard__step {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 4px rgba(85, 85, 85, 0.25);
+	padding: 40px;
+}
+
+.yext-wizard__step-inner {
+	display: flex;
+}
+
+.yext-wizard__step--hidden {
+	display: none;
+}
+
+.yext-wizard__step-content {
+	flex: 1.5;
+	margin-right: 20px;
+}
+
+.yext-wizard__step-header {
+	
+	& h2 {
+		font-size: 24px;
+		font-weight: 400;
+		letter-spacing: 1px;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	& p {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.5;
+		margin: 20px 0;
+	}
+}
+
+.yext-wizard__step-image {
+	flex: 1;
+	text-align: right;
+
+	& img {
+		border-radius: 8px;
+	}
+}
+
+.yext-wizard__step-form {
+
+	& > h2:first-child {
+		display: none;
+	}
+
+	& th,
+	& td {
+		margin: 0;
+		padding: 0;
+	}
+
+	& tr {
+		display: flex;
+		flex-direction: column;
+		
+		&:not(:last-child) {
+			padding-bottom: 24px;
+		}
+
+		& td {
+			margin-top: 8px;
+		}
+	}
+
+	& .form-table {
+
+		& tbody {
+			width: 100%;
+		}
+
+		& input[type="text"] {
+			background: #f7f7f7;
+			border: 1px solid #ccc;
+			border-radius: 0;
+			width: 100%;
+		}
+	}
+}

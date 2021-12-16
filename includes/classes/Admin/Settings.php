@@ -87,10 +87,26 @@ final class Settings {
 		// Child sections for this tab
 		// Array of slug => title to display in front end
 		$child_sections = [
-			'props'        => __( 'Display Settings', 'yext' ),
-			'style'        => __( 'Base Styles', 'yext' ),
-			'button'       => __( 'Button Styles', 'yext' ),
-			'autocomplete' => __( 'Autocomplete Styles', 'yext' ),
+			'core'         => [
+				'classname' => '',
+				'title'     => '',
+			],
+			'props'        => [
+				'classname' => '',
+				'title'     => '',
+			],
+			'style'        => [
+				'classname' => 'accordion',
+				'title'     => __( 'General', 'yext' ),
+			],
+			'button'       => [
+				'classname' => 'accordion',
+				'title'     => __( 'Button', 'yext' ),
+			],
+			'autocomplete' => [
+				'classname' => 'accordion',
+				'title'     => __( 'Autocomplete', 'yext' ),
+			],
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
@@ -276,21 +292,10 @@ final class Settings {
 	 * @return void
 	 */
 	public function render_wizard_page() {
-			settings_errors( static::SETTINGS_NAME );
-			settings_errors( 'general' );
-		?>
-		<div id="yext-settings-wizard">
-			<form method="post" action="options.php">
-				<?php
-				foreach ( $this->tabs as $tab ) {
-					$tab->render_content();
-				}
-				settings_fields( 'yext_option_group' );
-				submit_button();
-				?>
-			</form>
-		</div>
-		<?php
+		settings_errors( static::SETTINGS_NAME );
+		settings_errors( 'general' );
+
+		include_once YEXT_INC . 'partials/wizard.php';
 	}
 
 	/**
@@ -333,6 +338,7 @@ final class Settings {
 		// Merge existing settings and new props
 		$props      = array_merge(
 			$settings['search_bar']['props'],
+			$settings['search_bar']['core'],
 			[
 				'redirect_url' => get_post_field(
 					'post_name',

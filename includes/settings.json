@@ -7,8 +7,10 @@
 		"experience_version": "1.0"
 	},
 	"search_bar": {
+		"core": {
+			"override_core_search": "0"
+		},
 		"props": {
-			"override_core_search": "1",
 			"placeholder_text": "",
 			"submit_text": "Submit",
 			"label_text": "Conduct a search",
