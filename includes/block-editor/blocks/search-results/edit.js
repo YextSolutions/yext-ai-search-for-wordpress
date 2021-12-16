@@ -3,7 +3,7 @@ import Controls from './controls';
 const { answers_iframe_url } = YEXT_SETTINGS; // eslint-disable-line no-undef
 
 /**
- * WordPress dependencies
+ * Internal dependencies
  */
 const { useBlockProps } = wp.blockEditor;
 const { __ } = wp.i18n;

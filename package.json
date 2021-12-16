@@ -26,15 +26,19 @@
     "lint-staged": "^11.2.6"
   },
   "dependencies": {
+    "@10up/component-accordion": "^2.0.1",
     "@10up/component-tabs": "^2.0.0",
-    "dompurify": "^2.3.3",
     "@wordpress/url": "^3.3.1",
     "camelcase-keys": "^6.2.2",
+    "dompurify": "^2.3.3",
     "lodash.kebabcase": "^4.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "stickybits": "^3.7.9"
   },
   "10up-toolkit": {
     "devURL": "https://yext.test",
+    "wpDependencyExternals": false,
     "entry": {
       "admin": "./assets/js/admin/admin.js",
       "blocks": "./includes/block-editor/blocks.js",

@@ -1,3 +1,5 @@
+const { wp } = window;
+
 const { __ } = wp.i18n;
 const { BlockControls } = wp.blockEditor;
 const { Button } = wp.components;

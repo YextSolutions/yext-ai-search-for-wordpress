@@ -1,0 +1,23 @@
+/**
+ * Gutenberg Blocks Styles
+ * https://project-website.tld
+ *
+ */
+
+.editor-styles-wrapper {
+
+	& .yxt-SearchBar {
+		height: 100%;
+	}
+
+	& input.yxt-SearchBar-input {
+
+		&:focus {
+			box-shadow: none !important;
+		}
+	}
+
+	& .component--is-hidden {
+		display: none;
+	}
+}

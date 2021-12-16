@@ -50,5 +50,4 @@ class InputField extends AbstractField {
 			esc_attr( $variable )
 		);
 	}
-
 }

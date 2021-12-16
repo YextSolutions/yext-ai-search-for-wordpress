@@ -37,7 +37,12 @@ final class SearchBar {
 	 * @return boolean
 	 */
 	public function is_valid() {
-		return '1' === $this->settings['search_bar']['override_core_search'] &&
+		if ( ! $this->settings || ! is_array( $this->settings ) ) {
+			return false;
+		}
+
+		return isset( $this->settings['plugin'] ) && isset( $this->settings['search_bar'] ) &&
+			'1' === $this->settings['search_bar']['props']['override_core_search'] &&
 			! empty( $this->settings['plugin']['api_key'] ) &&
 			! empty( $this->settings['plugin']['experience_key'] ) &&
 			! empty( $this->settings['plugin']['business_id'] );
@@ -76,7 +81,11 @@ final class SearchBar {
 	 */
 	public function render_search_bar_block( $block_content = '', $block = [] ) {
 		if ( isset( $block['blockName'] ) && 'core/search' === $block['blockName'] ) {
-			return $this->render_search_bar();
+			$use_yext = isset( $block['attrs']['useYextSearchBar'] ) ? $block['attrs']['useYextSearchBar'] : true;
+
+			if ( $use_yext ) {
+				return $this->render_search_bar();
+			}
 		}
 
 		return $block_content;

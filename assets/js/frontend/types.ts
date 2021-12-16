@@ -3,11 +3,12 @@ export interface YextSearchBarConfig {
 	submitText?: string;
 	placeholderText?: string;
 	redirectUrl?: string;
+	cssClass?: string;
 }
 
 export interface SearchBarOptions extends YextSearchBarConfig {
-	name: string;
-	container: string;
+	name?: string;
+	container?: string;
 }
 
 export interface YextComponents {

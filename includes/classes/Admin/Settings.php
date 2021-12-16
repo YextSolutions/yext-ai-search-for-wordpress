@@ -87,9 +87,10 @@ final class Settings {
 		// Child sections for this tab
 		// Array of slug => title to display in front end
 		$child_sections = [
-			'button'       => __( 'Button', 'yext' ),
-			'autocomplete' => __( 'Autocomplete', 'yext' ),
-			'props'        => __( 'Create', 'yext' ),
+			'props'        => __( 'Display Settings', 'yext' ),
+			'style'        => __( 'Base Styles', 'yext' ),
+			'button'       => __( 'Button Styles', 'yext' ),
+			'autocomplete' => __( 'Autocomplete Styles', 'yext' ),
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
@@ -98,7 +99,6 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'admin_head', [ $this, 'print_css_variables' ], 10 );
 		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
@@ -126,8 +126,8 @@ final class Settings {
 		);
 		add_submenu_page(
 			'yext',
-			__( 'Wizard', 'yext' ),
-			__( 'Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
 			'manage_options',
 			'yext-wizard',
 			[ $this, 'render_wizard_page' ]
@@ -151,30 +151,35 @@ final class Settings {
 	/**
 	 * Add style variables
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public static function print_css_variables() {
 
+		$css             = '';
 		$settings        = self::get_settings();
 		$settings_fields = new SettingsFields( $settings );
 
 		if ( ! isset( $settings_fields->fields ) ) {
-			return;
+			return $css;
 		}
-		?>
-		<style>
-		:root {
-			<?php
-			foreach ( $settings_fields->fields as $field ) {
-				if ( $field->variable ) {
-					$value = isset( $field->parent_field ) && $field->parent_field ? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ] : $settings[ $field->section_id ][ $field->id ];
-					self::variable_values( $field->variable, $value );
+
+		$css .= ':root {';
+
+		foreach ( $settings_fields->fields as $field ) {
+			if ( $field->variable ) {
+				$value = isset( $field->parent_field ) && $field->parent_field
+					? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ]
+					: $settings[ $field->section_id ][ $field->id ];
+
+				if ( $value ) {
+					$css .= self::variable_values( $field->variable, $value );
 				}
 			}
-			?>
 		}
-		</style>
-		<?php
+
+		$css .= '}';
+
+		return $css;
 	}
 
 	/**
@@ -201,7 +206,7 @@ final class Settings {
 		<div id="yext-settings">
 			<h2>
 				<?php
-					echo esc_html__( 'Yext connector', 'yext' );
+					echo esc_html__( 'Yext', 'yext' );
 				?>
 			</h2>
 			<form method="post" action="options.php">
@@ -242,27 +247,26 @@ final class Settings {
 	 */
 	public static function variable_values( $key, $value ) {
 		$pixel_value = [
-			'--yxt-base-radius',
-			'--yxt-base-spacing',
-			'--yxt-searchbar-text-font-weight',
-			'--yxt-searchbar-text-line-height',
+			'--yxt-searchbar-form-border-radius',
+			'--yxt-searchbar-text-font-size',
+			'--yxt-autocomplete-text-font-size',
 		];
 
 		if ( 'create' === $key ) {
-			return;
+			return '';
 		}
 
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
 				$css = self::variable_values( $inner_key, $val, $key . '-' );
-				echo esc_html( $css );
+				return esc_html( $css );
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
 				$value = $value . 'px';
 			}
 
-			echo esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
+			return esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
 		}
 	}
 
@@ -321,8 +325,34 @@ final class Settings {
 	 */
 	public static function localized_settings() {
 		$settings = self::get_settings();
-		// TODO: review needed settings passed to FE
-		return array_merge( $settings['plugin'], $settings['search_bar'] );
+
+		if ( ! isset( $settings['plugin'] ) || ! isset( $settings['search_bar'] ) ) {
+			return $settings;
+		}
+
+		// Merge existing settings and new props
+		$props      = array_merge(
+			$settings['search_bar']['props'],
+			[
+				'redirect_url' => get_post_field(
+					'post_name',
+					$settings['search_results']['results_page']
+				),
+			]
+		);
+		$components = [
+			'search_bar' => array_merge(
+				$settings['search_bar'],
+				[
+					'props' => $props,
+				]
+			),
+		];
+
+		return [
+			'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
+			'components' => $components,
+		];
 	}
 
 	/**
