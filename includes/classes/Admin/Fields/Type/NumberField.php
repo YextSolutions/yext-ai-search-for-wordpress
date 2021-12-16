@@ -33,7 +33,7 @@ class NumberField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$value = $this->value;
+		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
 		printf(
 			'<input

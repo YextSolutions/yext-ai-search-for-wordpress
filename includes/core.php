@@ -213,7 +213,7 @@ function scripts() {
 					),
 				],
 			],
-			'raw' => $settings,
+			'raw'      => $settings,
 		]
 	);
 }
@@ -235,7 +235,9 @@ function admin_scripts() {
 	wp_enqueue_script(
 		'yext-admin',
 		script_url( 'admin', 'admin' ),
-		[],
+		// TODO: use get_asset_info()
+		// @see https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/utility.php#L23
+		[ 'wp-url' ],
 		YEXT_VERSION,
 		true
 	);

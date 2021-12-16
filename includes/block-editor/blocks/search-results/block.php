@@ -29,7 +29,7 @@ function render( $atts ) {
 	}
 
 	// Double check if there really is iFrame URL
-	if ( ! $url ) {
+	if ( ! wp_http_validate_url( $url ) ) {
 		return;
 	}
 

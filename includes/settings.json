@@ -4,12 +4,13 @@
 		"experience_key": "",
 		"business_id": "",
 		"answers_iframe_url": "",
-		"experience_version": "1.0"
+		"experience_version": "1.0",
+		"answers_version"   : "v2"
 	},
 	"search_bar": {
 		"override_core_search": "1",
 		"use_custom_style": "0",
-		"background_color": "#fff",
+		"background_color": "#ffffff",
 		"border_color": "#000000",
 		"border_radius": "0",
 		"color": "#000000",
@@ -24,7 +25,7 @@
 			"text_active_color": "#000000"
 		},
 		"autocomplete": {
-			"bg_color": "#ffffff",	
+			"background_color": "#ffffff",
 			"option_selected_background_color": "#f2f2f2",
 			"option_hover_background_color": "#f2f2f2",
 			"separator_color": "#000",
