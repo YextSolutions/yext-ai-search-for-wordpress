@@ -85,6 +85,9 @@ final class Install {
 				'post_status'  => 'publish',
 				'post_title'   => __( 'Search results', 'yext' ),
 				'post_type'    => 'page',
+				'meta_input'   => [
+					'yext_results_template' => 1,
+				],
 			]
 		);
 
@@ -96,9 +99,6 @@ final class Install {
 					],
 				]
 			);
-
-			// Set custom post meta
-			update_post_meta( $page, 'yext_results_template', 1 );
 		}
 	}
 
