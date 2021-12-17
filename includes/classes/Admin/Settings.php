@@ -207,11 +207,7 @@ final class Settings {
 			return new \WP_Error( 400 );
 		}
 
-		$updated_settings = array_merge_recursive( $this->settings, $settings );
-		$updated_settings = apply_filters( 'yext_rest_api_updated_settings', $updated_settings );
-
-		// update settings
-		update_option( 'yext_plugin_settings', $updated_settings, false );
+		$updated_settings = $this->update_settings( $settings );
 
 		return $updated_settings;
 	}
