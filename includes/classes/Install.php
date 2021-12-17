@@ -59,12 +59,29 @@ final class Install {
 	 * @return void
 	 */
 	public function create_search_results_page() {
+		$args = [
+			'posts_per_page' => 1,
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'meta_key'       => 'yext_results_template',
+			'meta_value'     => 1,
+		];
+
+		$has_page_template = new \WP_Query( $args );
+
+		if ( $has_page_template->have_posts() ) {
+			return;
+		}
+
 		$page = wp_insert_post(
 			[
 				'post_content' => $this->yext_search_page_content(),
 				'post_status'  => 'publish',
 				'post_title'   => __( 'Search results', 'yext' ),
 				'post_type'    => 'page',
+				'meta_input'   => [
+					'yext_results_template' => 1,
+				],
 			]
 		);
 
