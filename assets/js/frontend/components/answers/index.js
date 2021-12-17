@@ -9,7 +9,7 @@ import kebabCase from 'lodash.kebabcase';
  * @param {import('../../types').AnswersUIOptions} props.config Configuration options.
  * @param {import('../../types').YextComponents} props.components Answers UI SDK Components.
  *
- * @return {{init: () => Promise<void>}} Object with `init` method.
+ * @return {{init?: () => Promise<void>, error?: string}} Object with `init` method or `error` property.
  */
 const Answers = ({ config, components }) => {
 	/**
