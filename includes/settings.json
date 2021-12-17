@@ -4,7 +4,8 @@
 		"experience_key": "",
 		"business_id": "",
 		"answers_iframe_url": "",
-		"experience_version": "1.0"
+		"experience_version": "1.0",
+		"answers_version"   : "v2"
 	},
 	"search_bar": {
 		"props": {

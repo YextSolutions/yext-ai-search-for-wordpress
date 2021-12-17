@@ -10,7 +10,7 @@ namespace Yext\Admin\Fields\Type;
 use Yext\Admin\Settings;
 
 /**
- * Base functions for creating taxonomy
+ * Base functions for creating Fields
  */
 abstract class AbstractField {
 
