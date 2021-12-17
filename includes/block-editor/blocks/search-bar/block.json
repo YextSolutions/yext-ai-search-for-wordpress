@@ -1,47 +1,71 @@
 {
   "apiVersion": 2,
   "title": "Yext Search Bar",
-  "description": "Display YEXT search bar.",
+  "description": "Display a Yext search bar.",
   "name": "yext/search-bar",
   "category": "yext-blocks",
   "text-domain": "yext",
   "supports": {
     "className": false,
-    "align": [ "full" ]
+    "align": false
   },
   "attributes": {
-	"buttonText": {
-    	"type": "string"
+    "submitText": {
+      "type": "string"
     },
-	"placeholder": {
-    	"type": "string"
+    "placeholderText": {
+      "type": "string"
     },
-	"backgroundColor": {
-    	"type": "string"
+    "labelText": {
+      "type": "string"
     },
-	"buttonTextColor": {
-    	"type": "string"
+    "textColor": {
+      "type": "string"
     },
-	"buttonBackgroundColor": {
-    	"type": "string"
+    "fontSize": {
+      "type": "number"
     },
-	"buttonBorderColor": {
-    	"type": "string"
+    "fontWeight": {
+      "type": "number"
     },
-	"buttonHoverTextColor": {
-    	"type": "string"
+    "lineHeight": {
+      "type": "number"
     },
-	"buttonHoverBackgroundColor": {
-    	"type": "string"
+    "borderRadius": {
+      "type": "number"
     },
-	"fontSize": {
-    	"type": "string"
+    "borderColor": {
+      "type": "string"
     },
-	"lineHeight": {
-    	"type": "string"
+    "backgroundColor": {
+      "type": "string"
     },
-	"borderRadius": {
-    	"type": "string"
+    "buttonBackgroundColor": {
+      "type": "string"
+    },
+    "buttonHoverBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteSeparatorColor": {
+      "type": "string"
+    },
+    "autocompleteOptionHoverBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteOptionFontSize": {
+      "type": "number"
+    },
+    "autocompleteOptionFontWeight": {
+      "type": "number"
+    },
+    "autocompleteOptionLineHeight": {
+      "type": "number"
+    },
+    "autocompleteHeaderFontWeight": {
+      "type": "number"
     }
   }
 }

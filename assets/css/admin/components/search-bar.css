@@ -1,0 +1,5 @@
+@import url("../../frontend/components/search-bar.css");
+
+.component--is-hidden {
+	display: none;
+}

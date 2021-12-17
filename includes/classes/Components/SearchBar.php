@@ -76,7 +76,11 @@ final class SearchBar {
 	 */
 	public function render_search_bar_block( $block_content = '', $block = [] ) {
 		if ( isset( $block['blockName'] ) && 'core/search' === $block['blockName'] ) {
-			return $this->render_search_bar();
+			$use_yext = isset( $block['attrs']['useYextSearchBar'] ) ? $block['attrs']['useYextSearchBar'] : true;
+
+			if ( $use_yext ) {
+				return $this->render_search_bar();
+			}
 		}
 
 		return $block_content;

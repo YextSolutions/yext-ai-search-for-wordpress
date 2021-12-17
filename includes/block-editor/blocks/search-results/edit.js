@@ -1,22 +1,39 @@
-import Controls from './controls';
-
-const { answers_iframe_url } = YEXT_SETTINGS; // eslint-disable-line no-undef
+/**
+ * External dependencies
+ */
+import camelcaseKeys from 'camelcase-keys';
+import IframeResize from 'iframe-resizer/js/iframeResizer';
 
 /**
- * WordPress dependencies
+ * Internal dependencies
  */
+import Controls from './controls';
+
+// @ts-ignore
+const { wp, YEXT } = window;
+
+const { config } = YEXT.settings;
+const { answersIframeUrl } = camelcaseKeys(config);
+
 const { useBlockProps } = wp.blockEditor;
 const { __ } = wp.i18n;
-const { useState } = wp.element;
+const { useState, useRef, useEffect } = wp.element;
 const { Placeholder, Button } = wp.components;
 
 const Edit = (props) => {
-	const { attributes, setAttributes } = props;
+	const {
+		setAttributes,
+		attributes: { url = answersIframeUrl },
+	} = props;
 
-	const { url } = attributes;
 	const blockProps = useBlockProps();
+	const iframeRef = useRef(null);
+	const [pageUrl, setPageUrl] = useState(url);
 
-	const [pageUrl, setPageUrl] = useState(url ?? answers_iframe_url);
+	useEffect(() => {
+		IframeResize({ log: false }, iframeRef.current);
+	}, [url, pageUrl]);
+
 	return (
 		<>
 			<Controls {...props} />
@@ -28,7 +45,12 @@ const Edit = (props) => {
 						className="wp-block-embed"
 						instructions={__('Add search results url.', 'yext')}
 					>
-						<form>
+						<form
+							onSubmit={() => {
+								setAttributes({ url: pageUrl });
+								setPageUrl(pageUrl);
+							}}
+						>
 							<input
 								type="url"
 								value={pageUrl || ''}
@@ -37,15 +59,11 @@ const Edit = (props) => {
 									if (event) {
 										event.preventDefault();
 									}
+
 									setPageUrl(event.target.value);
 								}}
 							/>
-							<Button
-								isPrimary
-								onClick={() => {
-									setAttributes({ url: pageUrl });
-								}}
-							>
+							<Button type="submit" isPrimary>
 								{__('Submit', 'yext')}
 							</Button>
 						</form>
@@ -54,12 +72,11 @@ const Edit = (props) => {
 
 				{url && (
 					<iframe
+						ref={iframeRef}
 						title="Yext Search Results"
 						src={url}
-						height="500px"
-						width="100%"
 						frameBorder="0"
-						scrolling="no"
+						style={{ width: '1px', minWidth: '100%' }}
 					/>
 				)}
 			</div>

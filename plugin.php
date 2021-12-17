@@ -28,6 +28,7 @@ if ( file_exists( YEXT_PATH . 'vendor/autoload.php' ) ) {
 }
 
 // Include files.
+require_once YEXT_INC . '/utility.php';
 require_once YEXT_INC . '/core.php';
 require_once YEXT_INC . '/blocks.php';
 

@@ -5,3 +5,6 @@
 
 // Custom Blocks
 import './blocks/index';
+
+// HOCs
+import './hoc';

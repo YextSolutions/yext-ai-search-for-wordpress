@@ -61,11 +61,11 @@ final class Settings {
 	private $settings_fields;
 
 	/**
-	 * svg icon for menu
+	 * base64 encoded svg icon for menu
 	 *
 	 * @var string
 	 */
-	private $menu_icon = YEXT_URL . '/assets/images/menu-icon.svg';
+	private $menu_icon = 'data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ieWV4dC1sb2dvIiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgNzIwIDcyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIGQ9Ik0zNjAgMEMxNjEuMTggMCAwIDE2MS4xOCAwIDM2MHMxNjEuMTggMzYwIDM2MCAzNjAgMzYwLTE2MS4xOCAzNjAtMzYwUzU1OC44MiAwIDM2MCAwWm0wIDY5MS4yQzE3Ny4wOCA2OTEuMiAyOC44IDU0Mi45MiAyOC44IDM2MFMxNzcuMDggMjguOCAzNjAgMjguOCA2OTEuMiAxNzcuMDggNjkxLjIgMzYwIDU0Mi45MiA2OTEuMiAzNjAgNjkxLjJaIiBmaWxsPSJjdXJyZW50Q29sb3IiLz4KCTxwYXRoIGQ9Ik0zNzAuOCAzOTkuNmg2NC44djEyOS42aDI4LjhWMzk5LjZoNjQuOHYtMjguOEgzNzAuOHYyOC44Wm0tMzguMzctMzIuNEwyNzAgNDI5LjY0bC02Mi40My02Mi40NC0yMC4zNyAyMC4zN0wyNDkuNjQgNDUwbC02Mi40NCA2Mi40MyAyMC4zNyAyMC4zN0wyNzAgNDcwLjM2bDYyLjQzIDYyLjQ0IDIwLjM3LTIwLjM3TDI5MC4zNiA0NTBsNjIuNDQtNjIuNDMtMjAuMzctMjAuMzdabTExNS43Ny0xOGM0NC43MyAwIDgxLTM2LjI3IDgxLTgxaC0yOC44YzAgMjguODMtMjMuMzcgNTIuMi01Mi4yIDUyLjItOC4yMyAwLTE2LjAxLTEuOTEtMjIuOTMtNS4zbDkwLjkxLTkwLjkxYy0xNC40NC0yMi4yNS0zOS40OC0zNi45OC02Ny45OC0zNi45OC00NC43NCAwLTgxIDM2LjI3LTgxIDgxczM2LjI2IDgwLjk5IDgxIDgwLjk5Wm0wLTEzMy4yYzEwLjEyIDAgMTkuNTYgMi44OSAyNy41NiA3Ljg4bC03MS44OCA3MS44OGMtNC45OS04LTcuODctMTcuNDQtNy44Ny0yNy41Ni0uMDEtMjguODMgMjMuMzYtNTIuMiA1Mi4xOS01Mi4yWk0yNzAgMjU5LjU4bC02MC43NC03Mi4zOC0yMi4wNiAxOC41MSA2OC40IDgxLjUydjYxLjk3aDI4Ljh2LTYxLjk3bDY4LjQtODEuNTItMjIuMDYtMTguNTFMMjcwIDI1OS41OFoiIGZpbGw9ImN1cnJlbnRDb2xvciIvPgo8L3N2Zz4=';
 
 	/**
 	 * Return plugin options from the DB
@@ -103,9 +103,10 @@ final class Settings {
 		// Child sections for this tab
 		// Array of slug => title to display in front end
 		$child_sections = [
-			'button'       => __( 'Button', 'yext' ),
-			'autocomplete' => __( 'Autocomplete', 'yext' ),
-			'props'        => __( 'Create', 'yext' ),
+			'props'        => __( 'Display Settings', 'yext' ),
+			'style'        => __( 'Base Styles', 'yext' ),
+			'button'       => __( 'Button Styles', 'yext' ),
+			'autocomplete' => __( 'Autocomplete Styles', 'yext' ),
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
@@ -114,7 +115,6 @@ final class Settings {
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'admin_head', [ $this, 'print_css_variables' ], 10 );
 		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
@@ -128,7 +128,7 @@ final class Settings {
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
-			'yext-connector',
+			'yext',
 			[ $this, 'render_settings_page' ],
 			$this->menu_icon
 		);
@@ -142,8 +142,8 @@ final class Settings {
 		);
 		add_submenu_page(
 			'yext',
-			__( 'Wizard', 'yext' ),
-			__( 'Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
+			__( 'Setup Wizard', 'yext' ),
 			'manage_options',
 			'yext-wizard',
 			[ $this, 'render_wizard_page' ]
@@ -167,30 +167,35 @@ final class Settings {
 	/**
 	 * Add style variables
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public static function print_css_variables() {
 
+		$css             = '';
 		$settings        = self::get_settings();
 		$settings_fields = new SettingsFields( $settings );
 
-		if ( empty( $settings ) || ! isset( $settings_fields->fields ) ) {
-			return;
+		if ( ! isset( $settings_fields->fields ) ) {
+			return $css;
 		}
-		?>
-		<style>
-		:root {
-			<?php
-			foreach ( $settings_fields->fields as $field ) {
-				if ( $field->variable ) {
-					$value = isset( $field->parent_field ) && $field->parent_field ? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ] : $settings[ $field->section_id ][ $field->id ];
-					self::variable_values( $field->variable, $value );
+
+		$css .= ':root {';
+
+		foreach ( $settings_fields->fields as $field ) {
+			if ( $field->variable ) {
+				$value = isset( $field->parent_field ) && $field->parent_field
+					? $settings[ $field->section_id ][ $field->parent_field ][ $field->id ]
+					: $settings[ $field->section_id ][ $field->id ];
+
+				if ( $value ) {
+					$css .= self::variable_values( $field->variable, $value );
 				}
 			}
-			?>
 		}
-		</style>
-		<?php
+
+		$css .= '}';
+
+		return $css;
 	}
 
 	/**
@@ -217,7 +222,7 @@ final class Settings {
 		<div id="yext-settings">
 			<h2>
 				<?php
-					echo esc_html__( 'Yext connector', 'yext' );
+					echo esc_html__( 'Yext', 'yext' );
 				?>
 			</h2>
 			<form method="post" action="options.php">
@@ -258,27 +263,26 @@ final class Settings {
 	 */
 	public static function variable_values( $key, $value ) {
 		$pixel_value = [
-			'--yxt-base-radius',
-			'--yxt-base-spacing',
-			'--yxt-searchbar-text-font-weight',
-			'--yxt-searchbar-text-line-height',
+			'--yxt-searchbar-form-border-radius',
+			'--yxt-searchbar-text-font-size',
+			'--yxt-autocomplete-text-font-size',
 		];
 
 		if ( 'create' === $key ) {
-			return;
+			return '';
 		}
 
 		if ( is_array( $value ) ) {
 			foreach ( $value as $inner_key => $val ) {
 				$css = self::variable_values( $inner_key, $val, $key . '-' );
-				echo esc_html( $css );
+				return esc_html( $css );
 			}
 		} else {
 			if ( in_array( $key, $pixel_value ) ) {
 				$value = $value . 'px';
 			}
 
-			echo esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
+			return esc_html( sanitize_text_field( $key . ':' . $value . ';' ) );
 		}
 	}
 
@@ -337,44 +341,33 @@ final class Settings {
 	 */
 	public static function localized_settings() {
 		$settings = self::get_settings();
-		// TODO: review needed settings passed to FE
-		return array_merge( $settings['plugin'], $settings['search_bar'] );
-	}
 
-	/**
-	 * Generate CSS rules from settings
-	 * Used for wp_add_inline_style
-	 *
-	 * @return string
-	 * @see Yext\Core\styles()
-	 */
-	public static function get_inline_styles() {
-		$settings = self::get_settings();
-		// return if override styles is not enebled
-		if ( '1' !== $settings['search_bar']['use_custom_style'] ) {
-			return '';
+		if ( ! isset( $settings['plugin'] ) || ! isset( $settings['search_bar'] ) ) {
+			return $settings;
 		}
-		$css    = self::get_base_inline_css();
-		$search = [
-			"['search_bar']['bg_color']",
+
+		// Merge existing settings and new props
+		$props      = array_merge(
+			$settings['search_bar']['props'],
+			[
+				'redirect_url' => get_post_field(
+					'post_name',
+					$settings['search_results']['results_page']
+				),
+			]
+		);
+		$components = [
+			'search_bar' => array_merge(
+				$settings['search_bar'],
+				[
+					'props' => $props,
+				]
+			),
 		];
 
-		$replace = [
-			esc_html( $settings['search_bar']['bg_color'] ),
+		return [
+			'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
+			'components' => $components,
 		];
-
-		// TODO: review and update the css code
-		return str_replace( $search, $replace, $css );
-	}
-
-	/**
-	 * Get the css file used for templating the inline styles
-	 *
-	 * @return string
-	 */
-	public static function get_base_inline_css() {
-		ob_start();
-		include_once YEXT_INC . 'partials/inline-css.php';
-		return ob_get_clean();
 	}
 }

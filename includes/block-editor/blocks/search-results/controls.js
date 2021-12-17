@@ -1,6 +1,9 @@
+// @ts-ignore
+const { wp } = window;
+
 const { __ } = wp.i18n;
 const { BlockControls } = wp.blockEditor;
-const { Button } = wp.components;
+const { ToolbarButton } = wp.components;
 
 const Controls = (props) => {
 	const { setAttributes } = props;
@@ -8,14 +11,14 @@ const Controls = (props) => {
 	return (
 		<>
 			<BlockControls group="other">
-				<Button
+				<ToolbarButton
 					icon="edit"
 					onClick={() => {
 						setAttributes({ url: '' });
 					}}
 				>
 					{__('Replace', 'yext')}
-				</Button>
+				</ToolbarButton>
 			</BlockControls>
 		</>
 	);
