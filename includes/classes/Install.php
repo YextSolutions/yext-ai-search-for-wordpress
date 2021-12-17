@@ -44,13 +44,19 @@ final class Install {
 		if ( ! empty( Settings::get_settings() ) ) {
 			return;
 		}
-		// Get default settings
-		$response = wp_remote_get( YEXT_URL . '/includes/settings.json' );
 
-		if ( ! is_wp_error( $response ) ) {
-			$settings = wp_remote_retrieve_body( $response );
-			update_option( Settings::SETTINGS_NAME, json_decode( $settings, true ), false );
+		$settings = false;
+
+		// Register default settings
+		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+			$settings = file_get_contents( YEXT_INC . 'settings.json', false );
 		}
+
+		update_option(
+			'yext_plugin_settings',
+			$settings ? json_decode( $settings, true ) : [],
+			false
+		);
 	}
 
 	/**
@@ -79,9 +85,6 @@ final class Install {
 				'post_status'  => 'publish',
 				'post_title'   => __( 'Search results', 'yext' ),
 				'post_type'    => 'page',
-				'meta_input'   => [
-					'yext_results_template' => 1,
-				],
 			]
 		);
 
@@ -93,6 +96,9 @@ final class Install {
 					],
 				]
 			);
+
+			// Set custom post meta
+			update_post_meta( $page, 'yext_results_template', 1 );
 		}
 	}
 

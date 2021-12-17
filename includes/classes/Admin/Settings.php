@@ -90,7 +90,9 @@ final class Settings {
 	public static function update_settings( $settings ) {
 		// Merge current with new values
 		$new_settings = array_replace_recursive( self::get_settings(), $settings );
-		return update_option( static::SETTINGS_NAME, $new_settings );
+		update_option( static::SETTINGS_NAME, $new_settings, false );
+
+		return $new_settings;
 	}
 
 	/**

@@ -79,20 +79,8 @@ function init() {
  * @return void
  */
 function activate() {
-	$settings = false;
 
 	Install::instance()->run();
-
-	// Register default settings
-	if ( file_exists( YEXT_INC . 'settings.json' ) ) {
-		$settings = file_get_contents( YEXT_INC . 'settings.json', false );
-	}
-
-	update_option(
-		'yext_plugin_settings',
-		$settings ? json_decode( $settings, true ) : [],
-		false
-	);
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
