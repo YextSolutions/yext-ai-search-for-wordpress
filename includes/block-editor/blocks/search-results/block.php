@@ -25,7 +25,11 @@ function render( $atts ) {
 
 	// Use Plugin Settings value when empty
 	if ( ! $url && isset( $settings['plugin']['answers_iframe_url'] ) ) {
-		$url = $settings['plugin']['answers_iframe_url'];
+		$url = rtrim( $settings['plugin']['answers_iframe_url'] );
+	}
+
+	if ( false === strpos( $url, '/iframe.js' ) ) {
+		$url = untrailingslashit( rtrim( $url ) ) . '/iframe.js';
 	}
 
 	// Double check if there really is iFrame URL
@@ -39,7 +43,7 @@ function render( $atts ) {
 	// phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 	?>
 	<div id="answers-container" class="<?php echo esc_attr( $class ); ?>"></div>
-	<script src="<?php echo esc_url_raw( $url ); ?>/iframe.js"></script>
+	<script src="<?php echo esc_url_raw( $url ); ?>"></script>
 	<?php
 	// phpcs:enable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 
