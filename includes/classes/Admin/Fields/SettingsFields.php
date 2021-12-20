@@ -82,15 +82,6 @@ final class SettingsFields {
 				'title' => __( 'Answers iframe url', 'yext' ),
 				'type'  => 'InputField',
 			],
-			[
-				'id'      => 'answers_version',
-				'title'   => __( 'Answers version', 'yext' ),
-				'type'    => 'SelectField',
-				'options' => [
-					'v1' => __( 'Version 1.0', 'yext' ),
-					'v2' => __( 'Version 2.0', 'yext' ),
-				],
-			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
 	}
@@ -135,13 +126,6 @@ final class SettingsFields {
 				'help'   => '',
 			],
 			[
-				'id'       => 'color',
-				'parent'   => 'style',
-				'title'    => __( 'Text color', 'yext' ),
-				'type'     => 'ColorField',
-				'variable' => '--yxt-searchbar-text-color',
-			],
-			[
 				'id'       => 'font_size',
 				'parent'   => 'style',
 				'title'    => __( 'Font size', 'yext' ),
@@ -167,6 +151,20 @@ final class SettingsFields {
 				'variable' => '--yxt-searchbar-text-line-height',
 			],
 			[
+				'id'       => 'border_radius',
+				'parent'   => 'style',
+				'title'    => __( 'Border radius', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-searchbar-form-border-radius',
+			],
+			[
+				'id'       => 'color',
+				'parent'   => 'style',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-text-color',
+			],
+			[
 				'id'       => 'background_color',
 				'parent'   => 'style',
 				'title'    => __( 'Background color', 'yext' ),
@@ -179,13 +177,6 @@ final class SettingsFields {
 				'title'    => __( 'Border color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-searchbar-form-outline-color-base',
-			],
-			[
-				'id'       => 'border_radius',
-				'parent'   => 'style',
-				'title'    => __( 'Border radius', 'yext' ),
-				'type'     => 'NumberField',
-				'variable' => '--yxt-searchbar-form-border-radius',
 			],
 			[
 				'id'       => 'background_color',
@@ -214,34 +205,6 @@ final class SettingsFields {
 				'title'    => __( 'Focus text color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-searchbar-button-text-color-hover',
-			],
-			[
-				'id'       => 'text_color',
-				'parent'   => 'autocomplete',
-				'title'    => __( 'Text color', 'yext' ),
-				'type'     => 'ColorField',
-				'variable' => '--yxt-autocomplete-text-color',
-			],
-			[
-				'id'       => 'background_color',
-				'parent'   => 'autocomplete',
-				'title'    => __( 'Background color', 'yext' ),
-				'type'     => 'ColorField',
-				'variable' => '--yxt-autocomplete-background-color',
-			],
-			[
-				'id'       => 'option_hover_background_color',
-				'parent'   => 'autocomplete',
-				'title'    => __( 'Option hover background color', 'yext' ),
-				'type'     => 'ColorField',
-				'variable' => '--yxt-autocomplete-option-hover-background-color',
-			],
-			[
-				'id'       => 'separator_color',
-				'parent'   => 'autocomplete',
-				'title'    => __( 'Separator color', 'yext' ),
-				'type'     => 'ColorField',
-				'variable' => '--yxt-autocomplete-separator-color',
 			],
 			[
 				'id'       => 'font_size',
@@ -278,6 +241,34 @@ final class SettingsFields {
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-autocomplete-prompt-header-font-weight',
+			],
+			[
+				'id'       => 'text_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-text-color',
+			],
+			[
+				'id'       => 'background_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-background-color',
+			],
+			[
+				'id'       => 'option_hover_background_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Option hover background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-option-hover-background-color',
+			],
+			[
+				'id'       => 'separator_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Separator color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-separator-color',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_BAR_SECTION_NAME );

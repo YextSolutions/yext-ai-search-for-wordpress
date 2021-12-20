@@ -1,8 +1,33 @@
+/* eslint-disable no-use-before-define */
+
+import merge from 'deepmerge';
+import apiFetch from '@wordpress/api-fetch';
+import { getQueryArg, hasQueryArg } from '@wordpress/url';
+
 const HIDDEN_STEP_CLASSNAME = 'yext-wizard__step--hidden';
 const ACTIVE_STEP_CLASSNAME = 'yext-wizard__step--active';
 
 const COMPLETED_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--complete';
 const ACTIVE_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--active';
+
+const buildPayload = (formData) => {
+	const REGEX = /(?<=\[).+?(?=\])/g;
+
+	return !(formData instanceof FormData)
+		? {}
+		: // @ts-ignore
+		  [...formData].reduce((payload, current) => {
+				const [name, value] = current;
+
+				const parts = name.match(REGEX);
+				const object = parts.reduceRight(
+					(obj, next, index) => ({ [next]: index + 1 === parts.length ? value : obj }),
+					{},
+				);
+
+				return merge(payload, object);
+		  }, {});
+};
 
 /**
  * Setup Wizard
@@ -29,23 +54,35 @@ const initWizard = () => {
 	}
 
 	const { step } = yextWizard.dataset;
-	const STATE = new Proxy(
-		{ step: Number(step) },
-		{
-			set: (object, prop, value) => {
-				if (prop === 'step') {
-					object[prop] = value;
+	const INITIAL_STATE = {
+		step: Number(step),
+		payload: {},
+	};
 
-					/* eslint-disable-next-line no-use-before-define */
-					updateWizard();
-				}
+	const actions = (action) => {
+		switch (action) {
+			case 'step':
+				updateWizard();
+				updateStorage();
+				updateSearchParams();
+				break;
+			case 'payload':
+				updateSettings();
+				break;
+			default:
+				break;
+		}
+	};
 
-				object[prop] = value;
+	const STATE = new Proxy(INITIAL_STATE, {
+		set: (object, prop, value) => {
+			object[prop] = value;
 
-				return true;
-			},
+			actions(prop);
+
+			return true;
 		},
-	);
+	});
 
 	/**
 	 * @type {HTMLElement[]}
@@ -60,12 +97,14 @@ const initWizard = () => {
 	/**
 	 * @type {HTMLElement[]}
 	 */
-	const BACK_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__footer-back'));
+	const BACK_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__back'));
 
 	/**
 	 * @type {HTMLElement[]}
 	 */
-	const NEXT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__footer-next'));
+	const NEXT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__next'));
+
+	const SUBMIT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__submit'));
 
 	/**
 	 * Hide all steps
@@ -87,6 +126,24 @@ const initWizard = () => {
 
 		STEPS[index].classList.remove(HIDDEN_STEP_CLASSNAME);
 		STEPS[index].classList.add(ACTIVE_STEP_CLASSNAME);
+	}
+
+	function getCurrentStep() {
+		if (hasQueryArg(window.location.href, 'step')) {
+			return getQueryArg(window.location.href, 'step');
+		}
+
+		if (localStorage.getItem('yext_wizard_step') !== null) {
+			return localStorage.getItem('yext_wizard_step');
+		}
+
+		return 0;
+	}
+
+	function init() {
+		const currentStep = getCurrentStep();
+
+		STATE.step = Number(currentStep);
 	}
 
 	/**
@@ -127,6 +184,31 @@ const initWizard = () => {
 
 		const { progressId } = STEPS[currentStep].dataset;
 		updateProgressBar(Number(progressId));
+	}
+
+	function updateSearchParams() {
+		const {
+			location: { hash, host, pathname, protocol },
+		} = window;
+		const params = new URLSearchParams(window.location.search);
+		params.set('step', String(STATE.step));
+		const url = `${protocol}//${host}${pathname}?${params.toString()}${hash}`;
+
+		window.history.replaceState({ path: url }, '', url);
+	}
+
+	function updateStorage() {
+		localStorage.setItem('yext_wizard_step', String(STATE.step));
+	}
+
+	function updateSettings() {
+		apiFetch({
+			path: '/wp-json/yext/v1/wizard',
+			method: 'POST',
+			data: STATE.payload,
+		}).catch((error) => {
+			console.error(error); // eslint-disable-line no-console
+		});
 	}
 
 	/**
@@ -175,6 +257,17 @@ const initWizard = () => {
 	NEXT_BUTTONS.forEach((button) => {
 		button.addEventListener('click', next);
 	});
+	SUBMIT_BUTTONS.forEach((button) => {
+		button.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			STATE.payload = {
+				settings: buildPayload(new FormData(FORM)),
+			};
+		});
+	});
+
+	init();
 };
 
 export default initWizard;

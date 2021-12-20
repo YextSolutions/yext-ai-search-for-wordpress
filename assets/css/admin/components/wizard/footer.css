@@ -1,0 +1,59 @@
+.yext-wizard__footer {
+	background: var(--yxt-color-brand-white);
+	bottom: 0;
+	box-shadow: 0 -1px 30px 4px rgba(51, 51, 51, 0.1);
+	display: flex;
+	justify-content: flex-end;
+	left: 0;
+	margin-left: 10rem;
+	padding: 1rem 2.5rem;
+	position: fixed;
+	right: 0;
+	z-index: 1;
+
+	@media only screen and (max-width: 960px) {
+
+		@nest .auto-fold & {
+			margin-left: 2.25rem;
+		}
+	}
+
+	@nest .yext-wizard[data-progress-id="0"] & {
+		display: none;
+	}
+
+	@nest .yext-wizard[data-progress-id="4"] & {
+		display: none;
+	}
+}
+
+.yext-wizard__footer-back {
+	align-items: center;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	margin-right: 2rem;
+	padding: 0 0.75rem;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	& svg {
+		margin-right: 0.5rem;
+	}
+}
+
+body[class*="yext_page"] .yext-wizard__submit {
+	background: var(--yxt-color-brand-primary);
+	border-radius: 1.875rem;
+	color: #fff; /* stylelint-disable sh-waqar/declaration-use-variable */
+	font-size: var(--yxt-font-size-md-lg);
+	font-weight: var(--yxt-font-weight-bold);
+	letter-spacing: 1.5px;
+	line-height: var(--yxt-line-height-lg);
+	padding: 0.625rem 2.5rem;
+	text-transform: uppercase;
+}
