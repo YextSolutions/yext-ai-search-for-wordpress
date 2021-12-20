@@ -210,6 +210,9 @@ const initWizard = () => {
 			data: STATE.payload,
 		}).catch((error) => {
 			console.error(error); // eslint-disable-line no-console
+			window.alert(
+				"There was an error updating the settings. Please make sure you're logged in and have the right authorization",
+			);
 		});
 	}
 
