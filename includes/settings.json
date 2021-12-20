@@ -3,13 +3,13 @@
 		"api_key": "",
 		"experience_key": "",
 		"business_id": "",
-		"answers_iframe_url": "",
-		"experience_version": "1.0",
-		"answers_version"   : "v2"
+		"answers_iframe_url": ""
 	},
 	"search_bar": {
+		"core": {
+			"override_core_search": "0"
+		},
 		"props": {
-			"override_core_search": "1",
 			"placeholder_text": "",
 			"submit_text": "Submit",
 			"label_text": "Conduct a search",

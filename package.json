@@ -29,8 +29,10 @@
   "dependencies": {
     "@10up/component-accordion": "^2.0.1",
     "@10up/component-tabs": "^2.0.0",
+    "@wordpress/api-fetch": "^5.2.6",
     "@wordpress/url": "^3.3.1",
     "camelcase-keys": "^6.2.2",
+    "deepmerge": "^4.2.2",
     "dompurify": "^2.3.3",
     "iframe-resizer": "^4.3.2",
     "lodash.kebabcase": "^4.1.1",
