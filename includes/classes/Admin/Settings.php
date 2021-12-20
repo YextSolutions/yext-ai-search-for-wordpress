@@ -11,7 +11,6 @@ use Yext\Admin\Fields\SettingsFields;
 use Yext\Admin\Tabs\Tab;
 use Yext\Traits\Singleton;
 
-
 /**
  * Settings for the plugin
  */
@@ -78,6 +77,25 @@ final class Settings {
 	}
 
 	/**
+	 * Update plugin options
+	 * The param '$settings' must follow the settings array structure in order to not break
+	 * how the settings are stored.
+	 * Ex:
+	 *    For updating the 'redirect_url' on the 'search_results' settings group the following format is expected
+	 *    $settings = [ 'search_results' =>  [ 'redirect_url' => '111', ] ]
+	 *
+	 * @param array $settings New settings, partial or full array of settings
+	 * @return bool
+	 */
+	public static function update_settings( $settings ) {
+		// Merge current with new values
+		$new_settings = array_replace_recursive( self::get_settings(), $settings );
+		update_option( static::SETTINGS_NAME, $new_settings, false );
+
+		return $new_settings;
+	}
+
+	/**
 	 * Settings page Setup
 	 */
 	public function setup() {
@@ -114,6 +132,7 @@ final class Settings {
 		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
+		add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
 		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
@@ -162,6 +181,51 @@ final class Settings {
 			[ $this, 'sanitize_setting_values' ] // sanitize_callback
 		);
 		$this->settings_fields = new SettingsFields( $this->settings );
+	}
+
+	/**
+	 * Registers the API endpoint to save setup wizard
+	 */
+	public function rest_api_init() {
+		$permission = current_user_can( 'manage_options' );
+
+		register_rest_route(
+			'yext/v1',
+			'wizard',
+			[
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'handle_setup_wizard' ],
+				'permission_callback' => function () use ( $permission ) {
+					return $permission;
+				},
+				'args'                => [
+					'settings' => [
+						'validate_callback' => function ( $param ) {
+							return ! empty( $param );
+						},
+						'required'          => true,
+					],
+				],
+			]
+		);
+	}
+
+	/**
+	 * Handles the setup wizard settings
+	 *
+	 * @param \WP_REST_Request $request Rest request
+	 * @return array
+	 */
+	public function handle_setup_wizard( $request ) {
+		$settings = $request->get_param( 'settings' );
+
+		if ( empty( $settings ) || ! is_array( $settings ) ) {
+			return new \WP_Error( 400 );
+		}
+
+		$updated_settings = $this->update_settings( $settings );
+
+		return $updated_settings;
 	}
 
 	/**

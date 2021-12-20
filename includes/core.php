@@ -8,8 +8,11 @@
 namespace Yext\Core;
 
 use \WP_Error;
+use \Yext\Install;
+use \Yext\Uninstall;
 use \Yext\Components\SearchBar;
 use \Yext\Admin\Settings;
+use \Yext\Templates\SearchPageTemplate;
 use \Yext\Utility;
 
 /**
@@ -60,6 +63,10 @@ function init() {
 	$admin_settings = Settings::instance();
 	$admin_settings->setup();
 
+	// register Yext custom search template
+	$search_template = SearchPageTemplate::instance();
+	$search_template->setup();
+
 	// initialize search bar
 	$search_bar = SearchBar::instance();
 	$search_bar->setup();
@@ -73,18 +80,8 @@ function init() {
  * @return void
  */
 function activate() {
-	$settings = false;
 
-	// Register default settings
-	if ( file_exists( YEXT_INC . 'settings.json' ) ) {
-		$settings = file_get_contents( YEXT_INC . 'settings.json', false );
-	}
-
-	update_option(
-		'yext_plugin_settings',
-		$settings ? json_decode( $settings, true ) : [],
-		false
-	);
+	Install::instance()->run();
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
@@ -99,7 +96,7 @@ function activate() {
  * @return void
  */
 function deactivate() {
-
+	Uninstall::run();
 }
 
 
@@ -229,7 +226,7 @@ function admin_scripts( $page ) {
 		wp_enqueue_script(
 			'yext-admin',
 			script_url( 'admin', 'admin' ),
-			[],
+			Utility\get_asset_info( 'admin', 'version' ),
 			YEXT_VERSION,
 			true
 		);
