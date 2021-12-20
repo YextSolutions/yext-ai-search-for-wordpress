@@ -112,7 +112,7 @@ $search_results_settings = new Tab( Settings::SEARCH_RESULTS_SECTION_NAME, '' );
 	</div>
 
 	<form class="yext-wizard__form" method="post" action="options.php">
-		<div class="yext-wizard__step yext-wizard__step--active" data-progress-id="0">
+		<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="0">
 			<div class="yext-wizard__step-card">
 				<div class="yext-wizard__step-content yext-wizard__step-content--center">
 					<div class="yext-wizard__step-banner banner">

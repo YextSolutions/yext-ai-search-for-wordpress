@@ -10,6 +10,8 @@ const ACTIVE_STEP_CLASSNAME = 'yext-wizard__step--active';
 const COMPLETED_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--complete';
 const ACTIVE_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--active';
 
+const REST_API_ROUTE = '/wp-json/yext/v1/settings';
+
 const buildPayload = (formData) => {
 	const REGEX = /(?<=\[).+?(?=\])/g;
 
@@ -203,7 +205,7 @@ const initWizard = () => {
 
 	function updateSettings() {
 		apiFetch({
-			path: '/wp-json/yext/v1/wizard',
+			path: REST_API_ROUTE,
 			method: 'POST',
 			data: STATE.payload,
 		}).catch((error) => {

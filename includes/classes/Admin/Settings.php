@@ -191,9 +191,9 @@ final class Settings {
 
 		register_rest_route(
 			'yext/v1',
-			'wizard',
+			'settings',
 			[
-				'methods'             => 'GET',
+				'methods'             => 'POST',
 				'callback'            => [ $this, 'handle_setup_wizard' ],
 				'permission_callback' => function () use ( $permission ) {
 					return $permission;
@@ -217,7 +217,7 @@ final class Settings {
 	 * @return array
 	 */
 	public function handle_setup_wizard( $request ) {
-		$settings = $request->get_param( 'settings' );
+		$settings = $request['settings'];
 
 		if ( empty( $settings ) || ! is_array( $settings ) ) {
 			return new \WP_Error( 400 );
