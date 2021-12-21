@@ -44,5 +44,8 @@
 	"search_results": {
 		"redirect_url": "0",
 		"results_page": ""
+	},
+	"wizard": {
+		"live" : false
 	}
 }

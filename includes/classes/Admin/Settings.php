@@ -205,6 +205,12 @@ final class Settings {
 						},
 						'required'          => true,
 					],
+					'isLive' => [
+						'validate_callback' => function ( $param ) {
+							return ! empty( $param );
+						},
+						'required'          => false,
+					],
 				],
 			]
 		);
@@ -218,9 +224,14 @@ final class Settings {
 	 */
 	public function handle_setup_wizard( $request ) {
 		$settings = $request['settings'];
+		$is_live  = $request['isLive'];
 
 		if ( empty( $settings ) || ! is_array( $settings ) ) {
 			return new \WP_Error( 400 );
+		}
+
+		if ( $is_live ) {
+			$settings = array_merge( [ 'wizard' => [ 'live' => true ] ], $settings );
 		}
 
 		$updated_settings = $this->update_settings( $settings );
