@@ -61,7 +61,7 @@ const initWizard = () => {
 		payload: {},
 	};
 
-	const actions = (action) => {
+	const dispatch = (action) => {
 		switch (action) {
 			case 'step':
 				updateWizard();
@@ -80,7 +80,7 @@ const initWizard = () => {
 		set: (object, prop, value) => {
 			object[prop] = value;
 
-			actions(prop);
+			dispatch(prop);
 
 			return true;
 		},
@@ -140,6 +140,18 @@ const initWizard = () => {
 		}
 
 		return 0;
+	}
+
+	/**
+	 * Gather a list of required fields that have missing values
+	 *
+	 * @param {HTMLElement} target Field group
+	 * @return {HTMLInputElement[]} Array of input elements
+	 */
+	function checkRequiredFields(target) {
+		const fields = Array.from(target.querySelectorAll('input'));
+
+		return fields.filter((input) => input.required && !input.value.trim().length);
 	}
 
 	function init() {
@@ -209,7 +221,9 @@ const initWizard = () => {
 			method: 'POST',
 			data: STATE.payload,
 		}).catch((error) => {
-			console.error(error); // eslint-disable-line no-console
+			/* eslint-disable-next-line no-console */
+			console.error(error);
+			/* eslint-disable-next-line no-alert */
 			window.alert(
 				"There was an error updating the settings. Please make sure you're logged in and have the right authorization",
 			);
@@ -217,13 +231,33 @@ const initWizard = () => {
 	}
 
 	/**
+	 * Add an error state to a list of fields
+	 *
+	 * @param {HTMLInputElement[]} fields HTML input elements
+	 */
+	function updateRequiredFields(fields) {
+		if (Array.isArray(fields)) {
+			fields.forEach((input) => {
+				if (
+					input instanceof HTMLInputElement &&
+					input.required &&
+					!input.value.trim().length
+				) {
+					input.classList.add('error');
+				} else {
+					input.classList.remove('error');
+				}
+			});
+		}
+	}
+
+	/**
 	 * Go to next step
 	 *
 	 * @param {Event} event Submit|Click Event
-	 *
 	 * @return {void}
 	 */
-	const next = (event) => {
+	const maybeNext = (event) => {
 		event.preventDefault();
 
 		const currentStep = Number(STATE.step);
@@ -232,7 +266,14 @@ const initWizard = () => {
 			return;
 		}
 
-		STATE.step = currentStep + 1;
+		const missingFields = checkRequiredFields(STEPS[currentStep]);
+
+		if (!missingFields.length) {
+			updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
+			STATE.step = currentStep + 1;
+		} else {
+			updateRequiredFields(missingFields);
+		}
 	};
 
 	/**
@@ -255,12 +296,12 @@ const initWizard = () => {
 	};
 
 	// Add event listeners
-	FORM.addEventListener('submit', next);
+	FORM.addEventListener('submit', maybeNext);
 	BACK_BUTTONS.forEach((button) => {
 		button.addEventListener('click', back);
 	});
 	NEXT_BUTTONS.forEach((button) => {
-		button.addEventListener('click', next);
+		button.addEventListener('click', maybeNext);
 	});
 	SUBMIT_BUTTONS.forEach((button) => {
 		button.addEventListener('click', (event) => {
@@ -272,6 +313,7 @@ const initWizard = () => {
 		});
 	});
 
+	// Initialize
 	init();
 };
 

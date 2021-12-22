@@ -35,6 +35,7 @@ class InputField extends AbstractField {
 	public function render() {
 		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
+		$required = isset( $this->required ) ? $this->required : false;
 		printf(
 			'<input
 				class="regular-text"
@@ -43,11 +44,12 @@ class InputField extends AbstractField {
 				id="%s"
 				value="%s"
 				data-variable="%s"
-				autocomplete="off">',
+				autocomplete="off"%s>',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
-			esc_attr( $variable )
+			esc_attr( $variable ),
+			esc_attr( $required ? ' required' : '' )
 		);
 	}
 }

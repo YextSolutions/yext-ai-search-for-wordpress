@@ -63,24 +63,28 @@ final class SettingsFields {
 	protected function plugin_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'api_key',
-				'title' => __( 'Api Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'api_key',
+				'title'    => __( 'Api Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
 			],
 			[
-				'id'    => 'experience_key',
-				'title' => __( 'Experience Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'experience_key',
+				'title'    => __( 'Experience Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
 			],
 			[
-				'id'    => 'business_id',
-				'title' => __( 'Business ID', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'business_id',
+				'title'    => __( 'Business ID', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
 			],
 			[
-				'id'    => 'answers_iframe_url',
-				'title' => __( 'Answers iframe url', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'answers_iframe_url',
+				'title'    => __( 'Answers iframe url', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
@@ -306,6 +310,7 @@ final class SettingsFields {
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
+			'required'   => $field_config['required'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 
