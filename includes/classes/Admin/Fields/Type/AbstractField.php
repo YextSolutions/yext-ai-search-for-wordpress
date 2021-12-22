@@ -68,6 +68,7 @@ abstract class AbstractField {
 		'section_id'   => '',
 		'variable'     => '',
 		'required'     => 'false',
+		'help'         => '',
 	];
 
 	/**
@@ -100,6 +101,7 @@ abstract class AbstractField {
 		$this->value        = $args['value'];
 		$this->variable     = $args['variable'];
 		$this->required     = $args['required'];
+		$this->help         = $args['help'];
 		$this->setup();
 	}
 

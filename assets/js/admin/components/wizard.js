@@ -309,6 +309,7 @@ const initWizard = () => {
 
 			STATE.payload = {
 				settings: buildPayload(new FormData(FORM)),
+				isLive: button.getAttribute('data-last-step'),
 			};
 		});
 	});

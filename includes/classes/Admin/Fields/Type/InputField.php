@@ -36,6 +36,15 @@ class InputField extends AbstractField {
 		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
 		$required = isset( $this->required ) ? $this->required : false;
+		$help     = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		printf(
 			'<input
 				class="regular-text"

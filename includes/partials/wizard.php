@@ -360,7 +360,7 @@ $search_results_settings = new Tab( Settings::SEARCH_RESULTS_SECTION_NAME, '' );
 					</div>
 				</div>
 				<div class="yext-wizard__step-footer">
-					<a href="#" class="yext-wizard__submit">
+					<a href="#" class="yext-wizard__submit" data-last-step="1">
 						<?php echo esc_html( 'Finish setup', 'yext' ); ?>
 					</a>
 					<button class="yext-wizard__footer-back yext-wizard__back">

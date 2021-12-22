@@ -44,6 +44,15 @@ class SelectField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
+		$help = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		printf(
 			'<select name="%s" id="%s">%s</select>',
 			esc_attr( $this->setting_name( $this->id ) ),

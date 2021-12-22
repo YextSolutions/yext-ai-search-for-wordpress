@@ -7,7 +7,6 @@
 
 namespace Yext\Admin\Fields;
 
-use Yext\Admin\Fields\Type\InputField;
 use Yext\Admin\Settings;
 
 /**
@@ -311,6 +310,7 @@ final class SettingsFields {
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
 			'required'   => $field_config['required'] ?? '',
+			'help'       => $field_config['help'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

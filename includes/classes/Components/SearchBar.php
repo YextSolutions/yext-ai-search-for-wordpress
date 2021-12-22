@@ -49,7 +49,7 @@ final class SearchBar {
 	public function setup() {
 		$this->settings = Settings::get_settings();
 
-		if ( $this->is_valid() ) {
+		if ( $this->is_valid() && $this->is_live() ) {
 			add_filter( 'get_search_form', [ $this, 'render_search_bar' ], 15 );
 			add_filter( 'render_block', [ $this, 'render_search_bar_block' ], 10, 2 );
 		}
@@ -87,12 +87,21 @@ final class SearchBar {
 	}
 
 	/**
+	 * Checked if user has finished the setup
+	 *
+	 * @return bool
+	 */
+	protected function is_live() {
+		return isset( $this->settings['wizard']['live'] ) && $this->settings['wizard']['live'];
+	}
+
+	/**
 	 * Is override search bar enabled
 	 *
 	 * @return bool
 	 */
 	protected function is_override_core_search_enabled() {
-		return isset( $this->settings['search_bar']['override_core_search'] ) && ( '1' === $this->settings['search_bar']['override_core_search'] );
+		return isset( $this->settings['search_bar']['core']['override_core_search'] ) && ( '1' === $this->settings['search_bar']['core']['override_core_search'] );
 	}
 
 	/**
