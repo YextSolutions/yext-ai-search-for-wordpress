@@ -306,6 +306,7 @@ final class SettingsFields {
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
+			'help'       => $field_config['help'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

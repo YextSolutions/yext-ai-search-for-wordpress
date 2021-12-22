@@ -47,12 +47,21 @@ class CheckboxField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
+		$help = isset( $this->help ) ? $this->help : '';
+
 		printf(
 			'<input type="checkbox" name="%s" value="%s" %s>',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->checkbox_default_value ),
 			checked( $this->value, 1, false )
 		);
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
 	}
 
 	/**
