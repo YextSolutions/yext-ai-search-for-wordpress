@@ -46,19 +46,19 @@ class SelectField extends AbstractField {
 	public function render() {
 		$help = isset( $this->help ) ? $this->help : '';
 
-		printf(
-			'<select name="%s" id="%s">%s</select>',
-			esc_attr( $this->setting_name( $this->id ) ),
-			esc_attr( $this->id ),
-			wp_kses( $this->options_html(), $this->allowed_html_tags() )
-		);
-
 		if ( $help ) {
 			printf(
 				'<p class="help-text">%s</p>',
 				wp_kses_post( $help )
 			);
 		}
+
+		printf(
+			'<select name="%s" id="%s">%s</select>',
+			esc_attr( $this->setting_name( $this->id ) ),
+			esc_attr( $this->id ),
+			wp_kses( $this->options_html(), $this->allowed_html_tags() )
+		);
 	}
 
 	/**
