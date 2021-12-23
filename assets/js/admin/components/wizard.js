@@ -29,7 +29,7 @@ const buildPayload = (formData) => {
 					const parts = name.match(REGEX);
 					const object = parts.reduceRight(
 						(obj, next, index) => ({
-							[next]: index + 1 === parts.length ? value : obj,
+							[next]: index + 1 === parts.length ? value.trim() : obj,
 						}),
 						{},
 					);
@@ -57,7 +57,7 @@ const initWizard = () => {
 	/**
 	 * @type {HTMLFormElement}
 	 */
-	const FORM = yextWizard.querySelector('.yext-wizard__form');
+	const FORM = yextWizard.querySelector('.yext-settings__form');
 
 	if (!FORM) {
 		return;
@@ -111,8 +111,6 @@ const initWizard = () => {
 	 * @type {HTMLElement[]}
 	 */
 	const NEXT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__next'));
-
-	const SUBMIT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__submit'));
 
 	/**
 	 * Hide all steps
@@ -246,17 +244,29 @@ const initWizard = () => {
 		const currentStep = Number(STATE.step);
 
 		if (currentStep + 1 === STEPS.length) {
+			// Last step was clicked, not sure what to do here yet.
 			return;
 		}
 
 		const missingFields = checkRequiredFields(STEPS[currentStep]);
 
-		if (!missingFields.length) {
-			updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
-			STATE.step = currentStep + 1;
-		} else {
+		if (missingFields.length) {
 			updateRequiredFields(missingFields);
+			return;
 		}
+
+		updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
+
+		STATE.step = currentStep + 1;
+
+		STATE.payload = {
+			settings: merge(buildPayload(new FormData(FORM)), {
+				wizard: {
+					current_step: Number(STATE.step),
+					live: Number(STATE.step) + 1 === STEPS.length,
+				},
+			}),
+		};
 	};
 
 	/**
@@ -276,6 +286,15 @@ const initWizard = () => {
 		}
 
 		STATE.step = currentStep - 1;
+
+		STATE.payload = {
+			settings: merge(buildPayload(new FormData(FORM)), {
+				wizard: {
+					current_step: Number(STATE.step),
+					live: Number(STATE.step) + 1 === STEPS.length,
+				},
+			}),
+		};
 	};
 
 	// Add event listeners
@@ -285,20 +304,6 @@ const initWizard = () => {
 	});
 	NEXT_BUTTONS.forEach((button) => {
 		button.addEventListener('click', maybeNext);
-	});
-	SUBMIT_BUTTONS.forEach((button) => {
-		button.addEventListener('click', (event) => {
-			event.preventDefault();
-
-			STATE.payload = {
-				settings: merge(buildPayload(new FormData(FORM)), {
-					wizard: {
-						current_step: Number(STATE.step),
-						live: Number(STATE.step) + 1 === STEPS.length,
-					},
-				}),
-			};
-		});
 	});
 
 	// Initialize

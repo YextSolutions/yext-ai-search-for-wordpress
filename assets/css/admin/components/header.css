@@ -1,15 +1,38 @@
-.yext-wizard__header {
+.yext-settings__header {
 	align-items: center;
 	background: var(--yxt-color-brand-white);
 	display: flex;
 	height: 3.75rem;
 	justify-content: space-between;
-	margin-left: calc(-1 * 2.5rem);
-	margin-right: calc(-1 * 2.5rem);
+	left: 0;
+	margin-left: 10rem;
 	padding: 0.5rem 1.25rem;
+	position: fixed;
+	right: 0;
+	top: var(--wp-admin-header-height);
+	z-index: 3;
+
+	@nest .folded & {
+		margin-left: 2.25rem;
+	}
+
+	@media only screen and (max-width: 960px) {
+
+		@nest .auto-fold & {
+			margin-left: 2.25rem;
+		}
+	}
+
+	@media screen and (max-width: 782px) {
+		margin-left: 0 !important;
+
+		@nest .wp-responsive-open & {
+			margin-left: 11.875rem !important;
+		}
+	}
 }
 
-.yext-wizard__header-logo {
+.yext-settings__header-logo {
 	align-items: center;
 	display: flex;
 
@@ -24,7 +47,7 @@
 	}
 }
 
-.yext-wizard__header-menu {
+.yext-settings__header-menu {
 	display: flex;
 
 	& button {

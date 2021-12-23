@@ -1,10 +1,9 @@
-/* stylelint-disable sh-waqar/declaration-use-variable */
-
-.yext-wizard {
+.yext-settings {
 	font-family: Poppins, sans-serif;
 	margin-bottom: 5rem;
 	padding-left: 1.375rem;
 	padding-right: 2.625rem;
+	padding-top: calc(76px);
 
 	& h1,
 	& h2,
@@ -13,11 +12,8 @@
 	& h5,
 	& h6,
 	& p,
-	& svg {
-		color: #000;
+	& svg,
+	& label, {
+		color: var(--c-black);
 	}
-}
-
-.yext-wizard__form {
-	padding-top: 2.5rem;
 }

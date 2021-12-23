@@ -290,8 +290,9 @@ final class SettingsFields {
 		$fields = [
 			[
 				'id'    => 'results_page',
-				'title' => __( 'Search results page', 'yext' ),
+				'title' => __( 'Search Results Page', 'yext' ),
 				'type'  => 'SelectPagesField',
+				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
