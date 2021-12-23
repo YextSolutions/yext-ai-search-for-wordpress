@@ -155,14 +155,17 @@ final class Settings {
 	 * @return void
 	 */
 	public function add_plugin_page() {
+		$is_live = isset( $this->settings['wizard'] ) && isset( $this->settings['wizard']['live'] ) && $this->settings['wizard']['live'];
 		add_menu_page(
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
 			'yext',
-			[ $this, 'render_settings_page' ],
+			$is_live ? [ $this, 'render_settings_page' ] : [ $this, 'render_wizard_page' ],
 			$this->menu_icon
 		);
+
+		// For development purposes only. Remove these menu items before launch
 		add_submenu_page(
 			'yext',
 			__( 'Settings', 'yext' ),
