@@ -230,6 +230,11 @@ function admin_scripts( $page ) {
 			YEXT_VERSION,
 			true
 		);
+		wp_localize_script(
+			'yext-admin',
+			'YEXT',
+			[ 'settings' => Settings::get_settings() ]
+		);
 	}
 }
 

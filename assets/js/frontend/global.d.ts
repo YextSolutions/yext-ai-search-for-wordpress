@@ -7,14 +7,12 @@
  * @property {import('./types').YextComponents} components Components.
  */
 
-declare global {
-	interface Window {
-		YEXT: {
-			settings: YextPluginSettings;
-		};
-		ANSWERS: {
-			init: Function;
-		};
-		TemplateBundle: Object;
-	}
+interface Window {
+	YEXT: {
+		settings: YextPluginSettings;
+	};
+	ANSWERS: {
+		init: Function;
+	};
+	TemplateBundle: Object;
 }

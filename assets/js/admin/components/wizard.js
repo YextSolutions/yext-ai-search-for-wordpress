@@ -2,7 +2,10 @@
 
 import merge from 'deepmerge';
 import apiFetch from '@wordpress/api-fetch';
-import { getQueryArg, hasQueryArg } from '@wordpress/url';
+
+const {
+	YEXT: { settings: PLUGIN_SETTINGS },
+} = window;
 
 const HIDDEN_STEP_CLASSNAME = 'yext-wizard__step--hidden';
 const ACTIVE_STEP_CLASSNAME = 'yext-wizard__step--active';
@@ -16,19 +19,24 @@ const buildPayload = (formData) => {
 	const REGEX = /(?<=\[).+?(?=\])/g;
 
 	return !(formData instanceof FormData)
-		? {}
-		: // @ts-ignore
-		  [...formData].reduce((payload, current) => {
-				const [name, value] = current;
+		? PLUGIN_SETTINGS
+		: merge(
+				PLUGIN_SETTINGS,
+				// @ts-ignore
+				[...formData].reduce((payload, current) => {
+					const [name, value] = current;
 
-				const parts = name.match(REGEX);
-				const object = parts.reduceRight(
-					(obj, next, index) => ({ [next]: index + 1 === parts.length ? value : obj }),
-					{},
-				);
+					const parts = name.match(REGEX);
+					const object = parts.reduceRight(
+						(obj, next, index) => ({
+							[next]: index + 1 === parts.length ? value : obj,
+						}),
+						{},
+					);
 
-				return merge(payload, object);
-		  }, {});
+					return merge(payload, object);
+				}, {}),
+		  );
 };
 
 /**
@@ -65,8 +73,6 @@ const initWizard = () => {
 		switch (action) {
 			case 'step':
 				updateWizard();
-				updateStorage();
-				updateSearchParams();
 				break;
 			case 'payload':
 				updateSettings();
@@ -131,15 +137,7 @@ const initWizard = () => {
 	}
 
 	function getCurrentStep() {
-		if (hasQueryArg(window.location.href, 'step')) {
-			return getQueryArg(window.location.href, 'step');
-		}
-
-		if (localStorage.getItem('yext_wizard_step') !== null) {
-			return localStorage.getItem('yext_wizard_step');
-		}
-
-		return 0;
+		return Number(yextWizard.getAttribute('data-step'));
 	}
 
 	/**
@@ -198,21 +196,6 @@ const initWizard = () => {
 
 		const { progressId } = STEPS[currentStep].dataset;
 		updateProgressBar(Number(progressId));
-	}
-
-	function updateSearchParams() {
-		const {
-			location: { hash, host, pathname, protocol },
-		} = window;
-		const params = new URLSearchParams(window.location.search);
-		params.set('step', String(STATE.step));
-		const url = `${protocol}//${host}${pathname}?${params.toString()}${hash}`;
-
-		window.history.replaceState({ path: url }, '', url);
-	}
-
-	function updateStorage() {
-		localStorage.setItem('yext_wizard_step', String(STATE.step));
 	}
 
 	function updateSettings() {
@@ -308,8 +291,12 @@ const initWizard = () => {
 			event.preventDefault();
 
 			STATE.payload = {
-				settings: buildPayload(new FormData(FORM)),
-				isLive: button.getAttribute('data-last-step'),
+				settings: merge(buildPayload(new FormData(FORM)), {
+					wizard: {
+						current_step: Number(STATE.step),
+						live: Number(STATE.step) + 1 === STEPS.length,
+					},
+				}),
 			};
 		});
 	});
