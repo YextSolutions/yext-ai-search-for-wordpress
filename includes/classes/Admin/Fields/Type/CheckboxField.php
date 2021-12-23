@@ -50,8 +50,9 @@ class CheckboxField extends AbstractField {
 		$help = isset( $this->help ) ? $this->help : '';
 
 		printf(
-			'<input type="checkbox" name="%s" value="%s" %s>',
+			'<input type="checkbox" name="%s" id="%s" value="%s" %s>',
 			esc_attr( $this->setting_name( $this->id ) ),
+			esc_attr( $this->id ),
 			esc_attr( $this->checkbox_default_value ),
 			checked( $this->value, 1, false )
 		);

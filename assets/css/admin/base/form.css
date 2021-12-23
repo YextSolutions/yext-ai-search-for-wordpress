@@ -1,1 +1,78 @@
 /* Form Styles */
+
+.form-table {
+
+	& tbody {
+		width: 100%;
+	}
+
+	& tr {
+		display: flex;
+		flex-direction: column;
+		
+		&:not(:last-child) {
+			padding-bottom: 1.5rem;
+		}
+
+		&.required {
+
+			& label {
+	
+				&::after {
+					color: var(--yxt-color-error);
+					content: "*";
+					margin-left: 0.25rem;
+				}
+			}
+		}
+
+		& td {
+
+			& input {
+				margin-top: 0.5rem;
+			}
+		}
+	}
+
+	& th,
+	& td {
+		margin: 0;
+		padding: 0;
+	}
+
+	& input[type="text"] {
+		background: var(--yxt-color-background-highlight);
+		border: 1px solid var(--yxt-color-borders);
+		border-radius: 0;
+		width: 100%;
+
+		&.error {
+			border: 1px solid var(--yxt-color-error);
+		}
+	}
+
+	@nest .yext-child-settings-search_bar-core & {
+
+		& tr {
+			align-items: center;
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+			position: relative;
+		}
+
+		& td {
+			display: flex;
+
+			& input {
+				margin-top: 0;
+			}
+		}
+
+		& .help-text {
+			left: 0;
+			margin-top: 0.75rem;
+			position: absolute;
+			top: 1.25rem;
+		}
+	}
+}

@@ -63,27 +63,31 @@ final class SettingsFields {
 		$fields = [
 			[
 				'id'       => 'api_key',
-				'title'    => __( 'Api Key', 'yext' ),
+				'title'    => __( 'API Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
 				'id'       => 'experience_key',
 				'title'    => __( 'Experience Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
 				'id'       => 'business_id',
 				'title'    => __( 'Business ID', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
 				'id'       => 'answers_iframe_url',
-				'title'    => __( 'Answers iframe url', 'yext' ),
+				'title'    => __( 'Answers iFrame URL', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
@@ -99,9 +103,9 @@ final class SettingsFields {
 			[
 				'id'     => 'override_core_search',
 				'parent' => 'core',
-				'title'  => __( 'Override WordPress search', 'yext' ),
+				'title'  => __( 'Enable Global Search', 'yext' ),
 				'type'   => 'CheckboxField',
-				'help'   => __( 'Enabling this will transform the search form and search block into Yext search bars, and the search results template into a Yext search results block.', 'yext' ),
+				'help'   => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ),
 			],
 			[
 				'id'     => 'placeholder_text',
