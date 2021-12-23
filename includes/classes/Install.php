@@ -31,7 +31,6 @@ final class Install {
 	public function run() {
 		$this->save_default_settings();
 		$this->create_search_results_page();
-		add_action( 'admin_notices', [ $this, 'admin_notices' ], 4 );
 	}
 
 	/**

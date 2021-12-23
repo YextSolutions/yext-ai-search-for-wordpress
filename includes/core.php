@@ -27,6 +27,7 @@ function setup() {
 
 	add_action( 'init', $n( 'i18n' ) );
 	add_action( 'init', $n( 'init' ) );
+	add_action( 'admin_init', $n( 'redirect_after_install' ) );
 	add_action( 'wp_enqueue_scripts', $n( 'scripts' ) );
 	add_action( 'wp_enqueue_scripts', $n( 'styles' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_preconnect' ) );
@@ -81,11 +82,29 @@ function init() {
  */
 function activate() {
 
+	// Add option to signal redirect after activation
+	add_option( 'yext_plugin_activated', true );
+
 	Install::instance()->run();
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
 	flush_rewrite_rules();
+}
+
+/**
+ * Redirect to the setup wizard after installation
+ *
+ * @return void
+ */
+function redirect_after_install() {
+	$settings = get_option( 'yext_plugin_activated', false );
+
+	if ( $settings ) {
+		delete_option( 'yext_plugin_activated' );
+		wp_safe_redirect( admin_url( 'admin.php?page=yext' ) );
+		exit();
+	}
 }
 
 /**
@@ -344,3 +363,4 @@ function script_loader_tag( $tag, $handle ) {
 
 	return $tag;
 }
+
