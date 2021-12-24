@@ -1,8 +1,1 @@
 @import url("variables/index.css");
-
-html {
-	
-	@media screen and (max-width: 782px) {
-		--wp-admin-header-height: 46px;
-	}
-}

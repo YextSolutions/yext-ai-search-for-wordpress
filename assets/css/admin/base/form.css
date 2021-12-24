@@ -49,7 +49,13 @@
 		line-height: 1.5;
 	}
 
-	& input[type="text"] {
+	& .help-text {
+		font-size: var(--fs-small);
+	}
+
+	& input[type="text"],
+	& input[type="color"],
+	& input[type="number"] {
 		background: var(--yxt-color-background-highlight);
 		border: 1px solid var(--yxt-color-borders);
 		border-radius: 0;
@@ -60,6 +66,10 @@
 		&.error {
 			border: 1px solid var(--yxt-color-error);
 		}
+	}
+
+	& input[type="color"] {
+		cursor: pointer;
 	}
 
 	& input[type="checkbox"] {
@@ -105,6 +115,10 @@
 		}
 	}
 
+	@nest .yext-child-settings-search_bar-props & {
+		width: 80%;
+	}
+
 	@nest .yext-child-settings-search_bar-core & {
 
 		& tr {
@@ -135,6 +149,25 @@
 			left: 0;
 			margin-top: 0.75rem;
 			position: absolute;
+		}
+	}
+
+	@nest .accordion & {
+		margin-top: 0;
+
+		& tbody {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -1.25rem;
+			margin-right: -1.25rem;
+			width: auto;
+		}
+
+		& tr {
+			justify-content: flex-end;
+			margin: 1rem 1.25rem;
+			padding-bottom: 0;
+			width: calc(50% - 2.5rem);
 		}
 	}
 }

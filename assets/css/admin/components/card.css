@@ -31,17 +31,10 @@
 .yext-settings__card-header {
 	
 	& h2 {
-		font-size: 1.5rem;
-		font-weight: var(--yxt-font-weight-normal);
-		letter-spacing: 1px;
-		line-height: var(--yxt-line-height-lg);
 		margin: 0;
 	}
 
 	& p {
-		font-size: var(--yxt-font-size-md-lg);
-		font-weight: var(--yxt-font-weight-normal);
-		line-height: var(--yxt-line-height-lg);
 		margin: 1.25rem 0;
 	}
 }
@@ -66,5 +59,11 @@
 
 	& img {
 		border-radius: 0.5rem;
+		margin-left: auto;
 	}
+}
+
+.yext-settings__card-preview {
+	flex: 1;
+	margin-left: 1.25rem;
 }

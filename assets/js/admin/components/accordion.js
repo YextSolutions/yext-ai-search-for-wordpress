@@ -32,8 +32,10 @@ const initAccordion = () => {
 	// eslint-disable-next-line no-new
 	new Accordion('.accordion');
 
-	firstAccordion.querySelector('.accordion-header').classList.add('is-active');
-	firstAccordion.querySelector('.accordion-content').classList.add('is-active');
+	if (firstAccordion) {
+		firstAccordion.querySelector('.accordion-header').classList.add('is-active');
+		firstAccordion.querySelector('.accordion-content').classList.add('is-active');
+	}
 };
 
 export default initAccordion;

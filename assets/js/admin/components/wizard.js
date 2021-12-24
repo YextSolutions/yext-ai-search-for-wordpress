@@ -25,14 +25,16 @@ const buildPayload = (formData) => {
 				// @ts-ignore
 				[...formData].reduce((payload, current) => {
 					const [name, value] = current;
-
 					const parts = name.match(REGEX);
-					const object = parts.reduceRight(
-						(obj, next, index) => ({
-							[next]: index + 1 === parts.length ? value.trim() : obj,
-						}),
-						{},
-					);
+
+					const object = parts
+						? parts.reduceRight(
+								(obj, next, index) => ({
+									[next]: index + 1 === parts.length ? value.trim() : obj,
+								}),
+								{},
+						  )
+						: {};
 
 					return merge(payload, object);
 				}, {}),

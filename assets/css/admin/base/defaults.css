@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	color: var(--c-black);
+	font-family: var(--ff-body);
+	font-size: var(--fs-body);
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-weight: var(--fw-body);
+	line-height: var(--lh-body);
+}
+
+img,
+video,
+iframe {
+	display: block;
+	max-width: 100%;
+}
+
+img,
+svg {
+	vertical-align: middle;
+}
+
+svg {
+	color: var(--c-black);
+}

@@ -4,7 +4,7 @@
 
 .yext-settings__form-content {
 
-	& > h2:first-child {
+	& h2 {
 		display: none;
 	}
 }

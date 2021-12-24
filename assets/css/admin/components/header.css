@@ -1,6 +1,7 @@
 .yext-settings__header {
 	align-items: center;
 	background: var(--yxt-color-brand-white);
+	box-shadow: 0 -1px 30px 4px rgba(51, 51, 51, 0.1);
 	display: flex;
 	height: 3.75rem;
 	justify-content: space-between;

@@ -18,9 +18,11 @@ module.exports = ({ file, env }) => {
 	// Only load postcss-editor-styles plugin when we're processing the editor-style.css file.
 	if (path.basename(file) === 'admin-style.css') {
 		config.plugins['postcss-editor-styles'] = {
-			scopeTo: 'body[class*="yext_page"]',
+			scopeTo: 'body .yext-styles-wrapper',
+			remove: ['html', '.js'],
+			replace: ['body'],
 			ignore: [':root'],
-			tags: ['button', 'input', 'label', 'select', 'textarea', 'form'],
+			tags: ['a', 'button', 'input', 'label', 'select', 'textarea', 'form'],
 			tagSuffix: '',
 		};
 	}

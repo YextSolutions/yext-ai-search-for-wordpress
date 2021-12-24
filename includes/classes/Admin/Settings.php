@@ -294,37 +294,43 @@ final class Settings {
 	public function render_settings_page() {
 			settings_errors( static::SETTINGS_NAME );
 			settings_errors( 'general' );
+
+			// include_once YEXT_INC . 'partials/settings.php';
 		?>
-		<div id="yext-settings">
-			<h2>
-				<?php
-					echo esc_html__( 'Yext', 'yext' );
-				?>
-			</h2>
-			<form method="post" action="options.php">
-				<div class="tabs">
-					<div class="tab-control">
-						<ul class="tab-list" role="tablist">
-							<?php
-							foreach ( $this->tabs as $tab ) {
-								$tab->render_tab_nav();
-							}
-							?>
-						</ul>
-					</div>
-					<div class="tab-group">
+		<div class="yext-styles-wrapper">
+			<div class="yext-container">
+				<div id="yext-settings">
+					<h2>
 						<?php
-						foreach ( $this->tabs as $tab ) {
-							$tab->render_tab_content();
-						}
+							echo esc_html__( 'Yext', 'yext' );
 						?>
-					</div><!-- /.tab-group -->
-				</div><!-- /.tabs -->
-				<?php
-					settings_fields( 'yext_option_group' );
-					submit_button();
-				?>
-			</form>
+					</h2>
+					<form method="post" action="options.php">
+						<div class="tabs">
+							<div class="tab-control">
+								<ul class="tab-list" role="tablist">
+									<?php
+									foreach ( $this->tabs as $tab ) {
+										$tab->render_tab_nav();
+									}
+									?>
+								</ul>
+							</div>
+							<div class="tab-group">
+								<?php
+								foreach ( $this->tabs as $tab ) {
+									$tab->render_tab_content();
+								}
+								?>
+							</div><!-- /.tab-group -->
+						</div><!-- /.tabs -->
+						<?php
+							settings_fields( 'yext_option_group' );
+							submit_button();
+						?>
+					</form>
+				</div>
+			</div>
 		</div>
 		<?php
 	}

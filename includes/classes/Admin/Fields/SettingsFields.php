@@ -112,25 +112,28 @@ final class SettingsFields {
 				'parent' => 'props',
 				'title'  => __( 'Placeholder text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'submit_text',
 				'parent' => 'props',
 				'title'  => __( 'Submit text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'label_text',
 				'parent' => 'props',
 				'title'  => __( 'Label text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'css_class',
 				'parent' => 'props',
 				'title'  => __( 'CSS class', 'yext' ),
 				'type'   => 'InputField',
-				'help'   => '',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'       => 'font_size',
@@ -146,6 +149,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-searchbar-text-font-weight',
@@ -227,6 +232,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-autocomplete-text-font-weight',

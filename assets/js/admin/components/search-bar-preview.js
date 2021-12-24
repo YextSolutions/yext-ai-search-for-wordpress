@@ -8,13 +8,15 @@ export default class SearchBarPreview {
 	constructor() {
 		this.previewContainer = Array.from(document.querySelectorAll('.yxt-SearchBar-wrapper'));
 		this.settings = document.querySelector('#yext-settings');
+		this.wizard = document.querySelector('#yext-wizard');
+		this.target = this.settings ?? this.wizard;
 	}
 
 	/**
 	 * Initialize preview.
 	 */
 	init() {
-		if (!this.previewContainer.length || !this.settings) {
+		if (!this.previewContainer.length || !this.target) {
 			return;
 		}
 
@@ -30,7 +32,7 @@ export default class SearchBarPreview {
 	 */
 	initStickyBits() {
 		import('stickybits').then(({ default: stickybits }) => {
-			stickybits('.yxt-SearchBar-wrapper', {
+			stickybits('#yext-search-bar-preview', {
 				noStyles: true,
 			});
 		});
@@ -121,7 +123,7 @@ export default class SearchBarPreview {
 	 * @return {void}
 	 */
 	handleFormChange() {
-		const form = this.settings.querySelector('form');
+		const form = this.target.querySelector('form');
 
 		if (form instanceof HTMLFormElement) {
 			for (let i = 0; i < form.elements.length; i++) {
