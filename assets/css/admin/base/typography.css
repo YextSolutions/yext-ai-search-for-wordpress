@@ -1,3 +1,11 @@
+h1 {
+	font-family: var(--h1-ff);
+	font-size: var(--h1-fs);
+	font-weight: var(--h1-fw);
+	letter-spacing: var(--h1-ls);
+	line-height: var(--h1-lh);
+}
+
 h2 {
 	font-family: var(--h2-ff);
 	font-size: var(--h2-fs);

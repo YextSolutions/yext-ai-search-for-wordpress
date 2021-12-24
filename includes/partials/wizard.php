@@ -109,7 +109,7 @@ $current_step = $settings['wizard']['current_step'];
 					<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[0] ); ?>">
 						<div class="yext-settings__card">
 							<div class="yext-settings__card-content yext-settings__card-content--center">
-								<div class="banner yext-settings__banner">
+								<div class="banner yext-wizard__banner">
 									<div class="banner-edge-topleft"></div>
 									<div class="banner-edge-topright"></div>
 									<div class="banner-edge-bottomleft"></div>
