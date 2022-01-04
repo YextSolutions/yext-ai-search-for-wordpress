@@ -44,7 +44,8 @@ class SelectField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$help = isset( $this->help ) ? $this->help : '';
+		$variable = isset( $this->variable ) ? $this->variable : '';
+		$help     = isset( $this->help ) ? $this->help : '';
 
 		if ( $help ) {
 			printf(
@@ -54,9 +55,16 @@ class SelectField extends AbstractField {
 		}
 
 		printf(
-			'<select name="%s" id="%s">%s</select>',
+			'<select
+				name="%s"
+				id="%s"
+				data-variable="%s"
+			>
+				%s
+			</select>',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
+			esc_attr( $variable ),
 			wp_kses( $this->options_html(), $this->allowed_html_tags() )
 		);
 	}
@@ -70,7 +78,7 @@ class SelectField extends AbstractField {
 		$html = '';
 		foreach ( $this->options as $value => $text ) {
 			$html .= sprintf(
-				'<option value="%s" %s>%s</option>',
+				'<option value="%s"%s>%s</option>',
 				esc_attr( $value ),
 				selected( $this->value, $value, false ),
 				esc_attr( $text )

@@ -130,25 +130,24 @@
 
 		& label {
 			font-weight: var(--yxt-font-weight-bold);
+			left: 0;
+			margin-left: 2.5rem;
+			position: absolute;
 			text-transform: uppercase;
-		}
-
-		& th {
-			width: 100%;
+			top: 0;
 		}
 
 		& td {
 
 			& input {
 				margin-right: 1rem;
-				margin-top: -0.125rem;
+				margin-top: -0.05rem;
 			}
 		}
 
 		& .help-text {
 			left: 0;
 			margin-top: 0.75rem;
-			position: absolute;
 		}
 	}
 

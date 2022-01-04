@@ -138,7 +138,10 @@ export default class SearchBarPreview {
 					(event) => {
 						const { target } = event;
 
-						if (target instanceof HTMLInputElement) {
+						if (
+							target instanceof HTMLInputElement ||
+							target instanceof HTMLSelectElement
+						) {
 							const cssVariable = target.getAttribute('data-variable');
 
 							if (cssVariable) {

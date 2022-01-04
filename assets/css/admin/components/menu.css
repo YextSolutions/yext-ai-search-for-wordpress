@@ -1,0 +1,68 @@
+@import url("tippy.js/dist/tippy.css");
+
+.yext-menu__opener {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	font-size: var(--yxt-font-size-md-lg);
+	font-weight: var(--yxt-font-weight-medium);
+	line-height: var(--yxt-line-height-lg);
+
+	& svg {
+		margin-right: 0.5rem;
+	}
+}
+
+.tippy-box {
+	background: var(--yxt-color-brand-white, #fff);
+	border-radius: 8px;
+	box-shadow: 0 8px 10px rgba(0, 0, 0, 0.14), 0 3px 14px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-content {
+	padding: 1.25rem 1rem;
+}
+
+.yext-menu__dialog {
+
+	&.hidden {
+		display: none;
+	}
+
+	& ul {
+		margin: 0;
+	}
+
+	& li {
+		margin-bottom: 0;
+
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
+	}
+
+	& button {
+
+		@mixin is-style-link;
+
+		padding: 0;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	& a {
+		color: var(--yxt-color-text-primary, #212121);
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: var(--yxt-color-text-primary, #212121);
+			text-decoration: underline;
+		}
+	}
+}

@@ -252,6 +252,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-autocomplete-prompt-header-font-weight',

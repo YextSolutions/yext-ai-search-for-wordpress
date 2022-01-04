@@ -1,2 +1,56 @@
+/* stylelint-disable sh-waqar/declaration-use-variable */
+
 /* Tabs */
 @import url("@10up/component-tabs");
+
+.tab-item {
+	background: var(--yxt-color-brand-white, #fff);
+	font-size: var(--yxt-font-size-lg, 1.125rem);
+	font-weight: var(--yxt-font-weight-medium, 500);
+	letter-spacing: 2px;
+	text-transform: uppercase;
+
+	&:first-child {
+		border-radius: 0.5rem 0 0 0;
+	}
+
+	&:last-child {
+		border-radius: 0 0.5rem 0 0;
+	}
+
+	&.is-active {
+		font-weight: var(--yxt-font-weight-semibold, 600);
+
+		& > [role="tab"] {
+			border-color: #333;
+			color: #333;
+		}
+	}
+
+	& > [role="tab"] {
+		background: none;
+		border: none;
+		border-bottom: 4px solid #b5b5b5;
+		color: #555;
+		padding: 0.5rem 2rem;
+
+		&:hover,
+		&:focus {
+			background: none;
+			border-color: #333;
+			box-shadow: none;
+			font-weight: var(--yxt-font-weight-semibold, 600);
+			outline: none;
+		}
+	}
+}
+
+.tab-group {
+	border: none;
+	margin-top: none;
+}
+
+.tab-content {
+	margin-top: 1.375rem;
+	padding: 0;
+}

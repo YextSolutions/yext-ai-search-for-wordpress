@@ -1,0 +1,31 @@
+.mt-small {
+	margin-top: 0.5rem;
+}
+
+.mt-default {
+	margin-top: 1rem;
+}
+
+.mt-medium {
+	margin-top: 1.5rem;
+}
+
+.mt-large {
+	margin-top: 2rem;
+}
+
+.mb-small {
+	margin-bottom: 0.5rem;
+}
+
+.mb-default {
+	margin-bottom: 1rem;
+}
+
+.mb-medium {
+	margin-bottom: 1.5rem;
+}
+
+.mb-large {
+	margin-bottom: 2rem;
+}

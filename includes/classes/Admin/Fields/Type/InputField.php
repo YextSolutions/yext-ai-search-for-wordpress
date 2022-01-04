@@ -53,12 +53,13 @@ class InputField extends AbstractField {
 				id="%s"
 				value="%s"
 				data-variable="%s"
-				autocomplete="off"%s>',
+				data-required="%s"
+				autocomplete="off">',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
 			esc_attr( $variable ),
-			esc_attr( $required ? ' required' : '' )
+			esc_attr( $required ? '1' : '0' )
 		);
 	}
 }

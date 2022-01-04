@@ -2,6 +2,7 @@
 
 import merge from 'deepmerge';
 import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
 
 const {
 	YEXT: { settings: PLUGIN_SETTINGS },
@@ -47,8 +48,10 @@ const buildPayload = (formData) => {
  * @return {void}
  */
 const initWizard = () => {
+	/** @typedef {import('../types').YextWizard} YextWizard */
+
 	/**
-	 * @type {HTMLElement}
+	 * @type {YextWizard}
 	 */
 	const yextWizard = document.querySelector('#yext-wizard');
 
@@ -68,7 +71,9 @@ const initWizard = () => {
 	const { step } = yextWizard.dataset;
 	const INITIAL_STATE = {
 		step: Number(step),
-		payload: {},
+		payload: {
+			settings: buildPayload(new FormData(FORM)),
+		},
 	};
 
 	const dispatch = (action) => {
@@ -132,11 +137,24 @@ const initWizard = () => {
 	function showStep(index) {
 		hideSteps();
 
-		STEPS[index].classList.remove(HIDDEN_STEP_CLASSNAME);
-		STEPS[index].classList.add(ACTIVE_STEP_CLASSNAME);
+		STEPS[index]?.classList?.remove(HIDDEN_STEP_CLASSNAME);
+		STEPS[index]?.classList?.add(ACTIVE_STEP_CLASSNAME);
 	}
 
+	/**
+	 * Get the current step index from URL or HTML
+	 *
+	 * @return {number} Current step index
+	 */
 	function getCurrentStep() {
+		if (hasQueryArg(window.location.href, 'step')) {
+			const step = getQueryArg(window.location.href, 'step');
+
+			if (!Number.isNaN(step) && Number(step) >= 0 && Number(step) + 1 < STEPS.length) {
+				return Number(step);
+			}
+		}
+
 		return Number(yextWizard.getAttribute('data-step'));
 	}
 
@@ -149,13 +167,17 @@ const initWizard = () => {
 	function checkRequiredFields(target) {
 		const fields = Array.from(target.querySelectorAll('input'));
 
-		return fields.filter((input) => input.required && !input.value.trim().length);
+		return fields.filter(
+			(input) => input.getAttribute('data-required') === '1' && !input.value.trim().length,
+		);
 	}
 
 	function init() {
 		const currentStep = getCurrentStep();
 
 		STATE.step = Number(currentStep);
+
+		yextWizard.state = STATE;
 	}
 
 	/**
@@ -192,10 +214,19 @@ const initWizard = () => {
 		const { step: currentStep } = STATE;
 
 		showStep(currentStep);
-		yextWizard.setAttribute('data-step', String(currentStep));
 
-		const { progressId } = STEPS[currentStep].dataset;
-		updateProgressBar(Number(progressId));
+		yextWizard.setAttribute('data-step', String(currentStep));
+		yextWizard.setAttribute('data-is-live', String(Number(STATE.step) + 1 === STEPS.length));
+		window.history.replaceState(
+			{ step: currentStep },
+			'',
+			addQueryArgs(window.location.href, { step: currentStep }),
+		);
+
+		const { progressId } = STEPS[currentStep]?.dataset || {};
+		if (progressId) {
+			updateProgressBar(Number(progressId));
+		}
 	}
 
 	function updateSettings() {
@@ -244,12 +275,6 @@ const initWizard = () => {
 		event.preventDefault();
 
 		const currentStep = Number(STATE.step);
-
-		if (currentStep + 1 === STEPS.length) {
-			// Last step was clicked, not sure what to do here yet.
-			return;
-		}
-
 		const missingFields = checkRequiredFields(STEPS[currentStep]);
 
 		if (missingFields.length) {
@@ -259,7 +284,13 @@ const initWizard = () => {
 
 		updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
 
-		STATE.step = currentStep + 1;
+		// @TODO - Figure out how to redirect to plugin settings
+		if (currentStep + 1 === STEPS.length) {
+			/* eslint-disable-next-line no-alert */
+			window.alert("Congrats! You're live!");
+		} else {
+			STATE.step = currentStep + 1;
+		}
 
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {

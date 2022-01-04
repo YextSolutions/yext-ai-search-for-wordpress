@@ -21,7 +21,7 @@ module.exports = ({ file, env }) => {
 			scopeTo: 'body .yext-styles-wrapper',
 			remove: ['html', '.js'],
 			replace: ['body'],
-			ignore: [':root'],
+			ignore: [':root', '#wpbody-content'],
 			tags: ['a', 'button', 'input', 'label', 'select', 'textarea', 'form'],
 			tagSuffix: '',
 		};

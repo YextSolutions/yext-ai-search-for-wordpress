@@ -4,8 +4,11 @@
 	background: var(--yxt-color-brand-white);
 	border-radius: 0.5rem;
 	box-shadow: 0 0 4px rgba(85, 85, 85, 0.25);
-	min-height: calc(100vh - 32px - 76px - 78px - 80px - 80px - 30px);
 	padding: 2.5rem;
+
+	@nest .yext-wizard & {
+		min-height: calc(100vh - 32px - 76px - 78px - 80px - 80px - 30px);
+	}
 }
 
 .yext-settings__card-inner {
