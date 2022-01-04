@@ -8,7 +8,7 @@
 use Yext\Admin\Settings;
 
 $settings = Settings::get_settings();
-$is_live  = $settings['wizard']['live'];
+$is_live  = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : false;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

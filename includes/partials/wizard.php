@@ -53,8 +53,8 @@ $search_bar_plugin_style_settings = new Tab( Settings::SEARCH_BAR_SECTION_NAME, 
 $search_results_settings          = new Tab( Settings::SEARCH_RESULTS_SECTION_NAME, '' );
 
 $settings     = Settings::get_settings();
-$current_step = $settings['wizard']['current_step'];
-$is_live      = $settings['wizard']['live'];
+$current_step = isset( $settings['wizard'] ) ? $settings['wizard']['current_step'] : false;
+$is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : false;
 ?>
 
 <div class="yext-styles-wrapper">
