@@ -39,6 +39,11 @@ final class Settings {
 	const SEARCH_RESULTS_SECTION_NAME = 'search_results';
 
 	/**
+	 * Wizard settings section name
+	 */
+	const WIZARD_SECTION_NAME = 'wizard';
+
+	/**
 	 * Settings
 	 *
 	 * @var mixed
@@ -85,14 +90,26 @@ final class Settings {
 	 *    $settings = [ 'search_results' =>  [ 'redirect_url' => '111', ] ]
 	 *
 	 * @param array $settings New settings, partial or full array of settings
-	 * @return bool
+	 * @return array $updated_settings Updated Settings
 	 */
 	public static function update_settings( $settings ) {
 		// Merge current with new values
-		$new_settings = array_replace_recursive( self::get_settings(), $settings );
-		update_option( static::SETTINGS_NAME, $new_settings, false );
+		$updated_settings = array_replace_recursive( self::get_settings(), $settings );
+		update_option( static::SETTINGS_NAME, $updated_settings, false );
 
-		return $new_settings;
+		return $updated_settings;
+	}
+
+	/**
+	 * Set wizard setup to live/finished
+	 *
+	 * @return array $updated_settings Updated Settings
+	 */
+	public static function go_live() {
+		$updated_settings = array_merge( [ 'wizard' => [ 'live' => true ] ], self::get_settings() );
+		self::update_settings( $updated_settings );
+
+		return $updated_settings;
 	}
 
 	/**
@@ -128,13 +145,13 @@ final class Settings {
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
+		$wizard_tab     = new Tab( self::WIZARD_SECTION_NAME, '' );
 
-		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];
+		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab, $wizard_tab ];
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 		add_action( 'admin_init', [ $this, 'admin_page_init' ], 10 );
-		add_action( 'yext_after_plugin_settings', [ $this, 'after_plugin_settings' ], 10 );
 	}
 
 	/**
@@ -282,38 +299,10 @@ final class Settings {
 	public function render_settings_page() {
 			settings_errors( static::SETTINGS_NAME );
 			settings_errors( 'general' );
+
+			include_once YEXT_INC . 'partials/settings.php';
 		?>
-		<div id="yext-settings">
-			<h2>
-				<?php
-					echo esc_html__( 'Yext', 'yext' );
-				?>
-			</h2>
-			<form method="post" action="options.php">
-				<div class="tabs">
-					<div class="tab-control">
-						<ul class="tab-list" role="tablist">
-							<?php
-							foreach ( $this->tabs as $tab ) {
-								$tab->render_tab_nav();
-							}
-							?>
-						</ul>
-					</div>
-					<div class="tab-group">
-						<?php
-						foreach ( $this->tabs as $tab ) {
-							$tab->render_tab_content();
-						}
-						?>
-					</div><!-- /.tab-group -->
-				</div><!-- /.tabs -->
-				<?php
-					settings_fields( 'yext_option_group' );
-					submit_button();
-				?>
-			</form>
-		</div>
+		
 		<?php
 	}
 
@@ -360,31 +349,6 @@ final class Settings {
 		settings_errors( 'general' );
 
 		include_once YEXT_INC . 'partials/wizard.php';
-	}
-
-	/**
-	 * Called after plugin settings
-	 *
-	 * @param string $tab_id Tab id
-	 * @return void
-	 */
-	public function after_plugin_settings( $tab_id ) {
-		switch ( $tab_id ) {
-			case 'search_bar':
-				$this->search_bar_preview();
-				break;
-			default:
-				break;
-		}
-	}
-
-	/**
-	 * Load the search bar preview
-	 *
-	 * @return void
-	 */
-	public function search_bar_preview() {
-		include_once YEXT_INC . 'partials/preview/search-bar.php';
 	}
 
 	/**

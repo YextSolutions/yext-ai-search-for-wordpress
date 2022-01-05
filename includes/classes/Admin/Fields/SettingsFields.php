@@ -7,7 +7,6 @@
 
 namespace Yext\Admin\Fields;
 
-use Yext\Admin\Fields\Type\InputField;
 use Yext\Admin\Settings;
 
 /**
@@ -52,6 +51,7 @@ final class SettingsFields {
 			Settings::PLUGIN_SETTINGS_SECTION_NAME => $this->plugin_settings_fields(),
 			Settings::SEARCH_BAR_SECTION_NAME      => $this->search_bar_settings_fields(),
 			Settings::SEARCH_RESULTS_SECTION_NAME  => $this->search_results_settings_fields(),
+			Settings::WIZARD_SECTION_NAME          => $this->wizard_settings_fields(),
 		];
 	}
 
@@ -63,24 +63,32 @@ final class SettingsFields {
 	protected function plugin_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'api_key',
-				'title' => __( 'Api Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'api_key',
+				'title'    => __( 'API Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'experience_key',
-				'title' => __( 'Experience Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'experience_key',
+				'title'    => __( 'Experience Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'business_id',
-				'title' => __( 'Business ID', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'business_id',
+				'title'    => __( 'Business ID', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'answers_iframe_url',
-				'title' => __( 'Answers iframe url', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'answers_iframe_url',
+				'title'    => __( 'Answers iFrame URL', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
@@ -96,34 +104,37 @@ final class SettingsFields {
 			[
 				'id'     => 'override_core_search',
 				'parent' => 'core',
-				'title'  => __( 'Override WordPress search', 'yext' ),
+				'title'  => __( 'Enable Global Search', 'yext' ),
 				'type'   => 'CheckboxField',
-				'help'   => __( 'Enabling this will transform the search form and search block into Yext search bars, and the search results template into a Yext search results block.', 'yext' ),
+				'help'   => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ),
 			],
 			[
 				'id'     => 'placeholder_text',
 				'parent' => 'props',
 				'title'  => __( 'Placeholder text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'submit_text',
 				'parent' => 'props',
 				'title'  => __( 'Submit text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'label_text',
 				'parent' => 'props',
 				'title'  => __( 'Label text', 'yext' ),
 				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'     => 'css_class',
 				'parent' => 'props',
 				'title'  => __( 'CSS class', 'yext' ),
 				'type'   => 'InputField',
-				'help'   => '',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'       => 'font_size',
@@ -139,6 +150,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-searchbar-text-font-weight',
@@ -220,6 +233,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-autocomplete-text-font-weight',
@@ -238,6 +253,8 @@ final class SettingsFields {
 				'type'     => 'SelectField',
 				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
 				'variable' => '--yxt-autocomplete-prompt-header-font-weight',
@@ -283,11 +300,28 @@ final class SettingsFields {
 		$fields = [
 			[
 				'id'    => 'results_page',
-				'title' => __( 'Search results page', 'yext' ),
+				'title' => __( 'Search Results Page', 'yext' ),
 				'type'  => 'SelectPagesField',
+				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
+	}
+
+	/**
+	 * Fields for Plugin settings section
+	 *
+	 * @return array $fields Array for fields config.
+	 */
+	protected function wizard_settings_fields() {
+		$fields = [
+			[
+				'id'    => 'live',
+				'title' => __( 'Live', 'yext' ),
+				'type'  => 'CheckboxField',
+			],
+		];
+		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
 	}
 
 	/**
@@ -306,6 +340,8 @@ final class SettingsFields {
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
+			'required'   => $field_config['required'] ?? '',
+			'help'       => $field_config['help'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

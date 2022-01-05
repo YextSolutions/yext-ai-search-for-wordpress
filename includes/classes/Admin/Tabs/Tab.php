@@ -109,16 +109,10 @@ final class Tab {
 	public function render_tab_content() {
 		?>
 		<div class="tab-content" id="<?php echo esc_attr( $this->tab_id ); ?>" role="tabpanel">
-			<div class="grid">
-				<div class="col">
-					<?php
-					$this->render_content();
-					?>
-				</div>
-				<div class="col">
-					<?php do_action( 'yext_after_plugin_settings', $this->tab_id ); ?>
-				</div>
-			</div>
+			<?php
+			$this->render_content();
+			do_action( 'yext_after_plugin_settings', $this->tab_id );
+			?>
 		</div>
 		<?php
 	}

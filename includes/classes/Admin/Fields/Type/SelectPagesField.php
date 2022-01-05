@@ -25,11 +25,20 @@ class SelectPagesField extends SelectField {
 	 * @return void
 	 */
 	public function render() {
+		$help = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		wp_dropdown_pages(
 			[
 				'name'              => esc_attr( $this->setting_name( $this->id ) ),
 				'echo'              => 1,
-				'show_option_none'  => esc_attr__( '&mdash; Select &mdash;', 'yext' ),
+				'show_option_none'  => esc_attr__( 'Select a page', 'yext' ),
 				'option_none_value' => '',
 				'selected'          => esc_attr( $this->value ),
 			]

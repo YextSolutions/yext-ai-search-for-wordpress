@@ -1,0 +1,26 @@
+:root {
+	--ff-body: poppins, sans-serif;
+	--fs-body: var(--yxt-font-size-md-lg, 1rem);
+	--fw-body: var(--yxt-font-weight-normal, 400);
+	--lh-body: var(--yxt-line-height-lg, 1.5);
+
+	--fs-small: var(--yxt-font-size-md, 0.875rem);
+
+	--h1-ff: var(--ff-body);
+	--h1-fs: 2rem;
+	--h1-fw: var(--yxt-font-weight-bold, 400);
+	--h1-lh: var(--yxt-line-height-lg, 1.5);
+	--h1-ls: 1.5px;
+
+	--h2-ff: var(--ff-body);
+	--h2-fs: 1.5rem;
+	--h2-fw: var(--yxt-font-weight-normal, 400);
+	--h2-lh: var(--yxt-line-height-lg, 1.5);
+	--h2-ls: 1px;
+
+	--h2-ff: var(--ff-body);
+	--h3-fs: var(--yxt-font-size-lg, 1.125rem);
+	--h3-fw: var(--yxt-font-weight-medium, 500);
+	--h3-lh: var(--yxt-line-height-lg, 1.5);
+	--h3-ls: 1px;
+}

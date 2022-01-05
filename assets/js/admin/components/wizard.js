@@ -2,7 +2,11 @@
 
 import merge from 'deepmerge';
 import apiFetch from '@wordpress/api-fetch';
-import { getQueryArg, hasQueryArg } from '@wordpress/url';
+import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
+
+const {
+	YEXT: { settings: PLUGIN_SETTINGS },
+} = window;
 
 const HIDDEN_STEP_CLASSNAME = 'yext-wizard__step--hidden';
 const ACTIVE_STEP_CLASSNAME = 'yext-wizard__step--active';
@@ -16,19 +20,26 @@ const buildPayload = (formData) => {
 	const REGEX = /(?<=\[).+?(?=\])/g;
 
 	return !(formData instanceof FormData)
-		? {}
-		: // @ts-ignore
-		  [...formData].reduce((payload, current) => {
-				const [name, value] = current;
+		? PLUGIN_SETTINGS
+		: merge(
+				PLUGIN_SETTINGS,
+				// @ts-ignore
+				[...formData].reduce((payload, current) => {
+					const [name, value] = current;
+					const parts = name.match(REGEX);
 
-				const parts = name.match(REGEX);
-				const object = parts.reduceRight(
-					(obj, next, index) => ({ [next]: index + 1 === parts.length ? value : obj }),
-					{},
-				);
+					const object = parts
+						? parts.reduceRight(
+								(obj, next, index) => ({
+									[next]: index + 1 === parts.length ? value.trim() : obj,
+								}),
+								{},
+						  )
+						: {};
 
-				return merge(payload, object);
-		  }, {});
+					return merge(payload, object);
+				}, {}),
+		  );
 };
 
 /**
@@ -37,8 +48,10 @@ const buildPayload = (formData) => {
  * @return {void}
  */
 const initWizard = () => {
+	/** @typedef {import('../types').YextWizard} YextWizard */
+
 	/**
-	 * @type {HTMLElement}
+	 * @type {YextWizard}
 	 */
 	const yextWizard = document.querySelector('#yext-wizard');
 
@@ -49,7 +62,7 @@ const initWizard = () => {
 	/**
 	 * @type {HTMLFormElement}
 	 */
-	const FORM = yextWizard.querySelector('.yext-wizard__form');
+	const FORM = yextWizard.querySelector('.yext-settings__form');
 
 	if (!FORM) {
 		return;
@@ -58,15 +71,15 @@ const initWizard = () => {
 	const { step } = yextWizard.dataset;
 	const INITIAL_STATE = {
 		step: Number(step),
-		payload: {},
+		payload: {
+			settings: buildPayload(new FormData(FORM)),
+		},
 	};
 
-	const actions = (action) => {
+	const dispatch = (action) => {
 		switch (action) {
 			case 'step':
 				updateWizard();
-				updateStorage();
-				updateSearchParams();
 				break;
 			case 'payload':
 				updateSettings();
@@ -80,7 +93,7 @@ const initWizard = () => {
 		set: (object, prop, value) => {
 			object[prop] = value;
 
-			actions(prop);
+			dispatch(prop);
 
 			return true;
 		},
@@ -106,8 +119,6 @@ const initWizard = () => {
 	 */
 	const NEXT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__next'));
 
-	const SUBMIT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__submit'));
-
 	/**
 	 * Hide all steps
 	 */
@@ -126,26 +137,47 @@ const initWizard = () => {
 	function showStep(index) {
 		hideSteps();
 
-		STEPS[index].classList.remove(HIDDEN_STEP_CLASSNAME);
-		STEPS[index].classList.add(ACTIVE_STEP_CLASSNAME);
+		STEPS[index]?.classList?.remove(HIDDEN_STEP_CLASSNAME);
+		STEPS[index]?.classList?.add(ACTIVE_STEP_CLASSNAME);
 	}
 
+	/**
+	 * Get the current step index from URL or HTML
+	 *
+	 * @return {number} Current step index
+	 */
 	function getCurrentStep() {
 		if (hasQueryArg(window.location.href, 'step')) {
-			return getQueryArg(window.location.href, 'step');
+			const step = getQueryArg(window.location.href, 'step');
+
+			if (!Number.isNaN(step) && Number(step) >= 0 && Number(step) + 1 < STEPS.length) {
+				return Number(step);
+			}
 		}
 
-		if (localStorage.getItem('yext_wizard_step') !== null) {
-			return localStorage.getItem('yext_wizard_step');
-		}
+		return Number(yextWizard.getAttribute('data-step'));
+	}
 
-		return 0;
+	/**
+	 * Gather a list of required fields that have missing values
+	 *
+	 * @param {HTMLElement} target Field group
+	 * @return {HTMLInputElement[]} Array of input elements
+	 */
+	function checkRequiredFields(target) {
+		const fields = Array.from(target.querySelectorAll('input'));
+
+		return fields.filter(
+			(input) => input.getAttribute('data-required') === '1' && !input.value.trim().length,
+		);
 	}
 
 	function init() {
 		const currentStep = getCurrentStep();
 
 		STATE.step = Number(currentStep);
+
+		yextWizard.state = STATE;
 	}
 
 	/**
@@ -182,25 +214,19 @@ const initWizard = () => {
 		const { step: currentStep } = STATE;
 
 		showStep(currentStep);
+
 		yextWizard.setAttribute('data-step', String(currentStep));
+		yextWizard.setAttribute('data-is-live', String(Number(STATE.step) + 1 === STEPS.length));
+		window.history.replaceState(
+			{ step: currentStep },
+			'',
+			addQueryArgs(window.location.href, { step: currentStep }),
+		);
 
-		const { progressId } = STEPS[currentStep].dataset;
-		updateProgressBar(Number(progressId));
-	}
-
-	function updateSearchParams() {
-		const {
-			location: { hash, host, pathname, protocol },
-		} = window;
-		const params = new URLSearchParams(window.location.search);
-		params.set('step', String(STATE.step));
-		const url = `${protocol}//${host}${pathname}?${params.toString()}${hash}`;
-
-		window.history.replaceState({ path: url }, '', url);
-	}
-
-	function updateStorage() {
-		localStorage.setItem('yext_wizard_step', String(STATE.step));
+		const { progressId } = STEPS[currentStep]?.dataset || {};
+		if (progressId) {
+			updateProgressBar(Number(progressId));
+		}
 	}
 
 	function updateSettings() {
@@ -209,7 +235,9 @@ const initWizard = () => {
 			method: 'POST',
 			data: STATE.payload,
 		}).catch((error) => {
-			console.error(error); // eslint-disable-line no-console
+			/* eslint-disable-next-line no-console */
+			console.error(error);
+			/* eslint-disable-next-line no-alert */
 			window.alert(
 				"There was an error updating the settings. Please make sure you're logged in and have the right authorization",
 			);
@@ -217,22 +245,61 @@ const initWizard = () => {
 	}
 
 	/**
+	 * Add an error state to a list of fields
+	 *
+	 * @param {HTMLInputElement[]} fields HTML input elements
+	 */
+	function updateRequiredFields(fields) {
+		if (Array.isArray(fields)) {
+			fields.forEach((input) => {
+				if (
+					input instanceof HTMLInputElement &&
+					input.required &&
+					!input.value.trim().length
+				) {
+					input.classList.add('error');
+				} else {
+					input.classList.remove('error');
+				}
+			});
+		}
+	}
+
+	/**
 	 * Go to next step
 	 *
 	 * @param {Event} event Submit|Click Event
-	 *
 	 * @return {void}
 	 */
-	const next = (event) => {
+	const maybeNext = (event) => {
 		event.preventDefault();
 
 		const currentStep = Number(STATE.step);
+		const missingFields = checkRequiredFields(STEPS[currentStep]);
 
-		if (currentStep + 1 === STEPS.length) {
+		if (missingFields.length) {
+			updateRequiredFields(missingFields);
 			return;
 		}
 
-		STATE.step = currentStep + 1;
+		updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
+
+		// @TODO - Figure out how to redirect to plugin settings
+		if (currentStep + 1 === STEPS.length) {
+			/* eslint-disable-next-line no-alert */
+			window.alert("Congrats! You're live!");
+		} else {
+			STATE.step = currentStep + 1;
+		}
+
+		STATE.payload = {
+			settings: merge(buildPayload(new FormData(FORM)), {
+				wizard: {
+					current_step: Number(STATE.step),
+					live: Number(STATE.step) + 1 === STEPS.length,
+				},
+			}),
+		};
 	};
 
 	/**
@@ -252,26 +319,27 @@ const initWizard = () => {
 		}
 
 		STATE.step = currentStep - 1;
+
+		STATE.payload = {
+			settings: merge(buildPayload(new FormData(FORM)), {
+				wizard: {
+					current_step: Number(STATE.step),
+					live: Number(STATE.step) + 1 === STEPS.length,
+				},
+			}),
+		};
 	};
 
 	// Add event listeners
-	FORM.addEventListener('submit', next);
+	FORM.addEventListener('submit', maybeNext);
 	BACK_BUTTONS.forEach((button) => {
 		button.addEventListener('click', back);
 	});
 	NEXT_BUTTONS.forEach((button) => {
-		button.addEventListener('click', next);
-	});
-	SUBMIT_BUTTONS.forEach((button) => {
-		button.addEventListener('click', (event) => {
-			event.preventDefault();
-
-			STATE.payload = {
-				settings: buildPayload(new FormData(FORM)),
-			};
-		});
+		button.addEventListener('click', maybeNext);
 	});
 
+	// Initialize
 	init();
 };
 
