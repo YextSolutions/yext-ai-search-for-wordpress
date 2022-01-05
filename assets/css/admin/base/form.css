@@ -1,3 +1,6 @@
+
+/* stylelint-disable sh-waqar/declaration-use-variable */
+
 /* Form Styles */
 
 .form-table {
@@ -63,8 +66,22 @@
 		height: var(--h-input);
 		width: 100%;
 
-		&.error {
-			border: 1px solid var(--yxt-color-error);
+		&.is-touched {
+			background-color: #fff;
+			border-color: #000;
+			color: #000;
+		}
+
+		&:focus {
+			background-color: #fff;
+			border-color: #0f70f0;
+			color: #000;
+		}
+
+		&.is-invalid {
+			background-color: #f3e8e8;
+			border-color: #d53e3c;
+			color: #d53e3c;
 		}
 	}
 

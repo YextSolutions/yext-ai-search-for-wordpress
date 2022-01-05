@@ -4,6 +4,15 @@ import merge from 'deepmerge';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
 
+import {
+	getRequiredFields,
+	ignoreInputFields,
+	ignoreRequiredFields,
+	updateRequiredFields,
+	watchInputFields,
+	watchRequiredFields,
+} from '../utils/input';
+
 const {
 	YEXT: { settings: PLUGIN_SETTINGS },
 } = window;
@@ -76,10 +85,10 @@ const initWizard = () => {
 		},
 	};
 
-	const dispatch = (action) => {
+	const dispatch = (action, values) => {
 		switch (action) {
 			case 'step':
-				updateWizard();
+				updateWizard(values);
 				break;
 			case 'payload':
 				updateSettings();
@@ -91,9 +100,10 @@ const initWizard = () => {
 
 	const STATE = new Proxy(INITIAL_STATE, {
 		set: (object, prop, value) => {
+			const prev = object[prop];
 			object[prop] = value;
 
-			dispatch(prop);
+			dispatch(prop, [prev, value]);
 
 			return true;
 		},
@@ -158,26 +168,26 @@ const initWizard = () => {
 		return Number(yextWizard.getAttribute('data-step'));
 	}
 
-	/**
-	 * Gather a list of required fields that have missing values
-	 *
-	 * @param {HTMLElement} target Field group
-	 * @return {HTMLInputElement[]} Array of input elements
-	 */
-	function checkRequiredFields(target) {
-		const fields = Array.from(target.querySelectorAll('input'));
-
-		return fields.filter(
-			(input) => input.getAttribute('data-required') === '1' && !input.value.trim().length,
-		);
-	}
-
 	function init() {
 		const currentStep = getCurrentStep();
 
 		STATE.step = Number(currentStep);
 
 		yextWizard.state = STATE;
+	}
+
+	function updateInputFields(steps) {
+		const [previousStep, currentStep] = steps;
+
+		const previousRequiredFields = getRequiredFields(STEPS[previousStep]);
+		const previousInputFields = Array.from(STEPS[previousStep].querySelectorAll('input'));
+		ignoreRequiredFields(previousRequiredFields);
+		ignoreInputFields(previousInputFields);
+
+		const requiredFields = getRequiredFields(STEPS[currentStep]);
+		const inputFields = Array.from(STEPS[currentStep].querySelectorAll('input'));
+		watchRequiredFields(requiredFields);
+		watchInputFields(inputFields);
 	}
 
 	/**
@@ -210,10 +220,12 @@ const initWizard = () => {
 		yextWizard.setAttribute('data-progress-id', String(index));
 	}
 
-	function updateWizard() {
-		const { step: currentStep } = STATE;
+	function updateWizard(state) {
+		const [, currentStep] = state;
 
 		showStep(currentStep);
+
+		updateInputFields(state);
 
 		yextWizard.setAttribute('data-step', String(currentStep));
 		yextWizard.setAttribute('data-is-live', String(Number(STATE.step) + 1 === STEPS.length));
@@ -245,27 +257,6 @@ const initWizard = () => {
 	}
 
 	/**
-	 * Add an error state to a list of fields
-	 *
-	 * @param {HTMLInputElement[]} fields HTML input elements
-	 */
-	function updateRequiredFields(fields) {
-		if (Array.isArray(fields)) {
-			fields.forEach((input) => {
-				if (
-					input instanceof HTMLInputElement &&
-					input.required &&
-					!input.value.trim().length
-				) {
-					input.classList.add('error');
-				} else {
-					input.classList.remove('error');
-				}
-			});
-		}
-	}
-
-	/**
 	 * Go to next step
 	 *
 	 * @param {Event} event Submit|Click Event
@@ -275,14 +266,17 @@ const initWizard = () => {
 		event.preventDefault();
 
 		const currentStep = Number(STATE.step);
-		const missingFields = checkRequiredFields(STEPS[currentStep]);
-
+		const missingFields = getRequiredFields(STEPS[currentStep]).filter(
+			(input) => !input.value.trim().length,
+		);
 		if (missingFields.length) {
 			updateRequiredFields(missingFields);
 			return;
 		}
-
-		updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
+		const inputFields = Array.from(STEPS[currentStep].querySelectorAll('input'));
+		if (inputFields.length) {
+			updateRequiredFields(inputFields);
+		}
 
 		// @TODO - Figure out how to redirect to plugin settings
 		if (currentStep + 1 === STEPS.length) {
