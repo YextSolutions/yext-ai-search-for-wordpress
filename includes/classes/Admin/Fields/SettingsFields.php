@@ -51,6 +51,7 @@ final class SettingsFields {
 			Settings::PLUGIN_SETTINGS_SECTION_NAME => $this->plugin_settings_fields(),
 			Settings::SEARCH_BAR_SECTION_NAME      => $this->search_bar_settings_fields(),
 			Settings::SEARCH_RESULTS_SECTION_NAME  => $this->search_results_settings_fields(),
+			Settings::WIZARD_SECTION_NAME          => $this->wizard_settings_fields(),
 		];
 	}
 
@@ -305,6 +306,27 @@ final class SettingsFields {
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
+	}
+
+	/**
+	 * Fields for Plugin settings section
+	 *
+	 * @return array $fields Array for fields config.
+	 */
+	protected function wizard_settings_fields() {
+		$fields = [
+			[
+				'id'    => 'live',
+				'title' => __( 'Live', 'yext' ),
+				'type'  => 'CheckboxField',
+			],
+			[
+				'id'    => 'current_step',
+				'title' => __( 'Current Step', 'yext' ),
+				'type'  => 'InputField',
+			],
+		];
+		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
 	}
 
 	/**

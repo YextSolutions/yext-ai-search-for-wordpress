@@ -39,6 +39,11 @@ final class Settings {
 	const SEARCH_RESULTS_SECTION_NAME = 'search_results';
 
 	/**
+	 * Wizard settings section name
+	 */
+	const WIZARD_SECTION_NAME = 'wizard';
+
+	/**
 	 * Settings
 	 *
 	 * @var mixed
@@ -140,8 +145,9 @@ final class Settings {
 		];
 		$search_bar_tab = new Tab( self::SEARCH_BAR_SECTION_NAME, __( 'Search bar settings', 'yext' ), $child_sections );
 		$search_res_tab = new Tab( self::SEARCH_RESULTS_SECTION_NAME, __( 'Search results settings', 'yext' ) );
+		$wizard_tab     = new Tab( self::WIZARD_SECTION_NAME, '' );
 
-		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab ];
+		$this->tabs = [ $plugin_tab, $search_bar_tab, $search_res_tab, $wizard_tab ];
 
 		add_action( 'admin_menu', [ $this, 'add_plugin_page' ] );
 		add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
