@@ -53,7 +53,7 @@ $search_bar_plugin_style_settings = new Tab( Settings::SEARCH_BAR_SECTION_NAME, 
 $search_results_settings          = new Tab( Settings::SEARCH_RESULTS_SECTION_NAME, '' );
 
 $settings     = Settings::get_settings();
-$current_step = isset( $settings['wizard'] ) ? $settings['wizard']['current_step'] : false;
+$current_step = isset( $settings['wizard'] ) && isset( $settings['wizard']['current_step'] ) ? $settings['wizard']['current_step'] : false;
 $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : false;
 ?>
 
