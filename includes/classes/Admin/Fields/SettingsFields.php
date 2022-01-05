@@ -320,6 +320,11 @@ final class SettingsFields {
 				'title' => __( 'Live', 'yext' ),
 				'type'  => 'CheckboxField',
 			],
+			[
+				'id'    => 'current_step',
+				'title' => __( 'Current Step', 'yext' ),
+				'type'  => 'InputField',
+			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
 	}
