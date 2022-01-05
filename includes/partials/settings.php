@@ -40,6 +40,7 @@ $search_bar_core_settings         = new Tab( Settings::SEARCH_BAR_SECTION_NAME, 
 $search_bar_plugin_settings       = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_sections );
 $search_bar_plugin_style_settings = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_style_sections );
 $search_results_settings          = new Tab( Settings::SEARCH_RESULTS_SECTION_NAME, 'Search Results' );
+$wizard_settings                  = new Tab( Settings::WIZARD_SECTION_NAME, 'Wizard Results' );
 
 $tabs = [ $search_bar_core_settings, $search_results_settings, $plugin_settings ];
 ?>
@@ -160,6 +161,19 @@ $tabs = [ $search_bar_core_settings, $search_results_settings, $plugin_settings 
 									</div>
 									<div class="yext-settings__card-image">
 										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-content" id="<?php echo esc_attr( Settings::WIZARD_SECTION_NAME ); ?>" role="tabpanel">
+							<div class="yext-settings__card mb-medium">
+								<div class="yext-settings__card-inner">
+									<div class="yext-settings__card-content">
+										<div class="yext-settings__form-content">
+											<?php $wizard_settings->render_content(); ?>
+											<?php do_action( 'yext_after_plugin_settings', Settings::WIZARD_SECTION_NAME ); ?>
+										</div>
 									</div>
 								</div>
 							</div>
