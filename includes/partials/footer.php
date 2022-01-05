@@ -17,5 +17,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</svg>
 		<?php echo esc_html( 'Back', 'yext' ); ?>
 	</button>
-	<?php submit_button( 'Save & Continue', [ 'yext-settings__button', 'yext-settings__button--primary', 'yext-wizard__next' ], 'submit', false, null ); ?>
+	<?php submit_button( 'Save & Continue', [ 'yext-settings__button', 'yext-settings__button--primary', 'yext-wizard__next' ], 'yext-submit', false, null ); ?>
 </div>
