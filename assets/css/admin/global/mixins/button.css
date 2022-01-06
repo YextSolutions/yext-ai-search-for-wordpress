@@ -1,0 +1,18 @@
+@define-mixin is-style-link {
+	align-items: center;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	margin-right: 2rem;
+	padding: 0 0.75rem;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	& svg {
+		margin-right: 0.5rem;
+	}
+}

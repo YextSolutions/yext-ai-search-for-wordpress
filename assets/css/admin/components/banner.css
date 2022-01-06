@@ -1,0 +1,80 @@
+/* stylelint-disable sh-waqar/declaration-use-variable */
+
+.banner {
+	background: #c1cfad;
+	margin-left: calc(-1 * 3.375rem);
+	margin-right: calc(-1 * 3.375rem);
+	padding: 2.625rem 2.5rem;
+	position: relative;
+}
+
+.banner-edge-topleft,
+.banner-edge-topright,
+.banner-edge-bottomleft,
+.banner-edge-bottomright {
+	border-style: solid;
+	height: 0;
+	position: absolute;
+	width: 0;
+	z-index: 1;
+}
+
+.banner-edge-topleft,
+.banner-edge-bottomleft {
+	border-color: transparent #a9b597 transparent transparent;
+	border-width: 7px 14px 0 0;
+	left: 0;
+}
+
+.banner-edge-topleft {
+	top: -7px;
+}
+
+.banner-edge-bottomleft {
+	bottom: -7px;
+	transform: scaleY(-1);
+}
+
+.banner-edge-topright,
+.banner-edge-bottomright {
+	border-color: transparent transparent transparent #a9b597;
+	border-width: 0 0 7px 14px;
+	right: 0;
+}
+
+.banner-edge-topright {
+	top: -7px;
+	transform: scaleY(-1);
+}
+
+.banner-edge-bottomright {
+	bottom: -7px;
+}
+
+.yext-settings__banner.banner {
+	background: var(--yxt-color-brand-white, #fff);
+	display: flex;
+	margin-left: calc(-1 * 2.625rem);
+	margin-right: calc(-1 * 2.625rem);
+	margin-top: calc(-1 * 1rem);
+}
+
+.yext-settings__banner-content {
+	align-items: center;
+	display: flex;
+}
+
+.yext-settings__banner-copy {
+	margin: 0 2.5rem;
+
+	& h2 {
+		margin: 1rem 0;
+	}
+}
+
+.yext-settings__banner-close {
+
+	& button {
+		color: #0f70f0;
+	}
+}

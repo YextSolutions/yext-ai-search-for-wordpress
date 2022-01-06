@@ -70,10 +70,10 @@ final class Tab {
 			[ $this, 'section_info' ],
 			'yext-settings-' . $this->tab_id
 		);
-		foreach ( $this->child_sections as $child_section_id => $title ) {
+		foreach ( $this->child_sections as $child_section_id => $args ) {
 			add_settings_section(
 				$this->tab_id . '-' . $child_section_id,
-				$title,
+				$args['title'],
 				[ $this, 'section_info' ],
 				'yext-settings-' . $this->tab_id . '-' . $child_section_id
 			);
@@ -109,16 +109,10 @@ final class Tab {
 	public function render_tab_content() {
 		?>
 		<div class="tab-content" id="<?php echo esc_attr( $this->tab_id ); ?>" role="tabpanel">
-			<div class="grid">
-				<div class="col">
-					<?php
-					$this->render_content();
-					?>
-				</div>
-				<div class="col">
-					<?php do_action( 'yext_after_plugin_settings', $this->tab_id ); ?>
-				</div>
-			</div>
+			<?php
+			$this->render_content();
+			do_action( 'yext_after_plugin_settings', $this->tab_id );
+			?>
 		</div>
 		<?php
 	}
@@ -150,13 +144,13 @@ final class Tab {
 	 * @return void
 	 */
 	protected function do_child_sections() {
-		foreach ( $this->child_sections as $id => $title ) {
+		foreach ( $this->child_sections as $id => $args ) {
 			$wrapper_class = sprintf(
-				'yext-child-settings-%s-%s accordion',
+				'yext-child-settings-%s-%s',
 				esc_attr( sanitize_title_with_dashes( $this->get_id() ) ),
 				esc_attr( $id )
 			);
-			echo '<div class="' . esc_attr( $wrapper_class ) . '">';
+			echo '<div class="' . esc_attr( $wrapper_class ) . ' ' . esc_attr( $args['classname'] ) . '">';
 			do_settings_sections( "yext-settings-{$this->tab_id}-{$id}" );
 			echo '</div>';
 		}

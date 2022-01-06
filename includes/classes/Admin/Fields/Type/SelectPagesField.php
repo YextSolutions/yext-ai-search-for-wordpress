@@ -20,19 +20,78 @@ class SelectPagesField extends SelectField {
 	const POST_TYPE = 'page';
 
 	/**
+	 * Control link/button display pointing to the selected post
+	 *
+	 * @var array
+	 */
+	protected $show_link;
+
+	/**
+	 * Additional args for a field
+	 *
+	 * @var array
+	 */
+	protected $additional_args = [
+		'show_link' => false,
+	];
+
+	/**
+	 * Field constructor
+	 *
+	 * @param string $id    Setting id
+	 * @param string $title Setting title
+	 * @param array  $args  Field args
+	 */
+	public function __construct( $id, $title, $args ) {
+		$args = wp_parse_args( $args, $this->get_default_args() );
+		if ( isset( $args['show_link'] ) ) {
+			$this->show_link = $args['show_link'];
+		}
+		parent::__construct( $id, $title, $args );
+	}
+
+	/**
 	 * Render the field used on settings.
 	 *
 	 * @return void
 	 */
 	public function render() {
+		$help = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		wp_dropdown_pages(
 			[
 				'name'              => esc_attr( $this->setting_name( $this->id ) ),
 				'echo'              => 1,
-				'show_option_none'  => esc_attr__( '&mdash; Select &mdash;', 'yext' ),
+				'show_option_none'  => esc_attr__( 'Select a page', 'yext' ),
 				'option_none_value' => '',
 				'selected'          => esc_attr( $this->value ),
 			]
+		);
+		$this->render_link_button();
+	}
+
+	/**
+	 * Render a link to the selected post from the dropdown
+	 *
+	 * @return void
+	 */
+	protected function render_link_button() {
+		if ( ! $this->show_link ) {
+			return;
+		}
+		$button_href = $this->value > 0 ? esc_html( get_permalink( $this->value ) ) : '#';
+		printf(
+			'<p><a class="button-secondary" href="%s" title="%s" target="_blank">%s</a></p>',
+			esc_url( $button_href ),
+			esc_attr__( 'Preview the page', 'yext' ),
+			esc_html__( 'Preview the page', 'yext' )
 		);
 	}
 

@@ -1,0 +1,26 @@
+.yext-wizard__step--hidden {
+	display: none;
+}
+
+.yext-wizard__step--has-circle {
+	overflow: hidden;
+	position: relative;
+
+	&::before {
+		background: #f9f9f9;
+		border-radius: 50%;
+		box-shadow: 0 0 6px rgba(85, 85, 85, 0.25);
+		content: "";
+		height: 333px;
+		position: absolute;
+		right: -133px;
+		top: -140px;
+		width: 333px;
+		z-index: 1;
+	}
+
+	& .yext-settings__card-content {
+		position: relative;
+		z-index: 2;
+	}
+}

@@ -1,14 +1,15 @@
 import Accordion from '@10up/component-accordion';
 
 const initAccordion = () => {
-	const yextForm = document.querySelector('#yext-settings form');
+	const yextSettings = document.querySelector('#yext-settings');
+	const yextWizard = document.querySelector('#yext-wizard');
 
 	// do nothing if not Yext settings form
-	if (!yextForm) {
+	if (!yextSettings && !yextWizard) {
 		return;
 	}
 
-	const accordionElements = Array.from(document.querySelectorAll('#yext-settings .accordion'));
+	const accordionElements = Array.from(document.querySelectorAll('.accordion'));
 	const [firstAccordion] = accordionElements;
 
 	accordionElements.forEach((accordion) => {
@@ -29,10 +30,12 @@ const initAccordion = () => {
 
 	// @ts-ignore
 	// eslint-disable-next-line no-new
-	new Accordion('#yext-settings .accordion');
+	new Accordion('.accordion');
 
-	firstAccordion.querySelector('.accordion-header').classList.add('is-active');
-	firstAccordion.querySelector('.accordion-content').classList.add('is-active');
+	if (firstAccordion) {
+		firstAccordion.querySelector('.accordion-header').classList.add('is-active');
+		firstAccordion.querySelector('.accordion-content').classList.add('is-active');
+	}
 };
 
 export default initAccordion;

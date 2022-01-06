@@ -1,0 +1,30 @@
+h1 {
+	font-family: var(--h1-ff);
+	font-size: var(--h1-fs);
+	font-weight: var(--h1-fw);
+	letter-spacing: var(--h1-ls);
+	line-height: var(--h1-lh);
+}
+
+h2 {
+	font-family: var(--h2-ff);
+	font-size: var(--h2-fs);
+	font-weight: var(--h2-fw);
+	letter-spacing: var(--h2-ls);
+	line-height: var(--h2-lh);
+}
+
+h3 {
+	font-family: var(--h3-ff);
+	font-size: var(--h3-fs);
+	font-weight: var(--h3-fw);
+	letter-spacing: var(--h3-ls);
+	line-height: var(--h3-lh);
+}
+
+p {
+	font-family: var(--ff-body);
+	font-size: var(--fs-body);
+	font-weight: var(--fw-body);
+	line-height: var(--lh-body);
+}

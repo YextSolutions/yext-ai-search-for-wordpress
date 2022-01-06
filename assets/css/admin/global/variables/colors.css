@@ -1,0 +1,4 @@
+:root {
+	--c-black: #000;
+	--c-white: var(--yxt-color-brand-white, #fff);
+}
