@@ -299,10 +299,11 @@ final class SettingsFields {
 	protected function search_results_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'results_page',
-				'title' => __( 'Search Results Page', 'yext' ),
-				'type'  => 'SelectPagesField',
-				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'id'        => 'results_page',
+				'title'     => __( 'Search Results Page', 'yext' ),
+				'type'      => 'SelectPagesField',
+				'show_link' => true,
+				'help'      => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
@@ -345,6 +346,7 @@ final class SettingsFields {
 			'section_id' => $section_id,
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
+			'show_link'  => $field_config['show_link'] ?? '',
 			'required'   => $field_config['required'] ?? '',
 			'help'       => $field_config['help'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),

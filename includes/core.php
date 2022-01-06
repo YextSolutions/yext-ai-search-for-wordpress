@@ -243,6 +243,7 @@ function admin_scripts( $page ) {
 			[
 				'defaults'     => json_decode( $defaults ),
 				'settings'     => Settings::get_settings(),
+				'siteUrl'      => esc_url( get_site_url() ),
 				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
 				'rest_url'     => '/wp-json/yext/v1/settings',
 			]
