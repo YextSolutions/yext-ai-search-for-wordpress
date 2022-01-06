@@ -65,26 +65,32 @@ const initSettings = () => {
 	const handleResetCSS = (event) => {
 		event.preventDefault();
 
-		apiFetch({
-			path: REST_API_ROUTE,
-			method: 'POST',
-			data: {
-				settings: merge(PLUGIN_SETTINGS, {
-					search_bar: {
-						style: DEFAULT_PLUGIN_SETTINGS.search_bar.style,
-						button: DEFAULT_PLUGIN_SETTINGS.search_bar.button,
-						autocomplete: DEFAULT_PLUGIN_SETTINGS.search_bar.autocomplete,
-					},
-				}),
-			},
-		})
-			.then(() => {
-				window.location.reload();
+		if (
+			window.confirm(
+				'Are you sure you want to reset all search bar styles? This will restore all styles to the default settings.',
+			)
+		) {
+			apiFetch({
+				path: REST_API_ROUTE,
+				method: 'POST',
+				data: {
+					settings: merge(PLUGIN_SETTINGS, {
+						search_bar: {
+							style: DEFAULT_PLUGIN_SETTINGS.search_bar.style,
+							button: DEFAULT_PLUGIN_SETTINGS.search_bar.button,
+							autocomplete: DEFAULT_PLUGIN_SETTINGS.search_bar.autocomplete,
+						},
+					}),
+				},
 			})
-			.catch((error) => {
-				/* eslint-disable-next-line no-console */
-				console.error(error);
-			});
+				.then(() => {
+					window.location.reload();
+				})
+				.catch((error) => {
+					/* eslint-disable-next-line no-console */
+					console.error(error);
+				});
+		}
 	};
 
 	yextForm.addEventListener('submit', handleFormSubmit);
