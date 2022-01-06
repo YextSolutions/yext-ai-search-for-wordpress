@@ -4,8 +4,21 @@ import merge from 'deepmerge';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
 
+import {
+	getRequiredFields,
+	ignoreInputFields,
+	ignoreRequiredFields,
+	updateRequiredFields,
+	watchInputFields,
+	watchRequiredFields,
+} from '../utils/input';
+
 const {
-	YEXT: { settings: PLUGIN_SETTINGS },
+	YEXT: {
+		settings: PLUGIN_SETTINGS,
+		settings_url: PLUGIN_SETTINGS_URL,
+		rest_url: REST_API_ROUTE,
+	},
 } = window;
 
 const HIDDEN_STEP_CLASSNAME = 'yext-wizard__step--hidden';
@@ -13,8 +26,6 @@ const ACTIVE_STEP_CLASSNAME = 'yext-wizard__step--active';
 
 const COMPLETED_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--complete';
 const ACTIVE_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--active';
-
-const REST_API_ROUTE = '/wp-json/yext/v1/settings';
 
 const buildPayload = (formData) => {
 	const REGEX = /(?<=\[).+?(?=\])/g;
@@ -76,10 +87,10 @@ const initWizard = () => {
 		},
 	};
 
-	const dispatch = (action) => {
+	const dispatch = (action, values) => {
 		switch (action) {
 			case 'step':
-				updateWizard();
+				updateWizard(values);
 				break;
 			case 'payload':
 				updateSettings();
@@ -91,9 +102,10 @@ const initWizard = () => {
 
 	const STATE = new Proxy(INITIAL_STATE, {
 		set: (object, prop, value) => {
+			const prev = object[prop];
 			object[prop] = value;
 
-			dispatch(prop);
+			dispatch(prop, [prev, value]);
 
 			return true;
 		},
@@ -141,6 +153,8 @@ const initWizard = () => {
 		STEPS[index]?.classList?.add(ACTIVE_STEP_CLASSNAME);
 	}
 
+	const setStep = (step) => Math.min(Math.max(Number(step), 0), 7);
+
 	/**
 	 * Get the current step index from URL or HTML
 	 *
@@ -158,26 +172,32 @@ const initWizard = () => {
 		return Number(yextWizard.getAttribute('data-step'));
 	}
 
-	/**
-	 * Gather a list of required fields that have missing values
-	 *
-	 * @param {HTMLElement} target Field group
-	 * @return {HTMLInputElement[]} Array of input elements
-	 */
-	function checkRequiredFields(target) {
-		const fields = Array.from(target.querySelectorAll('input'));
-
-		return fields.filter(
-			(input) => input.getAttribute('data-required') === '1' && !input.value.trim().length,
-		);
-	}
-
 	function init() {
 		const currentStep = getCurrentStep();
 
-		STATE.step = Number(currentStep);
+		STATE.step = setStep(currentStep);
 
 		yextWizard.state = STATE;
+	}
+
+	function updateInputFields(steps) {
+		const [previousStep, currentStep] = steps;
+
+		if (previousStep) {
+			const previousRequiredFields = getRequiredFields(STEPS[previousStep]);
+			const previousInputFields = Array.from(
+				STEPS[previousStep]?.querySelectorAll('input') || [],
+			);
+			ignoreRequiredFields(previousRequiredFields);
+			ignoreInputFields(previousInputFields);
+		}
+
+		if (currentStep) {
+			const requiredFields = getRequiredFields(STEPS[currentStep]);
+			const inputFields = Array.from(STEPS[currentStep]?.querySelectorAll('input') || []);
+			watchRequiredFields(requiredFields);
+			watchInputFields(inputFields);
+		}
 	}
 
 	/**
@@ -210,59 +230,62 @@ const initWizard = () => {
 		yextWizard.setAttribute('data-progress-id', String(index));
 	}
 
-	function updateWizard() {
-		const { step: currentStep } = STATE;
+	function updateWizard(state) {
+		const [, currentStep] = state;
 
-		showStep(currentStep);
+		if (Number(currentStep) !== STEPS.length) {
+			showStep(currentStep);
 
-		yextWizard.setAttribute('data-step', String(currentStep));
-		yextWizard.setAttribute('data-is-live', String(Number(STATE.step) + 1 === STEPS.length));
-		window.history.replaceState(
-			{ step: currentStep },
-			'',
-			addQueryArgs(window.location.href, { step: currentStep }),
-		);
+			updateInputFields(state);
 
-		const { progressId } = STEPS[currentStep]?.dataset || {};
-		if (progressId) {
-			updateProgressBar(Number(progressId));
+			yextWizard.setAttribute('data-step', String(currentStep));
+			yextWizard.setAttribute(
+				'data-is-live',
+				String(Number(STATE.step) + 1 === STEPS.length),
+			);
+			window.history.replaceState(
+				{ step: currentStep },
+				'',
+				addQueryArgs(window.location.href, { step: currentStep }),
+			);
+
+			const { progressId } = STEPS[currentStep]?.dataset || {};
+			if (progressId) {
+				updateProgressBar(Number(progressId));
+			}
 		}
 	}
 
 	function updateSettings() {
+		const {
+			payload: {
+				settings: {
+					wizard: { live },
+				},
+			},
+			payload,
+		} = STATE;
+
 		apiFetch({
 			path: REST_API_ROUTE,
 			method: 'POST',
-			data: STATE.payload,
-		}).catch((error) => {
-			/* eslint-disable-next-line no-console */
-			console.error(error);
-			/* eslint-disable-next-line no-alert */
-			window.alert(
-				"There was an error updating the settings. Please make sure you're logged in and have the right authorization",
-			);
-		});
-	}
-
-	/**
-	 * Add an error state to a list of fields
-	 *
-	 * @param {HTMLInputElement[]} fields HTML input elements
-	 */
-	function updateRequiredFields(fields) {
-		if (Array.isArray(fields)) {
-			fields.forEach((input) => {
-				if (
-					input instanceof HTMLInputElement &&
-					input.required &&
-					!input.value.trim().length
-				) {
-					input.classList.add('error');
-				} else {
-					input.classList.remove('error');
+			data: payload,
+		})
+			.then(() => {
+				if (live) {
+					import('dompurify').then(({ default: DOMPurify }) => {
+						window.location.href = DOMPurify.sanitize(PLUGIN_SETTINGS_URL);
+					});
 				}
+			})
+			.catch((error) => {
+				/* eslint-disable-next-line no-console */
+				console.error(error);
+				/* eslint-disable-next-line no-alert */
+				window.alert(
+					"There was an error updating the settings. Please make sure you're logged in and have proper authorization.",
+				);
 			});
-		}
 	}
 
 	/**
@@ -275,28 +298,32 @@ const initWizard = () => {
 		event.preventDefault();
 
 		const currentStep = Number(STATE.step);
-		const missingFields = checkRequiredFields(STEPS[currentStep]);
+
+		const missingFields = getRequiredFields(STEPS[currentStep]).filter(
+			(input) => !input.value.trim().length,
+		);
 
 		if (missingFields.length) {
 			updateRequiredFields(missingFields);
 			return;
 		}
 
-		updateRequiredFields(Array.from(STEPS[currentStep].querySelectorAll('input')));
+		const inputFields = Array.from(STEPS[currentStep].querySelectorAll('input'));
 
-		// @TODO - Figure out how to redirect to plugin settings
-		if (currentStep + 1 === STEPS.length) {
-			/* eslint-disable-next-line no-alert */
-			window.alert("Congrats! You're live!");
-		} else {
-			STATE.step = currentStep + 1;
+		if (inputFields.length) {
+			updateRequiredFields(inputFields);
+		}
+
+		if (currentStep + 1 !== STEPS.length) {
+			STATE.step = setStep(currentStep + 1);
 		}
 
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
 				wizard: {
 					current_step: Number(STATE.step),
-					live: Number(STATE.step) + 1 === STEPS.length,
+					// @ts-ignore
+					live: event?.target?.getAttribute('data-is-live') === '1' || false,
 				},
 			}),
 		};
@@ -318,13 +345,14 @@ const initWizard = () => {
 			return;
 		}
 
-		STATE.step = currentStep - 1;
+		STATE.step = setStep(currentStep - 1);
 
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
 				wizard: {
 					current_step: Number(STATE.step),
-					live: Number(STATE.step) + 1 === STEPS.length,
+					// @ts-ignore
+					live: event?.target?.getAttribute('data-is-live') === '1' || false,
 				},
 			}),
 		};

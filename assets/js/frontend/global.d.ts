@@ -10,6 +10,8 @@
 interface Window {
 	YEXT: {
 		settings: YextPluginSettings;
+		settings_url: string;
+		rest_url: string;
 	};
 	ANSWERS: {
 		init: Function;

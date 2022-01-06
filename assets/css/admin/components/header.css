@@ -13,13 +13,13 @@
 	top: var(--wp-admin-header-height);
 	z-index: 3;
 
-	@nest .folded & {
+	@nest body.folded & {
 		margin-left: 2.25rem;
 	}
 
 	@media only screen and (max-width: 960px) {
 
-		@nest .auto-fold & {
+		@nest body.auto-fold & {
 			margin-left: 2.25rem;
 		}
 	}
@@ -27,9 +27,14 @@
 	@media screen and (max-width: 782px) {
 		margin-left: 0 !important;
 
-		@nest .wp-responsive-open & {
+		@nest body.wp-responsive-open & {
 			margin-left: 11.875rem !important;
 		}
+	}
+
+	@media (max-width: 600px) {
+		margin-left: calc(-1 * 0.625rem) !important;
+		position: absolute;
 	}
 }
 

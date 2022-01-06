@@ -118,7 +118,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 				<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[0] ); ?>">
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-content yext-settings__card-content--center">
-							<div class="banner yext-wizard__banner">
+							<div class="yext-wizard__banner banner">
 								<div class="banner-edge-topleft"></div>
 								<div class="banner-edge-topright"></div>
 								<div class="banner-edge-bottomleft"></div>
@@ -351,7 +351,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					</div>
 				</div>
 
-				<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[7] ); ?>">
+				<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[7] ); ?>" data-last-step="1">
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-inner">
 							<div class="yext-settings__card-content">
@@ -369,7 +369,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 						</div>
 						<div class="yext-settings__card-footer">
-							<button class="yext-settings__button yext-settings__button--primary yext-wizard__next">
+							<button class="yext-settings__button yext-settings__button--primary yext-wizard__next" data-is-live="1">
 								<?php echo esc_html( 'Go Live', 'yext' ); ?>
 							</button>
 							<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
@@ -382,7 +382,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					</div>
 				</div>
 
-				<?php include_once YEXT_INC . 'partials/footer.php'; ?>
+				<?php
+				$view = 'wizard';
+				include_once YEXT_INC . 'partials/footer.php';
+				?>
 			</form>
 		</div>
 	</div>

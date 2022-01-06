@@ -2,6 +2,14 @@
 import Tabs from '@10up/component-tabs';
 import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
 
+import {
+	getRequiredFields,
+	ignoreInputFields,
+	ignoreRequiredFields,
+	watchInputFields,
+	watchRequiredFields,
+} from '../utils/input';
+
 const TAB_QUERY_VAR = 'tab-selected';
 
 /**
@@ -28,6 +36,20 @@ const initTabs = () => {
 	 */
 	const refererInputField = yextForm.querySelector('input[name="_wp_http_referer"]');
 	const refererUrl = refererInputField.value;
+
+	const inputFields = Array.from(yextForm.querySelectorAll('input'));
+	const requiredFields = getRequiredFields(yextForm);
+
+	const updateInputFields = (tab) => {
+		ignoreInputFields(inputFields);
+		ignoreRequiredFields(requiredFields);
+
+		const currentTabInputFields = Array.from(tab.querySelectorAll('input'));
+		const currentTabRequiredFields = getRequiredFields(tab);
+
+		watchInputFields(currentTabInputFields);
+		watchRequiredFields(currentTabRequiredFields);
+	};
 
 	// @ts-ignore
 	// eslint-disable-next-line new-cap, no-unused-vars, no-new
@@ -57,6 +79,8 @@ const initTabs = () => {
 			refererInputField.value = addQueryArgs(refererUrl, {
 				'tab-selected': getTabIndex(currentTab),
 			});
+
+			updateInputFields(currentTab);
 		},
 	});
 };

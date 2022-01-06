@@ -233,7 +233,11 @@ function admin_scripts( $page ) {
 		wp_localize_script(
 			'yext-admin',
 			'YEXT',
-			[ 'settings' => Settings::get_settings() ]
+			[
+				'settings'     => Settings::get_settings(),
+				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
+				'rest_url'     => '/wp-json/yext/v1/settings',
+			]
 		);
 	}
 }
