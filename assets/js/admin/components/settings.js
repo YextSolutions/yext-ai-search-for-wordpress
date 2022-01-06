@@ -71,7 +71,7 @@ const initSettings = () => {
 			data: {
 				settings: merge(PLUGIN_SETTINGS, {
 					search_bar: {
-						styles: DEFAULT_PLUGIN_SETTINGS.search_bar.styles,
+						style: DEFAULT_PLUGIN_SETTINGS.search_bar.style,
 						button: DEFAULT_PLUGIN_SETTINGS.search_bar.button,
 						autocomplete: DEFAULT_PLUGIN_SETTINGS.search_bar.autocomplete,
 					},
