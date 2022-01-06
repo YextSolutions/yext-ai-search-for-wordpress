@@ -119,6 +119,10 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 											</h3>
 
 											<?php $search_bar_plugin_style_settings->render_content(); ?>
+
+											<button class="yext-settings__button--is-style-link is-color-blue mt-large" data-action="reset-css">
+												<?php echo esc_html( 'Reset all custom CSS', 'yext' ); ?>
+											</button>
 										</div>
 									</div>
 									<div class="yext-settings__card-preview">

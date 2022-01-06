@@ -230,10 +230,18 @@ function admin_scripts( $page ) {
 			YEXT_VERSION,
 			true
 		);
+
+		// Default settings
+		$defaults = [];
+		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+			$defaults = file_get_contents( YEXT_INC . 'settings.json', false );
+		}
+
 		wp_localize_script(
 			'yext-admin',
 			'YEXT',
 			[
+				'defaults'     => json_decode( $defaults ),
 				'settings'     => Settings::get_settings(),
 				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
 				'rest_url'     => '/wp-json/yext/v1/settings',
