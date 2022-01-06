@@ -55,6 +55,10 @@
 	& svg {
 		margin-right: 0.5rem;
 	}
+
+	&.is-color-blue {
+		color: var(--yxt-color-brand-primary);
+	}
 }
 
 .yext-settings__button--primary {

@@ -9,6 +9,7 @@
 
 interface Window {
 	YEXT: {
+		defaults: YextPluginSettings;
 		settings: YextPluginSettings;
 		settings_url: string;
 		rest_url: string;
