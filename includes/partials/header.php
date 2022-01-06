@@ -36,6 +36,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</button>
 
 			<div id="yext-menu-help" class="yext-menu__dialog hidden">
+				<ul>
+					<li>
+						<a href="https://yext.com/" rel="noopener">
+							<?php echo esc_html( 'Contact Support', 'yext' ); ?>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="yext-menu yext-settings__header-menu-item">
+			<button class="yext-menu__opener" data-dialog-id="yext-menu-more">
+				<svg width="4" height="16" fill="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
+					<path d="M4 14.154c0 .49-.21.96-.586 1.305C3.04 15.806 2.53 16 2 16c-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 14.153c0-.49.21-.96.586-1.306.375-.346.884-.54 1.414-.54.53 0 1.04.194 1.414.54.375.347.586.816.586 1.306ZM4 8c0 .49-.21.96-.586 1.305-.375.347-.884.541-1.414.541-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 8c0-.49.21-.96.586-1.305.375-.347.884-.541 1.414-.541.53 0 1.04.194 1.414.54C3.79 7.042 4 7.51 4 8Zm0-6.154c0 .49-.21.96-.586 1.306-.375.346-.884.54-1.414.54-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 1.846c0-.49.21-.96.586-1.305C.96.195 1.47 0 2 0c.53 0 1.04.195 1.414.54C3.79.888 4 1.358 4 1.847Z" fill="black"/>
+				</svg>
+				<span class="visually-hidden"><?php echo esc_html( 'Open More Menu', 'yext' ); ?></span>
+			</button>
+
+			<div id="yext-menu-more" class="yext-menu__dialog hidden">
 				<ul class="yext-menu__dialog-list">
 					<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--restart">
 						<?php if ( 'settings' === $view ) : ?>
@@ -56,25 +75,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</li>
 					<?php endif; ?>
 					<li class="yext-menu__dialog-list-item">
-						<a href="https://yext.com/" rel="noopener">
-							<?php echo esc_html( 'Contact Support', 'yext' ); ?>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="yext-menu yext-settings__header-menu-item">
-			<button class="yext-menu__opener" data-dialog-id="yext-menu-more">
-				<svg width="4" height="16" fill="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
-					<path d="M4 14.154c0 .49-.21.96-.586 1.305C3.04 15.806 2.53 16 2 16c-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 14.153c0-.49.21-.96.586-1.306.375-.346.884-.54 1.414-.54.53 0 1.04.194 1.414.54.375.347.586.816.586 1.306ZM4 8c0 .49-.21.96-.586 1.305-.375.347-.884.541-1.414.541-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 8c0-.49.21-.96.586-1.305.375-.347.884-.541 1.414-.541.53 0 1.04.194 1.414.54C3.79 7.042 4 7.51 4 8Zm0-6.154c0 .49-.21.96-.586 1.306-.375.346-.884.54-1.414.54-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 1.846c0-.49.21-.96.586-1.305C.96.195 1.47 0 2 0c.53 0 1.04.195 1.414.54C3.79.888 4 1.358 4 1.847Z" fill="black"/>
-				</svg>
-				<span class="visually-hidden"><?php echo esc_html( 'Open More Menu', 'yext' ); ?></span>
-			</button>
-
-			<div id="yext-menu-more" class="yext-menu__dialog hidden">
-				<ul>
-					<li>
 						<a href="https://yext.com/" rel="noopener">
 							<?php echo esc_html( 'Contact Support', 'yext' ); ?>
 						</a>
