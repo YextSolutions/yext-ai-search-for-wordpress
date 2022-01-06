@@ -50,3 +50,31 @@
 .banner-edge-bottomright {
 	bottom: -7px;
 }
+
+.yext-settings__banner.banner {
+	background: var(--yxt-color-brand-white, #fff);
+	display: flex;
+	margin-left: calc(-1 * 2.625rem);
+	margin-right: calc(-1 * 2.625rem);
+	margin-top: calc(-1 * 1rem);
+}
+
+.yext-settings__banner-content {
+	align-items: center;
+	display: flex;
+}
+
+.yext-settings__banner-copy {
+	margin: 0 2.5rem;
+
+	& h2 {
+		margin: 1rem 0;
+	}
+}
+
+.yext-settings__banner-close {
+
+	& button {
+		color: #0f70f0;
+	}
+}

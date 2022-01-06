@@ -43,15 +43,25 @@ $search_results_settings          = new Tab( Settings::SEARCH_RESULTS_SECTION_NA
 $wizard_settings                  = new Tab( Settings::WIZARD_SECTION_NAME, __( 'Wizard Results', 'yext' ) );
 
 $tabs = [ $search_bar_core_settings, $search_results_settings, $plugin_settings ];
+
+$settings          = Settings::get_settings();
+$is_live           = isset( $settings['wizard'] ) ? true === $settings['wizard']['live'] : false;
+$is_banner_hidden  = true === $settings['banner_hidden'];
 ?>
 
 <div class="yext-styles-wrapper">
 	<div class="yext-container">
 		<div id="yext-settings">
-		<?php
-		$view = 'settings';
-		include_once YEXT_INC . 'partials/header.php';
-		?>
+			<?php
+			$view = 'settings';
+			include_once YEXT_INC . 'partials/header.php';
+			?>
+
+			<?php
+			if ( $is_live && ! $is_banner_hidden ) :
+				include_once YEXT_INC . 'partials/banner.php';
+			endif;
+			?>
 
 			<h1><?php echo esc_html( 'Settings', '' ); ?></h1>
 
@@ -182,6 +192,7 @@ $tabs = [ $search_bar_core_settings, $search_results_settings, $plugin_settings 
 				</div>
 				<?php
 					settings_fields( 'yext_option_group' );
+					$view = 'settings';
 					include_once YEXT_INC . 'partials/footer.php';
 				?>
 			</form>

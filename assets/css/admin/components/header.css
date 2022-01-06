@@ -31,6 +31,11 @@
 			margin-left: 11.875rem !important;
 		}
 	}
+
+	@media (max-width: 600px) {
+		margin-left: calc(-1 * 0.625rem) !important;
+		position: absolute;
+	}
 }
 
 .yext-settings__header-logo {

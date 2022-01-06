@@ -1,4 +1,8 @@
 const getRequiredFields = (target) => {
+	if (!target) {
+		return [];
+	}
+
 	const fields = Array.from(target.querySelectorAll('input'));
 
 	return fields.filter((input) => input.getAttribute('data-required') === '1');

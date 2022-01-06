@@ -61,7 +61,7 @@
 	background: var(--yxt-color-brand-primary);
 	border: 1px solid var(--yxt-color-brand-primary);
 	border-radius: 1.875rem;
-	color: #fff; /* stylelint-disable sh-waqar/declaration-use-variable */
+	color: var(--yxt-color-brand-white, #fff);
 	cursor: pointer;
 	font-size: var(--yxt-font-size-md-lg);
 	font-weight: var(--yxt-font-weight-bold);
@@ -76,5 +76,11 @@
 		border-color: var(--yxt-color-brand-hover);
 		color: var(--yxt-color-brand-white);
 		outline: none;
+	}
+
+	&.is-style-outline {
+		background: var(--yxt-color-brand-white, #fff);
+		border: 1px solid var(--yxt-color-brand-primary);
+		color: var(--yxt-color-brand-primary);
 	}
 }

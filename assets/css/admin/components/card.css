@@ -64,9 +64,17 @@
 		border-radius: 0.5rem;
 		margin-left: auto;
 	}
+
+	@media (max-width: 600px) {
+		display: none;
+	}
 }
 
 .yext-settings__card-preview {
 	flex: 1;
 	margin-left: 1.25rem;
+
+	@media (max-width: 600px) {
+		display: none;
+	}
 }

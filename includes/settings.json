@@ -47,5 +47,6 @@
 	"wizard": {
 		"live" : false,
 		"current_step": 0
-	}
+	},
+	"banner_hidden": false
 }

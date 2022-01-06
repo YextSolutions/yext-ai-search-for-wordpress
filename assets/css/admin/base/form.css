@@ -165,6 +165,10 @@
 		& .help-text {
 			left: 0;
 			margin-top: 0.75rem;
+
+			@media (max-width: 600px) {
+				margin-top: 2.25rem;
+			}
 		}
 	}
 
