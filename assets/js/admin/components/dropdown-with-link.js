@@ -1,8 +1,8 @@
-/* global YEXT_ADMIN */
+/* global YEXT */
 import { addQueryArgs } from '@wordpress/url';
 import DOMPurify from 'dompurify';
 
-const { siteUrl } = YEXT_ADMIN;
+const { siteUrl } = YEXT;
 
 /**
  * Return the link for a given post Id
@@ -30,6 +30,9 @@ const onDropDownChange = (e) => {
 	const btnLink = target.parentElement.querySelector('a');
 	if (value > 0 && btnLink) {
 		btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(value)));
+		btnLink.style.display = 'inline-block';
+	} else if (!value) {
+		btnLink.style.display = 'none';
 	}
 };
 

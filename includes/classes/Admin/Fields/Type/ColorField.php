@@ -40,6 +40,8 @@ class ColorField extends AbstractField {
 	public function render() {
 		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
+		$help     = isset( $this->help ) ? $this->help : '';
+
 		printf(
 			'<input
 				type="color"
@@ -51,8 +53,15 @@ class ColorField extends AbstractField {
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
-			esc_attr( $variable ),
+			esc_attr( $variable )
 		);
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
 	}
 
 	/**

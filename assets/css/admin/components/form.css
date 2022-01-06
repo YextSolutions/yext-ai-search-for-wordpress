@@ -1,0 +1,10 @@
+.yext-settings__form {
+	padding-top: 2rem;
+}
+
+.yext-settings__form-content {
+
+	& h2 {
+		display: none;
+	}
+}

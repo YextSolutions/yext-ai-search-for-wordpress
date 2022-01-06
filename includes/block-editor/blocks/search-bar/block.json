@@ -1,0 +1,71 @@
+{
+  "apiVersion": 2,
+  "title": "Yext Search Bar",
+  "description": "Display a Yext search bar.",
+  "name": "yext/search-bar",
+  "category": "yext-blocks",
+  "text-domain": "yext",
+  "supports": {
+    "className": false,
+    "align": false
+  },
+  "attributes": {
+    "submitText": {
+      "type": "string"
+    },
+    "placeholderText": {
+      "type": "string"
+    },
+    "labelText": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "number"
+    },
+    "fontWeight": {
+      "type": "number"
+    },
+    "lineHeight": {
+      "type": "number"
+    },
+    "borderRadius": {
+      "type": "number"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "buttonBackgroundColor": {
+      "type": "string"
+    },
+    "buttonHoverBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteSeparatorColor": {
+      "type": "string"
+    },
+    "autocompleteOptionHoverBackgroundColor": {
+      "type": "string"
+    },
+    "autocompleteOptionFontSize": {
+      "type": "number"
+    },
+    "autocompleteOptionFontWeight": {
+      "type": "number"
+    },
+    "autocompleteOptionLineHeight": {
+      "type": "number"
+    },
+    "autocompleteHeaderFontWeight": {
+      "type": "number"
+    }
+  }
+}

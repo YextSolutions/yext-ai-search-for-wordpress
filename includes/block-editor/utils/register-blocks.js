@@ -3,6 +3,8 @@
  * Optionally register child-blocks with the parent
  */
 
+// @ts-ignore
+const { wp } = window;
 const { registerBlockType } = wp.blocks;
 
 function registerBlocks(id, parent, children = false) {

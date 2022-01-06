@@ -8,8 +8,12 @@
 namespace Yext\Core;
 
 use \WP_Error;
+use \Yext\Install;
+use \Yext\Uninstall;
 use \Yext\Components\SearchBar;
 use \Yext\Admin\Settings;
+use \Yext\Templates\SearchPageTemplate;
+use \Yext\Utility;
 
 /**
  * Default setup routine
@@ -25,6 +29,7 @@ function setup() {
 	add_action( 'init', $n( 'init' ) );
 	add_action( 'wp_enqueue_scripts', $n( 'scripts' ) );
 	add_action( 'wp_enqueue_scripts', $n( 'styles' ) );
+	add_action( 'admin_enqueue_scripts', $n( 'admin_preconnect' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_scripts' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_styles' ) );
 
@@ -53,9 +58,14 @@ function i18n() {
  * @return void
  */
 function init() {
+
 	// initialize admin settings
 	$admin_settings = Settings::instance();
 	$admin_settings->setup();
+
+	// register Yext custom search template
+	$search_template = SearchPageTemplate::instance();
+	$search_template->setup();
 
 	// initialize search bar
 	$search_bar = SearchBar::instance();
@@ -70,14 +80,8 @@ function init() {
  * @return void
  */
 function activate() {
-	// Register default settings
-	$response = wp_remote_get( YEXT_URL . '/includes/settings.json', true );
 
-	if ( ! is_wp_error( $response ) ) {
-		$settings = wp_remote_retrieve_body( $response );
-
-		update_option( 'yext_plugin_settings', $settings, false );
-	}
+	Install::instance()->run();
 
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
@@ -92,7 +96,7 @@ function activate() {
  * @return void
  */
 function deactivate() {
-
+	Uninstall::run();
 }
 
 
@@ -103,6 +107,17 @@ function deactivate() {
  */
 function get_enqueue_contexts() {
 	return [ 'admin', 'frontend', 'shared' ];
+}
+
+/**
+ * Check if current admin page is a Yext plugin page.
+ *
+ * @param string $page Name of current page
+ *
+ * @return boolean
+ */
+function is_yext_page( $page ) {
+	return strpos( $page, 'yext' ) !== false;
 }
 
 /**
@@ -143,16 +158,6 @@ function style_url( $stylesheet, $context ) {
  * @return void
  */
 function scripts() {
-	$settings = Settings::get_settings();
-
-	wp_enqueue_script(
-		'yext-shared',
-		script_url( 'shared', 'shared' ),
-		[],
-		YEXT_VERSION,
-		true
-	);
-
 	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar',
 		'https://assets.sitescdn.net/answers-search-bar/v1/answers.min.js',
@@ -176,70 +181,74 @@ function scripts() {
 			'yext-search-bar',
 			'yext-search-bar-templates',
 		],
-		YEXT_VERSION,
+		Utility\get_asset_info( 'frontend', 'version' ),
 		true
 	);
 
 	wp_localize_script(
 		'yext-frontend',
 		'YEXT',
-		[
-			'settings' => [
-				'config'     => array_merge( $settings['plugin'], [ 'locale' => 'en' ] ),
-				'components' => [
-					'search_bar' => array_merge(
-						$settings['search_bar'],
-						[
-							'props' => array_merge(
-								$settings['search_bar']['props'],
-								[
-									'redirect_url' => get_post_field(
-										'post_name',
-										$settings['search_results']['results_page']
-									),
-								]
-							),
-						]
-					),
-				],
-			],
-			'raw'      => $settings,
-		]
+		[ 'settings' => Settings::localized_settings() ]
 	);
+}
+
+/**
+ * Add preconnect links to head.
+ *
+ * @param string $page Current page name.
+ * @return void
+ */
+function admin_preconnect( $page ) {
+
+	if ( is_yext_page( $page ) ) {
+
+		$preconnect_hrefs = [
+			'https://fonts.googleapis.com',
+			'https://fonts.gstatic.com',
+		];
+
+		foreach ( $preconnect_hrefs as $href ) {
+			echo "<link rel='preconnect' href='" . esc_url( $href ) . "' crossorigin>";
+		}
+	}
 }
 
 /**
  * Enqueue scripts for admin.
  *
+ * @param string $page Current page name.
+ *
  * @return void
  */
-function admin_scripts() {
-	wp_enqueue_script(
-		'yext-shared',
-		script_url( 'shared', 'shared' ),
-		[],
-		YEXT_VERSION,
-		true
-	);
+function admin_scripts( $page ) {
 
-	wp_enqueue_script(
-		'yext-admin',
-		script_url( 'admin', 'admin' ),
-		[],
-		YEXT_VERSION,
-		true
-	);
+	if ( is_yext_page( $page ) ) {
+		wp_enqueue_script(
+			'yext-admin',
+			script_url( 'admin', 'admin' ),
+			Utility\get_asset_info( 'admin', 'version' ),
+			YEXT_VERSION,
+			true
+		);
 
-	$params  = [
-		'siteUrl' => esc_js( get_site_url() ),
-	];
-	$js_data = sprintf(
-		'const %s = %s;',
-		'YEXT_ADMIN',
-		wp_json_encode( $params )
-	);
-	// define params for admin script
-	wp_add_inline_script( 'yext-admin', $js_data, 'before' );
+		// Default settings
+		$defaults = [];
+		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+			$defaults = file_get_contents( YEXT_INC . 'settings.json', false );
+		}
+
+		wp_localize_script(
+			'yext-admin',
+			'YEXT',
+			[
+				'defaults'     => $defaults,
+				'settings'     => Settings::get_settings(),
+				'siteUrl'      => esc_url( get_site_url() ),
+				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
+				'rest_url'     => '/wp-json/yext/v1/settings',
+			]
+		);
+	}
 }
 
 /**
@@ -256,49 +265,52 @@ function styles() {
 	);
 
 	wp_enqueue_style(
-		'yext-shared',
-		style_url( 'shared-style', 'shared' ),
-		[],
+		'yext-frontend',
+		style_url( 'style', 'frontend' ),
+		[ 'yext-search-bar' ],
 		YEXT_VERSION
 	);
-
-	if ( is_admin() ) {
-		wp_enqueue_style(
-			'yext-admin',
-			style_url( 'admin-style', 'admin' ),
-			[],
-			YEXT_VERSION
-		);
-	} else {
-		wp_enqueue_style(
-			'yext-frontend',
-			style_url( 'style', 'frontend' ),
-			[ 'yext-search-bar' ],
-			YEXT_VERSION
-		);
-		wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
-	}
+	/**
+	 * TODO: add filter for CSS variable output
+	 */
+	wp_add_inline_style( 'yext-frontend', Settings::print_css_variables() );
 }
 
 /**
  * Enqueue styles for admin.
  *
+ * @param string $page Current page name.
+ *
  * @return void
  */
-function admin_styles() {
-	wp_enqueue_style(
-		'yext-shared',
-		style_url( 'shared-style', 'shared' ),
-		[],
-		YEXT_VERSION
-	);
+function admin_styles( $page ) {
 
-	wp_enqueue_style(
-		'yext-admin',
-		style_url( 'admin-style', 'admin' ),
-		[],
-		YEXT_VERSION
-	);
+	if ( is_yext_page( $page ) ) {
+
+		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			'yext-search-bar',
+			'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+			[],
+			null
+		);
+
+		wp_enqueue_style(
+			'yext-admin',
+			style_url( 'admin-style', 'admin' ),
+			[ 'yext-search-bar' ],
+			YEXT_VERSION
+		);
+
+		// TODO: add filter for CSS variable output
+		wp_add_inline_style( 'yext-admin', Settings::print_css_variables() );
+
+		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			'poppins',
+			'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap',
+			[],
+			null
+		);
+	}
 }
 
 /**

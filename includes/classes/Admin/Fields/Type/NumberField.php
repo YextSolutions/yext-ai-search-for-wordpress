@@ -33,8 +33,17 @@ class NumberField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$value = $this->value;
+		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
+		$help     = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		printf(
 			'<input
 				class="small-text"
@@ -47,7 +56,7 @@ class NumberField extends AbstractField {
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
-			esc_attr( $variable ),
+			esc_attr( $variable )
 		);
 	}
 

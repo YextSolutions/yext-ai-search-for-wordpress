@@ -1,0 +1,32 @@
+.yext-settings__footer {
+	background: var(--yxt-color-brand-white);
+	bottom: 0;
+	box-shadow: 0 -1px 30px 4px rgba(51, 51, 51, 0.1);
+	display: flex;
+	justify-content: flex-end;
+	left: 0;
+	margin-left: 10rem;
+	padding: 1rem 2.5rem;
+	position: fixed;
+	right: 0;
+	z-index: 2;
+
+	@nest .folded & {
+		margin-left: 2.25rem;
+	}
+
+	@media only screen and (max-width: 960px) {
+
+		@nest .auto-fold & {
+			margin-left: 2.25rem;
+		}
+	}
+
+	@media screen and (max-width: 782px) {
+		margin-left: 0 !important;
+
+		@nest .wp-responsive-open & {
+			margin-left: 11.875rem !important;
+		}
+	}
+}

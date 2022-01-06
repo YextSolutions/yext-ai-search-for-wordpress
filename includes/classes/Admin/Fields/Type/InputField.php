@@ -33,8 +33,18 @@ class InputField extends AbstractField {
 	 * @return void
 	 */
 	public function render() {
-		$value = $this->value;
+		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
+		$required = isset( $this->required ) ? $this->required : false;
+		$help     = isset( $this->help ) ? $this->help : '';
+
+		if ( $help ) {
+			printf(
+				'<p class="help-text">%s</p>',
+				wp_kses_post( $help )
+			);
+		}
+
 		printf(
 			'<input
 				class="regular-text"
@@ -43,12 +53,13 @@ class InputField extends AbstractField {
 				id="%s"
 				value="%s"
 				data-variable="%s"
+				data-required="%s"
 				autocomplete="off">',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
 			esc_attr( $variable ),
+			esc_attr( $required ? '1' : '0' )
 		);
 	}
-
 }

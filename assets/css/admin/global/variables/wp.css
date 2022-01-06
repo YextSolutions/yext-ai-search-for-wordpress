@@ -1,0 +1,7 @@
+:root {
+	--wp-admin-header-height: 32px;
+
+	@media (max-width: 782px) {
+		--wp-admin-header-height: 46px;
+	}
+}

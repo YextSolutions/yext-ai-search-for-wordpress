@@ -3,7 +3,10 @@
  */
 import camelcaseKeys from 'camelcase-keys';
 
-const init = () => {
+/**
+ * Initialize Answers UI SDK.
+ */
+const initAnswers = () => {
 	/**
 	 * Bail if our plugin namespace is missing.
 	 */
@@ -72,6 +75,13 @@ const init = () => {
 
 		AnswersSDK.init();
 	});
+};
+
+/**
+ * Initialize plugin scripts.
+ */
+const init = () => {
+	initAnswers();
 };
 
 /**

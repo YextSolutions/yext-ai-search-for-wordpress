@@ -1,0 +1,8 @@
+:root {
+	--h-input: 2.5rem;
+
+	--fs-label: var(--fs-body);
+	--fw-label: var(--yxt-font-weight-medium, 500);
+	--lh-label: var(--lh-body);
+	--ls-label: 1px;
+}

@@ -1,0 +1,28 @@
+.yext-wizard[data-step="0"] {
+
+	& .yext-menu__dialog .yext-menu__dialog-list-item--restart {
+		display: none;
+	}
+}
+
+.yext-wizard[data-progress-id="0"] {
+
+	& .yext-settings__footer {
+		display: none;
+	}
+
+	& .yext-menu__dialog .yext-menu__dialog-list-item--skip {
+		display: none;
+	}
+}
+
+.yext-wizard[data-progress-id="4"] {
+
+	& .yext-settings__footer {
+		display: none;
+	}
+}
+
+.yext-wizard__banner {
+	margin-bottom: 2rem;
+}

@@ -10,7 +10,7 @@ namespace Yext\Admin\Fields\Type;
 use Yext\Admin\Settings;
 
 /**
- * Base functions for creating taxonomy
+ * Base functions for creating Fields
  */
 abstract class AbstractField {
 
@@ -74,6 +74,8 @@ abstract class AbstractField {
 		'value'        => '',
 		'section_id'   => '',
 		'variable'     => '',
+		'required'     => 'false',
+		'help'         => '',
 	];
 
 	/**
@@ -105,6 +107,8 @@ abstract class AbstractField {
 		$this->section_id   = $args['section_id'];
 		$this->value        = $args['value'];
 		$this->variable     = $args['variable'];
+		$this->required     = $args['required'];
+		$this->help         = $args['help'];
 		$this->setup();
 	}
 
@@ -127,7 +131,11 @@ abstract class AbstractField {
 				$this->title, // title
 				[ $this, 'add_field_callback' ], // callback
 				"yext-settings-{$this->section_id}-{$this->parent_field}",
-				"{$this->section_id}-{$this->parent_field}"
+				"{$this->section_id}-{$this->parent_field}",
+				[
+					'class'     => $this->required ? 'required' : '',
+					'label_for' => $this->id,
+				]
 			);
 		} else {
 			add_settings_field(
@@ -135,7 +143,11 @@ abstract class AbstractField {
 				$this->title, // title
 				[ $this, 'add_field_callback' ], // callback
 				"yext-settings-{$this->section_id}",
-				$this->section_id // section
+				$this->section_id, // section
+				[
+					'class'     => $this->required ? 'required' : '',
+					'label_for' => $this->id,
+				]
 			);
 		}
 	}

@@ -20,6 +20,7 @@ define( 'YEXT_VERSION', '0.1.0' );
 define( 'YEXT_URL', plugin_dir_url( __FILE__ ) );
 define( 'YEXT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YEXT_INC', YEXT_PATH . 'includes/' );
+define( 'YEXT_TEMPLATES', YEXT_INC . 'templates/' );
 
 // Require Composer autoloader if it exists.
 if ( file_exists( YEXT_PATH . 'vendor/autoload.php' ) ) {
@@ -27,6 +28,7 @@ if ( file_exists( YEXT_PATH . 'vendor/autoload.php' ) ) {
 }
 
 // Include files.
+require_once YEXT_INC . '/utility.php';
 require_once YEXT_INC . '/core.php';
 require_once YEXT_INC . '/blocks.php';
 

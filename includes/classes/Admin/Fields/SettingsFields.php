@@ -7,7 +7,6 @@
 
 namespace Yext\Admin\Fields;
 
-use Yext\Admin\Fields\Type\InputField;
 use Yext\Admin\Settings;
 
 /**
@@ -52,6 +51,7 @@ final class SettingsFields {
 			Settings::PLUGIN_SETTINGS_SECTION_NAME => $this->plugin_settings_fields(),
 			Settings::SEARCH_BAR_SECTION_NAME      => $this->search_bar_settings_fields(),
 			Settings::SEARCH_RESULTS_SECTION_NAME  => $this->search_results_settings_fields(),
+			Settings::WIZARD_SECTION_NAME          => $this->wizard_settings_fields(),
 		];
 	}
 
@@ -63,33 +63,32 @@ final class SettingsFields {
 	protected function plugin_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'api_key',
-				'title' => __( 'Api Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'api_key',
+				'title'    => __( 'API Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'experience_key',
-				'title' => __( 'Experience Key', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'experience_key',
+				'title'    => __( 'Experience Key', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'business_id',
-				'title' => __( 'Business ID', 'yext' ),
-				'type'  => 'InputField',
+				'id'       => 'business_id',
+				'title'    => __( 'Business ID', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 			[
-				'id'    => 'answers_iframe_url',
-				'title' => __( 'Answers iframe url', 'yext' ),
-				'type'  => 'InputField',
-			],
-			[
-				'id'      => 'answers_version',
-				'title'   => __( 'Answers version', 'yext' ),
-				'type'    => 'SelectField',
-				'options' => [
-					'v1' => __( 'Version 1.0', 'yext' ),
-					'v2' => __( 'Version 2.0', 'yext' ),
-				],
+				'id'       => 'answers_iframe_url',
+				'title'    => __( 'Answers iFrame URL', 'yext' ),
+				'type'     => 'InputField',
+				'required' => 'true',
+				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
@@ -103,84 +102,169 @@ final class SettingsFields {
 	protected function search_bar_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'override_core_search',
-				'title' => __( 'Override WordPress search', 'yext' ),
-				'type'  => 'CheckboxField',
+				'id'     => 'override_core_search',
+				'parent' => 'core',
+				'title'  => __( 'Enable Global Search', 'yext' ),
+				'type'   => 'CheckboxField',
+				'help'   => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ),
 			],
 			[
-				'id'    => 'use_custom_style',
-				'title' => __( 'Use custom style', 'yext' ),
-				'type'  => 'CheckboxField',
+				'id'     => 'placeholder_text',
+				'parent' => 'props',
+				'title'  => __( 'Placeholder text', 'yext' ),
+				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
-				'id'    => 'background_color',
-				'title' => __( 'Background color', 'yext' ),
-				'type'  => 'ColorField',
+				'id'     => 'submit_text',
+				'parent' => 'props',
+				'title'  => __( 'Submit text', 'yext' ),
+				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
-				'id'    => 'border_color',
-				'title' => __( 'Border color', 'yext' ),
-				'type'  => 'ColorField',
+				'id'     => 'label_text',
+				'parent' => 'props',
+				'title'  => __( 'Label text', 'yext' ),
+				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
-				'id'    => 'border_radius',
-				'title' => __( 'Border radius', 'yext' ),
-				'type'  => 'NumberField',
+				'id'     => 'css_class',
+				'parent' => 'props',
+				'title'  => __( 'CSS class', 'yext' ),
+				'type'   => 'InputField',
+				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
-				'id'    => 'color',
-				'title' => __( 'Text color', 'yext' ),
-				'type'  => 'ColorField',
+				'id'       => 'font_size',
+				'parent'   => 'style',
+				'title'    => __( 'Font size', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-searchbar-text-font-size',
 			],
 			[
-				'id'    => 'font_size',
-				'title' => __( 'Font size', 'yext' ),
-				'type'  => 'NumberField',
-			],
-			[
-				'id'      => 'font_weight',
-				'title'   => __( 'Font weight', 'yext' ),
-				'type'    => 'SelectField',
-				'options' => [
+				'id'       => 'font_weight',
+				'parent'   => 'style',
+				'title'    => __( 'Font weight', 'yext' ),
+				'type'     => 'SelectField',
+				'options'  => [
 					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
 					'700' => __( 'Bold', 'yext' ),
 				],
+				'variable' => '--yxt-searchbar-text-font-weight',
 			],
 			[
-				'id'    => 'line_height',
-				'title' => __( 'Line height', 'yext' ),
-				'type'  => 'NumberField',
+				'id'       => 'line_height',
+				'parent'   => 'style',
+				'title'    => __( 'Line height', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-searchbar-text-line-height',
 			],
 			[
-				'id'     => 'background_color',
-				'parent' => 'button',
-				'title'  => __( 'Background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'border_radius',
+				'parent'   => 'style',
+				'title'    => __( 'Border radius', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-searchbar-form-border-radius',
 			],
 			[
-				'id'     => 'hover_background_color',
-				'parent' => 'button',
-				'title'  => __( 'Hover background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'color',
+				'parent'   => 'style',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-text-color',
 			],
 			[
-				'id'       => 'active_background_color',
+				'id'       => 'background_color',
+				'parent'   => 'style',
+				'title'    => __( 'Background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-form-background-color',
+			],
+			[
+				'id'       => 'border_color',
+				'parent'   => 'style',
+				'title'    => __( 'Border color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-form-outline-color-base',
+			],
+			[
+				'id'       => 'background_color',
 				'parent'   => 'button',
-				'title'    => __( 'Active background color', 'yext' ),
+				'title'    => __( 'Background color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-searchbar-button-background-color-base',
 			],
 			[
-				'id'     => 'color',
-				'parent' => 'button',
-				'title'  => __( 'Text color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'hover_background_color',
+				'parent'   => 'button',
+				'title'    => __( 'Focus background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-background-color-hover',
 			],
 			[
-				'id'     => 'text_active_color',
-				'parent' => 'button',
-				'title'  => __( 'Text active color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'text_color',
+				'parent'   => 'button',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-text-color',
+			],
+			[
+				'id'       => 'hover_text_color',
+				'parent'   => 'button',
+				'title'    => __( 'Focus text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-button-text-color-hover',
+			],
+			[
+				'id'       => 'font_size',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Font size', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-autocomplete-text-font-size',
+			],
+			[
+				'id'       => 'font_weight',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Font weight', 'yext' ),
+				'type'     => 'SelectField',
+				'options'  => [
+					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
+					'700' => __( 'Bold', 'yext' ),
+				],
+				'variable' => '--yxt-autocomplete-text-font-weight',
+			],
+			[
+				'id'       => 'line_height',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Line height', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-autocomplete-text-line-height',
+			],
+			[
+				'id'       => 'header_font_weight',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Header font weight', 'yext' ),
+				'type'     => 'SelectField',
+				'options'  => [
+					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
+					'700' => __( 'Bold', 'yext' ),
+				],
+				'variable' => '--yxt-autocomplete-prompt-header-font-weight',
+			],
+			[
+				'id'       => 'text_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-text-color',
 			],
 			[
 				'id'       => 'background_color',
@@ -190,91 +274,18 @@ final class SettingsFields {
 				'variable' => '--yxt-autocomplete-background-color',
 			],
 			[
-				'id'     => 'option_selected_background_color',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Opption selected background color', 'yext' ),
-				'type'   => 'ColorField',
+				'id'       => 'option_hover_background_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Option hover background color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-option-hover-background-color',
 			],
 			[
-				'id'     => 'option_hover_background_color',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Option hovered background color', 'yext' ),
-				'type'   => 'ColorField',
-			],
-			[
-				'id'     => 'separator_color',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Separator color', 'yext' ),
-				'type'   => 'ColorField',
-			],
-			[
-				'id'     => 'font_size',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Font size', 'yext' ),
-				'type'   => 'NumberField',
-			],
-			[
-				'id'      => 'font_weight',
-				'parent'  => 'autocomplete',
-				'title'   => __( 'Font weight', 'yext' ),
-				'type'    => 'SelectField',
-				'options' => [
-					'400' => __( 'Normal', 'yext' ),
-					'700' => __( 'Bold', 'yext' ),
-				],
-			],
-			[
-				'id'     => 'line_height',
-				'parent' => 'autocomplete',
-				'title'  => __( 'Line height', 'yext' ),
-				'type'   => 'NumberField',
-			],
-			[
-				'id'     => 'hover_color',
-				'parent' => 'autocomplete',
-				'parent' => 'button',
-				'title'  => __( 'Hover text color', 'yext' ),
-				'type'   => 'ColorField',
-			],
-			[
-				'id'      => 'header_font_weight',
-				'parent'  => 'autocomplete',
-				'title'   => __( 'Header font weight', 'yext' ),
-				'type'    => 'SelectField',
-				'options' => [
-					'400' => __( 'Normal', 'yext' ),
-					'700' => __( 'Bold', 'yext' ),
-				],
-			],
-			[
-				'id'     => 'placeholder_text',
-				'parent' => 'props',
-				'title'  => __( 'Input placeholder text', 'yext' ),
-				'type'   => 'InputField',
-			],
-			[
-				'id'     => 'submit_text',
-				'parent' => 'props',
-				'title'  => __( 'Submit button text', 'yext' ),
-				'type'   => 'InputField',
-			],
-			[
-				'id'     => 'label_text',
-				'parent' => 'props',
-				'title'  => __( 'Label text', 'yext' ),
-				'type'   => 'InputField',
-			],
-			[
-				'id'     => 'redirect_url',
-				'parent' => 'props',
-				'title'  => __( 'Redirect url', 'yext' ),
-				'type'   => 'InputField',
-			],
-			[
-				'id'     => 'css_class',
-				'parent' => 'props',
-				'title'  => __( 'CSS additional classes', 'yext' ),
-				'type'   => 'InputField',
+				'id'       => 'separator_color',
+				'parent'   => 'autocomplete',
+				'title'    => __( 'Separator color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-autocomplete-separator-color',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_BAR_SECTION_NAME );
@@ -288,18 +299,35 @@ final class SettingsFields {
 	protected function search_results_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'redirect_url',
-				'title' => __( 'Redirect search results to Yext url', 'yext' ),
-				'type'  => 'CheckboxField',
-			],
-			[
 				'id'        => 'results_page',
-				'title'     => __( 'Display results page', 'yext' ),
+				'title'     => __( 'Search Results Page', 'yext' ),
 				'type'      => 'SelectPagesField',
 				'show_link' => true,
+				'help'      => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
+	}
+
+	/**
+	 * Fields for Plugin settings section
+	 *
+	 * @return array $fields Array for fields config.
+	 */
+	protected function wizard_settings_fields() {
+		$fields = [
+			[
+				'id'    => 'live',
+				'title' => __( 'Live', 'yext' ),
+				'type'  => 'CheckboxField',
+			],
+			[
+				'id'    => 'current_step',
+				'title' => __( 'Current Step', 'yext' ),
+				'type'  => 'InputField',
+			],
+		];
+		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
 	}
 
 	/**
@@ -319,6 +347,8 @@ final class SettingsFields {
 			'options'    => $field_config['options'] ?? '',
 			'variable'   => $field_config['variable'] ?? '',
 			'show_link'  => $field_config['show_link'] ?? '',
+			'required'   => $field_config['required'] ?? '',
+			'help'       => $field_config['help'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

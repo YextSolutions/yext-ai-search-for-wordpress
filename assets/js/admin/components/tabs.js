@@ -1,6 +1,14 @@
 // Imports
-import tabs from '@10up/component-tabs';
+import Tabs from '@10up/component-tabs';
 import { addQueryArgs, getQueryArg, hasQueryArg } from '@wordpress/url';
+
+import {
+	getRequiredFields,
+	ignoreInputFields,
+	ignoreRequiredFields,
+	watchInputFields,
+	watchRequiredFields,
+} from '../utils/input';
 
 const TAB_QUERY_VAR = 'tab-selected';
 
@@ -16,20 +24,50 @@ function getTabIndex(node) {
 
 const initTabs = () => {
 	const yextForm = document.querySelector('#yext-settings form');
-	// do nothing if not Yext settings form
+
+	// do nothing if no Yext settings form
 	if (!yextForm) {
 		return;
 	}
+
 	// update the referer hidden field and include the current active tab
+	/**
+	 * @type {HTMLInputElement}
+	 */
 	const refererInputField = yextForm.querySelector('input[name="_wp_http_referer"]');
 	const refererUrl = refererInputField.value;
-	// eslint-disable-next-line new-cap, no-unused-vars
-	const settingsTabs = new tabs('#yext-settings .tabs', {
+
+	const inputFields = Array.from(yextForm.querySelectorAll('input'));
+	const requiredFields = getRequiredFields(yextForm);
+
+	const updateInputFields = (tab) => {
+		ignoreInputFields(inputFields);
+		ignoreRequiredFields(requiredFields);
+
+		const currentTabInputFields = Array.from(tab.querySelectorAll('input'));
+		const currentTabRequiredFields = getRequiredFields(tab);
+
+		watchInputFields(currentTabInputFields);
+		watchRequiredFields(currentTabRequiredFields);
+	};
+
+	// @ts-ignore
+	// eslint-disable-next-line new-cap, no-unused-vars, no-new
+	new Tabs('#yext-settings .tabs', {
 		onCreate: () => {
 			if (!hasQueryArg(window.location.href, TAB_QUERY_VAR)) {
 				return;
 			}
-			const selectedTab = parseInt(getQueryArg(window.location.href, TAB_QUERY_VAR), 10);
+
+			const selectedTab = parseInt(
+				String(getQueryArg(window.location.href, TAB_QUERY_VAR)),
+				10,
+			);
+
+			// eslint-disable-next-line jsdoc/no-undefined-types
+			/**
+			 * @type {NodeListOf<HTMLElement>}
+			 */
 			const tabLinks = yextForm.querySelectorAll('.tab-list [role="tab"]');
 
 			if (selectedTab <= tabLinks.length) {
@@ -41,6 +79,8 @@ const initTabs = () => {
 			refererInputField.value = addQueryArgs(refererUrl, {
 				'tab-selected': getTabIndex(currentTab),
 			});
+
+			updateInputFields(currentTab);
 		},
 	});
 };

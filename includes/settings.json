@@ -3,46 +3,50 @@
 		"api_key": "",
 		"experience_key": "",
 		"business_id": "",
-		"answers_iframe_url": "",
-		"experience_version": "1.0"
+		"answers_iframe_url": ""
 	},
 	"search_bar": {
-		"override_core_search": "1",
-		"use_custom_style": "0",
-		"background_color": "#fff",
-		"border_color": "#000000",
-		"border_radius": "0",
-		"color": "#000000",
-		"font_size": "16",
-		"font_weight": "normal",
-		"line_height": "22",
-		"button": {
-			"background_color": "#ffffff",
-			"hover_background_color": "#f2f2f2",
-			"active_background_color": "#ffffff",
-			"color": "#000000",
-			"text_active_color": "#000000"
-		},
-		"autocomplete": {
-			"bg_color": "#ffffff",	
-			"option_selected_background_color": "#f2f2f2",
-			"option_hover_background_color": "#f2f2f2",
-			"separator_color": "#000",
-			"font_size": "16",
-			"font_weight": "normal",
-			"line_height": "22",
-			"text_color": "#000000",
-			"header_font_weight": "normal"
+		"core": {
+			"override_core_search": "0"
 		},
 		"props": {
-			"placeholder_text": "Search...",
-			"submit_text": "Search",
-			"label_text": "Search",
+			"placeholder_text": "",
+			"submit_text": "Submit",
+			"label_text": "Conduct a search",
 			"css_class": ""
+		},
+		"style": {
+			"background_color": "#ffffff",
+			"border_color": "#dcdcdc",
+			"border_radius": "6",
+			"color": "#212121",
+			"font_size": "16",
+			"font_weight": "400",
+			"line_height": "1.5"
+		},
+		"button": {
+			"text_color": "#000000",
+			"hover_text_color": "#000000",
+			"background_color": "#ffffff",
+			"hover_background_color": "#e9e9e9"
+		},
+		"autocomplete": {
+			"background_color": "#ffffff",
+			"option_hover_background_color": "#f9f9f9",
+			"separator_color": "#dcdcdc",
+			"font_size": "16",
+			"font_weight": "400",
+			"line_height": "1.4",
+			"text_color": "#212121",
+			"header_font_weight": "300"
 		}
 	},
 	"search_results": {
-		"redirect_url": "0",
 		"results_page": ""
-	}
+	},
+	"wizard": {
+		"live" : false,
+		"current_step": 0
+	},
+	"banner_hidden": false
 }
