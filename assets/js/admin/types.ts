@@ -9,6 +9,7 @@ export interface YextWizard extends HTMLElement {
 				wizard?: {
 					current_step: number;
 					live: boolean;
+					skipped: boolean;
 				};
 			};
 		};

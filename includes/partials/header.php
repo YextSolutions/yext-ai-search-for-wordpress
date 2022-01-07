@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<ul class="yext-menu__dialog-list">
 					<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--restart">
 						<?php if ( 'settings' === $view ) : ?>
-							<button class="yext-settings__button--is-style-link" data-action="restart" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext-wizard&step=0' ) ); ?>">
+							<button class="yext-settings__button--is-style-link" data-action="restart" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext&restart_wizard=1' ) ); ?>">
 								<?php echo esc_html( 'Restart setup', 'yext' ); ?>
 							</button>
 						<?php else : ?>

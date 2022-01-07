@@ -46,6 +46,7 @@
 	},
 	"wizard": {
 		"live" : false,
+		"skipped" : false,
 		"current_step": 0
 	},
 	"banner_hidden": false

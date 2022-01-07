@@ -326,6 +326,11 @@ final class SettingsFields {
 				'title' => __( 'Current Step', 'yext' ),
 				'type'  => 'InputField',
 			],
+			[
+				'id'    => 'skipped',
+				'title' => __( 'Skip Setup Wizard', 'yext' ),
+				'type'  => 'CheckboxField',
+			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
 	}
