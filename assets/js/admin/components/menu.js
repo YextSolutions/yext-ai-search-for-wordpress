@@ -12,20 +12,20 @@ const {
  */
 const wizard = document.querySelector('#yext-wizard');
 
-const updateSettings = (isLive, skip = false) => {
+const updateSettings = ({ live = false, active = false } = {}) => {
 	if (wizard) {
 		wizard.state.payload = {
 			settings: {
 				...wizard.state.payload.settings,
 				wizard: {
 					current_step: 0,
-					live: isLive,
-					skipped: skip,
+					live,
+					active,
 				},
 			},
 		};
 
-		if (!skip) {
+		if (active) {
 			wizard.state.step = 0;
 		}
 	}
@@ -52,27 +52,26 @@ const actions = {
 				}`,
 			)
 		) {
-			// Update Settings
-			apiFetch({
-				path: REST_API_ROUTE,
-				method: 'POST',
-				data: {
-					settings: {
-						...PLUGIN_SETTINGS,
-						wizard: {
-							skipped: false,
+			if (href) {
+				apiFetch({
+					path: REST_API_ROUTE,
+					method: 'POST',
+					data: {
+						settings: {
+							...PLUGIN_SETTINGS,
+							wizard: {
+								active: true,
+							},
 						},
 					},
-				},
-			}).then(() => {
-				if (href) {
+				}).then(() => {
 					import('dompurify').then(({ default: DOMPurify }) => {
 						window.location.href = DOMPurify.sanitize(href);
 					});
-				} else {
-					updateSettings(false);
-				}
-			});
+				});
+			} else {
+				updateSettings({ active: true });
+			}
 		}
 
 		const tippyInstance = target.closest('[data-tippy-root]');
@@ -100,8 +99,7 @@ const actions = {
 				}`,
 			)
 		) {
-			const hasLiveSettings = PLUGIN_SETTINGS?.wizard?.live;
-			updateSettings(hasLiveSettings, true);
+			updateSettings({ live: true });
 
 			if (href) {
 				import('dompurify').then(({ default: DOMPurify }) => {
