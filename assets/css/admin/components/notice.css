@@ -1,11 +1,8 @@
-body:not(.plugins-php) {
-
-	& #wpbody-content {
-		margin-top: 4.75rem;
-		
-		& .notice {
-			margin-bottom: 0;
-			margin-top: 0;
-		}
+#wpbody-content {
+	margin-top: 4.75rem;
+	
+	& .notice {
+		margin-bottom: 0;
+		margin-top: 0;
 	}
 }
