@@ -313,7 +313,7 @@ function styles() {
  */
 function admin_styles( $page ) {
 
-	if ( is_yext_page( $page ) || 'plugins.php' === $page ) {
+	if ( is_yext_page( $page ) ) {
 
 		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			'yext-search-bar',
