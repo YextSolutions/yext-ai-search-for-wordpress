@@ -32,6 +32,7 @@ function setup() {
 	add_action( 'admin_enqueue_scripts', $n( 'admin_preconnect' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_scripts' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_styles' ) );
+	add_action( 'admin_notices', $n( 'activation_notice' ) );
 
 	// Editor styles. add_editor_style() doesn't work outside of a theme.
 	add_filter( 'mce_css', $n( 'mce_css' ) );
@@ -86,6 +87,33 @@ function activate() {
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
 	flush_rewrite_rules();
+}
+
+/**
+ * Display a notice to continue the plugin setup after activation
+ *
+ * @return void
+ */
+function activation_notice() {
+	global $pagenow;
+
+	$active = get_option( 'yext_plugin_activated', false );
+
+	if ( $active && 'plugins.php' === $pagenow ) {
+		$class      = 'notice notice-success yext-styles-wrapper';
+		$link_class = 'button yext-settings__button yext-settings__button--primary';
+		$message    = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
+		$link_text  = __( 'Start Setup', 'yext' );
+
+		printf(
+			'<div class="%1$s"><p>%2$s</p><p><a href="%3$s" class="%4$s">%5$s</a></p></div>',
+			esc_attr( $class ),
+			esc_html( $message ),
+			esc_url( admin_url( 'admin.php?page=yext' ) ),
+			esc_attr( $link_class ),
+			esc_html( $link_text )
+		);
+	}
 }
 
 /**
@@ -285,7 +313,7 @@ function styles() {
  */
 function admin_styles( $page ) {
 
-	if ( is_yext_page( $page ) ) {
+	if ( is_yext_page( $page ) || 'plugins.php' === $page ) {
 
 		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			'yext-search-bar',

@@ -53,6 +53,12 @@ final class Install {
 		}
 
 		update_option(
+			'yext_plugin_activated',
+			true,
+			false
+		);
+
+		update_option(
 			'yext_plugin_settings',
 			$settings ? json_decode( $settings, true ) : [],
 			false

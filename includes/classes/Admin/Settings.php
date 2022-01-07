@@ -97,6 +97,9 @@ final class Settings {
 		$updated_settings = array_replace_recursive( self::get_settings(), $settings );
 		update_option( static::SETTINGS_NAME, $updated_settings, false );
 
+		// Remove temporary option
+		delete_option( 'yext_plugin_activated' );
+
 		return $updated_settings;
 	}
 
