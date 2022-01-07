@@ -25,7 +25,9 @@ const updateSettings = (isLive, skip = false) => {
 			},
 		};
 
-		wizard.state.step = 0;
+		if (!skip) {
+			wizard.state.step = 0;
+		}
 	}
 };
 
