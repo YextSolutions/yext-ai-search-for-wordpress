@@ -327,7 +327,7 @@ final class SettingsFields {
 				'type'  => 'InputField',
 			],
 			[
-				'id'    => 'skipped',
+				'id'    => 'active',
 				'title' => __( 'Skip Setup Wizard', 'yext' ),
 				'type'  => 'CheckboxField',
 			],
