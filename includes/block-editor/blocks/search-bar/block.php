@@ -7,6 +7,8 @@
 
 namespace Yext\Blocks\SearchBar;
 
+use \Yext\Admin\Settings;
+
 /**
  * Render Search Bar Block
  *
@@ -21,6 +23,12 @@ function render( $atts ) {
 	$placeholder_text = isset( $atts['placeholderText'] ) ? $atts['placeholderText'] : '';
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
+	$settings         = Settings::get_settings();
+	$redirect_url     = '';
+
+	if ( isset( $settings['search_results']['redirect_page'] ) ) {
+		$redirect_url = get_the_permalink( intval( isset( $settings['search_results']['redirect_page'] ) ) );
+	}
 
 	$filtered_styles = [];
 	$styles          = [
@@ -64,6 +72,9 @@ function render( $atts ) {
 	<?php endif; ?>
 	<?php if ( ! empty( $label_text ) ) : ?>
 		data-label-text="<?php echo esc_attr( $label_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $redirect_url ) ) : ?>
+		data-redirect-url="<?php echo esc_attr( $redirect_url ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $filtered_styles ) ) : ?>
 		style="<?php echo esc_attr( implode( ';', $filtered_styles ) ); ?>"
