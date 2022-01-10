@@ -324,7 +324,7 @@ const initWizard = () => {
 					current_step: Number(STATE.step),
 					// @ts-ignore
 					live: event?.target?.getAttribute('data-is-live') === '1' || false,
-					active: false,
+					active: true,
 				},
 			}),
 		};
@@ -346,7 +346,7 @@ const initWizard = () => {
 			return;
 		}
 
-		STATE.step = setStep(currentStep - 1);
+		STATE.step = setStep(currentStep === 3 ? 0 : currentStep - 1);
 
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
@@ -354,6 +354,7 @@ const initWizard = () => {
 					current_step: Number(STATE.step),
 					// @ts-ignore
 					live: event?.target?.getAttribute('data-is-live') === '1' || false,
+					active: true,
 				},
 			}),
 		};
