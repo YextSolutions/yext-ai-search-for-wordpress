@@ -71,7 +71,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 		include_once YEXT_INC . 'partials/header.php';
 		?>
 
-			<div class="yext-wizard__timeline">
+			<div class="yext-wizard__timeline" style="display:none">
 				<div class="yext-wizard__timeline-step yext-wizard__timeline-step--active" data-progress-id="0">
 					<div class="yext-wizard__timeline-step-circle-wrapper">
 						<div class="yext-wizard__timeline-step-circle"></div>
