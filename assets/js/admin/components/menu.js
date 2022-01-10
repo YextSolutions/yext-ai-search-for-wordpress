@@ -1,4 +1,9 @@
 import tippy from 'tippy.js';
+import apiFetch from '@wordpress/api-fetch';
+
+const {
+	YEXT: { settings: PLUGIN_SETTINGS, rest_url: REST_API_ROUTE },
+} = window;
 
 /** @typedef {import('../types').YextWizard} YextWizard */
 
@@ -7,19 +12,22 @@ import tippy from 'tippy.js';
  */
 const wizard = document.querySelector('#yext-wizard');
 
-const updateSettings = (isLive) => {
+const updateSettings = ({ live = false, active = false } = {}) => {
 	if (wizard) {
 		wizard.state.payload = {
 			settings: {
 				...wizard.state.payload.settings,
 				wizard: {
 					current_step: 0,
-					live: isLive,
+					live,
+					active,
 				},
 			},
 		};
 
-		wizard.state.step = 0;
+		if (active) {
+			wizard.state.step = 0;
+		}
 	}
 };
 
@@ -45,11 +53,24 @@ const actions = {
 			)
 		) {
 			if (href) {
-				import('dompurify').then(({ default: DOMPurify }) => {
-					window.location.href = DOMPurify.sanitize(href);
+				apiFetch({
+					path: REST_API_ROUTE,
+					method: 'POST',
+					data: {
+						settings: {
+							...PLUGIN_SETTINGS,
+							wizard: {
+								active: true,
+							},
+						},
+					},
+				}).then(() => {
+					import('dompurify').then(({ default: DOMPurify }) => {
+						window.location.href = DOMPurify.sanitize(href);
+					});
 				});
 			} else {
-				updateSettings(false);
+				updateSettings({ active: true });
 			}
 		}
 
@@ -78,7 +99,7 @@ const actions = {
 				}`,
 			)
 		) {
-			updateSettings(true);
+			updateSettings({ live: true });
 
 			if (href) {
 				import('dompurify').then(({ default: DOMPurify }) => {

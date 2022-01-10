@@ -58,7 +58,14 @@ abstract class AbstractField {
 	];
 
 	/**
-	 * Default constructor args
+	 * Additional args for a field
+	 *
+	 * @var array
+	 */
+	protected $additional_args = [];
+
+	/**
+	 * Default common constructor args
 	 *
 	 * @var array
 	 */
@@ -183,7 +190,7 @@ abstract class AbstractField {
 	 * @return array
 	 */
 	public function get_default_args() {
-		return $this->default_args;
+		return array_merge( $this->default_args, $this->additional_args );
 	}
 
 	/**

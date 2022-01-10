@@ -160,29 +160,17 @@ final class Settings {
 	 * @return void
 	 */
 	public function add_plugin_page() {
+
+		$force_skipped  = isset( $_GET['skipped'] ) ? sanitize_text_field( $_GET['skipped'] ) : false;
+		$skipped        = $force_skipped || ( isset( $this->settings['wizard'] ) && isset( $this->settings['wizard']['active'] ) && ! $this->settings['wizard']['active'] );
+
 		add_menu_page(
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
 			'yext',
-			[ $this, 'render_settings_page' ],
+			$skipped ? [ $this, 'render_settings_page' ] : [ $this, 'render_wizard_page' ],
 			$this->menu_icon
-		);
-		add_submenu_page(
-			'yext',
-			__( 'Settings', 'yext' ),
-			__( 'Settings', 'yext' ),
-			'manage_options',
-			'yext',
-			[ $this, 'render_settings_page' ]
-		);
-		add_submenu_page(
-			'yext',
-			__( 'Setup Wizard', 'yext' ),
-			__( 'Setup Wizard', 'yext' ),
-			'manage_options',
-			'yext-wizard',
-			[ $this, 'render_wizard_page' ]
 		);
 	}
 

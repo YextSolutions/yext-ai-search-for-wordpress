@@ -324,6 +324,7 @@ const initWizard = () => {
 					current_step: Number(STATE.step),
 					// @ts-ignore
 					live: event?.target?.getAttribute('data-is-live') === '1' || false,
+					active: false,
 				},
 			}),
 		};

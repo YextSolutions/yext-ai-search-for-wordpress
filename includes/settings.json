@@ -45,8 +45,9 @@
 		"results_page": ""
 	},
 	"wizard": {
-		"live" : false,
-		"current_step": 0
+		"live": "0",
+		"active": "1",
+		"current_step": "0"
 	},
 	"banner_hidden": false
 }
