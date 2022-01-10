@@ -76,26 +76,26 @@ final class Install {
 		$has_page_template = new \WP_Query( $args );
 
 		if ( $has_page_template->have_posts() ) {
-			return;
+			$page_id = $has_page_template->posts[0]->ID;
+		} else {
+			$page_id = wp_insert_post(
+				[
+					'post_content' => $this->yext_search_page_content(),
+					'post_status'  => 'publish',
+					'post_title'   => __( 'Search results', 'yext' ),
+					'post_type'    => 'page',
+					'meta_input'   => [
+						'yext_results_template' => 1,
+					],
+				]
+			);
 		}
 
-		$page = wp_insert_post(
-			[
-				'post_content' => $this->yext_search_page_content(),
-				'post_status'  => 'publish',
-				'post_title'   => __( 'Search results', 'yext' ),
-				'post_type'    => 'page',
-				'meta_input'   => [
-					'yext_results_template' => 1,
-				],
-			]
-		);
-
-		if ( ! is_wp_error( $page ) ) {
+		if ( ! is_wp_error( $page_id ) && is_numeric( $page_id ) ) {
 			Settings::update_settings(
 				[
 					'search_results' => [
-						'results_page' => (string) $page,
+						'results_page' => (string) $page_id,
 					],
 				]
 			);
