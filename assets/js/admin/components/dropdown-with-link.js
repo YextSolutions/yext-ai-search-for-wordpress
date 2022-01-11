@@ -52,8 +52,6 @@ const initDropdownWithLink = () => {
 		return;
 	}
 
-	console.log('init');
-
 	dropDownWithLink.addEventListener('change', onDropDownChange);
 };
 
