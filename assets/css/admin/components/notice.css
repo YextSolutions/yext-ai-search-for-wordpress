@@ -4,5 +4,9 @@
 	& .notice {
 		margin-bottom: 0;
 		margin-top: 0;
+
+		&.yext-activated-notice {
+			display: none;
+		}
 	}
 }

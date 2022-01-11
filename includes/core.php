@@ -98,7 +98,7 @@ function activation_notice() {
 	$active = get_option( 'yext_plugin_activated', false );
 
 	if ( $active && current_user_can( 'manage_options' ) ) {
-		$class      = 'notice notice-success yext-styles-wrapper';
+		$class      = 'notice notice-success yext-activated-notice';
 		$link_class = 'button yext-settings__button yext-settings__button--primary';
 		$message    = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
 		$link_text  = __( 'Start Setup', 'yext' );
@@ -337,6 +337,13 @@ function admin_styles( $page ) {
 			null
 		);
 	}
+
+	wp_enqueue_style(
+		'yext-admin-global',
+		style_url( 'admin-global', 'admin' ),
+		[],
+		YEXT_VERSION
+	);
 }
 
 /**
