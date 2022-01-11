@@ -323,7 +323,7 @@ const initWizard = () => {
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
 				wizard: {
-					current_step: Number(STATE.step),
+					current_step: isLive ? 0 : Number(STATE.step),
 					live: isLive,
 					active: !isLive,
 				},
