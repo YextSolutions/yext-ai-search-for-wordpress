@@ -108,6 +108,7 @@ abstract class AbstractField {
 		$this->value        = $args['value'];
 		$this->variable     = $args['variable'];
 		$this->required     = $args['required'];
+		$this->optional     = $args['optional'];
 		$this->help         = $args['help'];
 		$this->setup();
 	}
@@ -125,6 +126,10 @@ abstract class AbstractField {
 	 * Add the field to the section
 	 */
 	public function add_field() {
+
+		$css_class = $this->required ? 'required' : '';
+		$css_class .= $this->optional ? ' optional' : '';
+
 		if ( ! empty( $this->parent_field ) ) {
 			add_settings_field(
 				$this->parent_field . '-' . $this->id, // id
@@ -133,7 +138,7 @@ abstract class AbstractField {
 				"yext-settings-{$this->section_id}-{$this->parent_field}",
 				"{$this->section_id}-{$this->parent_field}",
 				[
-					'class'     => $this->required ? 'required' : '',
+					'class'     => $css_class,
 					'label_for' => $this->id,
 				]
 			);
@@ -145,7 +150,7 @@ abstract class AbstractField {
 				"yext-settings-{$this->section_id}",
 				$this->section_id, // section
 				[
-					'class'     => $this->required ? 'required' : '',
+					'class'     => $css_class,
 					'label_for' => $this->id,
 				]
 			);
