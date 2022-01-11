@@ -171,7 +171,36 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					</div>
 					
 					<div class="yext-settings__card-footer">
-						<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-wizard__intro-footer.png' ); ?>" />
+						<h1><?php echo esc_html( 'Thousands of brands deliver millions of answers with Yext.', 'yext' ); ?></h1>
+
+						<div class="yext-settings__logo-grid logo-grid">
+							<ul>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/samsung.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/subway.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/lego.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/verizon.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/campbells.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/bbva.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/cox.png' ); ?>" loading="lazy" />
+								</li>
+								<li>
+									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/farmers.png' ); ?>" loading="lazy" />
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 

@@ -105,6 +105,10 @@
 .yext-wizard__timeline-step-title {
 	margin-top: 0.75rem;
 
+	@nest .yext-wizard__timeline-step--active & {
+		font-weight: 600;
+	}
+
 	@nest .yext-wizard__timeline-step:first-child & {
 		text-align: left;
 	}

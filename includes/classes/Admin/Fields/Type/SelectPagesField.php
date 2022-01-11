@@ -86,11 +86,15 @@ class SelectPagesField extends SelectField {
 		if ( ! $this->show_link ) {
 			return;
 		}
+
 		$button_href = $this->value > 0 ? esc_html( get_permalink( $this->value ) ) : '#';
+		$class       = 'yext-settings__button yext-settings__button--primary is-style-outline mt-medium';
+		$class      .= '#' === $button_href ? ' disabled' : '';
+
 		printf(
-			'<p><a class="button-secondary" href="%s" title="%s" target="_blank">%s</a></p>',
+			'<a class="%s" href="%s" target="_blank" rel="noopener nofollow">%s</a>',
+			esc_attr( $class ),
 			esc_url( $button_href ),
-			esc_attr__( 'Preview the page', 'yext' ),
 			esc_html__( 'Preview the page', 'yext' )
 		);
 	}

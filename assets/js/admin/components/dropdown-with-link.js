@@ -28,11 +28,13 @@ const onDropDownChange = (e) => {
 		target: { value },
 	} = e;
 	const btnLink = target.parentElement.querySelector('a');
+
 	if (value > 0 && btnLink) {
 		btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(value)));
-		btnLink.style.display = 'inline-block';
+		btnLink.classList.remove('disabled');
 	} else if (!value) {
-		btnLink.style.display = 'none';
+		btnLink.setAttribute('href', '#');
+		btnLink.classList.add('disabled');
 	}
 };
 
@@ -45,9 +47,11 @@ const initDropdownWithLink = () => {
 	const dropDownWithLink = document.querySelector(
 		'select[name="yext_plugin_settings[search_results][results_page]"]',
 	);
+
 	if (!dropDownWithLink) {
 		return;
 	}
+
 	dropDownWithLink.addEventListener('change', onDropDownChange);
 };
 
