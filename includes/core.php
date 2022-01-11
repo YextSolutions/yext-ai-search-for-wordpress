@@ -95,11 +95,9 @@ function activate() {
  * @return void
  */
 function activation_notice() {
-	global $pagenow;
-
 	$active = get_option( 'yext_plugin_activated', false );
 
-	if ( $active ) {
+	if ( $active && current_user_can( 'manage_options' ) ) {
 		$class      = 'notice notice-success yext-styles-wrapper';
 		$link_class = 'button yext-settings__button yext-settings__button--primary';
 		$message    = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
