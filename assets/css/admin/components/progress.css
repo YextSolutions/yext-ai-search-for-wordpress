@@ -51,8 +51,9 @@
 			border-radius: 1.875rem;
 			content: "";
 			height: 1.25rem;
-			left: 0;
+			left: -1px;
 			position: absolute;
+			top: -1px;
 			width: 1.25rem;
 		}
 	}
