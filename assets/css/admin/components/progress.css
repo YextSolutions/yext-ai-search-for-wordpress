@@ -1,5 +1,5 @@
 .yext-wizard__timeline {
-	display: flex;
+	display: none;
 	padding-top: 1.5rem;
 
 	&::before {
@@ -11,8 +11,8 @@
 		right: 2.625rem;
 	}
 
-	@nest .yext-wizard[data-progress-id="0"] & {
-		display: none;
+	@nest .yext-wizard:not([data-progress-id="0"]) & {
+		display: flex !important;
 	}
 }
 
