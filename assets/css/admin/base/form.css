@@ -87,6 +87,11 @@
 
 	& input[type="color"] {
 		cursor: pointer;
+
+		&::-webkit-color-swatch {
+			border-color: #ccc;
+			border-radius: 4px;
+		}
 	}
 
 	& input[type="checkbox"] {
