@@ -66,6 +66,7 @@ const initSettings = () => {
 		event.preventDefault();
 
 		if (
+			/* eslint-disable-next-line no-alert */
 			window.confirm(
 				'Are you sure you want to reset all search bar styles? This will restore all styles to the default settings.',
 			)
