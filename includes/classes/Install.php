@@ -108,7 +108,6 @@ final class Install {
 	 * @return string
 	 */
 	public function yext_search_page_content() {
-		// TODO: pass the correct url as block attribute
 		return '<!-- wp:yext/search-results {"url":""} /-->';
 	}
 }
