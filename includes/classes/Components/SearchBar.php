@@ -92,7 +92,7 @@ final class SearchBar {
 	 * @return bool
 	 */
 	protected function is_live() {
-		return isset( $this->settings['wizard']['live'] ) && $this->settings['wizard']['live'];
+		return isset( $this->settings['plugin']['live'] ) && $this->settings['plugin']['live'];
 	}
 
 	/**

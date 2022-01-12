@@ -106,7 +106,7 @@ final class Settings {
 	 * @return array $updated_settings Updated Settings
 	 */
 	public static function go_live() {
-		$updated_settings = array_merge( [ 'wizard' => [ 'live' => true ] ], self::get_settings() );
+		$updated_settings = array_merge( [ 'plugin' => [ 'live' => true ] ], self::get_settings() );
 		self::update_settings( $updated_settings );
 
 		return $updated_settings;
