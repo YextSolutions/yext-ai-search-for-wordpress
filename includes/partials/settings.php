@@ -35,7 +35,7 @@ $plugin_search_bar_style_sections = [
 	],
 ];
 
-$plugin_settings                  = new Tab( Settings::PLUGIN_SETTINGS_SECTION_NAME, __( 'API & Properties', 'yext' ) );
+$plugin_settings                  = new Tab( Settings::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin Settings', 'yext' ) );
 $search_bar_core_settings         = new Tab( Settings::SEARCH_BAR_SECTION_NAME, __( 'Search Bar', 'yext' ), $core_search_bar_sections );
 $search_bar_plugin_settings       = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_sections );
 $search_bar_plugin_style_settings = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_style_sections );
