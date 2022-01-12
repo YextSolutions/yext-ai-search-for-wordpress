@@ -158,14 +158,12 @@
 		width: 80%;
 	}
 
-	@nest .yext-child-settings-search_bar-core & {
+	& .yext-field-checkboxfield {
 
-		& tr {
-			align-items: center;
-			flex-direction: row-reverse;
-			justify-content: flex-end;
-			position: relative;
-		}
+		align-items: center;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		position: relative;
 
 		& label {
 			font-weight: var(--yxt-font-weight-bold);

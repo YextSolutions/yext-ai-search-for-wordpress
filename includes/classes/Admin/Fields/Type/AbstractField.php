@@ -105,6 +105,7 @@ abstract class AbstractField {
 		$this->title        = $title;
 		$this->parent_field = $args['parent'];
 		$this->section_id   = $args['section_id'];
+		$this->type         = $args['type'];
 		$this->value        = $args['value'];
 		$this->variable     = $args['variable'];
 		$this->required     = $args['required'];
@@ -129,6 +130,7 @@ abstract class AbstractField {
 
 		$css_class = $this->required ? 'required' : '';
 		$css_class .= $this->optional ? ' optional' : '';
+		$css_class .= $this->type ? ' yext-field-' . strtolower( $this->type ) : '';
 
 		if ( ! empty( $this->parent_field ) ) {
 			add_settings_field(

@@ -359,6 +359,7 @@ final class SettingsFields {
 			'required'   => $field_config['required'] ?? '',
 			'optional'   => $field_config['optional'] ?? '',
 			'help'       => $field_config['help'] ?? '',
+			'type'       => $field_config['type'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 
