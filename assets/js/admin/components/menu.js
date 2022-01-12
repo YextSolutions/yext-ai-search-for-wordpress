@@ -19,8 +19,10 @@ const updateSettings = ({ live = false, active = false } = {}) => {
 				...wizard.state.payload.settings,
 				wizard: {
 					current_step: 0,
-					live,
 					active,
+				},
+				plugin: {
+					live,
 				},
 			},
 		};

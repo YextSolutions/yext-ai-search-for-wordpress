@@ -63,6 +63,12 @@ final class SettingsFields {
 	protected function plugin_settings_fields() {
 		$fields = [
 			[
+				'id'     => 'live',
+				'title'  => __( 'Live', 'yext' ),
+				'type'   => 'CheckboxField',
+				'help'   => __( 'Toggle the search live status.', 'yext' ),
+			],
+			[
 				'id'       => 'api_key',
 				'title'    => __( 'API Key', 'yext' ),
 				'type'     => 'InputField',

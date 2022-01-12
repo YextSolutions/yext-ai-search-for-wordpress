@@ -1,5 +1,6 @@
 {
 	"plugin": {
+		"live": "0",
 		"api_key": "",
 		"experience_key": "",
 		"business_id": "",
