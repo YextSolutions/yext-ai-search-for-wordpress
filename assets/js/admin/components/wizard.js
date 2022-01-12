@@ -309,6 +309,8 @@ const initWizard = () => {
 		}
 
 		const inputFields = Array.from(STEPS[currentStep].querySelectorAll('input'));
+		// @ts-ignore
+		const isLive = event?.target?.getAttribute('data-is-live') === '1';
 
 		if (inputFields.length) {
 			updateRequiredFields(inputFields);
@@ -321,12 +323,11 @@ const initWizard = () => {
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
 				wizard: {
-					current_step: Number(STATE.step),
-					active: true,
+					current_step: isLive ? 0 : Number(STATE.step),
+					active: !isLive,
 				},
 				plugin: {
-					// @ts-ignore
-					live: event?.target?.getAttribute('data-is-live') === '1' || false,
+					live: isLive,
 				},
 			}),
 		};

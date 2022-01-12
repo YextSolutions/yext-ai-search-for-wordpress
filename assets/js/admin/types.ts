@@ -8,7 +8,6 @@ export interface YextWizard extends HTMLElement {
 				search_results?: Object;
 				wizard?: {
 					current_step: number;
-					live: boolean;
 					active: boolean;
 				};
 			};

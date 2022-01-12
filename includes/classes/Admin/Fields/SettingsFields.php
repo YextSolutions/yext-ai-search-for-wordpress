@@ -326,11 +326,6 @@ final class SettingsFields {
 	protected function wizard_settings_fields() {
 		$fields = [
 			[
-				'id'    => 'live',
-				'title' => __( 'Live', 'yext' ),
-				'type'  => 'CheckboxField',
-			],
-			[
 				'id'    => 'current_step',
 				'title' => __( 'Current Step', 'yext' ),
 				'type'  => 'InputField',
