@@ -16,6 +16,13 @@
 	}
 }
 
+.yext-wizard[data-progress-id="1"] {
+
+	& .yext-field-id-live {
+		display: none;
+	}
+}
+
 .yext-wizard[data-progress-id="4"] {
 
 	& .yext-settings__footer {

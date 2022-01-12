@@ -130,6 +130,7 @@ abstract class AbstractField {
 
 		$css_class = $this->required ? 'required' : '';
 		$css_class .= $this->optional ? ' optional' : '';
+		$css_class .= $this->id ? ' yext-field-id-' . strtolower( $this->id ) : '';
 		$css_class .= $this->type ? ' yext-field-' . strtolower( $this->type ) : '';
 
 		if ( ! empty( $this->parent_field ) ) {
