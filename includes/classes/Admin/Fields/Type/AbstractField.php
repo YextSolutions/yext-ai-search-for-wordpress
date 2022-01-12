@@ -217,9 +217,9 @@ abstract class AbstractField {
 	public function sanitize_field( $sanitized, $posted_data ) {
 		$value = $this->get_posted_value( $posted_data );
 		if ( $this->has_parent_field() ) {
-			$sanitized[ $this->section_id ][ $this->parent_field ][ $this->id ] = $this->sanitize_value( $value );
+			$sanitized[ $this->section_id ][ $this->parent_field ][ $this->id ] = $this->sanitize_value( $value, $this->id );
 		} else {
-			$sanitized[ $this->section_id ][ $this->id ] = $this->sanitize_value( $value );
+			$sanitized[ $this->section_id ][ $this->id ] = $this->sanitize_value( $value, $this->id );
 		}
 		return $sanitized;
 	}
@@ -254,9 +254,16 @@ abstract class AbstractField {
 	 * Sanitize field value
 	 *
 	 * @param string $value  Field value
+	 * @param string $id  Field ID
 	 * @return string $value Sanitized fField value
 	 */
-	protected function sanitize_value( $value ) {
+	protected function sanitize_value( $value, $id = '' ) {
+
+		// Validate URL
+		if ( false !== strpos( $id, 'url' ) ) {
+			$value = esc_url( $value );
+		}
+
 		return sanitize_text_field( $value );
 	}
 }
