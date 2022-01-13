@@ -99,7 +99,7 @@ const actions = {
 				}`,
 			)
 		) {
-			updateSettings({ live: true });
+			updateSettings({ live: false });
 
 			if (href) {
 				import('dompurify').then(({ default: DOMPurify }) => {

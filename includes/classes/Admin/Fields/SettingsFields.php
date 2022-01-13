@@ -323,16 +323,17 @@ final class SettingsFields {
 				'id'    => 'live',
 				'title' => __( 'Live', 'yext' ),
 				'type'  => 'CheckboxField',
+				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'    => 'current_step',
 				'title' => __( 'Current Step', 'yext' ),
-				'type'  => 'InputField',
+				'type'  => 'HiddenField',
 			],
 			[
 				'id'    => 'active',
 				'title' => __( 'Skip Setup Wizard', 'yext' ),
-				'type'  => 'CheckboxField',
+				'type'  => 'HiddenField',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
@@ -358,6 +359,7 @@ final class SettingsFields {
 			'required'   => $field_config['required'] ?? '',
 			'optional'   => $field_config['optional'] ?? '',
 			'help'       => $field_config['help'] ?? '',
+			'type'       => $field_config['type'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 
