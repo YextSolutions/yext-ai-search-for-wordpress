@@ -29,6 +29,23 @@
 			}
 		}
 
+		&.optional {
+
+			& th {
+				width: 100%;
+			}
+
+			& label {
+	
+				&::after {
+					content: "(OPTIONAL)";
+					font-size: 0.75rem;
+					font-weight: 300;
+					margin-left: 0.25rem;
+				}
+			}
+		}
+
 		& td {
 
 			& input,
@@ -87,6 +104,11 @@
 
 	& input[type="color"] {
 		cursor: pointer;
+
+		&::-webkit-color-swatch {
+			border-color: #ccc;
+			border-radius: 4px;
+		}
 	}
 
 	& input[type="checkbox"] {

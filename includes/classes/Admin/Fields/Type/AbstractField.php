@@ -108,6 +108,7 @@ abstract class AbstractField {
 		$this->value        = $args['value'];
 		$this->variable     = $args['variable'];
 		$this->required     = $args['required'];
+		$this->optional     = $args['optional'];
 		$this->help         = $args['help'];
 		$this->setup();
 	}
@@ -125,6 +126,10 @@ abstract class AbstractField {
 	 * Add the field to the section
 	 */
 	public function add_field() {
+
+		$css_class = $this->required ? 'required' : '';
+		$css_class .= $this->optional ? ' optional' : '';
+
 		if ( ! empty( $this->parent_field ) ) {
 			add_settings_field(
 				$this->parent_field . '-' . $this->id, // id
@@ -133,7 +138,7 @@ abstract class AbstractField {
 				"yext-settings-{$this->section_id}-{$this->parent_field}",
 				"{$this->section_id}-{$this->parent_field}",
 				[
-					'class'     => $this->required ? 'required' : '',
+					'class'     => $css_class,
 					'label_for' => $this->id,
 				]
 			);
@@ -145,7 +150,7 @@ abstract class AbstractField {
 				"yext-settings-{$this->section_id}",
 				$this->section_id, // section
 				[
-					'class'     => $this->required ? 'required' : '',
+					'class'     => $css_class,
 					'label_for' => $this->id,
 				]
 			);
@@ -212,9 +217,9 @@ abstract class AbstractField {
 	public function sanitize_field( $sanitized, $posted_data ) {
 		$value = $this->get_posted_value( $posted_data );
 		if ( $this->has_parent_field() ) {
-			$sanitized[ $this->section_id ][ $this->parent_field ][ $this->id ] = $this->sanitize_value( $value );
+			$sanitized[ $this->section_id ][ $this->parent_field ][ $this->id ] = $this->sanitize_value( $value, $this->id );
 		} else {
-			$sanitized[ $this->section_id ][ $this->id ] = $this->sanitize_value( $value );
+			$sanitized[ $this->section_id ][ $this->id ] = $this->sanitize_value( $value, $this->id );
 		}
 		return $sanitized;
 	}
@@ -249,9 +254,16 @@ abstract class AbstractField {
 	 * Sanitize field value
 	 *
 	 * @param string $value  Field value
+	 * @param string $id  Field ID
 	 * @return string $value Sanitized fField value
 	 */
-	protected function sanitize_value( $value ) {
+	protected function sanitize_value( $value, $id = '' ) {
+
+		// Validate URL
+		if ( false !== strpos( $id, 'url' ) ) {
+			$value = esc_url( $value );
+		}
+
 		return sanitize_text_field( $value );
 	}
 }

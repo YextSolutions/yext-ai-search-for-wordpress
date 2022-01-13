@@ -1,5 +1,5 @@
 .yext-wizard__timeline {
-	display: flex;
+	display: none;
 	padding-top: 1.5rem;
 
 	&::before {
@@ -11,8 +11,8 @@
 		right: 2.625rem;
 	}
 
-	@nest .yext-wizard[data-progress-id="0"] & {
-		display: none;
+	@nest .yext-wizard:not([data-progress-id="0"]) & {
+		display: flex !important;
 	}
 }
 
@@ -51,8 +51,9 @@
 			border-radius: 1.875rem;
 			content: "";
 			height: 1.25rem;
-			left: 0;
+			left: -1px;
 			position: absolute;
+			top: -1px;
 			width: 1.25rem;
 		}
 	}
@@ -103,6 +104,10 @@
 
 .yext-wizard__timeline-step-title {
 	margin-top: 0.75rem;
+
+	@nest .yext-wizard__timeline-step--active & {
+		font-weight: 600;
+	}
 
 	@nest .yext-wizard__timeline-step:first-child & {
 		text-align: left;

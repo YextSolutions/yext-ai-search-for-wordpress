@@ -45,9 +45,11 @@ const initDropdownWithLink = () => {
 	const dropDownWithLink = document.querySelector(
 		'select[name="yext_plugin_settings[search_results][results_page]"]',
 	);
+
 	if (!dropDownWithLink) {
 		return;
 	}
+
 	dropDownWithLink.addEventListener('change', onDropDownChange);
 };
 

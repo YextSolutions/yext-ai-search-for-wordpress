@@ -33,6 +33,7 @@
 	}
 
 	&:hover {
+		border-color: transparent;
 		box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.05);
 		color: var(--c-black);
 	}
@@ -67,11 +68,13 @@
 	border-radius: 1.875rem;
 	color: var(--yxt-color-brand-white, #fff);
 	cursor: pointer;
+	display: inline-block;
 	font-size: var(--yxt-font-size-md-lg);
 	font-weight: var(--yxt-font-weight-bold);
 	letter-spacing: 1.5px;
 	line-height: var(--yxt-line-height-lg);
 	padding: 0.625rem 2.5rem;
+	text-decoration: none;
 	text-transform: uppercase;
 
 	&:hover,
@@ -86,5 +89,11 @@
 		background: var(--yxt-color-brand-white, #fff);
 		border: 1px solid var(--yxt-color-brand-primary);
 		color: var(--yxt-color-brand-primary);
+	}
+
+	&.disabled {
+		cursor: default;
+		opacity: 0.4;
+		pointer-events: none;
 	}
 }

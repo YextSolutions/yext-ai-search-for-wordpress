@@ -12,6 +12,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-weight: var(--fw-body);
 	line-height: var(--lh-body);
+	margin-top: 1.25rem;
 }
 
 img,
