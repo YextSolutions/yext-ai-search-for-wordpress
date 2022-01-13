@@ -109,6 +109,8 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 											</h2>
 											<p>
 												<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+												<a class="is-external" href="#">Learn more</a>
+												<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
 											</p>
 										</div>
 										<div class="yext-settings__form-content">
