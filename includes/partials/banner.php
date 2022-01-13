@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<h2><?php echo esc_html( 'Yext Search is live on your site!', 'yext' ); ?></h2>
 			<p><?php echo esc_html( 'You can always tweak or make any changes using the settings below. For any advanced customisations please visit your Yext dashboard on Yext.com.', 'yext' ); ?></p>
 
-			<button class="yext-settings__button yext-settings__button--primary is-style-outline">
+			<button data-action="close" class="yext-settings__button yext-settings__button--primary is-style-outline">
 				<?php echo esc_html( 'Okay, got it', 'yext' ); ?>
 			</button>
 		</div>
