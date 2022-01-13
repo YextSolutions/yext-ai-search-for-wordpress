@@ -216,6 +216,26 @@ final class Settings {
 				],
 			]
 		);
+
+		register_rest_route(
+			'yext/v1',
+			'activated',
+			[
+				'methods'             => 'POST',
+				'callback'            => [ $this, 'handle_activation_notice' ],
+				'permission_callback' => function () use ( $permission ) {
+					return $permission;
+				},
+				'args'                => [
+					'activated' => [
+						'validate_callback' => function ( $param ) {
+							return ! empty( $param );
+						},
+						'required'          => true,
+					],
+				],
+			]
+		);
 	}
 
 	/**
@@ -234,6 +254,23 @@ final class Settings {
 		$updated_settings = $this->update_settings( $settings );
 
 		return $updated_settings;
+	}
+
+	/**
+	 * Handles plugin activation
+	 *
+	 * @param \WP_REST_Request $request Rest request
+	 * @return null
+	 */
+	public function handle_activation_notice( $request ) {
+		$settings = $request['activated'];
+
+		if ( empty( $settings ) ) {
+			return new \WP_Error( 400 );
+		}
+
+		// Remove temporary option
+		delete_option( 'yext_plugin_activated' );
 	}
 
 	/**
