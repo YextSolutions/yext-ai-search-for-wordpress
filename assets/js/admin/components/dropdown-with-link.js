@@ -1,8 +1,7 @@
-/* global YEXT */
 import { addQueryArgs } from '@wordpress/url';
 import DOMPurify from 'dompurify';
 
-const { siteUrl } = YEXT;
+const { siteUrl } = window.YEXT;
 
 /**
  * Return the link for a given post Id
@@ -19,20 +18,21 @@ const buildUrlfromPostId = (postId) => {
 /**
  * Event handler for setting change
  *
- * @param  {event} e JS Event
+ * @param  {Event} e JS Event
  * @return {void}
  */
 const onDropDownChange = (e) => {
-	const {
-		target,
-		target: { value },
-	} = e;
-	const btnLink = target.parentElement.querySelector('a');
-	if (value > 0 && btnLink) {
-		btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(value)));
-		btnLink.style.display = 'inline-block';
-	} else if (!value) {
-		btnLink.style.display = 'none';
+	const { target } = e;
+
+	if (target instanceof HTMLSelectElement) {
+		const { value } = target;
+		const btnLink = target.parentElement.querySelector('a');
+		if (value && btnLink) {
+			btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(Number(value))));
+			btnLink.style.display = 'inline-block';
+		} else if (!value) {
+			btnLink.style.display = 'none';
+		}
 	}
 };
 
