@@ -294,6 +294,14 @@ function admin_scripts( $page ) {
 				'rest_url'     => '/wp-json/yext/v1/settings',
 			]
 		);
+	} else if ( is_plugin_notice_showing() ) {
+		wp_enqueue_script(
+			'yext-admin-notice',
+			script_url( 'admin-notice-script', 'admin' ),
+			Utility\get_asset_info( 'admin-notice-script', 'version' ),
+			YEXT_VERSION,
+			true
+		);
 	}
 }
 
