@@ -96,16 +96,21 @@ function activate() {
  */
 function activation_notice() {
 	$active = get_option( 'yext_plugin_activated', false );
+	$key    = 'yext-activated';
 
 	if ( $active && current_user_can( 'manage_options' ) ) {
-		$class      = 'notice notice-success yext-activated-notice';
-		$link_class = 'button yext-settings__button yext-settings__button--primary';
-		$message    = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
-		$link_text  = __( 'Start Setup', 'yext' );
+		$class       = 'notice notice-success yext-activated-notice is-dismissible';
+		$link_class  = 'yext-settings__button yext-settings__button--primary';
+		$message     = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
+		$link_text   = __( 'Start Setup', 'yext' );
 
 		printf(
-			'<div class="%1$s"><p>%2$s</p><p><a href="%3$s" class="%4$s">%5$s</a></p></div>',
+			'<div class="%1$s" data-dismissible="%2$s">
+				<p>%3$s</p>
+				<p><a href="%4$s" class="%5$s">%6$s</a></p>
+			</div>',
 			esc_attr( $class ),
+			esc_attr( $key ),
 			esc_html( $message ),
 			esc_url( admin_url( 'admin.php?page=yext' ) ),
 			esc_attr( $link_class ),
