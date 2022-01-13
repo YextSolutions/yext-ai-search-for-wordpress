@@ -351,6 +351,9 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-preview">
+								<h4>
+									<?php echo esc_html( 'Preview of Search Bar', 'yext' ); ?>
+								</h4>
 								<?php include_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
 							</div>
 						</div>
