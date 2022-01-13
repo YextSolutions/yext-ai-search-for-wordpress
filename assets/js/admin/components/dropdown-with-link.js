@@ -1,7 +1,7 @@
 import { addQueryArgs } from '@wordpress/url';
 import DOMPurify from 'dompurify';
 
-const { siteUrl } = window.YEXT;
+const { site_url } = window.YEXT;
 
 /**
  * Return the link for a given post Id
@@ -12,7 +12,7 @@ const { siteUrl } = window.YEXT;
  * @return {string} url    The url for a post
  */
 const buildUrlfromPostId = (postId) => {
-	return addQueryArgs(siteUrl, { p: postId });
+	return addQueryArgs(site_url, { p: postId });
 };
 
 /**

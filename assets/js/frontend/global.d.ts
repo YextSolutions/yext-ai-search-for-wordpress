@@ -13,7 +13,7 @@ interface Window {
 		settings: YextPluginSettings;
 		settings_url: string;
 		rest_url: string;
-		siteUrl: string;
+		site_url: string;
 	};
 	ANSWERS: {
 		init: Function;
