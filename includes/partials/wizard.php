@@ -272,22 +272,34 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
-									<?php echo esc_html( 'Build answers experience on Yext', 'yext' ); ?>
+									<?php echo esc_html__( 'Configure Answers Experience', 'yext' ); ?>
 								</h2>
 								<p>
-									<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you don’t have an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
+									<?php
+									printf(
+										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
+										__( '<a href="%1$s" target="_blank">Follow this guide</a> to get started with Answers in just a few steps. For additional resources, you can learn about the <a href="%2$s" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										esc_url( 'https://hitchhikers.yext.com/guides/answers-quick-start/' ),
+										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
+										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
+									);
+									?>
+								</p>
+								<p>
+									<?php echo esc_html__( 'If you’ve already built a search experience, you can go to the next step.', 'yext' ); ?>
 								</p>
 							</div>
 							<div class="yext-settings__form-content">
 								<div class="yext-settings__button-cards">
 									<a href="<?php echo esc_url( 'https://yext.com' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
-										<span><?php echo esc_html( 'Build answers experience on Yext', 'yext' ); ?></span>
+										<span><?php echo esc_html__( 'Create Answers Experience', 'yext' ); ?></span>
 										<svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M4.667 0v1.333H1.333v9.334h9.334V7.333H12v4a.666.666 0 0 1-.667.667H.667A.666.666 0 0 1 0 11.333V.667A.667.667 0 0 1 .667 0h4Zm5.057 1.333H6.667V0H12v5.333h-1.333V2.276L6 6.943 5.057 6l4.667-4.667Z" fill="black"/>
 										</svg>
 									</a>
 									<button class="yext-settings__button yext-settings__button--is-style-card yext-wizard__next">
-										<span><?php echo esc_html( 'Answers experience already created', 'yext' ); ?></span>
+										<span><?php echo esc_html( 'Next', 'yext' ); ?></span>
 										<svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
