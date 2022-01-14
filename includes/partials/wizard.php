@@ -209,7 +209,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<p>
 								<?php
 								echo sprintf(
-									'%s <a href="%s">%s</a>',
+									'%s <a href="%s" target="_blank">%s</a>',
 									esc_html__( 'Have questions or want to learn more?', 'yext' ),
 									'https://hitchhikers-answers.yext.com/',
 									esc_html__( 'Ask Yext!', 'yext' )
@@ -225,10 +225,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
-									<?php echo esc_html__( 'Do you want to connect this website to Yext’s knowledge graph?', 'yext' ); ?>
+									<?php echo esc_html__( 'Do you need to pull data from WordPress into Yext?', 'yext' ); ?>
 								</h2>
 								<p>
-									<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+									<?php echo esc_html__( 'Using built-in data connectors, you can pull in your posts, pages, and media from WordPress into the Yext platform. You can then use this data to power your search experience which will exist on your WordPress site.', 'yext' ); ?>
 								</p>
 							</div>
 							<div class="yext-settings__form-content">
@@ -238,8 +238,8 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<?php
 											echo sprintf(
 												'<strong>%s</strong>, %s',
-												esc_html( 'Yes', 'yext' ),
-												esc_html( ' I want to connect my data', 'yext' )
+												esc_html__( 'Yes', 'yext' ),
+												esc_html__( 'I’d like to index my WordPress data', 'yext' )
 											);
 											?>
 										</span>
@@ -252,8 +252,8 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<?php
 											echo sprintf(
 												'<strong>%s</strong>, %s',
-												esc_html( 'No', 'yext' ),
-												esc_html( 'I have all the data I need', 'yext' )
+												esc_html__( 'No', 'yext' ),
+												esc_html__( 'I have all the data I need', 'yext' )
 											);
 											?>
 										</span>
