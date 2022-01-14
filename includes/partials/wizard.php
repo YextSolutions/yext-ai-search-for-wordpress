@@ -58,7 +58,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 ?>
 
 <div class="yext-styles-wrapper">
-	<div class="yext-container">
+	<div class="yext-container yext-container--wizard">
 		<div
 			id="yext-wizard"
 			class="yext-wizard"

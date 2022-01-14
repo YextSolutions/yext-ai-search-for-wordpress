@@ -55,7 +55,7 @@
 	background: var(--yxt-color-brand-white, #fff);
 	display: flex;
 	margin-left: calc(-1 * 2.625rem);
-	margin-right: calc(-1 * 2.625rem);
+	margin-right: calc(-1 * calc(2.625rem + max(calc(100vw - calc(1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem)), 0px))); /* stylelint-disable function-calc-no-invalid */
 	margin-top: calc(-1 * 2.25rem);
 }
 
