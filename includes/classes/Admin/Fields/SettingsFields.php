@@ -67,28 +67,28 @@ final class SettingsFields {
 				'title'    => __( 'API Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The unique credentials that will be used to embed your search experience onto WordPress. This can also be found in the “Experience Details” section of Answers on Yext.', 'yext' ),
 			],
 			[
 				'id'       => 'experience_key',
 				'title'    => __( 'Experience Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The unique key for your search experience, located under “Experience Details” within the Answers tab on the Yext Platform.', 'yext' ),
 			],
 			[
 				'id'       => 'business_id',
 				'title'    => __( 'Business ID', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The ID associated with your Yext account. This can be found in the “Experience Details” section or as a substring of any URL when you’re logged into the Yext platform.', 'yext' ),
 			],
 			[
 				'id'       => 'answers_iframe_url',
 				'title'    => __( 'Answers iFrame URL', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The Production URL of your Answers experience. This can be found in the Pages tab of your Yext account, in the Production Environment section.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );

@@ -299,7 +299,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										</svg>
 									</a>
 									<button class="yext-settings__button yext-settings__button--is-style-card yext-wizard__next">
-										<span><?php echo esc_html( 'Next', 'yext' ); ?></span>
+										<span><?php echo esc_html__( 'Next', 'yext' ); ?></span>
 										<svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
@@ -316,10 +316,16 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html( 'Copy paste your Yext API keys and other properties', 'yext' ); ?>
+										<?php echo esc_html__( 'Input Experience Details', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+										<?php
+										printf(
+											/* translators: 1: Javascript Version article URL */
+											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
+										);
+										?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
