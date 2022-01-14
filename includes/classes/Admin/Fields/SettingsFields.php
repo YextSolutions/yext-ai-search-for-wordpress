@@ -106,7 +106,7 @@ final class SettingsFields {
 				'parent' => 'core',
 				'title'  => __( 'Enable Global Search', 'yext' ),
 				'type'   => 'CheckboxField',
-				'help'   => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ),
+				'help'   => __( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ),
 			],
 			[
 				'id'       => 'placeholder_text',
@@ -114,7 +114,7 @@ final class SettingsFields {
 				'title'    => __( 'Placeholder text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'This is the text that will appear by default in your search bar, e.g. "Search all posts here…"', 'yext' ),
 			],
 			[
 				'id'       => 'submit_text',
@@ -122,7 +122,7 @@ final class SettingsFields {
 				'title'    => __( 'Submit text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'The backend label of the submit button, used in assistive technology like screen readers.', 'yext' ),
 			],
 			[
 				'id'       => 'label_text',
@@ -130,14 +130,14 @@ final class SettingsFields {
 				'title'    => __( 'Label text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'The backend label of the search bar, used in assistive technology like screen readers.', 'yext' ),
 			],
 			[
-				'id'     => 'css_class',
-				'parent' => 'props',
-				'title'  => __( 'CSS class', 'yext' ),
-				'type'   => 'InputField',
-				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'id'       => 'css_class',
+				'optional' => true,
+				'parent'   => 'props',
+				'title'    => __( 'CSS class', 'yext' ),
+				'type'     => 'InputField',
 			],
 			[
 				'id'       => 'font_size',

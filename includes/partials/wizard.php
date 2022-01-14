@@ -343,13 +343,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-inner">
 							<div class="yext-settings__card-content">
-								<div class="yext-settings__card-header">
+								<div class="yext-settings__card-header mb-default">
 									<h2>
 										<?php echo esc_html__( 'Global search', 'yext' ); ?>
 									</h2>
-									<p>
-										<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
-									</p>
 								</div>
 								<div class="yext-settings__form-content">
 									<?php $search_bar_core_settings->render_content(); ?>
@@ -368,10 +365,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html( 'Customize your search bar', 'yext' ); ?>
+										<?php echo esc_html__( 'Customize your search bar', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+										<?php echo esc_html__( ' Design your search bar by adding some of the details below. See the diagram below for questions about what each input refers to.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
