@@ -417,10 +417,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html( 'Yext AI Search is configured and ready for use', 'yext' ); ?>
+										<?php echo esc_html__( 'Go Live!', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+										<?php echo esc_html__( 'Congratulations! You’ve configured your search experience and it’s now ready to be published on WordPress. Click Publish to see Yext AI Search live on your site.', 'yext' ); ?>
 									</p>
 								</div>
 							</div>
@@ -430,13 +430,13 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						</div>
 						<div class="yext-settings__card-footer">
 							<button class="yext-settings__button yext-settings__button--primary yext-wizard__next" data-is-live="1">
-								<?php echo esc_html( 'Go Live', 'yext' ); ?>
+								<?php echo esc_html__( 'Publish', 'yext' ); ?>
 							</button>
 							<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
 								<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
 								</svg>
-								<?php echo esc_html( 'Back', 'yext' ); ?>
+								<?php echo esc_html__( 'Back', 'yext' ); ?>
 							</button>
 						</div>
 					</div>
