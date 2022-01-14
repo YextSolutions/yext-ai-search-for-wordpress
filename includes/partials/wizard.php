@@ -375,7 +375,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<?php $search_bar_plugin_settings->render_content(); ?>
 
 									<h3>
-										<?php echo esc_html( 'CSS Styles', 'yext' ); ?>
+										<?php echo esc_html__( 'CSS Styles', 'yext' ); ?>
 									</h3>
 
 									<?php $search_bar_plugin_style_settings->render_content(); ?>
@@ -395,13 +395,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-inner">
 							<div class="yext-settings__card-content">
-								<div class="yext-settings__card-header">
+								<div class="yext-settings__card-header mb-default">
 									<h2>
-										<?php echo esc_html( 'Search results settings', 'yext' ); ?>
+										<?php echo esc_html__( 'Search results settings', 'yext' ); ?>
 									</h2>
-									<p>
-										<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
-									</p>
 								</div>
 								<div class="yext-settings__form-content">
 									<?php $search_results_settings->render_content(); ?>

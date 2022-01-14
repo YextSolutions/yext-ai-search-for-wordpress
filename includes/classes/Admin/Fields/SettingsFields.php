@@ -306,7 +306,7 @@ final class SettingsFields {
 				'title'     => __( 'Search Results Page', 'yext' ),
 				'type'      => 'SelectPagesField',
 				'show_link' => true,
-				'help'      => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'      => __( 'Select which page you wish to house your search results page from the dropdown list below.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
