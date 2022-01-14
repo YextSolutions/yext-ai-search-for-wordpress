@@ -345,10 +345,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html( 'Global search', 'yext' ); ?>
+										<?php echo esc_html__( 'Global search', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+										<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
