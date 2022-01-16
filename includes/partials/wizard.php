@@ -101,7 +101,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Search Bar Results', 'yext' ); ?>
+						<?php echo esc_html( 'Search results settings', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="4">
