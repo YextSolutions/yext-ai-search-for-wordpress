@@ -40,6 +40,18 @@
     "backgroundColor": {
       "type": "string"
     },
+    "placeholderTextColor": {
+      "type": "string"
+    },
+    "placeholderFontSize": {
+      "type": "number"
+    },
+    "placeholderFontWeight": {
+      "type": "number"
+    },
+    "placeholderLineHeight": {
+      "type": "number"
+    },
     "buttonBackgroundColor": {
       "type": "string"
     },

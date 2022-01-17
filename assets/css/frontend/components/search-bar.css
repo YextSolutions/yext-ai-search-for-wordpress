@@ -80,6 +80,13 @@ body {
 				box-shadow: none;
 				outline: none;
 			}
+
+			&::placeholder {
+				color: var(--yxt-searchbar-placeholder-color);
+				font-size: var(--yxt-searchbar-placeholder-font-size);
+				font-weight: var(--yxt-searchbar-placeholder-font-weight);
+				line-height: var(--yxt-searchbar-placeholder-line-height);
+			}
 		}
 
 		& .yxt-AutoComplete-wrapper {

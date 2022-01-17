@@ -310,6 +310,7 @@ final class Settings {
 		$pixel_value = [
 			'--yxt-searchbar-form-border-radius',
 			'--yxt-searchbar-text-font-size',
+			'--yxt-searchbar-placeholder-font-size',
 			'--yxt-autocomplete-text-font-size',
 		];
 
