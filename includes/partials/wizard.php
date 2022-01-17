@@ -281,7 +281,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<?php
 									printf(
 										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
-										__( '<a href="%1$s" target="_blank">Follow this guide</a> to get started with Answers in just a few steps. For additional resources, you can learn about the <a href="%2$s" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										__( '<a href="%1$s" class="is-external" target="_blank">Follow this guide</a> to get started with Answers in just a few steps. For additional resources, you can learn about the <a href="%2$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										esc_url( 'https://hitchhikers.yext.com/guides/answers-quick-start/' ),
 										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
 										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
@@ -324,7 +324,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php
 										printf(
 											/* translators: 1: Javascript Version article URL */
-											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" class="is-external" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 											esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
 										);
 										?>
