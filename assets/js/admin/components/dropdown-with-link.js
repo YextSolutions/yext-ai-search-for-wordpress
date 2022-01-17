@@ -1,8 +1,7 @@
-/* global YEXT */
 import { addQueryArgs } from '@wordpress/url';
 import DOMPurify from 'dompurify';
 
-const { siteUrl } = YEXT;
+const { site_url } = window.YEXT;
 
 /**
  * Return the link for a given post Id
@@ -13,28 +12,27 @@ const { siteUrl } = YEXT;
  * @return {string} url    The url for a post
  */
 const buildUrlfromPostId = (postId) => {
-	return addQueryArgs(siteUrl, { p: postId });
+	return addQueryArgs(site_url, { p: postId });
 };
 
 /**
  * Event handler for setting change
  *
- * @param  {event} e JS Event
+ * @param  {Event} e JS Event
  * @return {void}
  */
 const onDropDownChange = (e) => {
-	const {
-		target,
-		target: { value },
-	} = e;
-	const btnLink = target.parentElement.querySelector('a');
+	const { target } = e;
 
-	if (value > 0 && btnLink) {
-		btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(value)));
-		btnLink.classList.remove('disabled');
-	} else if (!value) {
-		btnLink.setAttribute('href', '#');
-		btnLink.classList.add('disabled');
+	if (target instanceof HTMLSelectElement) {
+		const { value } = target;
+		const btnLink = target.parentElement.querySelector('a');
+		if (value && btnLink) {
+			btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(Number(value))));
+			btnLink.style.display = 'inline-block';
+		} else if (!value) {
+			btnLink.style.display = 'none';
+		}
 	}
 };
 

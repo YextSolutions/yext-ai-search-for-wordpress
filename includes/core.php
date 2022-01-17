@@ -32,6 +32,7 @@ function setup() {
 	add_action( 'admin_enqueue_scripts', $n( 'admin_preconnect' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_scripts' ) );
 	add_action( 'admin_enqueue_scripts', $n( 'admin_styles' ) );
+	add_action( 'admin_notices', $n( 'activation_notice' ) );
 
 	// Editor styles. add_editor_style() doesn't work outside of a theme.
 	add_filter( 'mce_css', $n( 'mce_css' ) );
@@ -86,6 +87,51 @@ function activate() {
 	// First load the init scripts in case any rewrite functionality is being loaded
 	init();
 	flush_rewrite_rules();
+}
+
+/**
+ * Check if plugin activation notice is showing
+ *
+ * @return boolean
+ */
+function is_plugin_notice_showing() {
+	return get_option( 'yext_plugin_activated', false ) && current_user_can( 'manage_options' );
+}
+
+/**
+ * Display a notice to continue the plugin setup after activation
+ *
+ * @return void
+ */
+function activation_notice() {
+	if ( is_plugin_notice_showing() ) {
+		$class      = 'notice notice-success yext-activated-notice is-dismissible';
+		$key        = 'yext-activated';
+		$link_class = 'yext-settings__button yext-settings__button--primary';
+		$message    = __( 'Congratulations, the Yext plugin is now activated.', 'yext' );
+		$link_text  = __( 'Start Setup', 'yext' );
+
+		printf(
+			'<div class="%1$s" data-dismissible="%2$s">
+				<div class="row">
+					<svg class="yext-logo" height="40" width="40" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+						<path d="M360 0C161.18 0 0 161.18 0 360s161.18 360 360 360 360-161.18 360-360S558.82 0 360 0Zm0 691.2C177.08 691.2 28.8 542.92 28.8 360S177.08 28.8 360 28.8 691.2 177.08 691.2 360 542.92 691.2 360 691.2Z" fill="currentColor"/>
+						<path d="M370.8 399.6h64.8v129.6h28.8V399.6h64.8v-28.8H370.8v28.8Zm-38.37-32.4L270 429.64l-62.43-62.44-20.37 20.37L249.64 450l-62.44 62.43 20.37 20.37L270 470.36l62.43 62.44 20.37-20.37L290.36 450l62.44-62.43-20.37-20.37Zm115.77-18c44.73 0 81-36.27 81-81h-28.8c0 28.83-23.37 52.2-52.2 52.2-8.23 0-16.01-1.91-22.93-5.3l90.91-90.91c-14.44-22.25-39.48-36.98-67.98-36.98-44.74 0-81 36.27-81 81s36.26 80.99 81 80.99Zm0-133.2c10.12 0 19.56 2.89 27.56 7.88l-71.88 71.88c-4.99-8-7.87-17.44-7.87-27.56-.01-28.83 23.36-52.2 52.19-52.2ZM270 259.58l-60.74-72.38-22.06 18.51 68.4 81.52v61.97h28.8v-61.97l68.4-81.52-22.06-18.51L270 259.58Z" fill="currentColor"/>
+					</svg>
+					<h2>%3$s</h2>
+				</div>
+				<p>%4$s</p>
+				<a href="%5$s" class="%6$s">%7$s</a>
+			</div>',
+			esc_attr( $class ),
+			esc_attr( $key ),
+			esc_html( 'Yext' ),
+			esc_html( $message ),
+			esc_url( admin_url( 'admin.php?page=yext' ) ),
+			esc_attr( $link_class ),
+			esc_html( $link_text )
+		);
+	}
 }
 
 /**
@@ -222,6 +268,8 @@ function admin_preconnect( $page ) {
  */
 function admin_scripts( $page ) {
 
+	$rest_url = '/wp-json/yext/v1';
+
 	if ( is_yext_page( $page ) ) {
 		wp_enqueue_script(
 			'yext-admin',
@@ -243,9 +291,25 @@ function admin_scripts( $page ) {
 			[
 				'defaults'     => json_decode( $defaults ),
 				'settings'     => Settings::get_settings(),
-				'siteUrl'      => esc_url( get_site_url() ),
+				'site_url'      => esc_url( get_site_url() ),
 				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
-				'rest_url'     => '/wp-json/yext/v1/settings',
+				'rest_url'     => $rest_url,
+			]
+		);
+	} elseif ( is_plugin_notice_showing() ) {
+		wp_enqueue_script(
+			'yext-admin-notice',
+			script_url( 'admin-notice-script', 'admin' ),
+			Utility\get_asset_info( 'admin-notice-script', 'version' ),
+			YEXT_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'yext-admin-notice',
+			'YEXT',
+			[
+				'rest_url' => $rest_url,
 			]
 		);
 	}
@@ -303,6 +367,20 @@ function admin_styles( $page ) {
 
 		// TODO: add filter for CSS variable output
 		wp_add_inline_style( 'yext-admin', Settings::print_css_variables() );
+
+		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			'poppins',
+			'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap',
+			[],
+			null
+		);
+	} elseif ( is_plugin_notice_showing() ) {
+		wp_enqueue_style(
+			'yext-admin-notice',
+			style_url( 'admin-notice', 'admin' ),
+			[],
+			YEXT_VERSION
+		);
 
 		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			'poppins',

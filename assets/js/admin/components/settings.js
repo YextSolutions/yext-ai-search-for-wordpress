@@ -46,7 +46,7 @@ const initSettings = () => {
 
 		target.closest('.banner').outerHTML = '';
 		apiFetch({
-			path: REST_API_ROUTE,
+			path: `${REST_API_ROUTE}/settings`,
 			method: 'POST',
 			data: {
 				settings: {
