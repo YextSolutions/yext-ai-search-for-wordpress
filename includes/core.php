@@ -268,6 +268,8 @@ function admin_preconnect( $page ) {
  */
 function admin_scripts( $page ) {
 
+	$rest_url = '/wp-json/yext/v1';
+
 	if ( is_yext_page( $page ) ) {
 		wp_enqueue_script(
 			'yext-admin',
@@ -291,16 +293,24 @@ function admin_scripts( $page ) {
 				'settings'     => Settings::get_settings(),
 				'site_url'      => esc_url( get_site_url() ),
 				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
-				'rest_url'     => '/wp-json/yext/v1/settings',
+				'rest_url'     => $rest_url,
 			]
 		);
-	} else if ( is_plugin_notice_showing() ) {
+	} elseif ( is_plugin_notice_showing() ) {
 		wp_enqueue_script(
 			'yext-admin-notice',
 			script_url( 'admin-notice-script', 'admin' ),
 			Utility\get_asset_info( 'admin-notice-script', 'version' ),
 			YEXT_VERSION,
 			true
+		);
+
+		wp_localize_script(
+			'yext-admin-notice',
+			'YEXT',
+			[
+				'rest_url' => $rest_url,
+			]
 		);
 	}
 }

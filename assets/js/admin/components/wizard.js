@@ -267,7 +267,7 @@ const initWizard = () => {
 		} = STATE;
 
 		apiFetch({
-			path: REST_API_ROUTE,
+			path: `${REST_API_ROUTE}/settings`,
 			method: 'POST',
 			data: payload,
 		})
