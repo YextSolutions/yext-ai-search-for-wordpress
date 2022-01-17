@@ -62,7 +62,9 @@
 
 	& img {
 		border-radius: 0.5rem;
+		height: auto;
 		margin-left: auto;
+		width: 100%;
 	}
 
 	@media (max-width: 600px) {
