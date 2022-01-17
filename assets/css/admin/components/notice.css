@@ -4,5 +4,11 @@
 	& .notice {
 		margin-bottom: 3rem;
 		margin-top: 0;
+
+		&.is-dismissible,
+		&.update-nag,
+		&.yext-activated-notice {
+			display: none;
+		}
 	}
 }

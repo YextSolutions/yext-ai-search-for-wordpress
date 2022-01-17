@@ -20,7 +20,7 @@ const initSettings = () => {
 
 	const yextForm = yextSettings.querySelector('#yext-settings form');
 	const banner = yextSettings.querySelector('#yext-settings .banner');
-	const bannerClose = banner?.querySelector('button[data-action="close"]') ?? null;
+	const bannerClose = banner?.querySelectorAll('button[data-action="close"]') ?? null;
 	const resetCSS = yextForm.querySelector('button[data-action="reset-css"]');
 
 	const handleFormSubmit = (event) => {
@@ -46,7 +46,7 @@ const initSettings = () => {
 
 		target.closest('.banner').outerHTML = '';
 		apiFetch({
-			path: REST_API_ROUTE,
+			path: `${REST_API_ROUTE}/settings`,
 			method: 'POST',
 			data: {
 				settings: {
@@ -95,7 +95,9 @@ const initSettings = () => {
 	};
 
 	yextForm.addEventListener('submit', handleFormSubmit);
-	bannerClose?.addEventListener('click', handleBannerClose);
+	bannerClose?.forEach((button) => {
+		button.addEventListener('click', handleBannerClose);
+	});
 	resetCSS?.addEventListener('click', handleResetCSS);
 };
 

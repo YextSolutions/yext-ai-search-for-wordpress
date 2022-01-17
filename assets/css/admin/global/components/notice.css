@@ -1,0 +1,47 @@
+/* stylelint-disable sh-waqar/declaration-use-variable */
+
+#wpbody-content {
+
+	& .yext-activated-notice {
+		font-family: poppins, sans-serif;
+		padding-bottom: 1rem;
+		padding-left: 1rem;
+		padding-top: 0.75rem;
+
+		& .row {
+			align-items: center;
+			display: flex;
+
+			& svg {
+				margin-right: 0.5rem;
+			}
+		}
+
+		& p {
+			margin: 0.5rem 0 1rem;
+		}
+
+		& .yext-settings__button--primary {
+			background: #0f70f0;
+			border: 1px solid #0f70f0;
+			border-radius: 1.875rem;
+			color: #fff;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 1rem;
+			font-weight: 700;
+			letter-spacing: 1.5px;
+			padding: 0.625rem 2.5rem;
+			text-decoration: none;
+			text-transform: uppercase;
+		
+			&:hover,
+			&:focus {
+				background: #0c5ecb;
+				border-color: #0c5ecb;
+				color: #fff;
+				outline: none;
+			}
+		}
+	}
+}
