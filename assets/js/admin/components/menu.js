@@ -12,14 +12,14 @@ const {
  */
 const wizard = document.querySelector('#yext-wizard');
 
-const updateSettings = ({ live = false, active = false } = {}) => {
+const updateSettings = ({ active = false } = {}) => {
 	if (wizard) {
 		wizard.state.payload = {
 			settings: {
 				...wizard.state.payload.settings,
 				wizard: {
+					...wizard.state.payload.settings.wizard,
 					current_step: 0,
-					live,
 					active,
 				},
 			},
@@ -42,36 +42,27 @@ const actions = {
 			target,
 		} = event;
 
-		if (
-			/* eslint-disable-next-line no-alert */
-			window.confirm(
-				`Are you sure you would like to restart the setup wizard? ${
-					!wizard || (wizard && wizard.getAttribute('data-is-live') === '1')
-						? 'This will deactivate Yext search bar and search results from your site.'
-						: ''
-				}`,
-			)
-		) {
-			if (href) {
-				apiFetch({
-					path: REST_API_ROUTE,
-					method: 'POST',
-					data: {
-						settings: {
-							...PLUGIN_SETTINGS,
-							wizard: {
-								active: true,
-							},
+		if (href) {
+			apiFetch({
+				path: REST_API_ROUTE,
+				method: 'POST',
+				data: {
+					settings: {
+						...PLUGIN_SETTINGS,
+						wizard: {
+							...PLUGIN_SETTINGS.wizard,
+							active: true,
+							current_step: 0,
 						},
 					},
-				}).then(() => {
-					import('dompurify').then(({ default: DOMPurify }) => {
-						window.location.href = DOMPurify.sanitize(href);
-					});
+				},
+			}).then(() => {
+				import('dompurify').then(({ default: DOMPurify }) => {
+					window.location.href = DOMPurify.sanitize(href);
 				});
-			} else {
-				updateSettings({ active: true });
-			}
+			});
+		} else {
+			updateSettings({ active: true });
 		}
 
 		const tippyInstance = target.closest('[data-tippy-root]');
@@ -89,23 +80,12 @@ const actions = {
 			target,
 		} = event;
 
-		if (
-			/* eslint-disable-next-line no-alert */
-			window.confirm(
-				`Are you sure you would like to skip the setup wizard? ${
-					wizard && wizard.getAttribute('data-is-live') !== '1'
-						? 'This will activate Yext search bar and search results on your site using the current configuration.'
-						: ''
-				}`,
-			)
-		) {
-			updateSettings({ live: false });
+		updateSettings();
 
-			if (href) {
-				import('dompurify').then(({ default: DOMPurify }) => {
-					window.location.href = DOMPurify.sanitize(href);
-				});
-			}
+		if (href) {
+			import('dompurify').then(({ default: DOMPurify }) => {
+				window.location.href = DOMPurify.sanitize(href);
+			});
 		}
 
 		const tippyInstance = target.closest('[data-tippy-root]');

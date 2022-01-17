@@ -156,6 +156,16 @@ const initWizard = () => {
 	const setStep = (step) => Math.min(Math.max(Number(step), 0), 7);
 
 	/**
+	 * Get plugin `live` state
+	 *
+	 * @param {HTMLElement} target HTML Element
+	 * @return {boolean} Returns true if `target` has `data-is-live` attribute.
+	 * Fallback to current plugin settings.
+	 */
+	const isLive = (target) =>
+		target?.getAttribute('data-is-live') === '1' || PLUGIN_SETTINGS?.wizard?.live === '1';
+
+	/**
 	 * Get the current step index from URL or HTML
 	 *
 	 * @return {number} Current step index
@@ -260,7 +270,7 @@ const initWizard = () => {
 		const {
 			payload: {
 				settings: {
-					wizard: { live },
+					wizard: { active },
 				},
 			},
 			payload,
@@ -272,7 +282,7 @@ const initWizard = () => {
 			data: payload,
 		})
 			.then(() => {
-				if (live) {
+				if (!active) {
 					import('dompurify').then(({ default: DOMPurify }) => {
 						window.location.href = DOMPurify.sanitize(PLUGIN_SETTINGS_URL);
 					});
@@ -297,6 +307,7 @@ const initWizard = () => {
 	const maybeNext = (event) => {
 		event.preventDefault();
 
+		const { target } = event;
 		const currentStep = Number(STATE.step);
 
 		const missingFields = getRequiredFields(STEPS[currentStep]).filter(
@@ -310,7 +321,7 @@ const initWizard = () => {
 
 		const inputFields = Array.from(STEPS[currentStep].querySelectorAll('input'));
 		// @ts-ignore
-		const isLive = event?.target?.getAttribute('data-is-live') === '1';
+		const live = isLive(target);
 
 		if (inputFields.length) {
 			updateRequiredFields(inputFields);
@@ -323,9 +334,9 @@ const initWizard = () => {
 		STATE.payload = {
 			settings: merge(buildPayload(new FormData(FORM)), {
 				wizard: {
-					current_step: isLive ? 0 : Number(STATE.step),
-					live: isLive,
-					active: !isLive,
+					current_step: live ? 0 : Number(STATE.step),
+					live,
+					active: STEPS[currentStep].getAttribute('data-last-step') !== '1',
 				},
 			}),
 		};
@@ -341,6 +352,7 @@ const initWizard = () => {
 	const back = (event) => {
 		event.preventDefault();
 
+		const { target } = event;
 		const currentStep = Number(STATE.step);
 
 		if (currentStep === 0) {
@@ -354,7 +366,7 @@ const initWizard = () => {
 				wizard: {
 					current_step: Number(STATE.step),
 					// @ts-ignore
-					live: event?.target?.getAttribute('data-is-live') === '1' || false,
+					live: isLive(target),
 					active: true,
 				},
 			}),
