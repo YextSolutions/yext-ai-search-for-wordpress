@@ -161,6 +161,8 @@ final class Settings {
 	 */
 	public function add_plugin_page() {
 
+		// safe to ignore: no form submission is being processed
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$force_skipped = isset( $_GET['skipped'] ) ? sanitize_text_field( $_GET['skipped'] ) : false;
 		$skipped       = $force_skipped || ( isset( $this->settings['wizard'] ) && isset( $this->settings['wizard']['active'] ) && ! $this->settings['wizard']['active'] );
 
@@ -289,9 +291,6 @@ final class Settings {
 			settings_errors( 'general' );
 
 			include_once YEXT_INC . 'partials/settings.php';
-		?>
-		
-		<?php
 	}
 
 	/**
@@ -319,7 +318,7 @@ final class Settings {
 				return esc_html( $css );
 			}
 		} else {
-			if ( in_array( $key, $pixel_value ) ) {
+			if ( in_array( $key, $pixel_value, true ) ) {
 				$value = $value . 'px';
 			}
 

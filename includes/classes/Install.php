@@ -49,7 +49,7 @@ final class Install {
 
 		// Register default settings
 		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
-			$settings = file_get_contents( YEXT_INC . 'settings.json', false );
+			$settings = file_get_contents( YEXT_INC . 'settings.json' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		}
 
 		update_option(

@@ -53,7 +53,7 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 	<div class="yext-container">
 		<div id="yext-settings">
 			<?php
-			$view = 'settings';
+			$view = 'settings'; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 			require_once YEXT_INC . 'partials/header.php';
 			?>
 
@@ -63,7 +63,7 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 			endif;
 			?>
 
-			<h1><?php echo esc_html( 'Settings', '' ); ?></h1>
+			<h1><?php echo esc_html__( 'Settings', 'yext' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<div class="tabs">
@@ -83,7 +83,7 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header mb-default">
 											<h2>
-												<?php echo esc_html( 'Global search', 'yext' ); ?>
+												<?php echo esc_html__( 'Global search', 'yext' ); ?>
 											</h2>
 										</div>
 										<div class="yext-settings__form-content">
@@ -112,19 +112,19 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 											<?php $search_bar_plugin_settings->render_content(); ?>
 
 											<h3>
-												<?php echo esc_html( 'CSS Styles', 'yext' ); ?>
+												<?php echo esc_html__( 'CSS Styles', 'yext' ); ?>
 											</h3>
 
 											<?php $search_bar_plugin_style_settings->render_content(); ?>
 
 											<button class="yext-settings__button--is-style-link is-color-blue mt-large" data-action="reset-css">
-												<?php echo esc_html( 'Reset all custom CSS', 'yext' ); ?>
+												<?php echo esc_html__( 'Reset all custom CSS', 'yext' ); ?>
 											</button>
 										</div>
 									</div>
 									<div class="yext-settings__card-preview">
 										<h4>
-											<?php echo esc_html( 'Preview of Search Bar', 'yext' ); ?>
+											<?php echo esc_html__( 'Preview of Search Bar', 'yext' ); ?>
 										</h4>
 										<?php require_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
 									</div>
@@ -138,7 +138,7 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header mb-default">
 											<h2>
-												<?php echo esc_html( 'Search results settings', 'yext' ); ?>
+												<?php echo esc_html__( 'Search results settings', 'yext' ); ?>
 											</h2>
 										</div>
 										<div class="yext-settings__form-content">
@@ -199,7 +199,7 @@ $is_banner_hidden = true === $settings['banner_hidden'];
 				</div>
 				<?php
 					settings_fields( 'yext_option_group' );
-					$view = 'settings';
+					$view = 'settings';// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 					require_once YEXT_INC . 'partials/footer.php';
 				?>
 			</form>

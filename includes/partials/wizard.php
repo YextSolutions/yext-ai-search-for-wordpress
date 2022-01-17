@@ -67,7 +67,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 			data-is-live="<?php echo esc_attr( $is_live ); ?>"
 		>
 		<?php
-		$view = 'wizard';
+		$view = 'wizard';// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		require_once YEXT_INC . 'partials/header.php';
 		?>
 
@@ -77,7 +77,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Answers Experience', 'yext' ); ?>
+						<?php echo esc_html__( 'Answers Experience', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="1">
@@ -85,7 +85,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'API Keys', 'yext' ); ?>
+						<?php echo esc_html__( 'API Keys', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="2">
@@ -93,7 +93,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Search Bar Settings', 'yext' ); ?>
+						<?php echo esc_html__( 'Search Bar Settings', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="3">
@@ -101,7 +101,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Search Bar Results', 'yext' ); ?>
+						<?php echo esc_html__( 'Search Bar Results', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="4">
@@ -109,7 +109,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Go Live', 'yext' ); ?>
+						<?php echo esc_html__( 'Go Live', 'yext' ); ?>
 					</div>
 				</div>
 			</div>
@@ -173,7 +173,6 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 						</div>
 					</div>
-					
 					<div class="yext-settings__card-footer">
 						<h1>
 							<?php echo esc_html__( 'Thousands of brands deliver millions of answers with Yext. Hear some of their stories.', 'yext' ); ?>
@@ -383,7 +382,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 							<div class="yext-settings__card-preview">
 								<h4>
-									<?php echo esc_html( 'Preview of Search Bar', 'yext' ); ?>
+									<?php echo esc_html__( 'Preview of Search Bar', 'yext' ); ?>
 								</h4>
 								<?php require_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
 							</div>
@@ -443,7 +442,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 				</div>
 
 				<?php
-				$view = 'wizard';
+				$view = 'wizard';// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 				require_once YEXT_INC . 'partials/footer.php';
 				?>
 			</form>
