@@ -155,7 +155,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
 									</button>
-									<a href="<?php echo esc_url( 'https://yext.com' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
+									<a href="<?php echo esc_url( 'https://www.yext.com/free-trial' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
 										<span>
 											<?php
 											echo sprintf(
@@ -181,30 +181,32 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 						<div class="yext-settings__logo-grid logo-grid">
 							<ul>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/samsung.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/subway.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/lego.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/verizon.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/campbells.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/bbva.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/cox.png' ); ?>" loading="lazy" />
-								</li>
-								<li>
-									<img src="<?php echo esc_url( YEXT_URL . '/dist/images/logos/farmers.png' ); ?>" loading="lazy" />
-								</li>
+								<?php
+									// Samsung
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/samsung' ),
+										esc_url( YEXT_URL . '/dist/images/logos/samsung.png' ),
+										esc_html__( 'Samsung logo', 'yext' ),
+										esc_attr( 'lazy' )
+									);
+									// People's United
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/peoples-united-bank' ),
+										esc_url( YEXT_URL . '/dist/images/logos/peoples_united_bank.png' ),
+										esc_html__( 'People\'s United logo', 'yext' ),
+										esc_attr( 'lazy' )
+									);
+									// Cox
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/cox-communications' ),
+										esc_url( YEXT_URL . '/dist/images/logos/cox.png' ),
+										esc_html__( 'Cox logo', 'yext' ),
+										esc_attr( 'lazy' )
+									);
+									?>
 							</ul>
 							<p>
 								<?php
@@ -333,7 +335,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 							</div>
 						</div>
 					</div>
@@ -343,17 +345,20 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-inner">
 							<div class="yext-settings__card-content">
-								<div class="yext-settings__card-header mb-default">
+								<div class="yext-settings__card-header">
 									<h2>
 										<?php echo esc_html__( 'Global search', 'yext' ); ?>
 									</h2>
+									<p>
+										<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
+									</p>
 								</div>
 								<div class="yext-settings__form-content">
 									<?php $search_bar_core_settings->render_content(); ?>
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 							</div>
 						</div>
 					</div>
@@ -405,7 +410,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 							</div>
 						</div>
 					</div>
@@ -425,7 +430,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 							</div>
 						</div>
 						<div class="yext-settings__card-footer">

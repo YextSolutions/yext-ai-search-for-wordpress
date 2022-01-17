@@ -106,7 +106,6 @@ final class SettingsFields {
 				'parent' => 'core',
 				'title'  => __( 'Enable Global Search', 'yext' ),
 				'type'   => 'CheckboxField',
-				'help'   => __( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ),
 			],
 			[
 				'id'       => 'placeholder_text',

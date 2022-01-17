@@ -81,10 +81,13 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 							<div class="yext-settings__card mb-medium">
 								<div class="yext-settings__card-inner">
 									<div class="yext-settings__card-content">
-										<div class="yext-settings__card-header mb-default">
+										<div class="yext-settings__card-header">
 											<h2>
 												<?php echo esc_html( 'Global search', 'yext' ); ?>
 											</h2>
+											<p>
+												<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
+											</p>
 										</div>
 										<div class="yext-settings__form-content">
 											<?php $search_bar_core_settings->render_content(); ?>
@@ -92,7 +95,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -147,7 +150,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -177,7 +180,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
