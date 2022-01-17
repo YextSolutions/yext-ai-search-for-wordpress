@@ -134,6 +134,10 @@ final class Settings {
 				'classname' => 'accordion',
 				'title'     => __( 'General', 'yext' ),
 			],
+			'placeholder'        => [
+				'classname' => 'accordion',
+				'title'     => __( 'Placeholder', 'yext' ),
+			],
 			'button'       => [
 				'classname' => 'accordion',
 				'title'     => __( 'Button', 'yext' ),
