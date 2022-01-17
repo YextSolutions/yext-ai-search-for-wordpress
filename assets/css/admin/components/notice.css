@@ -4,5 +4,10 @@
 	& .notice {
 		margin-bottom: 3rem;
 		margin-top: 0;
+
+		&.is-dismissible,
+		&.update-nag {
+			display: none;
+		}
 	}
 }
