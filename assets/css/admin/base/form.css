@@ -46,6 +46,13 @@
 			}
 		}
 
+		&.search_results {
+			
+			& .preview-link {
+				display: table;
+			}
+		}
+
 		& td {
 
 			& input,
