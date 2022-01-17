@@ -7,7 +7,7 @@
 	padding: 2.5rem;
 
 	@nest .yext-wizard & {
-		min-height: calc(100vh - 32px - 76px - 78px - 80px - 80px - 30px);
+		min-height: min(calc(100vh - 32px - 76px - 78px - 80px - 80px - 30px), 800px);
 	}
 }
 

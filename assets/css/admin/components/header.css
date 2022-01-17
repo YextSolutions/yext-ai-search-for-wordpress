@@ -6,31 +6,12 @@
 	height: 3.75rem;
 	justify-content: space-between;
 	left: 0;
-	margin-left: 10rem;
+	margin-left: var(--wp-admin-panel-width) !important;
 	padding: 0.5rem 1.25rem;
 	position: fixed;
 	right: 0;
 	top: var(--wp-admin-header-height);
 	z-index: 3;
-
-	@nest body.folded & {
-		margin-left: 2.25rem;
-	}
-
-	@media only screen and (max-width: 960px) {
-
-		@nest body.auto-fold & {
-			margin-left: 2.25rem;
-		}
-	}
-
-	@media screen and (max-width: 782px) {
-		margin-left: 0 !important;
-
-		@nest body.wp-responsive-open & {
-			margin-left: 11.875rem !important;
-		}
-	}
 
 	@media (max-width: 600px) {
 		margin-left: calc(-1 * 0.625rem) !important;
