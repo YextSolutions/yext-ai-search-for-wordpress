@@ -328,34 +328,6 @@ const Inspector = (props) => {
 						handleStyleUpdate('lineHeight', newLineHeight);
 					}}
 				/>
-				<PanelRow>
-					<FontSizePicker
-						fontSizes={fontSizes}
-						fallbackFontSize={FALLBACK_FONT_SIZE}
-						value={placeholderFontSize}
-						onChange={(newFontSize) => {
-							handleStyleUpdate(
-								'placeholderFontSize',
-								newFontSize,
-								(value) => `${value}px`,
-							);
-						}}
-					/>
-				</PanelRow>
-				<SelectControl
-					label={__('Font Weight', 'yext')}
-					value={placeholderFontWeight}
-					options={fontWeights}
-					onChange={(newFontWeight) => {
-						handleStyleUpdate('placeholderFontWeight', newFontWeight);
-					}}
-				/>
-				<LineHeightControl
-					value={placeholderLineHeight}
-					onChange={(newLineHeight) => {
-						handleStyleUpdate('placeholderLineHeight', newLineHeight);
-					}}
-				/>
 				<RangeControl
 					label={__('Border Radius', 'yext')}
 					value={borderRadius}
@@ -374,15 +346,6 @@ const Inspector = (props) => {
 					colors={colors}
 					onChange={(color) => {
 						handleStyleUpdate('textColor', color);
-					}}
-				/>
-				<ColorPicker
-					id="yext-placeholder-text-color"
-					label={__('Placeholder Color', 'yext')}
-					value={placeholderTextColor}
-					colors={colors}
-					onChange={(color) => {
-						handleStyleUpdate('placeholderTextColor', color);
 					}}
 				/>
 				<ColorPicker
@@ -437,6 +400,45 @@ const Inspector = (props) => {
 					value={buttonHoverTextColor}
 					onChange={(colorValue) => {
 						handleStyleUpdate('buttonHoverTextColor', colorValue);
+					}}
+				/>
+			</PanelBody>
+			<PanelBody title={__('Placeholder Settings', 'yext')} initialOpen={false}>
+				<ColorPicker
+					id="yext-placeholder-text-color"
+					label={__('Text Color', 'yext')}
+					value={placeholderTextColor}
+					colors={colors}
+					onChange={(color) => {
+						handleStyleUpdate('placeholderTextColor', color);
+					}}
+				/>
+				<PanelRow>
+					<FontSizePicker
+						fontSizes={fontSizes}
+						fallbackFontSize={FALLBACK_FONT_SIZE}
+						value={placeholderFontSize}
+						onChange={(newFontSize) => {
+							handleStyleUpdate(
+								'placeholderFontSize',
+								newFontSize,
+								(value) => `${value}px`,
+							);
+						}}
+					/>
+				</PanelRow>
+				<SelectControl
+					label={__('Font Weight', 'yext')}
+					value={placeholderFontWeight}
+					options={fontWeights}
+					onChange={(newFontWeight) => {
+						handleStyleUpdate('placeholderFontWeight', newFontWeight);
+					}}
+				/>
+				<LineHeightControl
+					value={placeholderLineHeight}
+					onChange={(newLineHeight) => {
+						handleStyleUpdate('placeholderLineHeight', newLineHeight);
 					}}
 				/>
 			</PanelBody>
