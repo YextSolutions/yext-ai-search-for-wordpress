@@ -9,13 +9,13 @@ use Yext\Admin\Settings;
 use Yext\Admin\Tabs\Tab;
 
 $core_search_bar_sections         = [
-	'core'         => [
+	'core' => [
 		'classname' => '',
 		'title'     => '',
 	],
 ];
 $plugin_search_bar_sections       = [
-	'props'        => [
+	'props' => [
 		'classname' => '',
 		'title'     => '',
 	],
@@ -68,7 +68,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 		>
 		<?php
 		$view = 'wizard';
-		include_once YEXT_INC . 'partials/header.php';
+		require_once YEXT_INC . 'partials/header.php';
 		?>
 
 			<div class="yext-wizard__timeline" style="display:none">
@@ -385,7 +385,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								<h4>
 									<?php echo esc_html( 'Preview of Search Bar', 'yext' ); ?>
 								</h4>
-								<?php include_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
+								<?php require_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
 							</div>
 						</div>
 					</div>
@@ -444,7 +444,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 				<?php
 				$view = 'wizard';
-				include_once YEXT_INC . 'partials/footer.php';
+				require_once YEXT_INC . 'partials/footer.php';
 				?>
 			</form>
 		</div>

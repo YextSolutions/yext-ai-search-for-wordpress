@@ -127,7 +127,7 @@ abstract class AbstractField {
 	 */
 	public function add_field() {
 
-		$css_class = $this->required ? 'required' : '';
+		$css_class  = $this->required ? 'required' : '';
 		$css_class .= $this->optional ? ' optional' : '';
 
 		if ( ! empty( $this->parent_field ) ) {

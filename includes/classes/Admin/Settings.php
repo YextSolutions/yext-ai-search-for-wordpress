@@ -161,8 +161,8 @@ final class Settings {
 	 */
 	public function add_plugin_page() {
 
-		$force_skipped  = isset( $_GET['skipped'] ) ? sanitize_text_field( $_GET['skipped'] ) : false;
-		$skipped        = $force_skipped || ( isset( $this->settings['wizard'] ) && isset( $this->settings['wizard']['active'] ) && ! $this->settings['wizard']['active'] );
+		$force_skipped = isset( $_GET['skipped'] ) ? sanitize_text_field( $_GET['skipped'] ) : false;
+		$skipped       = $force_skipped || ( isset( $this->settings['wizard'] ) && isset( $this->settings['wizard']['active'] ) && ! $this->settings['wizard']['active'] );
 
 		add_menu_page(
 			__( 'Yext', 'yext' ),
