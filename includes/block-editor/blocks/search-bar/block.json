@@ -58,6 +58,12 @@
     "buttonHoverBackgroundColor": {
       "type": "string"
     },
+    "buttonTextColor": {
+      "type": "string"
+    },
+    "buttonHoverTextColor": {
+      "type": "string"
+    },
     "autocompleteBackgroundColor": {
       "type": "string"
     },
