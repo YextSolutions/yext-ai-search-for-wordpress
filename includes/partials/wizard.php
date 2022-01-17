@@ -193,7 +193,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									// People's United
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/peoples-united-bank' ),
+										esc_url( 'https://www.yext.com/customers/peoples-united-bank?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
 										esc_url( YEXT_URL . '/dist/images/logos/peoples_united_bank.png' ),
 										esc_html__( 'People\'s United logo', 'yext' ),
 										esc_attr( 'lazy' )
@@ -201,7 +201,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									// Cox
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/cox-communications' ),
+										esc_url( 'https://www.yext.com/customers/cox-communications?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
 										esc_url( YEXT_URL . '/dist/images/logos/cox.png' ),
 										esc_html__( 'Cox logo', 'yext' ),
 										esc_attr( 'lazy' )
