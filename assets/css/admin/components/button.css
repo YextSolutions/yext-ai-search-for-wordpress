@@ -89,6 +89,14 @@
 		background: var(--yxt-color-brand-white, #fff);
 		border: 1px solid var(--yxt-color-brand-primary);
 		color: var(--yxt-color-brand-primary);
+
+		&:hover,
+		&:focus {
+			background: var(--yxt-color-brand-hover);
+			border-color: var(--yxt-color-brand-hover);
+			color: var(--yxt-color-brand-white);
+			outline: none;
+		}
 	}
 
 	&.disabled {

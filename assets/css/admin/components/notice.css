@@ -6,7 +6,8 @@
 		margin-top: 0;
 
 		&.is-dismissible,
-		&.update-nag {
+		&.update-nag,
+		&.yext-activated-notice {
 			display: none;
 		}
 	}

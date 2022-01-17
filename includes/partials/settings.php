@@ -39,7 +39,7 @@ $plugin_search_bar_style_sections = [
 	],
 ];
 
-$plugin_settings                  = new Tab( Settings::PLUGIN_SETTINGS_SECTION_NAME, __( 'API & Properties', 'yext' ) );
+$plugin_settings                  = new Tab( Settings::PLUGIN_SETTINGS_SECTION_NAME, __( 'Plugin Settings', 'yext' ) );
 $search_bar_core_settings         = new Tab( Settings::SEARCH_BAR_SECTION_NAME, __( 'Search Bar', 'yext' ), $core_search_bar_sections );
 $search_bar_plugin_settings       = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_sections );
 $search_bar_plugin_style_settings = new Tab( Settings::SEARCH_BAR_SECTION_NAME, '', $plugin_search_bar_style_sections );
@@ -90,7 +90,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 												<?php echo esc_html( 'Global search', 'yext' ); ?>
 											</h2>
 											<p>
-												<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+												<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
 											</p>
 										</div>
 										<div class="yext-settings__form-content">
@@ -99,7 +99,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -109,10 +109,10 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header">
 											<h2>
-												<?php echo esc_html( 'Customize your search bar', 'yext' ); ?>
+												<?php echo esc_html__( 'Customize your search bar', 'yext' ); ?>
 											</h2>
 											<p>
-												<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
+												<?php echo esc_html__( ' Design your search bar by adding some of the details below. See the diagram below for questions about what each input refers to.', 'yext' ); ?>
 											</p>
 										</div>
 										<div class="yext-settings__form-content">
@@ -143,13 +143,10 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 							<div class="yext-settings__card mb-medium">
 								<div class="yext-settings__card-inner">
 									<div class="yext-settings__card-content">
-										<div class="yext-settings__card-header">
+										<div class="yext-settings__card-header mb-default">
 											<h2>
 												<?php echo esc_html( 'Search results settings', 'yext' ); ?>
 											</h2>
-											<p>
-												<?php echo esc_html( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ); ?>
-											</p>
 										</div>
 										<div class="yext-settings__form-content">
 											<?php $search_results_settings->render_content(); ?>
@@ -157,13 +154,41 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="tab-content" id="<?php echo esc_attr( Settings::PLUGIN_SETTINGS_SECTION_NAME ); ?>" role="tabpanel">
+							<div class="yext-settings__card mb-medium">
+								<div class="yext-settings__card-inner">
+									<div class="yext-settings__card-content">
+										<div class="yext-settings__card-header">
+											<h2>
+												<?php echo esc_html__( 'Input Experience Details', 'yext' ); ?>
+											</h2>
+											<p>
+												<?php
+												printf(
+													/* translators: 1: Javascript Version article URL */
+													__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" class="is-external" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+													esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
+												);
+												?>
+											</p>
+										</div>
+										<div class="yext-settings__form-content">
+											<?php $wizard_settings->render_content(); ?>
+											<?php do_action( 'yext_after_plugin_settings', Settings::WIZARD_SECTION_NAME ); ?>
+										</div>
+									</div>
+									<div class="yext-settings__card-image">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+									</div>
+								</div>
+							</div>
+
 							<div class="yext-settings__card mb-medium">
 								<div class="yext-settings__card-inner">
 									<div class="yext-settings__card-content">
@@ -182,19 +207,6 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									</div>
 									<div class="yext-settings__card-image">
 										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="tab-content" id="<?php echo esc_attr( Settings::WIZARD_SECTION_NAME ); ?>" role="tabpanel">
-							<div class="yext-settings__card mb-medium">
-								<div class="yext-settings__card-inner">
-									<div class="yext-settings__card-content">
-										<div class="yext-settings__form-content">
-											<?php $wizard_settings->render_content(); ?>
-											<?php do_action( 'yext_after_plugin_settings', Settings::WIZARD_SECTION_NAME ); ?>
-										</div>
 									</div>
 								</div>
 							</div>
