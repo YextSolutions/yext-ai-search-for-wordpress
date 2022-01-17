@@ -54,9 +54,14 @@
 .yext-settings__banner.banner {
 	background: var(--yxt-color-brand-white, #fff);
 	display: flex;
+	justify-content: space-between;
 	margin-left: calc(-1 * 2.625rem);
-	margin-right: calc(-1 * calc(2.625rem + max(calc(100vw - calc(1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem)), 0px))); /* stylelint-disable function-calc-no-invalid */
+	margin-right: calc(-1 * 2.625rem);
 	margin-top: calc(-1 * 2.25rem);
+
+	@media (min-width: 1620px) {
+		margin-right: calc(-1 * (2.625rem + (100vw - (1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem))));
+	}
 }
 
 .yext-settings__banner-content {
