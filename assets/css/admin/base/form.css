@@ -146,6 +146,7 @@
 		background-repeat: no-repeat;
 		background-size: 0.8125rem 0.5625rem;
 		border: 1px solid var(--yxt-color-borders);
+		border-radius: 0;
 		color: var(--yxt-color-text-primary);
 		cursor: pointer;
 		height: var(--h-input);
