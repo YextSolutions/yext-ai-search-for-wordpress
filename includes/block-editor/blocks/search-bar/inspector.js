@@ -133,7 +133,7 @@ const Inspector = (props) => {
 			textColor = defaultTextColor ?? '#212121',
 			fontSize = defaultFontSize ? parseInt(defaultFontSize, 10) : FALLBACK_FONT_SIZE,
 			fontWeight = defaultFontWeight ? parseInt(defaultFontWeight, 10) : '400',
-			lineHeight = defaultLineHeight ? parseInt(defaultLineHeight, 10) : '1.5',
+			lineHeight = defaultLineHeight ? parseFloat(defaultLineHeight) : '1.5',
 			borderRadius = defaultBorderRadius ? parseInt(defaultBorderRadius, 10) : 6,
 			borderColor = defaultBorderColor ?? '#dcdcdc',
 			backgroundColor = defaultBackgroundColor ?? '#ffffff',
@@ -145,7 +145,7 @@ const Inspector = (props) => {
 				? parseInt(defaultPlaceholderFontWeight, 10)
 				: '400',
 			placeholderLineHeight = defaultPlaceholderLineHeight
-				? parseInt(defaultPlaceholderLineHeight, 10)
+				? parseFloat(defaultPlaceholderLineHeight)
 				: '1.5',
 			buttonBackgroundColor = defaultButtonBackgroundColor ?? '#ffffff',
 			buttonHoverBackgroundColor = defaultButtonHoverBackgroundColor ?? '#e9e9e9',
