@@ -95,7 +95,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+										<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -150,7 +150,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+										<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -180,7 +180,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+										<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
 									</div>
 								</div>
 							</div>
@@ -202,7 +202,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 										</div>
 									</div>
 									<div class="yext-settings__card-image">
-										<img src="https://via.placeholder.com/260/C2D1D9" alt="">
+										<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>"  width="260" height="260" loading="lazy" alt="Copy paste your Yext API keys and other properties">
 									</div>
 								</div>
 							</div>
