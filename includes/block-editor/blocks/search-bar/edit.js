@@ -71,6 +71,7 @@ const Edit = (props) => {
 									name="query"
 									value={inputValue}
 									placeholder={placeholderText}
+									autoComplete="off"
 									aria-label={labelText}
 									onChange={(event) => {
 										setInputValue(event.target.value);

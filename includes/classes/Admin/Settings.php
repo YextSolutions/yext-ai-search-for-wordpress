@@ -137,6 +137,10 @@ final class Settings {
 				'classname' => 'accordion',
 				'title'     => __( 'General', 'yext' ),
 			],
+			'placeholder'        => [
+				'classname' => 'accordion',
+				'title'     => __( 'Placeholder', 'yext' ),
+			],
 			'button'       => [
 				'classname' => 'accordion',
 				'title'     => __( 'Button', 'yext' ),
@@ -346,6 +350,7 @@ final class Settings {
 		$pixel_value = [
 			'--yxt-searchbar-form-border-radius',
 			'--yxt-searchbar-text-font-size',
+			'--yxt-searchbar-placeholder-font-size',
 			'--yxt-autocomplete-text-font-size',
 		];
 

@@ -25,6 +25,10 @@ $plugin_search_bar_style_sections = [
 		'classname' => 'accordion',
 		'title'     => __( 'General', 'yext' ),
 	],
+	'placeholder'       => [
+		'classname' => 'accordion',
+		'title'     => __( 'Placeholder', 'yext' ),
+	],
 	'button'       => [
 		'classname' => 'accordion',
 		'title'     => __( 'Button', 'yext' ),

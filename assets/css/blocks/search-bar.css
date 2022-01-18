@@ -4,6 +4,8 @@
  *
  */
 
+@import url("../frontend/components/search-bar.css");
+
 .editor-styles-wrapper {
 
 	& .yxt-SearchBar {

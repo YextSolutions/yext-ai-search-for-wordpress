@@ -26,10 +26,10 @@
       "type": "number"
     },
     "fontWeight": {
-      "type": "number"
+      "type": "string"
     },
     "lineHeight": {
-      "type": "number"
+      "type": "string"
     },
     "borderRadius": {
       "type": "number"
@@ -40,10 +40,25 @@
     "backgroundColor": {
       "type": "string"
     },
+    "placeholderTextColor": {
+      "type": "string"
+    },
+    "placeholderFontSize": {
+      "type": "number"
+    },
+    "placeholderFontWeight": {
+      "type": "string"
+    },
     "buttonBackgroundColor": {
       "type": "string"
     },
     "buttonHoverBackgroundColor": {
+      "type": "string"
+    },
+    "buttonTextColor": {
+      "type": "string"
+    },
+    "buttonHoverTextColor": {
       "type": "string"
     },
     "autocompleteBackgroundColor": {

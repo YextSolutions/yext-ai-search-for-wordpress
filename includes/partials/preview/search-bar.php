@@ -23,7 +23,7 @@ $placeholder_text    = $search_bar_settings && $search_bar_settings['props'] && 
 		<div class="yxt-SearchBar">
 			<div class="yxt-SearchBar-container">
 				<div class="yxt-SearchBar-form">
-					<input class="js-yext-query yxt-SearchBar-input" type="text" name="query" value="" aria-label="Conduct a search" placeholder="<?php echo esc_attr( $placeholder_text ); ?>">
+					<input class="js-yext-query yxt-SearchBar-input" type="text" name="query" value="" aria-label="Conduct a search" placeholder="<?php echo esc_attr( $placeholder_text ); ?>" autocomplete="off">
 					<button type="button" class="js-yxt-SearchBar-clear yxt-SearchBar-clear yxt-SearchBar--hidden">
 						<div class="Icon Icon--close " aria-hidden="true">
 							<svg viewBox="0 1 24 24" xmlns="http://www.w3.org/2000/svg">
