@@ -67,28 +67,28 @@ final class SettingsFields {
 				'title'    => __( 'API Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The unique credentials that will be used to embed your search experience onto WordPress. This can also be found in the “Experience Details” section of Answers on Yext.', 'yext' ),
 			],
 			[
 				'id'       => 'experience_key',
 				'title'    => __( 'Experience Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The unique key for your search experience, located under “Experience Details” within the Answers tab on the Yext Platform.', 'yext' ),
 			],
 			[
 				'id'       => 'business_id',
 				'title'    => __( 'Business ID', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The ID associated with your Yext account. This can be found in the “Experience Details” section or as a substring of any URL when you’re logged into the Yext platform.', 'yext' ),
 			],
 			[
 				'id'       => 'answers_iframe_url',
 				'title'    => __( 'Answers iFrame URL', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor adipiscing.', 'yext' ),
+				'help'     => __( 'The Production URL of your Answers experience. This can be found in the Pages tab of your Yext account, in the Production Environment section.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
@@ -106,7 +106,6 @@ final class SettingsFields {
 				'parent' => 'core',
 				'title'  => __( 'Enable Global Search', 'yext' ),
 				'type'   => 'CheckboxField',
-				'help'   => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt amet amet et ultricies felis mattis parturient vitae sed. Mauris laoreet.', 'yext' ),
 			],
 			[
 				'id'       => 'placeholder_text',
@@ -114,7 +113,7 @@ final class SettingsFields {
 				'title'    => __( 'Placeholder text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'This is the text that will appear by default in your search bar, e.g. "Search all posts here…"', 'yext' ),
 			],
 			[
 				'id'       => 'submit_text',
@@ -122,7 +121,7 @@ final class SettingsFields {
 				'title'    => __( 'Submit text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'The backend label of the submit button, used in assistive technology like screen readers.', 'yext' ),
 			],
 			[
 				'id'       => 'label_text',
@@ -130,14 +129,14 @@ final class SettingsFields {
 				'title'    => __( 'Label text', 'yext' ),
 				'type'     => 'InputField',
 				'optional' => true,
-				'help'     => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'     => __( 'The backend label of the search bar, used in assistive technology like screen readers.', 'yext' ),
 			],
 			[
-				'id'     => 'css_class',
-				'parent' => 'props',
-				'title'  => __( 'CSS class', 'yext' ),
-				'type'   => 'InputField',
-				'help'   => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'id'       => 'css_class',
+				'optional' => true,
+				'parent'   => 'props',
+				'title'    => __( 'CSS class', 'yext' ),
+				'type'     => 'InputField',
 			],
 			[
 				'id'       => 'font_size',
@@ -333,7 +332,7 @@ final class SettingsFields {
 				'title'     => __( 'Search Results Page', 'yext' ),
 				'type'      => 'SelectPagesField',
 				'show_link' => true,
-				'help'      => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
+				'help'      => __( 'Select which page you wish to house your search results page from the dropdown list below.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::SEARCH_RESULTS_SECTION_NAME );
@@ -350,16 +349,17 @@ final class SettingsFields {
 				'id'    => 'live',
 				'title' => __( 'Live', 'yext' ),
 				'type'  => 'CheckboxField',
+				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'    => 'current_step',
 				'title' => __( 'Current Step', 'yext' ),
-				'type'  => 'InputField',
+				'type'  => 'HiddenField',
 			],
 			[
 				'id'    => 'active',
 				'title' => __( 'Skip Setup Wizard', 'yext' ),
-				'type'  => 'CheckboxField',
+				'type'  => 'HiddenField',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
@@ -385,6 +385,7 @@ final class SettingsFields {
 			'required'   => $field_config['required'] ?? '',
 			'optional'   => $field_config['optional'] ?? '',
 			'help'       => $field_config['help'] ?? '',
+			'type'       => $field_config['type'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

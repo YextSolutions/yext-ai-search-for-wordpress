@@ -88,7 +88,7 @@ class SelectPagesField extends SelectField {
 		}
 
 		$button_href = $this->value > 0 ? esc_html( get_permalink( $this->value ) ) : '#';
-		$class       = 'yext-settings__button yext-settings__button--primary is-style-outline mt-medium';
+		$class       = 'preview-link is-external mt-medium';
 		$class      .= '#' === $button_href ? ' disabled' : '';
 
 		printf(
