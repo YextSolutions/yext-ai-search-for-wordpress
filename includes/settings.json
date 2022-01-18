@@ -27,7 +27,7 @@
 		"placeholder": {
 			"color": "#646970",
 			"font_size": "16",
-			"font_weight": "400",
+			"font_weight": "400"
 		},
 		"button": {
 			"text_color": "#000000",
