@@ -222,13 +222,6 @@ final class SettingsFields {
 				'variable' => '--yxt-searchbar-placeholder-font-weight',
 			],
 			[
-				'id'       => 'line_height',
-				'parent'   => 'placeholder',
-				'title'    => __( 'Line height', 'yext' ),
-				'type'     => 'NumberField',
-				'variable' => '--yxt-searchbar-placeholder-line-height',
-			],
-			[
 				'id'       => 'background_color',
 				'parent'   => 'button',
 				'title'    => __( 'Background color', 'yext' ),

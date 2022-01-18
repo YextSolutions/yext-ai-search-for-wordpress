@@ -26,10 +26,10 @@
       "type": "number"
     },
     "fontWeight": {
-      "type": "number"
+      "type": "string"
     },
     "lineHeight": {
-      "type": "number"
+      "type": "string"
     },
     "borderRadius": {
       "type": "number"
@@ -47,10 +47,7 @@
       "type": "number"
     },
     "placeholderFontWeight": {
-      "type": "number"
-    },
-    "placeholderLineHeight": {
-      "type": "number"
+      "type": "string"
     },
     "buttonBackgroundColor": {
       "type": "string"
