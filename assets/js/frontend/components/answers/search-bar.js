@@ -32,7 +32,7 @@ const searchBar = (props = {}) => {
 	const { cssClass, labelText, placeholderText, submitText, redirectUrl } = props;
 	const classnames = [
 		DEFAULT_SEARCH_BAR_CLASS,
-		...(cssClass ? cssClass?.split(',').map((classname) => classname.trim()) : []),
+		...(cssClass ? cssClass.split(',').map((classname) => classname.trim()) : []),
 	];
 
 	/**
