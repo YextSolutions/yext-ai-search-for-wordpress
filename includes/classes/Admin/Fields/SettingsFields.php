@@ -194,6 +194,33 @@ final class SettingsFields {
 				'variable' => '--yxt-searchbar-form-outline-color-base',
 			],
 			[
+				'id'       => 'color',
+				'parent'   => 'placeholder',
+				'title'    => __( 'Text color', 'yext' ),
+				'type'     => 'ColorField',
+				'variable' => '--yxt-searchbar-placeholder-color',
+			],
+			[
+				'id'       => 'font_size',
+				'parent'   => 'placeholder',
+				'title'    => __( 'Font size', 'yext' ),
+				'type'     => 'NumberField',
+				'variable' => '--yxt-searchbar-placeholder-font-size',
+			],
+			[
+				'id'       => 'font_weight',
+				'parent'   => 'placeholder',
+				'title'    => __( 'Font weight', 'yext' ),
+				'type'     => 'SelectField',
+				'options'  => [
+					'400' => __( 'Normal', 'yext' ),
+					'500' => __( 'Medium', 'yext' ),
+					'600' => __( 'Semibold', 'yext' ),
+					'700' => __( 'Bold', 'yext' ),
+				],
+				'variable' => '--yxt-searchbar-placeholder-font-weight',
+			],
+			[
 				'id'       => 'background_color',
 				'parent'   => 'button',
 				'title'    => __( 'Background color', 'yext' ),
@@ -322,16 +349,17 @@ final class SettingsFields {
 				'id'    => 'live',
 				'title' => __( 'Live', 'yext' ),
 				'type'  => 'CheckboxField',
+				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'    => 'current_step',
 				'title' => __( 'Current Step', 'yext' ),
-				'type'  => 'InputField',
+				'type'  => 'HiddenField',
 			],
 			[
 				'id'    => 'active',
 				'title' => __( 'Skip Setup Wizard', 'yext' ),
-				'type'  => 'CheckboxField',
+				'type'  => 'HiddenField',
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::WIZARD_SECTION_NAME );
@@ -357,6 +385,7 @@ final class SettingsFields {
 			'required'   => $field_config['required'] ?? '',
 			'optional'   => $field_config['optional'] ?? '',
 			'help'       => $field_config['help'] ?? '',
+			'type'       => $field_config['type'] ?? '',
 			'value'      => $this->return_field_value( $field_config, $section_id ),
 		];
 

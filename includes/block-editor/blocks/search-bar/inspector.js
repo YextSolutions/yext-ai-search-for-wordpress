@@ -33,6 +33,11 @@ const {
 			borderColor: defaultBorderColor,
 			backgroundColor: defaultBackgroundColor,
 		},
+		placeholder: {
+			color: defaultPlaceholderTextColor,
+			fontSize: defaultPlaceholderFontSize,
+			fontWeight: defaultPlaceholderFontWeight,
+		},
 		props: {
 			submitText: defaultSubmitText,
 			placeholderText: defaultPlaceholderText,
@@ -126,11 +131,16 @@ const Inspector = (props) => {
 			labelText = defaultLabelText ?? 'Conduct a search',
 			textColor = defaultTextColor ?? '#212121',
 			fontSize = defaultFontSize ? parseInt(defaultFontSize, 10) : FALLBACK_FONT_SIZE,
-			fontWeight = defaultFontWeight ? parseInt(defaultFontWeight, 10) : '400',
-			lineHeight = defaultLineHeight ? parseInt(defaultLineHeight, 10) : '1.5',
+			fontWeight = defaultFontWeight ?? '400',
+			lineHeight = defaultLineHeight ?? '1.5',
 			borderRadius = defaultBorderRadius ? parseInt(defaultBorderRadius, 10) : 6,
 			borderColor = defaultBorderColor ?? '#dcdcdc',
 			backgroundColor = defaultBackgroundColor ?? '#ffffff',
+			placeholderTextColor = defaultPlaceholderTextColor ?? '#646970',
+			placeholderFontSize = defaultPlaceholderFontSize
+				? parseInt(defaultPlaceholderFontSize, 10)
+				: FALLBACK_FONT_SIZE,
+			placeholderFontWeight = defaultPlaceholderFontWeight ?? '400',
 			buttonBackgroundColor = defaultButtonBackgroundColor ?? '#ffffff',
 			buttonHoverBackgroundColor = defaultButtonHoverBackgroundColor ?? '#e9e9e9',
 			buttonTextColor = defaultButtonTextColor ?? '#000000',
@@ -165,6 +175,9 @@ const Inspector = (props) => {
 		borderColor: ['--yxt-searchbar-form-outline-color-base', borderColor],
 		borderRadius: ['--yxt-searchbar-form-border-radius', `${borderRadius}px`],
 		backgroundColor: ['--yxt-searchbar-form-background-color', backgroundColor],
+		placeholderTextColor: ['--yxt-searchbar-placeholder-color', placeholderTextColor],
+		placeholderFontSize: ['--yxt-searchbar-placeholder-font-size', `${placeholderFontSize}px`],
+		placeholderFontWeight: ['--yxt-searchbar-placeholder-font-weight', placeholderFontWeight],
 		buttonBackgroundColor: [
 			'--yxt-searchbar-button-background-color-base',
 			buttonBackgroundColor,
@@ -380,6 +393,39 @@ const Inspector = (props) => {
 					value={buttonHoverTextColor}
 					onChange={(colorValue) => {
 						handleStyleUpdate('buttonHoverTextColor', colorValue);
+					}}
+				/>
+			</PanelBody>
+			<PanelBody title={__('Placeholder Settings', 'yext')} initialOpen={false}>
+				<ColorPicker
+					id="yext-placeholder-text-color"
+					label={__('Text Color', 'yext')}
+					value={placeholderTextColor}
+					colors={colors}
+					onChange={(color) => {
+						handleStyleUpdate('placeholderTextColor', color);
+					}}
+				/>
+				<PanelRow>
+					<FontSizePicker
+						fontSizes={fontSizes}
+						fallbackFontSize={FALLBACK_FONT_SIZE}
+						value={placeholderFontSize}
+						onChange={(newFontSize) => {
+							handleStyleUpdate(
+								'placeholderFontSize',
+								newFontSize,
+								(value) => `${value}px`,
+							);
+						}}
+					/>
+				</PanelRow>
+				<SelectControl
+					label={__('Font Weight', 'yext')}
+					value={placeholderFontWeight}
+					options={fontWeights}
+					onChange={(newFontWeight) => {
+						handleStyleUpdate('placeholderFontWeight', newFontWeight);
 					}}
 				/>
 			</PanelBody>

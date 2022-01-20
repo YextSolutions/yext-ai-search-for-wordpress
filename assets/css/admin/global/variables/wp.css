@@ -1,7 +1,30 @@
 :root {
 	--wp-admin-header-height: 32px;
+	--wp-admin-panel-width: 160px;
 
 	@media (max-width: 782px) {
 		--wp-admin-header-height: 46px;
+	}
+
+	& body.folded {
+		--wp-admin-panel-width: 36px;
+	}
+
+	@media (max-width: 960px) {
+
+		& body.auto-fold {
+			--wp-admin-panel-width: 36px;
+		}
+	}
+
+	@media (max-width: 782px) {
+		
+		& body.auto-fold {
+			--wp-admin-panel-width: 0;
+		}
+
+		& body.auto-fold .wp-responsive-open {
+			--wp-admin-panel-width: 190px;
+		}
 	}
 }

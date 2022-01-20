@@ -7,10 +7,6 @@
 	position: relative;
 
 	&::before {
-		background-image: url("../images/yext-dashboard-preview.png");
-		background-position: left center;
-		background-repeat: no-repeat;
-		background-size: cover;
 		border-radius: 50%;
 		box-shadow: 0 0 6px rgba(85, 85, 85, 0.25);
 		content: "";
