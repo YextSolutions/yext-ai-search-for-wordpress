@@ -104,9 +104,10 @@ class SelectPagesField extends SelectField {
 	 * Check if value matches with field options
 	 *
 	 * @param string $value  Field value
+	 * @param string $id     Field ID
 	 * @return string $value Sanitized fField value
 	 */
-	protected function sanitize_value( $value ) {
+	protected function sanitize_value( $value, $id = '' ) {
 		return self::POST_TYPE === get_post_type( $value ) && is_numeric( $value ) ? $value : '';
 	}
 }

@@ -65,10 +65,11 @@ class NumberField extends AbstractField {
 	 * Check if value is a number
 	 *
 	 * @param string $value  Field value
+	 * @param string $id     Field ID
 	 * @return string $value Sanitized fField value
 	 */
-	protected function sanitize_value( $value ) {
-		$value = parent::sanitize_value( $value );
+	protected function sanitize_value( $value, $id = '' ) {
+		$value = parent::sanitize_value( $value, $id );
 		return is_numeric( $value ) ? $value : '';
 	}
 

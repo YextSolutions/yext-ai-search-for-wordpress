@@ -69,10 +69,11 @@ class ColorField extends AbstractField {
 	 * Check if value matches the color format
 	 *
 	 * @param string $value  Field value
+	 * @param string $id     Field ID
 	 * @return string $value Sanitized fField value
 	 */
-	protected function sanitize_value( $value ) {
-		$value = parent::sanitize_value( $value );
+	protected function sanitize_value( $value, $id = '' ) {
+		$value = parent::sanitize_value( $value, $id );
 		return 1 === preg_match( self::FORMAT_REGEX, $value ) ? $value : '';
 	}
 }
