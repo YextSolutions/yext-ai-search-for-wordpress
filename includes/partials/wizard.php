@@ -155,7 +155,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
 									</button>
-									<a href="<?php echo esc_url( 'https://www.yext.com/free-trial' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
+									<a href="<?php echo esc_url( 'https://www.yext.com/try/wordpress' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
 										<span>
 											<?php
 											echo sprintf(
