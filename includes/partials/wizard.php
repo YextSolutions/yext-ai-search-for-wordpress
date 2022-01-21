@@ -321,13 +321,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php echo esc_html__( 'Input Experience Details', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php
-										printf(
-											/* translators: 1: Javascript Version article URL */
-											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" class="is-external" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-											esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
-										);
-										?>
+										<?php echo esc_html__( 'Copy the following experience details from your Yext account into the fields below.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
