@@ -77,7 +77,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Answers Experience', 'yext' ); ?>
+						<?php echo esc_html__( 'Initial Questions', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="1">
@@ -85,7 +85,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'API Keys', 'yext' ); ?>
+						<?php echo esc_html__( 'Experience Details', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="2">
@@ -155,7 +155,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
 									</button>
-									<a href="<?php echo esc_url( 'https://www.yext.com/free-trial' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
+									<a href="<?php echo esc_url( 'https://www.yext.com/try/wordpress' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
 										<span>
 											<?php
 											echo sprintf(
@@ -321,13 +321,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php echo esc_html__( 'Input Experience Details', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php
-										printf(
-											/* translators: 1: Javascript Version article URL */
-											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" class="is-external" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-											esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
-										);
-										?>
+										<?php echo esc_html__( 'Copy the following experience details from your Yext account into the fields below.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
