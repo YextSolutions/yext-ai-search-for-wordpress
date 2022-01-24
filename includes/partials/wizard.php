@@ -118,7 +118,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 				<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[0] ); ?>">
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-content yext-settings__card-content--center">
-							<div class="yext-wizard__banner banner">
+							<div class="yext-wizard__banner banner" style="background-image: url(<?php echo esc_url( YEXT_URL . 'dist/images/yext-banner-background.jpeg' ); ?>)">
 								<div class="banner-edge-topleft"></div>
 								<div class="banner-edge-topright"></div>
 								<div class="banner-edge-bottomleft"></div>
@@ -128,7 +128,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<path d="M370.8 399.6h64.8v129.6h28.8V399.6h64.8v-28.8H370.8v28.8Zm-38.37-32.4L270 429.64l-62.43-62.44-20.37 20.37L249.64 450l-62.44 62.43 20.37 20.37L270 470.36l62.43 62.44 20.37-20.37L290.36 450l62.44-62.43-20.37-20.37Zm115.77-18c44.73 0 81-36.27 81-81h-28.8c0 28.83-23.37 52.2-52.2 52.2-8.23 0-16.01-1.91-22.93-5.3l90.91-90.91c-14.44-22.25-39.48-36.98-67.98-36.98-44.74 0-81 36.27-81 81s36.26 80.99 81 80.99Zm0-133.2c10.12 0 19.56 2.89 27.56 7.88l-71.88 71.88c-4.99-8-7.87-17.44-7.87-27.56-.01-28.83 23.36-52.2 52.19-52.2ZM270 259.58l-60.74-72.38-22.06 18.51 68.4 81.52v61.97h28.8v-61.97l68.4-81.52-22.06-18.51L270 259.58Z" fill="currentColor"/>
 								</svg>
 								<h1>
-									<?php echo esc_html__( 'Welcome to Yext AI Search.', 'yext' ); ?>
+									<?php echo esc_html__( 'Welcome to Yext AI Search', 'yext' ); ?>
 								</h1>
 								<p>
 									<?php echo esc_html__( 'Eager to add or improve search on your WordPress site? Use this plugin to embed Answers, Yext’s AI-powered search experience, directly onto your site.', 'yext' ); ?>
@@ -186,25 +186,22 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/samsung' ),
-										esc_url( YEXT_URL . '/dist/images/logos/samsung.png' ),
-										esc_html__( 'Samsung logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/samsung.png' ),
+										esc_html__( 'Samsung logo', 'yext' )
 									);
 									// People's United
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/peoples-united-bank?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
-										esc_url( YEXT_URL . '/dist/images/logos/peoples_united_bank.png' ),
-										esc_html__( 'People\'s United logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/peoples_united_bank.png' ),
+										esc_html__( 'People\'s United logo', 'yext' )
 									);
 									// Cox
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/cox-communications?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
-										esc_url( YEXT_URL . '/dist/images/logos/cox.png' ),
-										esc_html__( 'Cox logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/cox.png' ),
+										esc_html__( 'Cox logo', 'yext' )
 									);
 									?>
 							</ul>
