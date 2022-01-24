@@ -24,5 +24,17 @@
 }
 
 .yext-wizard__banner {
+	background-position: center;
+	background-size: cover;
+	color: var(--yxt-color-brand-white, #fff);
 	margin-bottom: 2rem;
+
+	& h1 {
+		color: var(--yxt-color-brand-white, #fff);
+		text-shadow: 0 0 0.08em var(--yxt-color-brand-white, #fff);
+	}
+
+	& .yext-logo {
+		color: var(--yxt-color-brand-white, #fff);
+	}
 }
