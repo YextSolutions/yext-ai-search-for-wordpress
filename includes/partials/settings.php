@@ -87,10 +87,10 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header">
 											<h2>
-												<?php echo esc_html( 'Global search', 'yext' ); ?>
+												<?php echo esc_html( 'Global Search', 'yext' ); ?>
 											</h2>
 											<p>
-												<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
+												<?php echo esc_html__( 'Check this box if you’d like to replace all instances of core WordPress search bars that get added throughout the site by the theme, plugins, and blocks.', 'yext' ); ?>
 											</p>
 										</div>
 										<div class="yext-settings__form-content">
