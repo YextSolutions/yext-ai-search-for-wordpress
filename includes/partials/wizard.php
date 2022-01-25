@@ -221,6 +221,12 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 				<div class="yext-wizard__step yext-wizard__step--has-circle yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[1] ); ?>">
 					<div class="yext-settings__card">
+						<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
+							<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
+							</svg>
+							<?php echo esc_html__( 'Back', 'yext' ); ?>
+						</button>
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
@@ -268,6 +274,12 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 				<div class="yext-wizard__step yext-wizard__step--has-circle yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[2] ); ?>">
 					<div class="yext-settings__card">
+						<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
+							<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
+							</svg>
+							<?php echo esc_html__( 'Back', 'yext' ); ?>
+						</button>
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>

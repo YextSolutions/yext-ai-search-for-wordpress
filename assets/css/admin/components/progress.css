@@ -12,7 +12,7 @@
 		right: 0;
 	}
 
-	@nest .yext-wizard:not([data-progress-id="0"]) & {
+	@nest .yext-wizard:not([data-step="0"]) & {
 		display: flex !important;
 	}
 }
@@ -60,7 +60,7 @@
 	}
 
 	@nest .yext-wizard__timeline-step--active & {
-		
+
 		&::before {
 			background: var(--yxt-color-brand-primary);
 			border-radius: 1.875rem;
@@ -90,7 +90,7 @@
 		}
 	}
 
-	@nest .yext-wizard__timeline-step--active & {
+	@nest .yext-wizard:not([data-progress-id="0"]) .yext-wizard__timeline-step--active & {
 
 		&::before {
 			border-bottom: 3px solid #000;
