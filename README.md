@@ -12,8 +12,8 @@
 ## Requirements
 
 * [Yext](https://www.yext.com/)
-* [WordPress](http://wordpress.org) 3.8
-* [PHP](https://php.net/) 5.6+
+* [WordPress](http://wordpress.org) 5.8
+* [PHP](https://php.net/) 7.4+
 
 ## Issues
 
