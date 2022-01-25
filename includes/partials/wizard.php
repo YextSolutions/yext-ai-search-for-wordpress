@@ -337,7 +337,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" loading="lazy" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-answers-dashboard-preview.png' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -360,7 +360,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" loading="lazy" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-global-search.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -404,7 +404,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header mb-default">
 									<h2>
-										<?php echo esc_html__( 'Search results settings', 'yext' ); ?>
+										<?php echo esc_html__( 'Search Results Settings', 'yext' ); ?>
 									</h2>
 								</div>
 								<div class="yext-settings__form-content">
@@ -412,7 +412,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" loading="lazy" alt="">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-search-results.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
