@@ -40,7 +40,6 @@ function render( $atts ) {
 		'--yxt-searchbar-form-border-radius' => isset( $atts['borderRadius'] ) ? $atts['borderRadius'] . 'px' : null,
 		'--yxt-searchbar-form-background-color' => isset( $atts['backgroundColor'] ) ? $atts['backgroundColor'] : null,
 		'--yxt-searchbar-placeholder-color' => isset( $atts['placeholderTextColor'] ) ? $atts['placeholderTextColor'] : null,
-		'--yxt-searchbar-placeholder-font-size' => isset( $atts['placeholderFontSize'] ) ? $atts['placeholderFontSize'] . 'px' : null,
 		'--yxt-searchbar-placeholder-font-weight' => isset( $atts['placeholderFontWeight'] ) ? $atts['placeholderFontWeight'] : null,
 		'--yxt-searchbar-placeholder-line-height' => isset( $atts['placeholderLineHeight'] ) ? $atts['placeholderLineHeight'] : null,
 		'--yxt-searchbar-button-background-color-base' => isset( $atts['buttonBackgroundColor'] ) ? $atts['buttonBackgroundColor'] : null,

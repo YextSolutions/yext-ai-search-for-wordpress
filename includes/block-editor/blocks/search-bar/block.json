@@ -43,9 +43,6 @@
     "placeholderTextColor": {
       "type": "string"
     },
-    "placeholderFontSize": {
-      "type": "number"
-    },
     "placeholderFontWeight": {
       "type": "string"
     },

@@ -211,13 +211,6 @@ final class SettingsFields {
 				'variable' => '--yxt-searchbar-placeholder-color',
 			],
 			[
-				'id'       => 'placeholder_font_size',
-				'parent'   => 'placeholder',
-				'title'    => __( 'Font Size', 'yext' ),
-				'type'     => 'NumberField',
-				'variable' => '--yxt-searchbar-placeholder-font-size',
-			],
-			[
 				'id'       => 'placeholder_font_weight',
 				'parent'   => 'placeholder',
 				'title'    => __( 'Font Weight', 'yext' ),

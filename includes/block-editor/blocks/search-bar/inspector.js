@@ -35,7 +35,6 @@ const {
 		},
 		placeholder: {
 			color: defaultPlaceholderTextColor,
-			fontSize: defaultPlaceholderFontSize,
 			fontWeight: defaultPlaceholderFontWeight,
 		},
 		props: {
@@ -137,9 +136,6 @@ const Inspector = (props) => {
 			borderColor = defaultBorderColor ?? '#dcdcdc',
 			backgroundColor = defaultBackgroundColor ?? '#ffffff',
 			placeholderTextColor = defaultPlaceholderTextColor ?? '#646970',
-			placeholderFontSize = defaultPlaceholderFontSize
-				? parseInt(defaultPlaceholderFontSize, 10)
-				: FALLBACK_FONT_SIZE,
 			placeholderFontWeight = defaultPlaceholderFontWeight ?? '400',
 			buttonBackgroundColor = defaultButtonBackgroundColor ?? '#ffffff',
 			buttonHoverBackgroundColor = defaultButtonHoverBackgroundColor ?? '#e9e9e9',
@@ -176,7 +172,6 @@ const Inspector = (props) => {
 		borderRadius: ['--yxt-searchbar-form-border-radius', `${borderRadius}px`],
 		backgroundColor: ['--yxt-searchbar-form-background-color', backgroundColor],
 		placeholderTextColor: ['--yxt-searchbar-placeholder-color', placeholderTextColor],
-		placeholderFontSize: ['--yxt-searchbar-placeholder-font-size', `${placeholderFontSize}px`],
 		placeholderFontWeight: ['--yxt-searchbar-placeholder-font-weight', placeholderFontWeight],
 		buttonBackgroundColor: [
 			'--yxt-searchbar-button-background-color-base',
@@ -406,20 +401,6 @@ const Inspector = (props) => {
 						handleStyleUpdate('placeholderTextColor', color);
 					}}
 				/>
-				<PanelRow>
-					<FontSizePicker
-						fontSizes={fontSizes}
-						fallbackFontSize={FALLBACK_FONT_SIZE}
-						value={placeholderFontSize}
-						onChange={(newFontSize) => {
-							handleStyleUpdate(
-								'placeholderFontSize',
-								newFontSize,
-								(value) => `${value}px`,
-							);
-						}}
-					/>
-				</PanelRow>
 				<SelectControl
 					label={__('Font Weight', 'yext')}
 					value={placeholderFontWeight}
