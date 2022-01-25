@@ -172,6 +172,7 @@ final class SettingsFields {
 				'parent'   => 'style',
 				'title'    => __( 'Line Height', 'yext' ),
 				'type'     => 'NumberField',
+				'step'     => '0.5',
 				'variable' => '--yxt-searchbar-text-line-height',
 			],
 			[
@@ -282,6 +283,7 @@ final class SettingsFields {
 				'parent'   => 'autocomplete',
 				'title'    => __( 'Line Height', 'yext' ),
 				'type'     => 'NumberField',
+				'step'     => '0.5',
 				'variable' => '--yxt-autocomplete-text-line-height',
 			],
 			[

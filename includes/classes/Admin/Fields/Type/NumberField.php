@@ -36,6 +36,7 @@ class NumberField extends AbstractField {
 		$value    = $this->value;
 		$variable = isset( $this->variable ) ? $this->variable : '';
 		$help     = isset( $this->help ) ? $this->help : '';
+		$step     = isset( $this->step ) ? $this->step : '1';
 
 		if ( $help ) {
 			printf(
@@ -58,11 +59,13 @@ class NumberField extends AbstractField {
 				id="%s"
 				value="%s"
 				min="0"
+				step="%s"
 				data-variable="%s"
 				autocomplete="off">',
 			esc_attr( $this->setting_name( $this->id ) ),
 			esc_attr( $this->id ),
 			esc_attr( $value ),
+			esc_attr( $step ),
 			esc_attr( $variable )
 		);
 	}
