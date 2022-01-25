@@ -51,6 +51,7 @@ class NumberField extends AbstractField {
 				name="%s"
 				id="%s"
 				value="%s"
+				min="0"
 				data-variable="%s"
 				autocomplete="off">',
 			esc_attr( $this->setting_name( $this->id ) ),
