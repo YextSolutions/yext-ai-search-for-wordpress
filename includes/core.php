@@ -274,7 +274,7 @@ function admin_scripts( $page ) {
 		wp_enqueue_script(
 			'yext-admin',
 			script_url( 'admin', 'admin' ),
-			Utility\get_asset_info( 'admin', 'version' ),
+			Utility\get_asset_info( 'admin', 'dependencies' ),
 			YEXT_VERSION,
 			true
 		);
@@ -362,6 +362,13 @@ function admin_styles( $page ) {
 			'yext-admin',
 			style_url( 'admin-style', 'admin' ),
 			[ 'yext-search-bar' ],
+			YEXT_VERSION
+		);
+
+		wp_enqueue_style(
+			'yext-admin-vendor',
+			style_url( 'admin-vendor', 'admin' ),
+			[],
 			YEXT_VERSION
 		);
 

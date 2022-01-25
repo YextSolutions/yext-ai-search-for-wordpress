@@ -52,6 +52,7 @@
       "admin-notice-script": "./assets/js/admin/admin-notice.js",
       "admin-notice": "./assets/css/admin/admin-notice.css",
       "admin-style": "./assets/css/admin/admin-style.css",
+      "admin-vendor": "./assets/css/admin/admin-vendor.css",
       "shared-style": "./assets/css/shared/shared-style.css",
       "editor-style": "./assets/css/blocks/index.css",
       "style": "./assets/css/frontend/style.css"

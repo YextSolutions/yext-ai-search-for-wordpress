@@ -67,14 +67,14 @@ final class SettingsFields {
 				'title'    => __( 'Experience Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'Like the API Key, this can also be found under "Experience Details".', 'yext' ),
+				'help'     => __( 'This can be found in the "Experience Details" section in the Answers tab. Make sure you’ve selected the correct Answers Experience if you have multiple.', 'yext' ),
 			],
 			[
 				'id'       => 'api_key',
 				'title'    => __( 'API Key', 'yext' ),
 				'type'     => 'InputField',
 				'required' => 'true',
-				'help'     => __( 'This can be found in the "Experience Details" section in the Answers tab. Make sure you’ve selected the correct Answers Experience if you have multiple.', 'yext' ),
+				'help'     => __( 'Like the Experience Key, this can also be found under "Experience Details".', 'yext' ),
 			],
 			[
 				'id'       => 'business_id',
@@ -314,7 +314,7 @@ final class SettingsFields {
 			[
 				'id'       => 'option_hover_background_color',
 				'parent'   => 'autocomplete',
-				'title'    => __( 'Option Hover Background Color', 'yext' ),
+				'title'    => __( 'Hover Background Color', 'yext' ),
 				'type'     => 'ColorField',
 				'variable' => '--yxt-autocomplete-option-hover-background-color',
 			],

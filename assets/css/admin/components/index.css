@@ -13,6 +13,7 @@
 @import url("preview.css");
 @import url("search-bar.css");
 @import url("tabs.css");
+@import url("tooltips.css");
 
 /* Wizard */
 @import url("progress.css");

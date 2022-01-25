@@ -62,6 +62,10 @@
 		}
 	}
 
+	& th {
+		width: auto;
+	}
+
 	& th,
 	& td {
 		color: var(--yxt-color-text-primary);
