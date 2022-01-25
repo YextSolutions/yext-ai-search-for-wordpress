@@ -11,6 +11,7 @@
 		},
 		"props": {
 			"placeholder_text": "",
+			"prompt_header": "",
 			"submit_text": "Submit",
 			"label_text": "Conduct a search",
 			"css_class": ""
