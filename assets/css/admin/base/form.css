@@ -186,6 +186,10 @@
 			top: 0;
 		}
 
+		& button[data-tippy-content] {
+			margin-left: 2.5rem;
+		}
+
 		& td {
 
 			& input {
