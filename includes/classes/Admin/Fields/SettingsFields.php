@@ -360,7 +360,6 @@ final class SettingsFields {
 				'id'    => 'live',
 				'title' => __( 'Live', 'yext' ),
 				'type'  => 'CheckboxField',
-				'help'  => __( 'Lorem ipsum dolor sit amet consectetur.', 'yext' ),
 			],
 			[
 				'id'    => 'current_step',
