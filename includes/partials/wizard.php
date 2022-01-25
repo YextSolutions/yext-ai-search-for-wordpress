@@ -337,7 +337,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -360,7 +360,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="https://via.placeholder.com/260/C2D1D9" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -412,7 +412,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="https://via.placeholder.com/260/C2D1D9" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -427,12 +427,12 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php echo esc_html__( 'Go Live!', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html__( 'Congratulations! You’ve configured your search experience and it’s now ready to be published on WordPress. Click Publish to see Yext AI Search live on your site.', 'yext' ); ?>
+										<?php echo esc_html__( 'Congratulations! You’ve finished setting up your Answers Experience on WordPress and are ready to go live. Click Publish to see Yext AI Search live on your site.', 'yext' ); ?>
 									</p>
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . 'dist/images/yext-live-thumbs-up.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 						<div class="yext-settings__card-footer">
