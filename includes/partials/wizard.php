@@ -283,22 +283,21 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
-									<?php echo esc_html__( 'Configure Answers Experience', 'yext' ); ?>
+									<?php echo esc_html__( 'Build Your Answers Experience', 'yext' ); ?>
 								</h2>
 								<p>
-									<?php echo esc_html__( 'If you don’t have an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you have not already configured an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
 									<?php
 									printf(
 										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
-										__( '<a href="%1$s" class="is-external" target="_blank">Follow this guide</a> to get started with Answers in just a few steps. For additional resources, you can learn about the <a href="%2$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-										esc_url( 'https://hitchhikers.yext.com/guides/answers-quick-start/' ),
+										__( 'For additional resources, you can learn about the <a href="%2$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
 										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
 									);
 									?>
 								</p>
 								<p>
-									<?php echo esc_html__( 'If you’ve already built a search experience, you can go to the next step.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you’ve already built an Answers experience, you can go to the next step.', 'yext' ); ?>
 								</p>
 							</div>
 							<div class="yext-settings__form-content">
@@ -373,7 +372,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html__( 'Customize your search bar', 'yext' ); ?>
+										<?php echo esc_html__( 'Customize Your Search Bar', 'yext' ); ?>
 									</h2>
 									<p>
 										<?php echo esc_html__( ' Design your search bar by adding some of the details below. See the diagram below for questions about what each input refers to.', 'yext' ); ?>
