@@ -41,6 +41,7 @@ const {
 			submitText: defaultSubmitText,
 			placeholderText: defaultPlaceholderText,
 			labelText: defaultLabelText,
+			promptHeader: defaultPromptHeader,
 		},
 		button: {
 			backgroundColor: defaultButtonBackgroundColor,
@@ -127,6 +128,7 @@ const Inspector = (props) => {
 		attributes: {
 			submitText = defaultSubmitText ?? 'Submit',
 			placeholderText = defaultPlaceholderText ?? '',
+			promptHeader = defaultPromptHeader ?? '',
 			labelText = defaultLabelText ?? 'Conduct a search',
 			textColor = defaultTextColor ?? '#212121',
 			fontSize = defaultFontSize ? parseInt(defaultFontSize, 10) : FALLBACK_FONT_SIZE,
@@ -289,6 +291,16 @@ const Inspector = (props) => {
 						help={__('', 'yext')}
 						onChange={(newSubmitText) => {
 							setAttributes({ submitText: newSubmitText });
+						}}
+					/>
+				</PanelRow>
+				<PanelRow>
+					<TextControl
+						label={__('Autocomplete Heading', 'yext')}
+						value={promptHeader}
+						help={__('', 'yext')}
+						onChange={(newPromptHeader) => {
+							setAttributes({ promptHeader: newPromptHeader });
 						}}
 					/>
 				</PanelRow>

@@ -18,6 +18,7 @@ const {
 			submitText: defaultSubmitText,
 			placeholderText: defaultPlaceholderText,
 			labelText: defaultLabelText,
+			promptHeader: defaultPromptHeader,
 		},
 	},
 } = camelcaseKeys(components, { deep: true });
@@ -41,6 +42,7 @@ const Edit = (props) => {
 			placeholderText = defaultPlaceholderText ?? null,
 			submitText = defaultSubmitText ?? null,
 			labelText = defaultLabelText ?? null,
+			promptHeader = defaultPromptHeader ?? null,
 		},
 	} = props;
 	const blockProps = useBlockProps();
@@ -1134,6 +1136,11 @@ const Edit = (props) => {
 								className="yxt-SearchBar-autocomplete yxt-AutoComplete-wrapper js-yxt-AutoComplete-wrapper component component--is-hidden"
 							>
 								<div className="yxt-AutoComplete">
+									<div className="yxt-AutoComplete-results">
+										<div className="yxt-AutoComplete-option yxt-AutoComplete-option--promptHeader">
+											{promptHeader}
+										</div>
+									</div>
 									<div className="yxt-AutoComplete-results">
 										<div className="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
 											{__('Option Item 1', 'yext')}

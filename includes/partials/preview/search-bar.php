@@ -16,6 +16,9 @@ $search_bar_settings = $settings['components']['search_bar'];
 $placeholder_text    = $search_bar_settings && $search_bar_settings['props'] && $search_bar_settings['props']['placeholder_text']
 	? $search_bar_settings['props']['placeholder_text']
 	: 'Search...';
+$prompt_header       = $search_bar_settings && $search_bar_settings['props'] && $search_bar_settings['props']['prompt_header']
+	? $search_bar_settings['props']['prompt_header']
+	: '';
 ?>
 
 <div id="yext-search-bar-preview">
@@ -452,6 +455,11 @@ $placeholder_text    = $search_bar_settings && $search_bar_settings['props'] && 
 				</div>
 				<div class="yxt-SearchBar-autocomplete yxt-AutoComplete-wrapper js-yxt-AutoComplete-wrapper component component--is-hidden">
 					<div class="yxt-AutoComplete">
+						<ul class="yxt-AutoComplete-results">
+							<li class="yxt-AutoComplete-option yxt-AutoComplete-option--promptHeader">
+								<?php echo esc_attr( $prompt_header ); ?>
+							</li>
+						</ul>
 						<ul class="yxt-AutoComplete-results">
 							<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
 								<?php echo esc_html( 'Option Item 1', 'yext' ); ?>

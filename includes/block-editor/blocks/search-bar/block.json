@@ -19,6 +19,9 @@
     "labelText": {
       "type": "string"
     },
+    "promptHeader": {
+      "type": "string"
+    },
     "textColor": {
       "type": "string"
     },

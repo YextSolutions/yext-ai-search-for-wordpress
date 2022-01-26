@@ -23,6 +23,7 @@ function render( $atts ) {
 	$placeholder_text = isset( $atts['placeholderText'] ) ? $atts['placeholderText'] : '';
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
+	$prompt_header    = isset( $atts['promptHeader'] ) ? $atts['promptHeader'] : '';
 	$settings         = Settings::get_settings();
 	$redirect_url     = '';
 
@@ -75,6 +76,9 @@ function render( $atts ) {
 	<?php endif; ?>
 	<?php if ( ! empty( $label_text ) ) : ?>
 		data-label-text="<?php echo esc_attr( $label_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $prompt_header ) ) : ?>
+		data-prompt-header="<?php echo esc_attr( $prompt_header ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $redirect_url ) ) : ?>
 		data-redirect-url="<?php echo esc_attr( $redirect_url ); ?>"

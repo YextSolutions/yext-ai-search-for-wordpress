@@ -107,5 +107,9 @@ body {
 			font-size: var(--yxt-autocomplete-text-font-size);
 			line-height: var(--yxt-autocomplete-text-line-height);
 		}
+
+		& .yxt-AutoComplete-option--promptHeader {
+			font-weight: var(--yxt-autocomplete-prompt-header-font-weight);
+		}
 	}
 }
