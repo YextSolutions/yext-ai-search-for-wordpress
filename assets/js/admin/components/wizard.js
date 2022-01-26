@@ -28,7 +28,7 @@ const COMPLETED_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--complete'
 const ACTIVE_PROGRESS_STEP_CLASSNAME = 'yext-wizard__timeline-step--active';
 
 const buildPayload = (formData) => {
-	const REGEX = /(?<=\[).+?(?=\])/g;
+	const REGEX = /\[.*?\]/g;
 
 	return !(formData instanceof FormData)
 		? PLUGIN_SETTINGS
