@@ -294,7 +294,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<?php
 									printf(
 										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
-										__( 'For additional resources, you can learn about the <a href="%2$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										__( 'For additional resources, you can learn about the <a href="%1$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%2$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
 										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
 									);
