@@ -25,6 +25,12 @@ const initTooltips = () => {
 	tippy('[data-tippy-content]', {
 		placement: 'right',
 	});
+
+	tooltips.forEach((tooltip) => {
+		tooltip.addEventListener('click', (event) => {
+			event.preventDefault();
+		});
+	});
 };
 
 export default initTooltips;

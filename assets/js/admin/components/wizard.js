@@ -374,7 +374,9 @@ const initWizard = () => {
 	};
 
 	// Add event listeners
-	FORM.addEventListener('submit', maybeNext);
+	FORM.addEventListener('submit', (event) => {
+		event.preventDefault();
+	});
 	BACK_BUTTONS.forEach((button) => {
 		button.addEventListener('click', back);
 	});
