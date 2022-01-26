@@ -274,8 +274,8 @@ function admin_scripts( $page ) {
 		wp_enqueue_script(
 			'yext-admin',
 			script_url( 'admin', 'admin' ),
+			Utility\get_asset_info( 'admin', 'dependencies' ),
 			Utility\get_asset_info( 'admin', 'version' ),
-			YEXT_VERSION,
 			true
 		);
 
@@ -300,8 +300,8 @@ function admin_scripts( $page ) {
 		wp_enqueue_script(
 			'yext-admin-notice',
 			script_url( 'admin-notice-script', 'admin' ),
+			Utility\get_asset_info( 'admin-notice-script', 'dependencies' ),
 			Utility\get_asset_info( 'admin-notice-script', 'version' ),
-			YEXT_VERSION,
 			true
 		);
 
