@@ -196,16 +196,37 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									// People's United
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/peoples-united-bank?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
+										esc_url( 'https://www.yext.com/customers/peoples-united-bank' ),
 										esc_url( YEXT_URL . 'dist/images/logos/peoples_united_bank.png' ),
 										esc_html__( 'People\'s United logo', 'yext' )
 									);
 									// Cox
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/cox-communications?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
+										esc_url( 'https://www.yext.com/customers/cox-communications' ),
 										esc_url( YEXT_URL . 'dist/images/logos/cox.png' ),
 										esc_html__( 'Cox logo', 'yext' )
+									);
+									// Banks.com
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/banks-dot-com' ),
+										esc_url( YEXT_URL . 'dist/images/logos/banks-dot-com.png' ),
+										esc_html__( 'Banks.com logo', 'yext' )
+									);
+									// Fazoli's
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/fazolis' ),
+										esc_url( YEXT_URL . 'dist/images/logos/fazolis.png' ),
+										esc_html__( 'Fazoli\'s logo', 'yext' )
+									);
+									// Cox
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/marstons' ),
+										esc_url( YEXT_URL . 'dist/images/logos/marstons.png' ),
+										esc_html__( 'Marston\'s logo', 'yext' )
 									);
 									?>
 							</ul>
