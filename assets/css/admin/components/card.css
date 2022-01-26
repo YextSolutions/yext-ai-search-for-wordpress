@@ -5,10 +5,6 @@
 	border-radius: 0.5rem;
 	box-shadow: 0 0 4px rgba(85, 85, 85, 0.25);
 	padding: 2.5rem;
-
-	@nest .yext-wizard & {
-		min-height: min(calc(100vh - 32px - 76px - 78px - 80px - 80px - 30px), 800px);
-	}
 }
 
 .yext-settings__card-inner {
