@@ -8,6 +8,7 @@
 namespace Yext\Admin\Fields;
 
 use Yext\Admin\Settings;
+use Yext\Utility;
 
 /**
  * Fields class
@@ -146,6 +147,15 @@ final class SettingsFields {
 				'title'    => __( 'CSS Class', 'yext' ),
 				'type'     => 'InputField',
 				'help'     => __( 'A comma separated list of CSS classnames to transform into Yext Search Bars.', 'yext' ),
+			],
+			[
+				'id'       => 'submit_icon',
+				'optional' => true,
+				'parent'   => 'props',
+				'title'    => __( 'Icon', 'yext' ),
+				'type'     => 'SelectField',
+				'options'  => Utility\build_icon_options(),
+				'help'     => __( 'Choose an icon for the submit button, or select "Yext" to use the default.', 'yext' ),
 			],
 			[
 				'id'       => 'font_size',

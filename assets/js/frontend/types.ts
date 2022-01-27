@@ -1,6 +1,7 @@
 export interface YextSearchBarConfig {
 	labelText?: string;
 	submitText?: string;
+	submitIcon?: string;
 	placeholderText?: string;
 	promptHeader?: string;
 	redirectUrl?: string;
