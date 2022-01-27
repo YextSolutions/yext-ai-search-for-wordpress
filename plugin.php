@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Yext
  * Description:       Connect WordPress to Yext knowledge graph and display Answers experience.
- * Version:           0.1.0
+ * Version:           2.0
  * Requires at least: 4.9
  * Requires PHP:      7.2
  * Author:            10up
@@ -16,7 +16,7 @@
  */
 
 // Useful global constants.
-define( 'YEXT_VERSION', '0.1.0' );
+define( 'YEXT_VERSION', '2.0' );
 define( 'YEXT_URL', plugin_dir_url( __FILE__ ) );
 define( 'YEXT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YEXT_INC', YEXT_PATH . 'includes/' );
