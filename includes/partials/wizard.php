@@ -77,7 +77,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'Answers Experience', 'yext' ); ?>
+						<?php echo esc_html__( 'Initial Questions', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="1">
@@ -85,7 +85,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 						<div class="yext-wizard__timeline-step-circle"></div>
 					</div>
 					<div class="yext-wizard__timeline-step-title">
-						<?php echo esc_html( 'API Keys', 'yext' ); ?>
+						<?php echo esc_html__( 'Experience Details', 'yext' ); ?>
 					</div>
 				</div>
 				<div class="yext-wizard__timeline-step" data-progress-id="2">
@@ -118,7 +118,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 				<div class="yext-wizard__step yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[0] ); ?>">
 					<div class="yext-settings__card">
 						<div class="yext-settings__card-content yext-settings__card-content--center">
-							<div class="yext-wizard__banner banner">
+							<div class="yext-wizard__banner banner" style="background-image: url(<?php echo esc_url( YEXT_URL . 'dist/images/yext-banner-background.jpeg' ); ?>)">
 								<div class="banner-edge-topleft"></div>
 								<div class="banner-edge-topright"></div>
 								<div class="banner-edge-bottomleft"></div>
@@ -128,7 +128,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<path d="M370.8 399.6h64.8v129.6h28.8V399.6h64.8v-28.8H370.8v28.8Zm-38.37-32.4L270 429.64l-62.43-62.44-20.37 20.37L249.64 450l-62.44 62.43 20.37 20.37L270 470.36l62.43 62.44 20.37-20.37L290.36 450l62.44-62.43-20.37-20.37Zm115.77-18c44.73 0 81-36.27 81-81h-28.8c0 28.83-23.37 52.2-52.2 52.2-8.23 0-16.01-1.91-22.93-5.3l90.91-90.91c-14.44-22.25-39.48-36.98-67.98-36.98-44.74 0-81 36.27-81 81s36.26 80.99 81 80.99Zm0-133.2c10.12 0 19.56 2.89 27.56 7.88l-71.88 71.88c-4.99-8-7.87-17.44-7.87-27.56-.01-28.83 23.36-52.2 52.19-52.2ZM270 259.58l-60.74-72.38-22.06 18.51 68.4 81.52v61.97h28.8v-61.97l68.4-81.52-22.06-18.51L270 259.58Z" fill="currentColor"/>
 								</svg>
 								<h1>
-									<?php echo esc_html__( 'Welcome to Yext AI Search.', 'yext' ); ?>
+									<?php echo esc_html__( 'Welcome to Yext AI Search', 'yext' ); ?>
 								</h1>
 								<p>
 									<?php echo esc_html__( 'Eager to add or improve search on your WordPress site? Use this plugin to embed Answers, Yext’s AI-powered search experience, directly onto your site.', 'yext' ); ?>
@@ -155,7 +155,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
 									</button>
-									<a href="<?php echo esc_url( 'https://www.yext.com/free-trial' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
+									<a href="<?php echo esc_url( 'https://www.yext.com/try/wordpress' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--is-style-card">
 										<span>
 											<?php
 											echo sprintf(
@@ -186,25 +186,22 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/samsung' ),
-										esc_url( YEXT_URL . '/dist/images/logos/samsung.png' ),
-										esc_html__( 'Samsung logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/samsung.png' ),
+										esc_html__( 'Samsung logo', 'yext' )
 									);
 									// People's United
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/peoples-united-bank?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
-										esc_url( YEXT_URL . '/dist/images/logos/peoples_united_bank.png' ),
-										esc_html__( 'People\'s United logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/peoples_united_bank.png' ),
+										esc_html__( 'People\'s United logo', 'yext' )
 									);
 									// Cox
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
 										esc_url( 'https://www.yext.com/customers/cox-communications?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
-										esc_url( YEXT_URL . '/dist/images/logos/cox.png' ),
-										esc_html__( 'Cox logo', 'yext' ),
-										esc_attr( 'lazy' )
+										esc_url( YEXT_URL . 'dist/images/logos/cox.png' ),
+										esc_html__( 'Cox logo', 'yext' )
 									);
 									?>
 							</ul>
@@ -321,13 +318,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php echo esc_html__( 'Input Experience Details', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php
-										printf(
-											/* translators: 1: Javascript Version article URL */
-											__( 'In your Yext account, navigate to your <strong>Answers</strong> experience details by clicking Answers on the Navigation Bar. If you have multiple experiences, click <strong>View Experience</strong> and choose which one you’d like to bring to WordPress. Click <strong>Experience Details</strong> on the left-side panel, and copy the <strong>Experience Key</strong>, <strong>API Key</strong>, and <strong>Business ID</strong> below. The <strong>Locale</strong> for English sites will always be ‘en’, and the latest <strong>Javascript Version</strong> (ex v1.7) can be found <a href="%1$s" class="is-external" target="_blank">here</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-											esc_url( 'https://hitchhikers.yext.com/community/t/answers-search-ui-changelog/579' )
-										);
-										?>
+										<?php echo esc_html__( 'Copy the following experience details from your Yext account into the fields below.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">
@@ -347,10 +338,10 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html__( 'Global search', 'yext' ); ?>
+										<?php echo esc_html__( 'Global Search', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html__( 'If you’d like your search bar to appear on every page on your WordPress site, enable global search below.', 'yext' ); ?>
+										<?php echo esc_html__( 'Check this box if you’d like to replace all instances of core WordPress search bars that get added throughout the site by the theme, plugins, and blocks.', 'yext' ); ?>
 									</p>
 								</div>
 								<div class="yext-settings__form-content">

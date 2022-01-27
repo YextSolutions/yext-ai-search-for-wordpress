@@ -1,7 +1,7 @@
 /* stylelint-disable sh-waqar/declaration-use-variable */
 
 .banner {
-	background: #c1cfad;
+	background: #000;
 	margin-left: calc(-1 * 3.375rem);
 	margin-right: calc(-1 * 3.375rem);
 	padding: 2.625rem 2.5rem;
@@ -21,7 +21,7 @@
 
 .banner-edge-topleft,
 .banner-edge-bottomleft {
-	border-color: transparent #a9b597 transparent transparent;
+	border-color: transparent rgba(0, 0, 0, 0.5) transparent transparent;
 	border-width: 7px 14px 0 0;
 	left: 0;
 }
@@ -37,7 +37,7 @@
 
 .banner-edge-topright,
 .banner-edge-bottomright {
-	border-color: transparent transparent transparent #a9b597;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.5);
 	border-width: 0 0 7px 14px;
 	right: 0;
 }
