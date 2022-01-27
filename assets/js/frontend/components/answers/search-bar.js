@@ -38,7 +38,10 @@ const searchBar = (props = {}) => {
 		submitIcon,
 		redirectUrl,
 	} = props;
-	const classnames = [DEFAULT_SEARCH_BAR_CLASS, cssClass];
+	const classnames = [
+		DEFAULT_SEARCH_BAR_CLASS,
+		...(cssClass ? cssClass.split(',').map((classname) => classname.trim()) : []),
+	];
 
 	/**
 	 * Filter for valid classnames.

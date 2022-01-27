@@ -39,7 +39,7 @@ $submit_icon         = $search_bar_props && isset( $search_bar_props['submit_ico
 							</svg>
 						</div>
 						<span class="yxt-SearchBar-clearButtonText sr-only">
-							<?php echo esc_html( 'Clear', 'yext' ); ?>
+							<?php echo esc_html__( 'Clear', 'yext' ); ?>
 						</span>
 					</button>
 					<button type="submit" class="js-yext-submit yxt-SearchBar-button">
@@ -463,7 +463,7 @@ $submit_icon         = $search_bar_props && isset( $search_bar_props['submit_ico
 							</div>
 						</div>
 						<span class="yxt-SearchBar-buttonText sr-only">
-							<?php echo esc_html( 'Submit', 'yext' ); ?>
+							<?php echo esc_html__( 'Submit', 'yext' ); ?>
 						</span>
 					</button>
 				</div>
@@ -476,13 +476,13 @@ $submit_icon         = $search_bar_props && isset( $search_bar_props['submit_ico
 						</ul>
 						<ul class="yxt-AutoComplete-results">
 							<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
-								<?php echo esc_html( 'Option Item 1', 'yext' ); ?>
+								<?php echo esc_html__( 'Option Item 1', 'yext' ); ?>
 							</li>
 							<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
-								<?php echo esc_html( 'Option Item 2', 'yext' ); ?>
+								<?php echo esc_html__( 'Option Item 2', 'yext' ); ?>
 							</li>
 							<li class="js-yext-autocomplete-option yxt-AutoComplete-option yxt-AutoComplete-option--item">
-								<?php echo esc_html( 'Another Option Item', 'yext' ); ?>
+								<?php echo esc_html__( 'Another Option Item', 'yext' ); ?>
 							</li>
 						</ul>
 					</div>
