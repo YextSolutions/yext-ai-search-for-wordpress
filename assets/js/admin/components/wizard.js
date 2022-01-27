@@ -37,7 +37,9 @@ const buildPayload = (formData) => {
 				// @ts-ignore
 				[...formData].reduce((payload, current) => {
 					const [name, value] = current;
-					const parts = name.match(REGEX);
+					const parts = name
+						.match(REGEX)
+						?.map((part) => part.replace('[', '').replace(']', ''));
 
 					const object = parts
 						? parts.reduceRight(
