@@ -17,11 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<div class="yext-settings__banner-copy">
-			<h2><?php echo esc_html( 'Yext Search is live on your site!', 'yext' ); ?></h2>
-			<p><?php echo esc_html( 'You can always tweak or make any changes using the settings below. For any advanced customisations please visit your Yext dashboard on Yext.com.', 'yext' ); ?></p>
+			<h2><?php echo esc_html__( 'Yext Search is live on your site!', 'yext' ); ?></h2>
+			<p><?php echo esc_html__( 'You can always tweak or make any changes using the settings below. For any advanced customisations please visit your Yext dashboard on Yext.com.', 'yext' ); ?></p>
 
 			<button data-action="close" class="yext-settings__button yext-settings__button--primary is-style-outline">
-				<?php echo esc_html( 'Okay, got it', 'yext' ); ?>
+				<?php echo esc_html__( 'Okay, got it', 'yext' ); ?>
 			</button>
 		</div>
 	</div>
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8 3.58-8 8-8Zm5 11-3-3 3-3-2-2-3 3-3-3-2 2 3 3-3 3 2 2 3-3 3 3 2-2Z" fill="#0F70F0"/>
 			</svg>
-			<?php echo esc_html( 'Dismiss', 'yext' ); ?>
+			<?php echo esc_html__( 'Dismiss', 'yext' ); ?>
 		</button>
 	</div>
 </div>

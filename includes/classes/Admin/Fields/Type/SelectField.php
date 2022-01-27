@@ -97,7 +97,7 @@ class SelectField extends AbstractField {
 	 */
 	protected function sanitize_value( $value, $id = '' ) {
 		$value = parent::sanitize_value( $value, $id );
-		return in_array( $value, array_keys( $this->options ), true ) ? $value : '';
+		return in_array( $value, array_keys( $this->options ), false ) ? $value : '';
 	}
 
 }
