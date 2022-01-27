@@ -37,16 +37,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<path d="M10 4a3.939 3.939 0 0 0-3.934 3.934h2C8.066 6.867 8.934 6 10 6c1.066 0 1.934.867 1.934 1.934 0 .598-.48 1.032-1.216 1.626-.24.188-.47.388-.69.599C9.028 11.156 9 12.215 9 12.333V13h2v-.633c0-.016.032-.386.44-.793.15-.15.34-.3.535-.458.78-.631 1.958-1.584 1.958-3.182A3.937 3.937 0 0 0 10 4ZM9 14h2v2H9v-2Z" fill="black"/>
 					<path d="M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0Zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8Z" fill="black"/>
 				</svg>
-				<span class="visually-hidden"><?php echo esc_html( 'Open', 'yext' ); ?></span>
-				<?php echo esc_html( 'Help', 'yext' ); ?>
-				<span class="visually-hidden"><?php echo esc_html( 'Menu', 'yext' ); ?></span>
+				<span class="visually-hidden"><?php echo esc_html__( 'Open', 'yext' ); ?></span>
+				<?php echo esc_html__( 'Help', 'yext' ); ?>
+				<span class="visually-hidden"><?php echo esc_html__( 'Menu', 'yext' ); ?></span>
 			</button>
 
 			<div id="yext-menu-help" class="yext-menu__dialog hidden">
 				<ul>
 					<li>
 						<a href="https://yext.com/" rel="noopener">
-							<?php echo esc_html( 'Contact Support', 'yext' ); ?>
+							<?php echo esc_html__( 'Contact Support', 'yext' ); ?>
 						</a>
 					</li>
 				</ul>
@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<svg width="4" height="16" fill="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
 					<path d="M4 14.154c0 .49-.21.96-.586 1.305C3.04 15.806 2.53 16 2 16c-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 14.153c0-.49.21-.96.586-1.306.375-.346.884-.54 1.414-.54.53 0 1.04.194 1.414.54.375.347.586.816.586 1.306ZM4 8c0 .49-.21.96-.586 1.305-.375.347-.884.541-1.414.541-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 8c0-.49.21-.96.586-1.305.375-.347.884-.541 1.414-.541.53 0 1.04.194 1.414.54C3.79 7.042 4 7.51 4 8Zm0-6.154c0 .49-.21.96-.586 1.306-.375.346-.884.54-1.414.54-.53 0-1.04-.194-1.414-.54A1.777 1.777 0 0 1 0 1.846c0-.49.21-.96.586-1.305C.96.195 1.47 0 2 0c.53 0 1.04.195 1.414.54C3.79.888 4 1.358 4 1.847Z" fill="black"/>
 				</svg>
-				<span class="visually-hidden"><?php echo esc_html( 'Open More Menu', 'yext' ); ?></span>
+				<span class="visually-hidden"><?php echo esc_html__( 'Open More Menu', 'yext' ); ?></span>
 			</button>
 
 			<div id="yext-menu-more" class="yext-menu__dialog hidden">
@@ -66,24 +66,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--restart">
 						<?php if ( 'settings' === $view ) : ?>
 							<button class="yext-settings__button--is-style-link" data-action="restart" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext&restart_wizard=1' ) ); ?>">
-								<?php echo esc_html( 'Restart setup', 'yext' ); ?>
+								<?php echo esc_html__( 'Restart setup', 'yext' ); ?>
 							</button>
 						<?php else : ?>
 							<button class="yext-settings__button--is-style-link" data-action="restart">
-								<?php echo esc_html( 'Restart setup', 'yext' ); ?>
+								<?php echo esc_html__( 'Restart setup', 'yext' ); ?>
 							</button>
 						<?php endif; ?>
 					</li>
 					<?php if ( 'wizard' === $view ) : ?>
 						<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--skip">
 							<button class="yext-settings__button--is-style-link" data-action="skip" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext&skipped=1' ) ); ?>">
-								<?php echo esc_html( 'Skip setup', 'yext' ); ?>
+								<?php echo esc_html__( 'Skip setup', 'yext' ); ?>
 							</button>
 						</li>
 					<?php endif; ?>
 					<li class="yext-menu__dialog-list-item">
 						<a href="https://yext.com/" rel="noopener">
-							<?php echo esc_html( 'Contact Support', 'yext' ); ?>
+							<?php echo esc_html__( 'Contact Support', 'yext' ); ?>
 						</a>
 					</li>
 				</ul>

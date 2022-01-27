@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
 			</svg>
-			<?php echo esc_html( 'Back', 'yext' ); ?>
+			<?php echo esc_html__( 'Back', 'yext' ); ?>
 		</button>
 	<?php endif; ?>
 	<?php
