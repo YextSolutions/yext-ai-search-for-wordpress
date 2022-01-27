@@ -347,7 +347,7 @@ final class SettingsFields {
 		$fields = [
 			[
 				'id'    => 'live',
-				'title' => __( 'Live', 'yext' ),
+				'title' => __( 'Enable Search', 'yext' ),
 				'type'  => 'CheckboxField',
 			],
 			[
