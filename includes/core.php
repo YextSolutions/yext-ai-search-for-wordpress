@@ -268,7 +268,7 @@ function admin_preconnect( $page ) {
  */
 function admin_scripts( $page ) {
 
-	$rest_url = '/wp-json/yext/v1';
+	$rest_url = '/yext/v1';
 
 	if ( is_yext_page( $page ) ) {
 		wp_enqueue_script(

@@ -249,7 +249,7 @@ final class Settings {
 	 * @return array
 	 */
 	public function handle_setup_wizard( $request ) {
-		$settings = $request['settings'];
+		$settings = $request->get_param( 'settings' );
 
 		if ( empty( $settings ) || ! is_array( $settings ) ) {
 			return new \WP_Error( 400 );
