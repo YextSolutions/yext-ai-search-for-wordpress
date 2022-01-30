@@ -72,7 +72,7 @@ function blocks_editor_scripts() {
 	wp_localize_script(
 		'yext-blocks-editor',
 		'YEXT',
-		[ 'settings'  => Settings::localized_settings() ]
+		[ 'settings' => Settings::localized_settings() ]
 	);
 }
 

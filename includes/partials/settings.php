@@ -9,13 +9,13 @@ use Yext\Admin\Settings;
 use Yext\Admin\Tabs\Tab;
 
 $core_search_bar_sections         = [
-	'core'         => [
+	'core' => [
 		'classname' => '',
 		'title'     => '',
 	],
 ];
 $plugin_search_bar_sections       = [
-	'props'        => [
+	'props' => [
 		'classname' => '',
 		'title'     => '',
 	],
@@ -67,7 +67,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 			endif;
 			?>
 
-			<h1><?php echo esc_html( 'Settings', '' ); ?></h1>
+			<h1><?php echo esc_html__( 'Settings', '' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<div class="tabs">
@@ -87,7 +87,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header">
 											<h2>
-												<?php echo esc_html( 'Global Search', 'yext' ); ?>
+												<?php echo esc_html__( 'Global Search', 'yext' ); ?>
 											</h2>
 											<p>
 												<?php echo esc_html__( 'Check this box if you’d like to replace all instances of core WordPress search bars that get added throughout the site by the theme, plugins, and blocks.', 'yext' ); ?>
@@ -119,19 +119,19 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 											<?php $search_bar_plugin_settings->render_content(); ?>
 
 											<h3>
-												<?php echo esc_html( 'CSS Styles', 'yext' ); ?>
+												<?php echo esc_html__( 'CSS Styles', 'yext' ); ?>
 											</h3>
 
 											<?php $search_bar_plugin_style_settings->render_content(); ?>
 
 											<button class="yext-settings__button--is-style-link is-color-blue mt-large" data-action="reset-css">
-												<?php echo esc_html( 'Reset all custom CSS', 'yext' ); ?>
+												<?php echo esc_html__( 'Reset all custom CSS', 'yext' ); ?>
 											</button>
 										</div>
 									</div>
 									<div class="yext-settings__card-preview">
 										<h4>
-											<?php echo esc_html( 'Preview of Search Bar', 'yext' ); ?>
+											<?php echo esc_html__( 'Preview of Search Bar', 'yext' ); ?>
 										</h4>
 										<?php include_once YEXT_INC . 'partials/preview/search-bar.php'; ?>
 									</div>
@@ -145,7 +145,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header mb-default">
 											<h2>
-												<?php echo esc_html( 'Search results settings', 'yext' ); ?>
+												<?php echo esc_html__( 'Search results settings', 'yext' ); ?>
 											</h2>
 										</div>
 										<div class="yext-settings__form-content">
@@ -182,7 +182,7 @@ $is_banner_hidden  = true === $settings['banner_hidden'];
 									<div class="yext-settings__card-content">
 										<div class="yext-settings__card-header">
 											<h2>
-												<?php echo esc_html( 'Copy paste your Yext API keys and other properties', 'yext' ); ?>
+												<?php echo esc_html__( 'Copy paste your Yext API keys and other properties', 'yext' ); ?>
 											</h2>
 											<p>
 												<?php echo esc_html( 'Copy the following experience details from your Yext account into the fields below.', 'yext' ); ?>

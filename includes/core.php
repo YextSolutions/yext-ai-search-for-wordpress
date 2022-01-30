@@ -282,6 +282,7 @@ function admin_scripts( $page ) {
 		// Default settings
 		$defaults = [];
 		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$defaults = file_get_contents( YEXT_INC . 'settings.json', false );
 		}
 
@@ -423,7 +424,7 @@ function script_loader_tag( $tag, $handle ) {
 	}
 
 	if ( 'async' !== $script_execution && 'defer' !== $script_execution ) {
-		return $tag; // _doing_it_wrong()?
+		return $tag;
 	}
 
 	// Abort adding async/defer for scripts that have this script as a dependency. _doing_it_wrong()?
