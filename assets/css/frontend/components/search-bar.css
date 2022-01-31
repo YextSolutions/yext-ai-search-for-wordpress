@@ -65,6 +65,22 @@ body {
 			}
 		}
 
+		& button.yxt-SearchBar-button {
+
+			& .yxt-SearchBar-buttonImage {
+				display: flex;
+
+				& svg {
+					height: 2em;
+					width: 2em;
+				}
+			}
+		}
+
+		& button.yxt-SearchBar--hidden {
+			display: none;
+		}
+
 		& input.yxt-GeoLocationFilter-input,
 		& input.yxt-SearchBar-input {
 			background-color: transparent;

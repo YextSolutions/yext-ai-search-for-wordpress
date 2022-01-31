@@ -292,9 +292,10 @@ function admin_scripts( $page ) {
 			[
 				'defaults'     => json_decode( $defaults ),
 				'settings'     => Settings::get_settings(),
-				'site_url'      => esc_url( get_site_url() ),
+				'site_url'     => esc_url( get_site_url() ),
 				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
 				'rest_url'     => $rest_url,
+				'icons'        => Utility\get_icon_manifest(),
 			]
 		);
 	} elseif ( is_plugin_notice_showing() ) {

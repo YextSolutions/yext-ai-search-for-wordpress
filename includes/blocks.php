@@ -8,6 +8,7 @@
 namespace Yext\Blocks;
 
 use \Yext\Admin\Settings;
+use \Yext\Utility;
 
 /**
  * Set up blocks
@@ -72,7 +73,11 @@ function blocks_editor_scripts() {
 	wp_localize_script(
 		'yext-blocks-editor',
 		'YEXT',
-		[ 'settings' => Settings::localized_settings() ]
+		[
+			'settings'    => Settings::localized_settings(),
+			'icons'       => Utility\get_icon_manifest(),
+			'iconOptions' => Utility\build_icon_options(),
+		]
 	);
 }
 

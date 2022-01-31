@@ -101,6 +101,7 @@ export default class SearchBarPreview {
 				 */
 				const input = container.querySelector('.yxt-SearchBar-input');
 				const autocomplete = container.querySelector('.yxt-SearchBar-autocomplete');
+				const clear = container.querySelector('.yxt-SearchBar-clear');
 
 				input.addEventListener(
 					'input',
@@ -110,6 +111,9 @@ export default class SearchBarPreview {
 					() => {
 						autocomplete.classList[input.value.trim() ? 'remove' : 'add'](
 							'component--is-hidden',
+						);
+						clear.classList[input.value.trim() ? 'remove' : 'add'](
+							'yxt-SearchBar--hidden',
 						);
 					},
 				);
@@ -213,10 +217,31 @@ export default class SearchBarPreview {
 							'.yxt-AutoComplete-option--promptHeader',
 						).textContent = value;
 						break;
+					case 'submit_icon':
+						container.querySelector('.yxt-SearchBar-buttonImage').innerHTML = value
+							? await import('dompurify').then(({ default: DOMPurify }) =>
+									DOMPurify.sanitize(this.renderCustomIcon(value)),
+							  )
+							: '';
+
+						container
+							.querySelector('.yxt-SearchBar-YextIcon')
+							.classList[value ? 'add' : 'remove']('yxt-SearchBar--hidden');
+						break;
 					default:
 						break;
 				}
 			},
 		);
+	}
+
+	renderCustomIcon(icon) {
+		return window.YEXT.icons[icon]
+			? `
+			<div class="Icon Icon--${icon}" aria-hidden="true">
+				${window.YEXT.icons[icon]}
+			</div>
+		`
+			: '';
 	}
 }
