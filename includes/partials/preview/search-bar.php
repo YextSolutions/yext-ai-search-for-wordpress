@@ -43,13 +43,13 @@ $submit_icon         = $search_bar_props && isset( $search_bar_props['submit_ico
 						</span>
 					</button>
 					<button type="submit" class="js-yext-submit yxt-SearchBar-button">
-						<?php if ( $submit_icon ) : ?>
-							<div class="yxt-SearchBar-buttonImage js-yxt-SearchBar-buttonImage js-yxt-SearchBar-Icon">
+						<div class="yxt-SearchBar-buttonImage js-yxt-SearchBar-buttonImage js-yxt-SearchBar-Icon">
+							<?php if ( $submit_icon ) : ?>
 								<div class="Icon Icon--<?php echo esc_attr( $submit_icon ); ?>" aria-hidden="true">
 									<?php Utility\yext_icon( $submit_icon ); ?>
 								</div>
+							<?php endif; ?>
 							</div>
-						<?php endif; ?>
 						<div class="yxt-SearchBar-YextIcon <?php echo esc_attr( $submit_icon ? 'yxt-SearchBar--hidden' : '' ); ?>">
 							<div class="yxt-SearchBar-AnimatedIcon js-yxt-AnimatedForward js-yxt-SearchBar-Icon yxt-SearchBar-Icon--inactive">
 								<div class="Icon Icon--yext_animated_forward Icon--lg" aria-hidden="true">
