@@ -23,6 +23,7 @@ function render( $atts ) {
 	$placeholder_text = isset( $atts['placeholderText'] ) ? $atts['placeholderText'] : '';
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
+	$prompt_header    = isset( $atts['promptHeader'] ) ? $atts['promptHeader'] : '';
 	$settings         = Settings::get_settings();
 	$redirect_url     = '';
 
@@ -40,7 +41,6 @@ function render( $atts ) {
 		'--yxt-searchbar-form-border-radius'               => isset( $atts['borderRadius'] ) ? $atts['borderRadius'] . 'px' : null,
 		'--yxt-searchbar-form-background-color'            => isset( $atts['backgroundColor'] ) ? $atts['backgroundColor'] : null,
 		'--yxt-searchbar-placeholder-color'                => isset( $atts['placeholderTextColor'] ) ? $atts['placeholderTextColor'] : null,
-		'--yxt-searchbar-placeholder-font-size'            => isset( $atts['placeholderFontSize'] ) ? $atts['placeholderFontSize'] . 'px' : null,
 		'--yxt-searchbar-placeholder-font-weight'          => isset( $atts['placeholderFontWeight'] ) ? $atts['placeholderFontWeight'] : null,
 		'--yxt-searchbar-placeholder-line-height'          => isset( $atts['placeholderLineHeight'] ) ? $atts['placeholderLineHeight'] : null,
 		'--yxt-searchbar-button-background-color-base'     => isset( $atts['buttonBackgroundColor'] ) ? $atts['buttonBackgroundColor'] : null,
@@ -76,6 +76,9 @@ function render( $atts ) {
 	<?php endif; ?>
 	<?php if ( ! empty( $label_text ) ) : ?>
 		data-label-text="<?php echo esc_attr( $label_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $prompt_header ) ) : ?>
+		data-prompt-header="<?php echo esc_attr( $prompt_header ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $redirect_url ) ) : ?>
 		data-redirect-url="<?php echo esc_attr( $redirect_url ); ?>"

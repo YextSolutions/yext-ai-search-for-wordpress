@@ -62,6 +62,10 @@
 		}
 	}
 
+	& th {
+		width: auto;
+	}
+
 	& th,
 	& td {
 		color: var(--yxt-color-text-primary);
@@ -180,6 +184,10 @@
 			position: absolute;
 			text-transform: uppercase;
 			top: 0;
+		}
+
+		& button[data-tippy-content] {
+			margin-left: 2.5rem;
 		}
 
 		& td {

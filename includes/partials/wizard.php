@@ -25,6 +25,10 @@ $plugin_search_bar_style_sections = [
 		'classname' => 'accordion',
 		'title'     => __( 'General', 'yext' ),
 	],
+	'placeholder'       => [
+		'classname' => 'accordion',
+		'title'     => __( 'Placeholder', 'yext' ),
+	],
 	'button'       => [
 		'classname' => 'accordion',
 		'title'     => __( 'Button', 'yext' ),
@@ -192,16 +196,37 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									// People's United
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/peoples-united-bank?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
+										esc_url( 'https://www.yext.com/customers/peoples-united-bank' ),
 										esc_url( YEXT_URL . 'dist/images/logos/peoples_united_bank.png' ),
 										esc_html__( 'People\'s United logo', 'yext' )
 									);
 									// Cox
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/cox-communications?_ga=2.45258029.889913056.1641828121-451452827.1628606582' ),
+										esc_url( 'https://www.yext.com/customers/cox-communications' ),
 										esc_url( YEXT_URL . 'dist/images/logos/cox.png' ),
 										esc_html__( 'Cox logo', 'yext' )
+									);
+									// Banks.com
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/banks-dot-com' ),
+										esc_url( YEXT_URL . 'dist/images/logos/banks-dot-com.png' ),
+										esc_html__( 'Banks.com logo', 'yext' )
+									);
+									// Fazoli's
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/fazolis' ),
+										esc_url( YEXT_URL . 'dist/images/logos/fazolis.png' ),
+										esc_html__( 'Fazoli\'s logo', 'yext' )
+									);
+									// Cox
+									printf(
+										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
+										esc_url( 'https://www.yext.com/customers/marstons' ),
+										esc_url( YEXT_URL . 'dist/images/logos/marstons.png' ),
+										esc_html__( 'Marston\'s logo', 'yext' )
 									);
 									?>
 							</ul>
@@ -221,6 +246,12 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 				<div class="yext-wizard__step yext-wizard__step--has-circle yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[1] ); ?>">
 					<div class="yext-settings__card">
+						<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
+							<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
+							</svg>
+							<?php echo esc_html__( 'Back', 'yext' ); ?>
+						</button>
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
@@ -268,25 +299,30 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 
 				<div class="yext-wizard__step yext-wizard__step--has-circle yext-wizard__step--hidden" data-progress-id="<?php echo esc_attr( $step_progress_map[2] ); ?>">
 					<div class="yext-settings__card">
+						<button class="yext-settings__button yext-settings__button--is-style-link yext-wizard__back">
+							<svg width="6" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.714 1.429 2.143 5l3.571 3.571L5 10 0 5l5-5 .714 1.429Z" fill="black"/>
+							</svg>
+							<?php echo esc_html__( 'Back', 'yext' ); ?>
+						</button>
 						<div class="yext-settings__card-content yext-settings__card-content--width-75">
 							<div class="yext-settings__card-header">
 								<h2>
-									<?php echo esc_html__( 'Configure Answers Experience', 'yext' ); ?>
+									<?php echo esc_html__( 'Build Your Answers Experience', 'yext' ); ?>
 								</h2>
 								<p>
-									<?php echo esc_html__( 'If you don’t have an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you have not already configured an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
 									<?php
 									printf(
 										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
-										__( '<a href="%1$s" class="is-external" target="_blank">Follow this guide</a> to get started with Answers in just a few steps. For additional resources, you can learn about the <a href="%2$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%3$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-										esc_url( 'https://hitchhikers.yext.com/guides/answers-quick-start/' ),
+										__( 'For additional resources, you can learn about the <a href="%1$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%2$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
 										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
 									);
 									?>
 								</p>
 								<p>
-									<?php echo esc_html__( 'If you’ve already built a search experience, you can go to the next step.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you’ve already built an Answers experience, you can go to the next step.', 'yext' ); ?>
 								</p>
 							</div>
 							<div class="yext-settings__form-content">
@@ -326,7 +362,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/answers-dashboard-preview.png' ); ?>" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-answers-dashboard-preview.png' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -349,7 +385,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-global-search.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -361,7 +397,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header">
 									<h2>
-										<?php echo esc_html__( 'Customize your search bar', 'yext' ); ?>
+										<?php echo esc_html__( 'Customize Your Search Bar', 'yext' ); ?>
 									</h2>
 									<p>
 										<?php echo esc_html__( ' Design your search bar by adding some of the details below. See the diagram below for questions about what each input refers to.', 'yext' ); ?>
@@ -393,7 +429,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							<div class="yext-settings__card-content">
 								<div class="yext-settings__card-header mb-default">
 									<h2>
-										<?php echo esc_html__( 'Search results settings', 'yext' ); ?>
+										<?php echo esc_html__( 'Search Results Settings', 'yext' ); ?>
 									</h2>
 								</div>
 								<div class="yext-settings__form-content">
@@ -401,7 +437,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-search-results.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 					</div>
@@ -416,12 +452,12 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										<?php echo esc_html__( 'Go Live!', 'yext' ); ?>
 									</h2>
 									<p>
-										<?php echo esc_html__( 'Congratulations! You’ve configured your search experience and it’s now ready to be published on WordPress. Click Publish to see Yext AI Search live on your site.', 'yext' ); ?>
+										<?php echo esc_html__( 'Congratulations! You’ve finished setting up your Answers Experience on WordPress and are ready to go live. Click Publish to see Yext AI Search live on your site.', 'yext' ); ?>
 									</p>
 								</div>
 							</div>
 							<div class="yext-settings__card-image">
-								<img src="https://via.placeholder.com/260/C2D1D9" width="260" height="260" loading="lazy" alt="Answers dashboard">
+								<img src="<?php echo esc_url( YEXT_URL . 'dist/images/yext-live-thumbs-up.jpeg' ); ?>" loading="lazy" alt="">
 							</div>
 						</div>
 						<div class="yext-settings__card-footer">

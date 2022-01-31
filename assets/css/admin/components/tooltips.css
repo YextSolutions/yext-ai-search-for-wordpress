@@ -1,0 +1,4 @@
+button[data-tippy-content] {
+	background: transparent;
+	border: none;
+}

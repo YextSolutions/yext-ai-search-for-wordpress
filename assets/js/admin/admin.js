@@ -5,6 +5,7 @@ import {
 	initMenu,
 	initSettings,
 	initTabs,
+	initTooltips,
 	initWizard,
 	initDropdownWithLink,
 } from './components';
@@ -16,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	initMenu();
 	initSettings();
 	initTabs();
+	initTooltips();
 	initWizard();
 	initDropdownWithLink();
 

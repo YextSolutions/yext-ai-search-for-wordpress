@@ -197,15 +197,24 @@ export default class SearchBarPreview {
 			 * @param {HTMLElement} container Preview container.
 			 */
 			async (container) => {
-				if (target === 'placeholder_text') {
-					container
-						.querySelector('.yxt-SearchBar-input')
-						.setAttribute(
-							'placeholder',
-							await import('dompurify').then(({ default: DOMPurify }) =>
-								DOMPurify.sanitize(value),
-							),
-						);
+				switch (target) {
+					case 'placeholder_text':
+						container
+							.querySelector('.yxt-SearchBar-input')
+							.setAttribute(
+								'placeholder',
+								await import('dompurify').then(({ default: DOMPurify }) =>
+									DOMPurify.sanitize(value),
+								),
+							);
+						break;
+					case 'prompt_header':
+						container.querySelector(
+							'.yxt-AutoComplete-option--promptHeader',
+						).textContent = value;
+						break;
+					default:
+						break;
 				}
 			},
 		);

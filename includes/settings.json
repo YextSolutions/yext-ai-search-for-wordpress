@@ -11,6 +11,7 @@
 		},
 		"props": {
 			"placeholder_text": "",
+			"prompt_header": "",
 			"submit_text": "Submit",
 			"label_text": "Conduct a search",
 			"css_class": ""
@@ -26,7 +27,6 @@
 		},
 		"placeholder": {
 			"color": "#646970",
-			"font_size": "16",
 			"font_weight": "400"
 		},
 		"button": {

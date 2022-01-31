@@ -366,6 +366,13 @@ function admin_styles( $page ) {
 			YEXT_VERSION
 		);
 
+		wp_enqueue_style(
+			'yext-admin-vendor',
+			style_url( 'admin-vendor', 'admin' ),
+			[],
+			YEXT_VERSION
+		);
+
 		// TODO: add filter for CSS variable output
 		wp_add_inline_style( 'yext-admin', Settings::print_css_variables() );
 

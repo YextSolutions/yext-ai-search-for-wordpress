@@ -19,6 +19,9 @@
     "labelText": {
       "type": "string"
     },
+    "promptHeader": {
+      "type": "string"
+    },
     "textColor": {
       "type": "string"
     },
@@ -42,9 +45,6 @@
     },
     "placeholderTextColor": {
       "type": "string"
-    },
-    "placeholderFontSize": {
-      "type": "number"
     },
     "placeholderFontWeight": {
       "type": "string"

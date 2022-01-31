@@ -1,4 +1,5 @@
 a.is-external {
+	display: inline-block;
 	margin-right: calc(0.875rem + 0.25rem);
 	position: relative;
 	

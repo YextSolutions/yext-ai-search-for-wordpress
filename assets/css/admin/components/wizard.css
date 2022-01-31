@@ -14,6 +14,12 @@
 	& .yext-menu__dialog .yext-menu__dialog-list-item--skip {
 		display: none;
 	}
+
+	& .yext-wizard__back {
+		margin-bottom: 2rem;
+		margin-left: calc(-1 * 1.375rem);
+		margin-top: calc(-1 * 0.75rem);
+	}
 }
 
 .yext-wizard[data-progress-id="4"] {
