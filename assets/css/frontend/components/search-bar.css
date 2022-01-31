@@ -40,10 +40,6 @@ body {
 
 				& svg {
 					color: var(--yxt-searchbar-button-text-color);
-
-					& path {
-						stroke: var(--yxt-searchbar-button-text-color);
-					}
 				}
 			}
 
@@ -56,11 +52,21 @@ body {
 
 					& svg {
 						color: var(--yxt-searchbar-button-text-color-hover);
-	
-						& path {
-							stroke: var(--yxt-searchbar-button-text-color-hover);
-						}
 					}
+				}
+
+				& .yxt-SearchBar-YextIcon {
+
+					& svg path {
+						stroke: var(--yxt-searchbar-button-text-color);
+					}
+				}
+			}
+
+			& .yxt-SearchBar-YextIcon {
+
+				& svg path {
+					stroke: var(--yxt-searchbar-button-text-color);
 				}
 			}
 		}
