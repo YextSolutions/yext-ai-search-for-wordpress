@@ -54,6 +54,20 @@ body {
 						color: var(--yxt-searchbar-button-text-color-hover);
 					}
 				}
+
+				& .yxt-SearchBar-YextIcon {
+
+					& svg path {
+						stroke: var(--yxt-searchbar-button-text-color);
+					}
+				}
+			}
+
+			& .yxt-SearchBar-YextIcon {
+
+				& svg path {
+					stroke: var(--yxt-searchbar-button-text-color);
+				}
 			}
 		}
 
