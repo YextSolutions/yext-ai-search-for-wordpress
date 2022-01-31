@@ -30,7 +30,10 @@ class SearchBar extends Component {
  */
 const searchBar = (props = {}) => {
 	const { cssClass, labelText, placeholderText, promptHeader, submitText, redirectUrl } = props;
-	const classnames = [DEFAULT_SEARCH_BAR_CLASS, cssClass];
+	const classnames = [
+		DEFAULT_SEARCH_BAR_CLASS,
+		...(cssClass ? cssClass.split(',').map((classname) => classname.trim()) : []),
+	];
 
 	/**
 	 * Filter for valid classnames.

@@ -268,20 +268,21 @@ function admin_preconnect( $page ) {
  */
 function admin_scripts( $page ) {
 
-	$rest_url = '/wp-json/yext/v1';
+	$rest_url = '/yext/v1';
 
 	if ( is_yext_page( $page ) ) {
 		wp_enqueue_script(
 			'yext-admin',
 			script_url( 'admin', 'admin' ),
 			Utility\get_asset_info( 'admin', 'dependencies' ),
-			YEXT_VERSION,
+			Utility\get_asset_info( 'admin', 'version' ),
 			true
 		);
 
 		// Default settings
 		$defaults = [];
 		if ( file_exists( YEXT_INC . 'settings.json' ) ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$defaults = file_get_contents( YEXT_INC . 'settings.json', false );
 		}
 
@@ -300,8 +301,8 @@ function admin_scripts( $page ) {
 		wp_enqueue_script(
 			'yext-admin-notice',
 			script_url( 'admin-notice-script', 'admin' ),
+			Utility\get_asset_info( 'admin-notice-script', 'dependencies' ),
 			Utility\get_asset_info( 'admin-notice-script', 'version' ),
-			YEXT_VERSION,
 			true
 		);
 
@@ -430,7 +431,7 @@ function script_loader_tag( $tag, $handle ) {
 	}
 
 	if ( 'async' !== $script_execution && 'defer' !== $script_execution ) {
-		return $tag; // _doing_it_wrong()?
+		return $tag;
 	}
 
 	// Abort adding async/defer for scripts that have this script as a dependency. _doing_it_wrong()?
