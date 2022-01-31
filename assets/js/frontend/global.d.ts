@@ -14,9 +14,12 @@ interface Window {
 		settings_url: string;
 		rest_url: string;
 		site_url: string;
+		icons: Object;
+		iconOptions: Object;
 	};
 	ANSWERS: {
 		init: Function;
+		addComponent: Function;
 	};
 	TemplateBundle: Object;
 }

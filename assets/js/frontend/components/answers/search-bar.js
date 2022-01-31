@@ -29,7 +29,15 @@ class SearchBar extends Component {
  * @return {{register: () => void}} Object with `register` method.
  */
 const searchBar = (props = {}) => {
-	const { cssClass, labelText, placeholderText, promptHeader, submitText, redirectUrl } = props;
+	const {
+		cssClass,
+		labelText,
+		placeholderText,
+		promptHeader,
+		submitText,
+		submitIcon,
+		redirectUrl,
+	} = props;
 	const classnames = [
 		DEFAULT_SEARCH_BAR_CLASS,
 		...(cssClass ? cssClass.split(',').map((classname) => classname.trim()) : []),
@@ -85,8 +93,14 @@ const searchBar = (props = {}) => {
 				/**
 				 * @type {SearchBarOptions}
 				 */
-				const { redirectUrl, labelText, placeholderText, promptHeader, submitText } =
-					node.dataset;
+				const {
+					redirectUrl,
+					labelText,
+					placeholderText,
+					promptHeader,
+					submitText,
+					submitIcon,
+				} = node.dataset;
 				let uid = classname.replace('.', '');
 
 				/**
@@ -112,6 +126,7 @@ const searchBar = (props = {}) => {
 					placeholderText: placeholderText || defaults.placeholderText,
 					promptHeader: promptHeader || defaults.promptHeader,
 					submitText: submitText || defaults.submitText,
+					submitIcon: submitIcon || defaults.submitIcon,
 				};
 
 				searchBars.push(new SearchBar(searchBarProps));
@@ -131,6 +146,7 @@ const searchBar = (props = {}) => {
 		const searchBars = getSearchBars(getValidClassnames(classnames), {
 			labelText,
 			submitText,
+			submitIcon,
 			placeholderText,
 			promptHeader,
 			redirectUrl,

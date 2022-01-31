@@ -8,8 +8,11 @@ import camelcaseKeys from 'camelcase-keys';
  */
 import ColorPicker from '../../components/color-picker';
 
-// @ts-ignore
-const { wp, YEXT } = window;
+const {
+	// @ts-ignore
+	wp,
+	YEXT: { settings, iconOptions },
+} = window;
 
 const { __ } = wp.i18n;
 const { InspectorControls, LineHeightControl, useSetting } = wp.blockEditor;
@@ -18,7 +21,7 @@ const { PanelBody, PanelRow, FontSizePicker, RangeControl, TextControl, SelectCo
 const { useEffect } = wp.element;
 const { Notice } = wp.components;
 
-const { config, components } = YEXT.settings;
+const { config, components } = settings;
 const { apiKey, experienceKey, businessId } = camelcaseKeys(config);
 const isValid = apiKey && experienceKey && businessId;
 
@@ -39,6 +42,7 @@ const {
 		},
 		props: {
 			submitText: defaultSubmitText,
+			submitIcon: defaultSubmitIcon,
 			placeholderText: defaultPlaceholderText,
 			labelText: defaultLabelText,
 			promptHeader: defaultPromptHeader,
@@ -127,6 +131,7 @@ const Inspector = (props) => {
 		setAttributes,
 		attributes: {
 			submitText = defaultSubmitText ?? 'Submit',
+			submitIcon = defaultSubmitIcon ?? '',
 			placeholderText = defaultPlaceholderText ?? '',
 			promptHeader = defaultPromptHeader ?? '',
 			labelText = defaultLabelText ?? 'Conduct a search',
@@ -291,6 +296,24 @@ const Inspector = (props) => {
 						help={__('', 'yext')}
 						onChange={(newSubmitText) => {
 							setAttributes({ submitText: newSubmitText });
+						}}
+					/>
+				</PanelRow>
+				<PanelRow>
+					<SelectControl
+						label={__('Icon', 'yext')}
+						value={submitIcon}
+						help={__('', 'yext')}
+						options={Object.keys(iconOptions).reduce((arr, icon) => {
+							arr.push({
+								label: iconOptions[icon],
+								value: icon,
+							});
+
+							return arr;
+						}, [])}
+						onChange={(newSubmitIcon) => {
+							setAttributes({ submitIcon: newSubmitIcon });
 						}}
 					/>
 				</PanelRow>
