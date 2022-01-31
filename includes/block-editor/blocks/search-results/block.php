@@ -20,7 +20,7 @@ function render( $atts ) {
 	$url      = isset( $atts['url'] ) ? $atts['url'] : false;
 	$class    = 'yext-search-results';
 	$class   .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
-	$class   .= ! empty( $atts['align'] ) ? ' ' . $atts['align'] : '';
+	$class   .= ! empty( $atts['align'] ) ? ' align' . $atts['align'] : '';
 	$settings = Settings::get_settings();
 
 	// Use Plugin Settings value when empty
