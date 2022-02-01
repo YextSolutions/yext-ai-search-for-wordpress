@@ -7,7 +7,7 @@
   "text-domain": "yext",
   "supports": {
     "className": false,
-    "align": false
+    "align": [ "full", "wide" ]
   },
   "attributes": {
     "submitText": {

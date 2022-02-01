@@ -19,6 +19,7 @@ function render( $atts ) {
 
 	$class  = 'yext-search-bar';
 	$class .= isset( $atts['className'] ) ? ' ' . $atts['className'] : '';
+	$class .= ! empty( $atts['align'] ) ? ' align' . $atts['align'] : '';
 
 	$placeholder_text = isset( $atts['placeholderText'] ) ? $atts['placeholderText'] : '';
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';

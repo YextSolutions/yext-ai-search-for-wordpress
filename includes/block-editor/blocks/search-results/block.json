@@ -8,7 +8,7 @@
   "supports": {
     "multiple": false,
     "className": false,
-    "align": [ "full" ]
+    "align": [ "full", "wide" ]
   },
   "attributes": {
 	"url": {
