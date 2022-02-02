@@ -1,5 +1,5 @@
 === Yext Answers Site Search ===
-Contributors: thundersnow
+Contributors: yext
 Tags: search, site-search, yext, autocomplete, relevant-search, better-search, custom-search, search-by-category, natural-language-search, search-engine
 Requires at least: 5.8
 Tested up to: 5.9

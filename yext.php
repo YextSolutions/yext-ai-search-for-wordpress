@@ -3,10 +3,10 @@
  * Plugin Name:       Yext
  * Description:       Connect WordPress to Yext knowledge graph and display Answers experience.
  * Version:           2.0
- * Requires at least: 4.9
- * Requires PHP:      7.2
- * Author:            10up
- * Author URI:        https://10up.com
+ * Requires at least: 5.8
+ * Requires PHP:      7.4
+ * Author:            Yext Engineering
+ * Author URI:        https://yext.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       yext
