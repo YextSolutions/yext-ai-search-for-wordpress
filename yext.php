@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Yext
+ * Plugin Name:       Yext AI Search for WordPress
  * Description:       Connect WordPress to Yext knowledge graph and display Answers experience.
  * Version:           1.0
  * Requires at least: 5.8
