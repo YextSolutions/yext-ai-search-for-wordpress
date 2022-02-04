@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div id="yext-menu-help" class="yext-menu__dialog hidden">
 				<ul>
 					<li>
-						<a href="https://yext.com/" rel="noopener">
+						<a href="https://hitchhikers.yext.com/community/" rel="noopener">
 							<?php echo esc_html__( 'Contact Support', 'yext' ); ?>
 						</a>
 					</li>
@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</li>
 					<?php endif; ?>
 					<li class="yext-menu__dialog-list-item">
-						<a href="https://yext.com/" rel="noopener">
+						<a href="https://hitchhikers.yext.com/community/" rel="noopener">
 							<?php echo esc_html__( 'Contact Support', 'yext' ); ?>
 						</a>
 					</li>
