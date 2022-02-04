@@ -235,7 +235,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 								echo sprintf(
 									'%s <a href="%s" target="_blank">%s</a>',
 									esc_html__( 'Have questions or want to learn more?', 'yext' ),
-									'https://hitchhikers-answers.yext.com/',
+									'https://hitchhikers-answers.yext.com/?query=answers+for+wordpress',
 									esc_html__( 'Ask Yext!', 'yext' )
 								);
 								?>
