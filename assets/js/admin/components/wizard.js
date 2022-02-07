@@ -381,12 +381,9 @@ const initWizard = () => {
 	};
 
 	const goToStep = (event) => {
-		const {
-			target: {
-				dataset: { target: stepTarget },
-			},
-			target,
-		} = event;
+		const { target } = event;
+
+		const { dataset: { target: stepTarget = '' } = {} } = target.closest('a');
 
 		if (!stepTarget) {
 			return;
