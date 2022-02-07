@@ -134,6 +134,11 @@ const initWizard = () => {
 	const NEXT_BUTTONS = Array.from(yextWizard.querySelectorAll('.yext-wizard__next'));
 
 	/**
+	 * @type {HTMLElement[]}
+	 */
+	const GO_TO_BUTTONS = Array.from(yextWizard.querySelectorAll('[data-target]'));
+
+	/**
 	 * Hide all steps
 	 */
 	function hideSteps() {
@@ -375,6 +380,38 @@ const initWizard = () => {
 		};
 	};
 
+	const goToStep = (event) => {
+		const {
+			target: {
+				dataset: { target: stepTarget },
+			},
+			target,
+		} = event;
+
+		if (!stepTarget) {
+			return;
+		}
+
+		const step = Number(stepTarget);
+
+		if (step < 0 || step > STEPS.length) {
+			return;
+		}
+
+		STATE.step = setStep(step);
+
+		STATE.payload = {
+			settings: merge(buildPayload(new FormData(FORM)), {
+				wizard: {
+					current_step: step,
+					// @ts-ignore
+					live: isLive(target),
+					active: true,
+				},
+			}),
+		};
+	};
+
 	// Add event listeners
 	FORM.addEventListener('submit', maybeNext);
 	BACK_BUTTONS.forEach((button) => {
@@ -382,6 +419,9 @@ const initWizard = () => {
 	});
 	NEXT_BUTTONS.forEach((button) => {
 		button.addEventListener('click', maybeNext);
+	});
+	GO_TO_BUTTONS.forEach((button) => {
+		button.addEventListener('click', goToStep);
 	});
 
 	// Initialize
