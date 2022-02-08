@@ -44,7 +44,7 @@ export const initReleasePicker = () => {
 			.catch((error) => {
 				// eslint-disable-next-line no-console
 				console.error(error);
-				return [{ version: DEFAULT_VERSION }];
+				return [{ version: DEFAULT_VERSION }, { version: 'v1.1.0' }, { version: 'v1.0.0' }];
 			});
 
 	/**
