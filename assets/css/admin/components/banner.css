@@ -55,13 +55,9 @@
 	background: var(--yxt-color-brand-white, #fff);
 	display: flex;
 	justify-content: space-between;
-	margin-left: calc(-1 * 2.625rem);
-	margin-right: calc(-1 * 2.625rem);
+	margin-left: var(--wp-full-width-offset-left);
+	margin-right: var(--wp-full-width-offset-right);
 	margin-top: calc(-1 * 2.25rem);
-
-	@media (min-width: 1620px) {
-		margin-right: calc(-1 * (2.625rem + (100vw - (1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem))));
-	}
 }
 
 .yext-settings__banner-content {
@@ -70,10 +66,21 @@
 }
 
 .yext-settings__banner-copy {
+	flex: 1;
 	margin: 0 2.5rem;
 
 	& h2 {
 		margin: 1rem 0;
+	}
+}
+
+.yext-settings__banner-image {
+	max-width: 200px;
+	min-width: 140px;
+	width: 20%;
+
+	@media (max-width: 782px) {
+		display: none;
 	}
 }
 

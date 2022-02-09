@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="yext-settings__banner banner">
 	<div class="yext-settings__banner-content">
 		<div class="yext-settings__banner-image">
-		<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-banner-thumbs-up.jpg' ); ?>" loading="lazy" alt="">
+			<img src="<?php echo esc_url( YEXT_URL . '/dist/images/yext-banner-thumbs-up.jpg' ); ?>" loading="lazy" alt="">
 		</div>
 
 		<div class="yext-settings__banner-copy">

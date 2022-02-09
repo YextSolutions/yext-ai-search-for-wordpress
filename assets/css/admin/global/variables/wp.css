@@ -1,13 +1,19 @@
 :root {
 	--wp-admin-header-height: 32px;
 	--wp-admin-panel-width: 160px;
-
-	@media (max-width: 782px) {
-		--wp-admin-header-height: 46px;
-	}
+	--wp-full-width-offset-left: calc(-1 * 2.625rem);
+	--wp-full-width-offset-right: calc(-1 * 2.625rem);
 
 	& body.folded {
 		--wp-admin-panel-width: 36px;
+
+		@media (min-width: 1676px) {
+			--wp-full-width-offset-right: calc(-1 * (2.625rem + (100vw - (1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem))));
+		}
+	}
+
+	@media (min-width: 1800px) {
+		--wp-full-width-offset-right: calc(-1 * (2.625rem + (100vw - (1620px + var(--wp-admin-panel-width) + 2.625rem - 1.375rem))));
 	}
 
 	@media (max-width: 960px) {
@@ -18,6 +24,7 @@
 	}
 
 	@media (max-width: 782px) {
+		--wp-admin-header-height: 46px;
 		
 		& body.auto-fold {
 			--wp-admin-panel-width: 0;
