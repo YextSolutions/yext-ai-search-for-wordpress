@@ -11,34 +11,6 @@
 	justify-content: center;
 }
 
-.yext-settings__button--is-style-card {
-	align-items: center;
-	background: var(--yxt-color-brand-white);
-	border: 1px solid var(--yxt-color-borders);
-	border-radius: 1.25rem;
-	color: var(--c-black);
-	cursor: pointer;
-	display: flex;
-	letter-spacing: 1px;
-	padding: 1.625rem 1.25rem;
-	text-align: left;
-	text-decoration: none;
-
-	& span {
-		flex: 1;
-	}
-
-	& svg {
-		margin-left: 1.125rem;
-	}
-
-	&:hover {
-		border-color: transparent;
-		box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.05);
-		color: var(--c-black);
-	}
-}
-
 .yext-settings__button--is-style-link {
 	align-items: center;
 	background-color: transparent;
@@ -85,6 +57,25 @@
 		outline: none;
 	}
 
+
+	&.with-icon {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+
+		& span {
+			flex: 1;
+		}
+
+		& svg {
+			margin-left: 0.5rem;
+	
+			& path {
+				fill: var(--yxt-color-brand-white);
+			}
+		}
+	}
+
 	&.is-style-outline {
 		background: var(--yxt-color-brand-white, #fff);
 		border: 1px solid var(--yxt-color-brand-primary);
@@ -96,6 +87,20 @@
 			border-color: var(--yxt-color-brand-hover);
 			color: var(--yxt-color-brand-white);
 			outline: none;
+
+			&.with-icon {
+
+				& svg path {
+					fill: var(--yxt-color-brand-white);
+				}
+			}
+		}
+
+		&.with-icon {
+
+			& svg path {
+				fill: var(--yxt-color-brand-primary);
+			}
 		}
 	}
 
