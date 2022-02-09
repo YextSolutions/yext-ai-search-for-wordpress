@@ -69,6 +69,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 			data-step="<?php echo esc_attr( $current_step ); ?>"
 			data-progress-id="<?php echo esc_attr( $step_progress_map[ $current_step ] ); ?>"
 			data-is-live="<?php echo esc_attr( $is_live ); ?>"
+			data-is-loaded="<?php echo esc_attr( '0' ); ?>"
 		>
 		<?php
 		$view = 'wizard';

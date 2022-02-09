@@ -195,6 +195,7 @@ const initWizard = () => {
 		STATE.step = setStep(currentStep);
 
 		yextWizard.state = STATE;
+		yextWizard.setAttribute('data-is-loaded', '1');
 	}
 
 	function updateInputFields(steps) {
