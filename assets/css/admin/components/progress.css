@@ -12,7 +12,7 @@
 		right: 0;
 	}
 
-	@nest .yext-wizard:not([data-step="0"]) & {
+	@nest .yext-wizard[data-is-loaded="1"]:not([data-step="0"]) & {
 		display: flex !important;
 	}
 }
