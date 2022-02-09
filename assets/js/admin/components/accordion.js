@@ -9,29 +9,30 @@ const initAccordion = () => {
 		return;
 	}
 
+	/**
+	 * @type {HTMLElement[]}
+	 */
 	const accordionElements = Array.from(document.querySelectorAll('.accordion'));
 	const [firstAccordion] = accordionElements;
 
 	accordionElements.forEach((accordion) => {
 		const title = accordion.querySelector('h2');
-		const help = accordion.querySelector('.data-tippy-content');
 		const content = accordion.querySelector('table');
 		const label = title.cloneNode();
-		let helpText = '';
+		const helpText = accordion.dataset.help;
+
+		const helpNode = document.createElement('p');
+		helpNode.textContent = helpText;
 
 		content.classList.add('accordion-content');
 		// @ts-ignore
 		label.classList.add('accordion-label');
 		label.textContent = title.textContent;
+		content.prepend(helpNode);
 		content.prepend(label);
 
-		if (help) {
-			helpText = help.outerHTML;
-			help.remove();
-		}
-
 		title.outerHTML = `
-			<button class="accordion-header" type="button">${title.textContent} ${helpText}</button>
+			<button class="accordion-header" type="button">${title.textContent}</button>
 		`;
 	});
 
