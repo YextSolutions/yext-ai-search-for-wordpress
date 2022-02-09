@@ -3,7 +3,8 @@
 		"api_key": "",
 		"experience_key": "",
 		"business_id": "",
-		"answers_iframe_url": ""
+		"answers_iframe_url": "",
+		"sdk_version": "v1.2.0"
 	},
 	"search_bar": {
 		"core": {
