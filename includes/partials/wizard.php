@@ -312,18 +312,18 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 									<?php echo esc_html__( 'Build Your Answers Experience', 'yext' ); ?>
 								</h2>
 								<p>
-									<?php echo esc_html__( 'If you have not already configured an Answers experience, you’ll first need to build one on the Yext Platform.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you have not already configured an Answers experience, you\'ll first need to build one on the Yext Platform.', 'yext' ); ?>
 									<?php
 									printf(
-										/* translators: 1: Answers Quick start URL, 2: Four Ways to Build an Answers experience URL, 3: Overview of Answers Infrastructure and Process URL  */
-										__( 'For additional resources, you can learn about the <a href="%1$s" class="is-external" target="_blank">Four Ways to Build an Answers experience</a> or read through an <a href="%2$s" class="is-external" target="_blank">Overview of Answers Infrastructure and Process.</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-										esc_url( 'https://hitchhikers.yext.com/modules/ans150-overview-front-end/01-frontend-builds/' ),
-										esc_url( 'https://hitchhikers.yext.com/modules/ans102-overview-answers-infrastructure-process/01-what-is-answers-experience/' )
+										/* translators: 1: Learn how to do so using our Yext AI Search for WordPress guide URL  */
+										__( '<a href="%1$s" class="is-external" target="_blank">Learn how to do so using our Yext AI Search for WordPress guide!</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										// TODO: Yext to provide link.
+										esc_url( '#' )
 									);
 									?>
 								</p>
 								<p>
-									<?php echo esc_html__( 'If you’ve already built an Answers experience, you can go to the next step.', 'yext' ); ?>
+									<?php echo esc_html__( 'If you\'ve already built an Answers experience, you can go to the next step.', 'yext' ); ?>
 								</p>
 							</div>
 							<div class="yext-settings__form-content">
