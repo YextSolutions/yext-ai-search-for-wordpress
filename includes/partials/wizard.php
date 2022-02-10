@@ -332,7 +332,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 							<div class="yext-settings__form-content">
 								<div class="yext-settings__button-cards">
-									<a href="<?php echo esc_url( 'https://yext.com' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
+									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
 										<span><?php echo esc_html__( 'Create Answers Experience', 'yext' ); ?></span>
 										<svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M4.667 0v1.333H1.333v9.334h9.334V7.333H12v4a.666.666 0 0 1-.667.667H.667A.666.666 0 0 1 0 11.333V.667A.667.667 0 0 1 .667 0h4Zm5.057 1.333H6.667V0H12v5.333h-1.333V2.276L6 6.943 5.057 6l4.667-4.667Z" fill="black"/>
