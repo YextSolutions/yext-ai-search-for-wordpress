@@ -268,7 +268,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 							<div class="yext-settings__form-content">
 								<div class="yext-settings__button-cards">
-									<a href="<?php echo esc_url( 'https://yext.com' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
+									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/01-pull-wordpress-data-into-yext/' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
 										<span>
 											<?php
 											echo sprintf(
