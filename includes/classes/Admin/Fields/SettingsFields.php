@@ -96,6 +96,9 @@ final class SettingsFields {
 				'title'    => __( 'SDK Version', 'yext' ),
 				'type'     => 'SelectField',
 				'required' => 'true',
+				'options'  => [
+					'' => 'Select a version',
+				],
 				'help'     => __( 'The version of the answers-search-bar JS/CSS bundle you would like to use for your experience..', 'yext' ),
 			],
 		];
