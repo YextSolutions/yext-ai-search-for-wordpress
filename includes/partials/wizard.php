@@ -24,18 +24,22 @@ $plugin_search_bar_style_sections = [
 	'style'        => [
 		'classname' => 'accordion',
 		'title'     => __( 'General', 'yext' ),
+		'help'      => __( 'CSS settings for all search bar text (except autocomplete, which is configured below).', 'yext' ),
 	],
 	'placeholder'       => [
 		'classname' => 'accordion',
 		'title'     => __( 'Placeholder', 'yext' ),
+		'help'      => __( 'CSS settings for the placeholder text which appears before a query is input.', 'yext' ),
 	],
 	'button'       => [
 		'classname' => 'accordion',
 		'title'     => __( 'Button', 'yext' ),
+		'help'      => __( 'CSS settings for the search button.', 'yext' ),
 	],
 	'autocomplete' => [
 		'classname' => 'accordion',
 		'title'     => __( 'Autocomplete', 'yext' ),
+		'help'      => __( 'CSS settings for the autocomplete options that appear below the user is typing.', 'yext' ),
 	],
 ];
 

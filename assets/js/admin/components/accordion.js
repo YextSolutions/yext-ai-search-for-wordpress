@@ -9,6 +9,9 @@ const initAccordion = () => {
 		return;
 	}
 
+	/**
+	 * @type {HTMLElement[]}
+	 */
 	const accordionElements = Array.from(document.querySelectorAll('.accordion'));
 	const [firstAccordion] = accordionElements;
 
@@ -16,11 +19,16 @@ const initAccordion = () => {
 		const title = accordion.querySelector('h2');
 		const content = accordion.querySelector('table');
 		const label = title.cloneNode();
+		const helpText = accordion.dataset.help;
+
+		const helpNode = document.createElement('p');
+		helpNode.textContent = helpText;
 
 		content.classList.add('accordion-content');
 		// @ts-ignore
 		label.classList.add('accordion-label');
 		label.textContent = title.textContent;
+		content.prepend(helpNode);
 		content.prepend(label);
 
 		title.outerHTML = `
