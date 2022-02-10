@@ -322,7 +322,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										/* translators: 1: Learn how to do so using our Yext AI Search for WordPress guide URL  */
 										__( '<a href="%1$s" class="is-external" target="_blank">Learn how to do so using our Yext AI Search for WordPress guide!</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										// TODO: Yext to provide link.
-										esc_url( '#' )
+										esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience' )
 									);
 									?>
 								</p>
