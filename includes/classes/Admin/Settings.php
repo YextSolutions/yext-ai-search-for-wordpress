@@ -136,6 +136,7 @@ final class Settings {
 			'style'        => [
 				'classname' => 'accordion',
 				'title'     => __( 'General', 'yext' ),
+				'help'      => __( 'CSS settings for all search bar text (except autocomplete, which is configured below).', 'yext' ),
 			],
 			'placeholder'        => [
 				'classname' => 'accordion',

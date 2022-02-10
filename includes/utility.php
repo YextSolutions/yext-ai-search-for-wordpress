@@ -7,6 +7,8 @@
 
 namespace Yext\Utility;
 
+use \Yext\Admin\Settings;
+
 /**
  * Get plugin config
  *
@@ -51,6 +53,18 @@ function get_icon_manifest() {
 	}
 
 	return json_decode( $icons, true ) ?? [];
+}
+
+/**
+ * Get the SDK version.
+ */
+function get_sdk_version() {
+	$settings = Settings::get_settings();
+	$default_version = 'v1.2.0';
+
+	return isset( $settings['plugin']['sdk_version'] ) && ! empty( $settings['plugin']['sdk_version'] )
+		? $settings['plugin']['sdk_version']
+		: $default_version;
 }
 
 /**

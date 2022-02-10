@@ -204,9 +204,11 @@ function style_url( $stylesheet, $context ) {
  * @return void
  */
 function scripts() {
+	$sdk_version = Utility\get_sdk_version();
+
 	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar',
-		'https://assets.sitescdn.net/answers-search-bar/v1/answers.min.js',
+		'https://assets.sitescdn.net/answers-search-bar/' . $sdk_version . '/answers.min.js',
 		[],
 		null,
 		true
@@ -214,7 +216,7 @@ function scripts() {
 
 	wp_enqueue_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar-templates',
-		'https://assets.sitescdn.net/answers-search-bar/v1/answerstemplates-iife.compiled.min.js',
+		'https://assets.sitescdn.net/answers-search-bar/' . $sdk_version . '/answerstemplates-iife.compiled.min.js',
 		[],
 		null,
 		true
@@ -267,7 +269,6 @@ function admin_preconnect( $page ) {
  * @return void
  */
 function admin_scripts( $page ) {
-
 	$rest_url = '/yext/v1';
 
 	if ( is_yext_page( $page ) ) {
@@ -323,9 +324,11 @@ function admin_scripts( $page ) {
  * @return void
  */
 function styles() {
+	$sdk_version = Utility\get_sdk_version();
+
 	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		'yext-search-bar',
-		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+		'https://assets.sitescdn.net/answers-search-bar/' . $sdk_version . '/answers.css',
 		[],
 		null
 	);
@@ -352,10 +355,11 @@ function styles() {
 function admin_styles( $page ) {
 
 	if ( is_yext_page( $page ) ) {
+		$sdk_version = Utility\get_sdk_version();
 
 		wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			'yext-search-bar',
-			'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
+			'https://assets.sitescdn.net/answers-search-bar/' . $sdk_version . '/answers.css',
 			[],
 			null
 		);

@@ -91,6 +91,13 @@ final class SettingsFields {
 				'required' => 'true',
 				'help'     => __( 'This is the Production URL of your Answers experience, found in the Pages tab.', 'yext' ),
 			],
+			[
+				'id'       => 'sdk_version',
+				'title'    => __( 'SDK Version', 'yext' ),
+				'type'     => 'SelectField',
+				'required' => 'true',
+				'help'     => __( 'The version of the answers-search-bar JS/CSS bundle you would like to use for your experience..', 'yext' ),
+			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );
 	}
