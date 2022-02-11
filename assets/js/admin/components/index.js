@@ -5,3 +5,4 @@ export { default as initTabs } from './tabs';
 export { default as initTooltips } from './tooltips';
 export { default as initWizard } from './wizard';
 export { default as initDropdownWithLink } from './dropdown-with-link';
+export { default as initReleasePicker } from './release-picker';
