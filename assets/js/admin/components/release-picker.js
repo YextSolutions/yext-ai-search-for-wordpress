@@ -1,7 +1,7 @@
 // @ts-ignore
 import { addQueryArgs } from '@wordpress/url';
 
-const DEFAULT_VERSION = 'v1.2.1';
+const DEFAULT_VERSION = 'v1.2.0';
 const RELEASE_ENDPOINT = 'https://api.github.com/repos/yext/answers-search-ui/releases';
 
 const {
@@ -46,8 +46,8 @@ export const initReleasePicker = () => {
 	 *
 	 * @return {boolean} - Whether the release is a search bar release.
 	 */
-	const isSearchBarRelease = ({ name, isPublished }) =>
-		name.includes('search-bar-') && isPublished;
+	const isSearchBarMinorRelease = ({ name, isPublished }) =>
+		name.includes('search-bar-') && isPublished && name.split('.')?.[2] === '0';
 
 	/**
 	 * Fetch releases from Github.
@@ -73,19 +73,14 @@ export const initReleasePicker = () => {
 			const data = await response.json();
 
 			return {
-				data: data.map(formatRelease).filter(isSearchBarRelease),
+				data: data.map(formatRelease).filter(isSearchBarMinorRelease),
 				headers: response.headers,
 			};
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(error);
 			return {
-				data: [
-					{ version: DEFAULT_VERSION },
-					{ version: 'v1.2.0' },
-					{ version: 'v1.1.0' },
-					{ version: 'v1.0.0' },
-				].map((release) => ({
+				data: [{ version: DEFAULT_VERSION }, { version: 'v1.1.0' }].map((release) => ({
 					...release,
 					isPublished: true,
 					name: `search-bar-${release.version}`,
