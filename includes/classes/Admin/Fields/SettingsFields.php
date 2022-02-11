@@ -96,7 +96,10 @@ final class SettingsFields {
 				'title'    => __( 'SDK Version', 'yext' ),
 				'type'     => 'SelectField',
 				'required' => 'true',
-				'help'     => __( 'The version of the answers-search-bar JS/CSS bundle you would like to use for your experience..', 'yext' ),
+				'options'  => [
+					'' => 'Select a version',
+				],
+				'help'     => __( 'The version of the answers-search-bar JS/CSS bundle you would like to use for your experience.', 'yext' ),
 			],
 		];
 		return apply_filters( 'yext_section_settings', $fields, Settings::PLUGIN_SETTINGS_SECTION_NAME );

@@ -1,4 +1,6 @@
 import merge from 'deepmerge';
+
+// @ts-ignore
 import apiFetch from '@wordpress/api-fetch';
 
 import { getRequiredFields, updateRequiredFields } from '../utils/input';
@@ -99,6 +101,8 @@ const initSettings = () => {
 		button.addEventListener('click', handleBannerClose);
 	});
 	resetCSS?.addEventListener('click', handleResetCSS);
+
+	yextSettings.setAttribute('data-is-loaded', '1');
 };
 
 export default initSettings;
