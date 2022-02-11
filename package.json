@@ -1,5 +1,5 @@
 {
-  "name": "yext",
+  "name": "yext-ai-search-for-wordpress",
   "version": "1.0.0",
   "scripts": {
     "start": "10up-toolkit start",
@@ -16,10 +16,10 @@
     "node": ">=12.0.0"
   },
   "devDependencies": {
-    "@testing-library/dom": "^8.11.1",
-    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/user-event": "^13.5.0",
-    "@wordpress/element": "^4.0.4",
+    "@wordpress/element": "^4.1.0",
     "@wordpress/eslint-plugin": "^8.0.2",
     "10up-toolkit": "^1.0.13",
     "husky": "^7.0.4",
@@ -30,13 +30,13 @@
     "@10up/component-accordion": "^2.0.1",
     "@10up/component-tabs": "^2.0.0",
     "@wordpress/api-fetch": "^5.2.6",
-    "@wordpress/url": "^3.3.1",
+    "@wordpress/url": "^3.4.0",
     "camelcase-keys": "^6.2.2",
     "deepmerge": "^4.2.2",
-    "dompurify": "^2.3.4",
+    "dompurify": "^2.3.5",
     "iframe-resizer": "^4.3.2",
     "lodash.kebabcase": "^4.1.1",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "stickybits": "^3.7.9",
     "tippy.js": "^6.3.7"
