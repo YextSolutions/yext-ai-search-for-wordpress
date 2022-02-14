@@ -1,6 +1,6 @@
 # Yext
 
-[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Tests Status](https://github.com/10up/yext/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/10up/yext) [![Release Version](https://img.shields.io/github/release/10up/yext.svg)](https://github.com/10up/yext/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/yext?label=WordPress) [![License](https://img.shields.io/github/license/10up/yext.svg)](https://github.com/10up/yext/blob/develop/LICENSE.md)
+[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Tests Status](https://github.com/10up/yext/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/10up/yext) [![Release Version](https://img.shields.io/github/release/10up/yext.svg)](https://github.com/10up/yext/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/yext?label=WordPress) [![GPLv2 License](https://img.shields.io/github/license/10up/yext.svg)](https://github.com/10up/yext/blob/develop/LICENSE.md)
 
 ## Overview
 
