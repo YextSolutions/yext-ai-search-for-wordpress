@@ -164,7 +164,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0 5.766 1.234l4.883 4.891H0v1.75h10.649l-4.883 4.891L7 14l7-7-7-7Z" fill="black"/>
 										</svg>
 									</button>
-									<a href="<?php echo esc_url( 'https://www.yext.com/try/wordpress' ); ?>" data-target="3" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
+									<a href="<?php echo esc_url( 'https://www.yext.com/try/wordpress/?utm_source=yext&utm_medium=product&utm_content=site_search_cms_wordpress_free_trial_web&utm_campaign=site_search_cms_wordpress' ); ?>" data-target="3" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
 										<span>
 											<?php
 											echo sprintf(
@@ -268,7 +268,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 							<div class="yext-settings__form-content">
 								<div class="yext-settings__button-cards">
-									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/01-pull-wordpress-data-into-yext/' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
+									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/01-pull-wordpress-data-into-yext/?utm_source=yext&utm_medium=product&utm_content=site_search_cms_wordpress_pull_wordpress_data_web&utm_campaign=site_search_cms_wordpress' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
 										<span>
 											<?php
 											echo sprintf(
@@ -322,7 +322,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										/* translators: 1: Learn how to do so using our Yext AI Search for WordPress guide URL  */
 										__( '<a href="%1$s" class="is-external" target="_blank">Learn how to do so using our Yext AI Search for WordPress guide!</a>' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										// TODO: Yext to provide link.
-										esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience' )
+										esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience&utm_source=yext&utm_medium=product&utm_content=site_search_cms_wordpress_create_answers_experience_web&utm_campaign=site_search_cms_wordpress' )
 									);
 									?>
 								</p>
@@ -332,7 +332,7 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 							</div>
 							<div class="yext-settings__form-content">
 								<div class="yext-settings__button-cards">
-									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
+									<a href="<?php echo esc_url( 'https://hitchhikers.yext.com/guides/answers-wordpressintegration-guide/02-add-answers-to-wordpress/?target=step-3-create-an-answers-experience&utm_source=yext&utm_medium=product&utm_content=site_search_cms_wordpress_create_answers_experience_web&utm_campaign=site_search_cms_wordpress' ); ?>" target="_blank" rel="noopener" class="yext-settings__button yext-settings__button--primary with-icon">
 										<span><?php echo esc_html__( 'Create Answers Experience', 'yext' ); ?></span>
 										<svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M4.667 0v1.333H1.333v9.334h9.334V7.333H12v4a.666.666 0 0 1-.667.667H.667A.666.666 0 0 1 0 11.333V.667A.667.667 0 0 1 .667 0h4Zm5.057 1.333H6.667V0H12v5.333h-1.333V2.276L6 6.943 5.057 6l4.667-4.667Z" fill="black"/>
