@@ -5,8 +5,8 @@ Requires at least: 5.8
 Tested up to: 5.9
 Stable tag: 1.0
 Requires PHP: 7.4
-License: MIT
-License URI: https://opensource.org/licenses/MIT
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add the world's best search experience to your website in minutes.
 

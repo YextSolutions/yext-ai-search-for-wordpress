@@ -7,7 +7,7 @@
  * Requires PHP:      7.4
  * Author:            Yext Engineering
  * Author URI:        https://yext.com
- * License:           GPL v2 or later
+ * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       yext
  * Domain Path:       /languages
