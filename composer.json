@@ -1,6 +1,7 @@
 {
   "name": "yext/yext",
   "type": "wordpress-plugin",
+  "license": "MIT",
   "authors": [
     {
       "name": "10up",
