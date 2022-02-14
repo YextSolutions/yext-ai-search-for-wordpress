@@ -34,7 +34,7 @@ require_once YEXT_INC . '/blocks.php';
 
 // Activation/Deactivation.
 register_activation_hook( __FILE__, '\Yext\Core\activate' );
-register_deactivation_hook( __FILE__, '\Yext\Core\deactivate' );
+register_uninstall_hook( __FILE__, '\Yext\Core\deactivate' );
 
 // Bootstrap.
 Yext\Core\setup();
