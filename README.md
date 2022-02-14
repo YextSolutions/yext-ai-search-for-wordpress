@@ -36,9 +36,3 @@ A complete listing of all notable changes to Yext are documented in [CHANGELOG.m
 ## Contributing
 
 Please read [CODE_OF_CONDUCT.md](https://github.com/10up/yext/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/yext/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/yext/blob/develop/CREDITS.md) for a listing of maintainers of, contributors to, and libraries used by Yext.
-
-## Like what you see?
-
-<p align="center">
-<a href="http://10up.com/contact/"><img src="https://10up.com/uploads/2016/10/10up-Github-Banner.png" width="850"></a>
-</p>
