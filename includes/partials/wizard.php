@@ -212,13 +212,6 @@ $is_live      = isset( $settings['wizard'] ) ? $settings['wizard']['live'] : fal
 										esc_url( YEXT_URL . 'dist/images/logos/cox.png' ),
 										esc_html__( 'Cox logo', 'yext' )
 									);
-									// Banks.com
-									printf(
-										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
-										esc_url( 'https://www.yext.com/customers/banks-dot-com' ),
-										esc_url( YEXT_URL . 'dist/images/logos/banks-dot-com.png' ),
-										esc_html__( 'Banks.com logo', 'yext' )
-									);
 									// Fazoli's
 									printf(
 										'<li><a href="%s" target="_blank"><img src="%s" loading="lazy" alt="%s"></a></li>',
