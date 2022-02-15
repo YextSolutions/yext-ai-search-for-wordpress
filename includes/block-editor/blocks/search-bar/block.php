@@ -23,6 +23,7 @@ function render( $atts ) {
 
 	$placeholder_text = isset( $atts['placeholderText'] ) ? $atts['placeholderText'] : '';
 	$submit_text      = isset( $atts['submitText'] ) ? $atts['submitText'] : '';
+	$submit_icon      = isset( $atts['submitIcon'] ) ? $atts['submitIcon'] : '';
 	$label_text       = isset( $atts['labelText'] ) ? $atts['labelText'] : '';
 	$prompt_header    = isset( $atts['promptHeader'] ) ? $atts['promptHeader'] : '';
 	$settings         = Settings::get_settings();
@@ -74,6 +75,9 @@ function render( $atts ) {
 	<?php endif; ?>
 	<?php if ( ! empty( $submit_text ) ) : ?>
 		data-submit-text="<?php echo esc_attr( $submit_text ); ?>"
+	<?php endif; ?>
+	<?php if ( ! empty( $submit_icon ) ) : ?>
+		data-submit-icon="<?php echo esc_attr( $submit_icon ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $label_text ) ) : ?>
 		data-label-text="<?php echo esc_attr( $label_text ); ?>"
