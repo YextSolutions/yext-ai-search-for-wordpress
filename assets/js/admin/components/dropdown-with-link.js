@@ -29,7 +29,7 @@ const onDropDownChange = (e) => {
 		const btnLink = target.parentElement.querySelector('a');
 		if (value && btnLink) {
 			btnLink.setAttribute('href', DOMPurify.sanitize(buildUrlfromPostId(Number(value))));
-			btnLink.style.display = 'inline-block';
+			btnLink.style.display = 'block';
 		} else if (!value) {
 			btnLink.style.display = 'none';
 		}
