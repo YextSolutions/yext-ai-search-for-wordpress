@@ -54,7 +54,7 @@ $tabs = [ $search_bar_core_settings, $search_results_settings, $plugin_settings 
 
 $settings          = Settings::get_settings();
 $is_live           = isset( $settings['wizard'] ) ? true === $settings['wizard']['live'] : false;
-$is_banner_hidden  = isset( $settings['banner_hidden'] ) ? true === $settings['banner_hidden'] : false;
+$is_banner_hidden  = isset( $settings['banner_hidden'] ) ? true === $settings['banner_hidden'] : true;
 ?>
 
 <div class="yext-styles-wrapper">
