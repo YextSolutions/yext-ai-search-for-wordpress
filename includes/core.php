@@ -269,7 +269,7 @@ function admin_preconnect( $page ) {
  * @return void
  */
 function admin_scripts( $page ) {
-	$rest_url = '/yext/v1';
+	$rest_url = get_rest_url( null, '/yext/v1' );
 
 	if ( is_yext_page( $page ) ) {
 		wp_enqueue_script(
