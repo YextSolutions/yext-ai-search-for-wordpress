@@ -28,24 +28,24 @@
 			"line_height": "1.5"
 		},
 		"placeholder": {
-			"color": "#646970",
-			"font_weight": "400"
+			"placeholder_color": "#646970",
+			"placeholder_font_weight": "400"
 		},
 		"button": {
-			"text_color": "#000000",
-			"hover_text_color": "#000000",
+			"button_text_color": "#000000",
+			"button_hover_text_color": "#000000",
 			"button_background_color": "#ffffff",
 			"button_hover_background_color": "#e9e9e9"
 		},
 		"autocomplete": {
 			"autocomplete_background_color": "#ffffff",
 			"autocomplete_option_hover_background_color": "#f9f9f9",
-			"separator_color": "#dcdcdc",
-			"font_size": "16",
-			"font_weight": "400",
-			"line_height": "1.4",
-			"text_color": "#212121",
-			"header_font_weight": "300"
+			"autocomplete_separator_color": "#dcdcdc",
+			"autocomplete_font_size": "16",
+			"autocomplete_font_weight": "400",
+			"autocomplete_line_height": "1.4",
+			"autocomplete_text_color": "#212121",
+			"autocomplete_header_font_weight": "300"
 		}
 	},
 	"search_results": {
