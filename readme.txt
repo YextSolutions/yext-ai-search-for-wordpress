@@ -1,4 +1,4 @@
-=== Yext AI Search for WordPress ===
+=== Yext AI Search ===
 Contributors: yext
 Tags: search, site-search, yext, autocomplete, relevant-search, better-search, custom-search, search-by-category, natural-language-search, search-engine
 Requires at least: 5.8
