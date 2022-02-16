@@ -79,3 +79,14 @@ Search Results page: This is a page automatically generated for the plugin with 
 = Do I need to host the search results page on WordPress? =
 
 No, you can use our search bar block, and link out to a different page for the search results page.
+
+== Screenshots ==
+1. Plugin Homepage
+2. Backend Configuration
+3. Frontend Configuration
+4. Adding Your Search Experience to a Post
+
+== Changelog ==
+
+= 1.0.0 =
+* Initial plugin
