@@ -7,8 +7,8 @@
  * Requires PHP:      7.4
  * Author:            Yext Engineering
  * Author URI:        https://yext.com
- * License:           BSD 3-Clause "New" or "Revised" License
- * License URI:       https://opensource.org/licenses/BSD-3-Clause
+ * License:           GPLv2 or later
+ * License URI:       https://spdx.org/licenses/GPL-2.0-or-later.html
  * Text Domain:       yext
  * Domain Path:       /languages
  *

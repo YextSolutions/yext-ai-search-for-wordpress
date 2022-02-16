@@ -5,8 +5,8 @@ Requires at least: 5.8
 Tested up to: 5.9
 Stable tag: 1.0
 Requires PHP: 7.4
-License: BSD 3-Clause "New" or "Revised" License
-License URI:  https://opensource.org/licenses/BSD-3-Clause
+License: GPLv2 or later
+License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
 
 Add the world's best search experience to your website in minutes.
 

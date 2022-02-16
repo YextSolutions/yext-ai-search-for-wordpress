@@ -1,6 +1,7 @@
 {
   "name": "yext/yext",
   "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "10up",
