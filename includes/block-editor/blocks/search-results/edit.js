@@ -17,6 +17,7 @@ const { answersIframeUrl } = camelcaseKeys(config);
 
 const { useBlockProps } = wp.blockEditor;
 const { __ } = wp.i18n;
+const { isURL } = wp.url;
 const { useState, useRef, useEffect } = wp.element;
 const { Placeholder, Button } = wp.components;
 
@@ -70,7 +71,7 @@ const Edit = (props) => {
 					</Placeholder>
 				)}
 
-				{url && (
+				{url && isURL(url) && (
 					<iframe
 						ref={iframeRef}
 						title="Yext Search Results"
