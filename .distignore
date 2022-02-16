@@ -6,9 +6,12 @@
 /.browserslistrc
 /.editorconfig
 /.eslintignore
+/.eslintrc
 /.eslintrc.js
 /.gitattributes
 /.gitignore
+/.lintstagedrc.json
+/.nvmrc
 /.stylelintrc
 /babel.config.js
 /CHANGELOG.md
@@ -27,8 +30,5 @@
 /README.md
 /SECURITY.md
 /postcss.config.js
-/webpack.config.js
-/wpacceptance.json
-
 .distignore
 .gitignore
