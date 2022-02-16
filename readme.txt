@@ -83,8 +83,13 @@ No, you can use our search bar block, and link out to a different page for the s
 == Screenshots ==
 1. Plugin Homepage
 2. Backend Configuration
-3. Frontend Configuration
-4. Adding Your Search Experience to a Post
+3. Global Search Configuration
+4. Search Bar Customization
+5. Search Bar Block
+6. Search Results Block Settings
+7. Search Results Block
+8. Search Bar Frontend
+9. Search Results Frontend
 
 == Changelog ==
 
