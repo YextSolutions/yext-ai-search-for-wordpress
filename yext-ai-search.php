@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Yext AI Search
  * Description:       Connect WordPress to Yext knowledge graph and display Answers experience.
- * Version:           1.0
+ * Version:           1.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Yext Engineering
