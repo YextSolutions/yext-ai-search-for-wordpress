@@ -8,6 +8,7 @@
 /.eslintignore
 /.eslintrc
 /.eslintrc.js
+/.husky
 /.gitattributes
 /.gitignore
 /.lintstagedrc.json
@@ -30,5 +31,6 @@
 /README.md
 /SECURITY.md
 /postcss.config.js
+/webpack.config.js
 .distignore
 .gitignore
