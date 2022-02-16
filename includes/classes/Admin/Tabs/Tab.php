@@ -150,6 +150,16 @@ final class Tab {
 				esc_attr( sanitize_title_with_dashes( $this->get_id() ) ),
 				esc_attr( $id )
 			);
+
+			// Fixes for missing indexes
+			if ( ! isset( $args['classname'] ) ) {
+				$args['classname'] = '';
+			}
+
+			if ( ! isset( $args['help'] ) ) {
+				$args['help'] = '';
+			}
+
 			echo '<div class="' . esc_attr( $wrapper_class ) . ' ' . esc_attr( $args['classname'] ) . '" data-help="' . esc_attr( $args['help'] ) . '">';
 			do_settings_sections( "yext-settings-{$this->tab_id}-{$id}" );
 			echo '</div>';

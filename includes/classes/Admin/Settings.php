@@ -402,10 +402,7 @@ final class Settings {
 			$settings['search_bar']['props'],
 			$settings['search_bar']['core'],
 			[
-				'redirect_url' => get_post_field(
-					'post_name',
-					$settings['search_results']['results_page']
-				),
+				'redirect_url' => get_permalink( intval( $settings['search_results']['results_page'] ) ),
 			]
 		);
 		$components = [

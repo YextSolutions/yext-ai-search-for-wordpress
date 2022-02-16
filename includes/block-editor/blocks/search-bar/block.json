@@ -13,6 +13,9 @@
     "submitText": {
       "type": "string"
     },
+    "submitIcon": {
+      "type": "string"
+    },
     "placeholderText": {
       "type": "string"
     },
