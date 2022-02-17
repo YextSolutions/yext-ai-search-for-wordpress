@@ -93,5 +93,5 @@ No, you can use our search bar block, and link out to a different page for the s
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.0 - 2022-02-17 =
 * Initial plugin
