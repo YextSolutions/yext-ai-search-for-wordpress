@@ -56,14 +56,14 @@ If you could see every question a customer asked on your website, would you adju
 == Installation ==
 ### Installing from within Wordpress:
 1. Visit Plugins > Add New.
-2. Search for Yext Answers.
-3. Install and activate the Yext Answers plugin. 
+2. Search for Yext AI Search.
+3. Install and activate the Yext AI Search plugin. 
 
 ### Installing Manually:
-1. Download yext-answers.zip.
-2. Unzip yext-answers.zip and upload its content to your wp-content/plugins directory. 
+1. Download yext-ai-search.zip.
+2. Unzip yext-ai-search.zip and upload its content to your wp-content/plugins directory. 
 3. Visit Plugins.
-4. Activate the Yext Answers Site Search plugin. 
+4. Activate the Yext AI Search plugin. 
 
 == Frequently Asked Questions ==
 
