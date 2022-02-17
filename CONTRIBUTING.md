@@ -24,17 +24,17 @@ For more on how 10up writes and manages code, check out our [10up Engineering Be
 
 ## Workflow
 
-The `trunk` branch is the development branch which means it contains the next version to be released. `stable` contains the current latest release and `trunk` contains the corresponding stable development version. Always work on the `trunk` branch and open up PRs against `trunk`.
+The `develop` branch is the development branch which means it contains the next version to be released. `trunk` contains the current latest release and `trunk` contains the corresponding stable development version. Always work on the `develop` branch and open up PRs against `develop`.
 
 ## Release instructions
 
-1. Branch: Starting from `trunk`, create a release branch named `release/X.Y.Z` for your changes.
+1. Branch: Starting from `develop`, create a release branch named `release/X.Y.Z` for your changes.
 2. Version bump: Bump the version number in `yext-ai-search-for-wordpress.php`, `package.json`, and `readme.txt` if it does not already reflect the version being released.  In `yext-ai-search-for-wordpress.php` update both the plugin "Version:" property and the plugin `DT_VERSION` constant, ensuring that it is suffixed with `-dev.`.
 3. New files: Ensure any new files, especially in the vendor folder, are correctly included in `gulp-tasks/copy.js`.
 4. Changelog: Add/update the changelog in `CHANGELOG.md`.
 5. Props: Update `CREDITS.md` file with any new contributors, confirm maintainers are accurate.
 6. Readme updates: Make any other readme changes as necessary.  `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content.  The two are slightly different.
-7.  Merge: Make a non-fast-forward merge from your release branch to `trunk` (or merge the Pull Request), then do the same for `trunk` into `trunk` (`git checkout trunk && git merge --no-ff develop`).  `trunk` contains the stable development version.
+7.  Merge: Make a non-fast-forward merge from your release branch to `develop` (or merge the Pull Request), then do the same for `develop` into `trunk` (`git checkout trunk && git merge --no-ff develop`).  `trunk` contains the stable development version.
 8. Build: Wait for the [Build Stable Release Action](https://github.com/10up/yext/actions?query=workflow%3A%22Build+Stable+Release%22) to finish running.
 9. Review: Do a review of the commit to the `stable` branch to ensure the contents of the diffs are as expected.
 10. Test: Check out the `stable` branch and test it locally to ensure everything works as expected.  It is recommended that you rename the existing `yext` directory and check out `stable` fresh because switching branches does not delete files.  This can be done with `git clone --single-branch --branch stable git@github.com:10up/yext.git`
