@@ -67,7 +67,7 @@ If you could see every question a customer asked on your website, would you adju
 
 == Frequently Asked Questions ==
 
-= What information will I need to use the plug in? =
+= What information will I need to use the plugin? =
 
 Your administrator will help you obtain the needed information. You’ll need your API Key, Experience Key, Business ID, and the URL of the search results page.
 
