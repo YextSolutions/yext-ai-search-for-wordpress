@@ -127,7 +127,7 @@ function activation_notice() {
 			esc_attr( $key ),
 			esc_html( 'Yext' ),
 			esc_html( $message ),
-			esc_url( admin_url( 'admin.php?page=yext' ) ),
+			esc_url( admin_url( 'admin.php?page=yext-ai-search' ) ),
 			esc_attr( $link_class ),
 			esc_html( $link_text )
 		);
@@ -294,7 +294,7 @@ function admin_scripts( $page ) {
 				'defaults'     => json_decode( $defaults ),
 				'settings'     => Settings::get_settings(),
 				'site_url'     => esc_url( get_site_url() ),
-				'settings_url' => esc_url( admin_url( 'admin.php?page=yext' ) ),
+				'settings_url' => esc_url( admin_url( 'admin.php?page=yext-ai-search' ) ),
 				'rest_url'     => $rest_url,
 				'icons'        => Utility\get_icon_manifest(),
 			]

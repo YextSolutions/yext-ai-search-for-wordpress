@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<ul class="yext-menu__dialog-list">
 					<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--restart">
 						<?php if ( 'settings' === $view ) : ?>
-							<button class="yext-settings__button--is-style-link" data-action="restart" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext&restart_wizard=1' ) ); ?>">
+							<button class="yext-settings__button--is-style-link" data-action="restart" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext-ai-search&restart_wizard=1' ) ); ?>">
 								<?php echo esc_html__( 'Restart setup', 'yext' ); ?>
 							</button>
 						<?php else : ?>
@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</li>
 					<?php if ( 'wizard' === $view ) : ?>
 						<li class="yext-menu__dialog-list-item yext-menu__dialog-list-item--skip">
-							<button class="yext-settings__button--is-style-link" data-action="skip" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext&skipped=1' ) ); ?>">
+							<button class="yext-settings__button--is-style-link" data-action="skip" data-href="<?php echo esc_url( admin_url( 'admin.php?page=yext-ai-search&skipped=1' ) ); ?>">
 								<?php echo esc_html__( 'Skip setup', 'yext' ); ?>
 							</button>
 						</li>
