@@ -93,5 +93,10 @@ No, you can use our search bar block, and link out to a different page for the s
 
 == Changelog ==
 
+= 1.0.1 - 2022-02-24 =
+* Prevent conflict with existing Yext Plugin
+* Fix JS error when minified
+* Fix search button background theme conflict
+
 = 1.0.0 - 2022-02-17 =
 * Initial plugin
