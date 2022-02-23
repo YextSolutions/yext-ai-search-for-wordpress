@@ -176,7 +176,7 @@ final class Settings {
 			__( 'Yext', 'yext' ),
 			__( 'Yext', 'yext' ),
 			'manage_options',
-			'yext',
+			'yext-ai-search',
 			$skipped ? [ $this, 'render_settings_page' ] : [ $this, 'render_wizard_page' ],
 			$this->menu_icon
 		);
