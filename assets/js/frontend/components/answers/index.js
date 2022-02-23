@@ -1,4 +1,4 @@
-import kebabCase from 'lodash.kebabcase';
+import searchBar from './search-bar';
 
 /**
  * Initialize Yext Answers UI SDK
@@ -34,6 +34,10 @@ const Answers = ({ config, components }) => {
 		templateBundle: config.templateBundle,
 	};
 
+	const {
+		searchBar: { props: searchBarProps },
+	} = components;
+
 	/**
 	 * Invoked when the Answers component library is loaded/ready.
 	 *
@@ -41,21 +45,8 @@ const Answers = ({ config, components }) => {
 	 * and instantiate the corresponsing component.
 	 */
 	const onReady = async () => {
-		for (const [component, { props }] of Object.entries(components)) {
-			/* eslint-disable-next-line no-await-in-loop */
-			await import(
-				/* webpackChunkName: "[request]" */
-				`./${kebabCase(component)}`
-			)
-				.then(({ default: Component }) => {
-					const YextComponent = Component(props);
-					YextComponent.register();
-				})
-				.catch((error) => {
-					/* eslint-disable-next-line no-console */
-					console.error(`Yext: Error importing component ${component}: ${error}`);
-				});
-		}
+		const SearchBar = searchBar(searchBarProps);
+		SearchBar.register();
 	};
 
 	/**

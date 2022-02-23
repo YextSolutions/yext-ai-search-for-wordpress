@@ -4,6 +4,11 @@
 import camelcaseKeys from 'camelcase-keys';
 
 /**
+ * Internal dependencies
+ */
+import Answers from './components/answers';
+
+/**
  * Initialize Answers UI SDK.
  */
 const initAnswers = () => {
@@ -49,32 +54,27 @@ const initAnswers = () => {
 		throw new Error('Yext: Valid Answers configuration settings not found');
 	}
 
-	import(
-		/* webpackChunkName: "answers" */
-		'./components/answers'
-	).then(({ default: Answers }) => {
-		/**
-		 * Initialize Answers UI SDK using the configuration
-		 * provided via plugin settings.
-		 */
-		const AnswersSDK = Answers({
-			config: {
-				...camelcaseKeys(config),
-				templateBundle: window.TemplateBundle,
-			},
-			components: camelcaseKeys(components, { deep: true }),
-		});
+	/**
+	 * Initialize Answers UI SDK using the configuration
+	 * provided via plugin settings.
+	 */
+	const AnswersSDK = Answers({
+		config: {
+			...camelcaseKeys(config),
+			templateBundle: window.TemplateBundle,
+		},
+		components: camelcaseKeys(components, { deep: true }),
+	});
 
-		if (AnswersSDK.error) {
-			if (process.env.NODE_ENV === 'development') {
-				throw new Error(`Yext: ${AnswersSDK.error}`);
-			}
-
-			return;
+	if (AnswersSDK.error) {
+		if (process.env.NODE_ENV === 'development') {
+			throw new Error(`Yext: ${AnswersSDK.error}`);
 		}
 
-		AnswersSDK.init();
-	});
+		return;
+	}
+
+	AnswersSDK.init();
 };
 
 /**
