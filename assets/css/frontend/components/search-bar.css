@@ -32,6 +32,7 @@ body {
 		& button.yxt-SearchBar-clear {
 			align-items: center;
 			background-color: var(--yxt-searchbar-button-background-color-base);
+			background-image: none;
 			border: none;
 			color: var(--yxt-searchbar-button-text-color);
 			cursor: pointer;

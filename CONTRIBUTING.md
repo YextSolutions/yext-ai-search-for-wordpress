@@ -28,18 +28,16 @@ The `develop` branch is the development branch which means it contains the next 
 
 ## Release instructions
 
-1. Branch: Starting from `develop`, create a release branch named `release/X.Y.Z` for your changes.
-2. Version bump: Bump the version number in `yext-ai-search-for-wordpress.php`, `package.json`, and `readme.txt` if it does not already reflect the version being released.  In `yext-ai-search-for-wordpress.php` update both the plugin "Version:" property and the plugin `DT_VERSION` constant, ensuring that it is suffixed with `-dev.`.
-3. New files: Ensure any new files, especially in the vendor folder, are correctly included in `gulp-tasks/copy.js`.
-4. Changelog: Add/update the changelog in `CHANGELOG.md`.
-5. Props: Update `CREDITS.md` file with any new contributors, confirm maintainers are accurate.
-6. Readme updates: Make any other readme changes as necessary.  `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content.  The two are slightly different.
-7.  Merge: Make a non-fast-forward merge from your release branch to `develop` (or merge the Pull Request), then do the same for `develop` into `trunk` (`git checkout trunk && git merge --no-ff develop`).  `trunk` contains the stable development version.
-8. Build: Wait for the [Build Stable Release Action](https://github.com/10up/yext/actions?query=workflow%3A%22Build+Stable+Release%22) to finish running.
-9. Review: Do a review of the commit to the `stable` branch to ensure the contents of the diffs are as expected.
-10. Test: Check out the `stable` branch and test it locally to ensure everything works as expected.  It is recommended that you rename the existing `yext` directory and check out `stable` fresh because switching branches does not delete files.  This can be done with `git clone --single-branch --branch stable git@github.com:10up/yext.git`
-12. Release: Create a [new release](https://github.com/10up/yext/releases/new), naming the tag and the release with the new version number, and **targeting the `stable` branch**.  Paste the changelog from `CHANGELOG.md` into the body of the release and include a link to the [closed issues on the milestone](https://github.com/10up/yext/milestone/#?closed=1).  The release should now appear under [releases](https://github.com/10up/yext/releases).
-13. Check release: Wait for the [Publish Release Action](https://github.com/10up/yext/actions?query=workflow%3A%22Publish+Release%22) to complete, and then check the latest release to ensure that the ZIP has been attached as an asset.  Download the ZIP and inspect the contents to be sure they match the contents of the `stable` branch.
-14. Version bump (again): In the `trunk` branch (`cd ../ && git checkout develop`) bump the version number in `yext-ai-search-for-wordpress.php` and `readme.txt` to `X.Y.(Z+1)-dev`.  It's okay if the next release might be a different version number; that change can be handled right before release in the first step, as might also be the case with `@since` annotations.
-15. Close milestone: Edit the [milestone](https://github.com/10up/yext/milestone/#) with release date (in the `Due date (optional)` field) and link to GitHub release (in the `Description` field), then close the milestone.
-16. Punt incomplete items: If any open issues or PRs which were milestoned for `X.Y.Z` do not make it into the release, update their milestone to `X.Y.Z+1`, `X.Y+1.0`, `X+1.0.0`, or `Future Release`.
+1. Branch: Starting from `develop`, cut a release branch named `release/X.Y.Z` for your changes.
+1. Version bump: Bump the version number in `yext-ai-search-for-wordpress.php`, `readme.txt`, `package-lock.json`, and `package.json` if it does not already reflect the version being released.
+1. Changelog: Add/update the changelog in `CHANGELOG.md` and `readme.txt`
+1. Props: update `CREDITS.md` file with any new contributors, confirm maintainers are accurate
+1. New files: Check to be sure any new files/paths that are unnecessary in the production version are included in `.distignore`.
+1. Readme updates: Make any other readme changes as necessary. `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content. The two are slightly different.
+1. Merge: Make a non-fast-forward merge from your release branch to `develop` (or merge the pull request), then do the same for `develop` into `trunk` (`git checkout trunk && git merge --no-ff develop`). `trunk` contains the stable development version.
+1. Push: Push your `trunk` branch to GitHub, e.g. `git push origin trunk`.
+1. Release: Create a [new release](https://github.com/YextSolutions/yext-ai-search-for-wordpress/releases/new), naming the tag and the release with the new version number, and targeting the `trunk` branch. Paste the changelog from `CHANGELOG.md` into the body of the release and include a link to the closed issues on the milestone (e.g. `https://github.com/YextSolutions/yext-ai-search-for-wordpress/milestone/2?closed=1`).
+1. SVN: Wait for the [GitHub Action](https://github.com/YextSolutions/yext-ai-search-for-wordpress/actions) to finish deploying to the WordPress.org repository. If all goes well, users with SVN commit access for that plugin will receive an emailed diff of changes.
+1. Check WordPress.org: Ensure that the changes are live on https://wordpress.org/plugins/yext-ai-search/. This may take a few minutes.
+1. Close milestone: Edit the [milestone](https://github.com/YextSolutions/yext-ai-search-for-wordpress/milestone/#) with release date (in the `Due date (optional)` field) and link to GitHub release (in the `Description` field), then close the milestone.
+1. Punt incomplete items: If any open issues or PRs which were milestoned for `X.Y.Z` do not make it into the release, update their milestone to `X.Y.Z+1`, `X.Y+1.0`, `X+1.0.0` or `Future Release`.
