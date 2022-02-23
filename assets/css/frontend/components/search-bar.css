@@ -14,6 +14,7 @@ body {
 		& .yxt-GeoLocationFilter-container,
 		& .yxt-SearchBar-container {
 			background-color: var(--yxt-searchbar-form-background-color);
+			background-image: none;
 			border: 0.0625rem solid var(--yxt-searchbar-form-outline-color-base);
 			border-radius: var(--yxt-searchbar-form-border-radius);
 			overflow: hidden;
