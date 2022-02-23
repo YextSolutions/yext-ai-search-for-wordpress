@@ -163,7 +163,7 @@ function get_enqueue_contexts() {
  * @return boolean
  */
 function is_yext_page( $page ) {
-	return strpos( $page, 'yext' ) !== false;
+	return strpos( $page, 'yext-ai-search' ) !== false;
 }
 
 /**
