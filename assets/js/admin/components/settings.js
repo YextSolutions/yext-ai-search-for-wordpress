@@ -82,6 +82,7 @@ const initSettings = () => {
 							style: DEFAULT_PLUGIN_SETTINGS.search_bar.style,
 							button: DEFAULT_PLUGIN_SETTINGS.search_bar.button,
 							autocomplete: DEFAULT_PLUGIN_SETTINGS.search_bar.autocomplete,
+							placeholder: DEFAULT_PLUGIN_SETTINGS.search_bar.placeholder,
 						},
 					}),
 				},
