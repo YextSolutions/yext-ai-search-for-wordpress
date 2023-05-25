@@ -97,13 +97,13 @@ No, you can use our search bar block, and link out to a different page for the s
 
 __Fixed:__
 
-* Fix placeholder settings don't reset upon reset button click. Props [@burhandodhy](https://github.com/burhandodhy)
-* Fix admin notice layout on update-core page. Props [@burhandodhy](https://github.com/burhandodhy)
-* Fix LineHeightControl width. Props [@burhandodhy](https://github.com/burhandodhy)
+* Fix placeholder settings don't reset upon reset button click. Props [@burhandodhy](https://github.com/burhandodhy).
+* Fix admin notice layout on update-core page. Props [@burhandodhy](https://github.com/burhandodhy).
+* Fix LineHeightControl width. Props [@burhandodhy](https://github.com/burhandodhy).
 
 __Changed:__
 
-* Bump WordPress version "tested up to" 6.2. Props [@burhandodhy](https://github.com/burhandodhy)
+* Bump WordPress version "tested up to" 6.2. Props [@burhandodhy](https://github.com/burhandodhy).
 
 = 1.0.1 - 2022-02-24 =
 * Prevent conflict with existing Yext Plugin
