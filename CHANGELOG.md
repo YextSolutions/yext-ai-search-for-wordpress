@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 - Admin notice layout on update-core page. Props [@burhandodhy](https://github.com/burhandodhy) via [#142](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/142)
 - LineHeightControl width. Props [@burhandodhy](https://github.com/burhandodhy) via [#146](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/146
 )
+
 ### Changed
 - Bump WordPress version "tested up to" 6.2. Props [@burhandodhy](https://github.com/burhandodhy)
 
