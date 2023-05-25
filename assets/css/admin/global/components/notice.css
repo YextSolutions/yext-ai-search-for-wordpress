@@ -21,6 +21,10 @@
 			margin: 0.5rem 0 1rem;
 		}
 
+		& h2 {
+			margin: 1em 0;
+		}
+
 		& .yext-settings__button--primary {
 			background: #0f70f0;
 			border: 1px solid #0f70f0;
@@ -34,7 +38,7 @@
 			padding: 0.625rem 2.5rem;
 			text-decoration: none;
 			text-transform: uppercase;
-		
+
 			&:hover,
 			&:focus {
 				background: #0c5ecb;

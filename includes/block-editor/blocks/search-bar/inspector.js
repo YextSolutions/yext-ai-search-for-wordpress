@@ -350,6 +350,7 @@ const Inspector = (props) => {
 					onChange={(newLineHeight) => {
 						handleStyleUpdate('lineHeight', newLineHeight);
 					}}
+					__unstableInputWidth="100%"
 				/>
 				<RangeControl
 					label={__('Border Radius', 'yext')}
