@@ -16,7 +16,6 @@ jobs:
     - name: Build
       run: |
         composer install --no-dev
-        nvm use 14
         npm install
         npm run build
     - name: WordPress Plugin Deploy
