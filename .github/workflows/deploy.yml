@@ -9,9 +9,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: install node v14
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
     - name: Build
       run: |
         composer install --no-dev
+        nvm us 14
         npm install
         npm run build
     - name: WordPress Plugin Deploy
