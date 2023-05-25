@@ -2,8 +2,8 @@
 Contributors: yext
 Tags: search, site-search, yext, autocomplete, relevant-search, better-search, custom-search, search-by-category, natural-language-search, search-engine
 Requires at least: 5.8
-Tested up to: 5.9
-Stable tag: 1.0.1
+Tested up to: 6.2
+Stable tag: 1.0.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
@@ -57,13 +57,13 @@ If you could see every question a customer asked on your website, would you adju
 ### Installing from within Wordpress:
 1. Visit Plugins > Add New.
 2. Search for Yext AI Search.
-3. Install and activate the Yext AI Search plugin. 
+3. Install and activate the Yext AI Search plugin.
 
 ### Installing Manually:
 1. Download yext-ai-search.zip.
-2. Unzip yext-ai-search.zip and upload its content to your wp-content/plugins directory. 
+2. Unzip yext-ai-search.zip and upload its content to your wp-content/plugins directory.
 3. Visit Plugins.
-4. Activate the Yext AI Search plugin. 
+4. Activate the Yext AI Search plugin.
 
 == Frequently Asked Questions ==
 
@@ -92,6 +92,12 @@ No, you can use our search bar block, and link out to a different page for the s
 9. Search Results Frontend
 
 == Changelog ==
+
+= 1.0.2 - 2023-05-25 =
+* Fix placeholder settings don't reset upon reset button click
+* Fix admin notice layout on update-core page
+* Fix LineHeightControl width
+* Bump WordPress version "tested up to" 6.2
 
 = 1.0.1 - 2022-02-24 =
 * Prevent conflict with existing Yext Plugin
