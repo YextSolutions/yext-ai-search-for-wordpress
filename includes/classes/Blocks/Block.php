@@ -50,6 +50,41 @@ class Block {
 	const BLOCK_DIR = YEXT_INC . 'block-editor/blocks';
 
 	/**
+	 * Block Name
+	 *
+	 * @var string
+	 */
+	public $block;
+
+	/**
+	 * Block Attributes
+	 *
+	 * @var array
+	 */
+	public $atts;
+
+	/**
+	 * Block Render Callback
+	 *
+	 * @var string
+	 */
+	public $callback;
+
+	/**
+	 * Child
+	 *
+	 * @var bool
+	 */
+	public $child;
+
+	/**
+	 * WP Block Type Registry
+	 *
+	 * @var WP_Block_Type_Registry
+	 */
+	public $wp_blocks;
+
+	/**
 	 * Construct the block object
 	 *
 	 * @param  string $block    Block Name - with or without prefix
