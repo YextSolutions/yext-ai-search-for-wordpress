@@ -71,13 +71,6 @@ class Block {
 	public $callback;
 
 	/**
-	 * Child
-	 *
-	 * @var bool
-	 */
-	public $child;
-
-	/**
 	 * WP Block Type Registry
 	 *
 	 * @var WP_Block_Type_Registry
@@ -97,7 +90,6 @@ class Block {
 		$this->block     = $block;
 		$this->atts      = $atts;
 		$this->callback  = $callback;
-		$this->child     = false;
 		$this->wp_blocks = WP_Block_Type_Registry::get_instance();
 
 		if ( ! $this->wp_blocks->is_registered( self::block_name( $this->block ) ) ) {
