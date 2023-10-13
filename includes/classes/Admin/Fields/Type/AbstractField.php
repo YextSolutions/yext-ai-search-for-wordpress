@@ -50,42 +50,42 @@ abstract class AbstractField {
 	 *
 	 * @var string
 	 */
-	public $parent_field = '';
+	public $parent_field;
 
 	/**
 	 * CSS variable name
 	 *
 	 * @var string
 	 */
-	public $variable = '';
+	public $variable;
 
 	/**
 	 * Required
 	 *
 	 * @var string
 	 */
-	public $required = '';
+	public $required;
 
 	/**
 	 * Optional
 	 *
 	 * @var string
 	 */
-	public $optional = '';
+	public $optional;
 
 	/**
 	 * Help text
 	 *
 	 * @var string
 	 */
-	public $help = '';
+	public $help;
 
 	/**
 	 * Step for number field
 	 *
 	 * @var string
 	 */
-	public $step = '';
+	public $step;
 
 	/**
 	 * Allowed settings html tags for usage in wp_kses
