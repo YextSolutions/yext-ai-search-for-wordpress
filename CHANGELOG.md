@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file, per [the Keep a Changelog standard](http://keepachangelog.com/).
 
+## [1.0.3] - 2023-10-19
+
+### Fixed
+- Creation of dynamic property warnings for PHP 8.2. Props [@burhandodhy](https://github.com/burhandodhy) via [#155](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/155).
+
+### Changed
+- Bump WordPress version "tested up to" 6.3. Props [@burhandodhy](https://github.com/burhandodhy) via [#157](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/157).
+
 ## [1.0.2] - 2023-05-25
 
 ### Fixed
@@ -21,3 +29,9 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [1.0.0] - 2022-02-17
 - Initial closed release.
+
+[Unreleased]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/trunk...develop
+[1.0.3]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.2...1.0.3
+[1.0.2]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.0...1.0.1
+[1.0.0]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/releases/tag/1.0.0

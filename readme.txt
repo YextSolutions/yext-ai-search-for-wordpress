@@ -2,8 +2,8 @@
 Contributors: yext
 Tags: search, site-search, yext, autocomplete, relevant-search, better-search, custom-search, search-by-category, natural-language-search, search-engine
 Requires at least: 5.8
-Tested up to: 6.2
-Stable tag: 1.0.2
+Tested up to: 6.3
+Stable tag: 1.0.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
@@ -92,6 +92,16 @@ No, you can use our search bar block, and link out to a different page for the s
 9. Search Results Frontend
 
 == Changelog ==
+
+= 1.0.3 - 2023-10-19 =
+
+__Fixed:__
+
+* Creation of dynamic property warnings for PHP 8.2. Props [@burhandodhy](https://github.com/burhandodhy).
+
+__Changed:__
+
+* Bump WordPress version "tested up to" 6.3. Props [@burhandodhy](https://github.com/burhandodhy).
 
 = 1.0.2 - 2023-05-25 =
 
