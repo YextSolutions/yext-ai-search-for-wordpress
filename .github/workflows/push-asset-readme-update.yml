@@ -8,7 +8,17 @@ jobs:
     name: Push to trunk
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: install node v14
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Build
+      run: |
+        composer install --no-dev
+        npm install
+        npm run build
     - name: WordPress.org plugin asset/readme update
       uses: 10up/action-wordpress-plugin-asset-update@stable
       env:
