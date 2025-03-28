@@ -15,7 +15,7 @@ const {
 } = window;
 
 const { __ } = wp.i18n;
-const { InspectorControls, LineHeightControl, useSetting } = wp.blockEditor;
+const { InspectorControls, LineHeightControl, useSettings } = wp.blockEditor;
 const { PanelBody, PanelRow, FontSizePicker, RangeControl, TextControl, SelectControl } =
 	wp.components;
 const { useEffect } = wp.element;
@@ -168,7 +168,7 @@ const Inspector = (props) => {
 		},
 	} = props;
 
-	const colors = useSetting('color.palette');
+	const colors = useSettings('color.palette');
 
 	const cssVariables = {
 		fontSize: ['--yxt-searchbar-text-font-size', `${fontSize}px`],
@@ -277,6 +277,7 @@ const Inspector = (props) => {
 						onChange={(newPlaceholderText) => {
 							setAttributes({ placeholderText: newPlaceholderText });
 						}}
+						__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -287,6 +288,7 @@ const Inspector = (props) => {
 						onChange={(newLabelText) => {
 							setAttributes({ labelText: newLabelText });
 						}}
+						__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -297,6 +299,7 @@ const Inspector = (props) => {
 						onChange={(newSubmitText) => {
 							setAttributes({ submitText: newSubmitText });
 						}}
+						__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -315,6 +318,7 @@ const Inspector = (props) => {
 						onChange={(newSubmitIcon) => {
 							setAttributes({ submitIcon: newSubmitIcon });
 						}}
+						__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -325,6 +329,7 @@ const Inspector = (props) => {
 						onChange={(newPromptHeader) => {
 							setAttributes({ promptHeader: newPromptHeader });
 						}}
+						__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -344,6 +349,7 @@ const Inspector = (props) => {
 					onChange={(newFontWeight) => {
 						handleStyleUpdate('fontWeight', newFontWeight);
 					}}
+					__nextHasNoMarginBottom
 				/>
 				<LineHeightControl
 					value={lineHeight}
@@ -360,6 +366,7 @@ const Inspector = (props) => {
 					onChange={(newBorderRadius) => {
 						handleStyleUpdate('borderRadius', newBorderRadius, (value) => `${value}px`);
 					}}
+					__nextHasNoMarginBottom
 				/>
 			</PanelBody>
 			<PanelBody title={__('Color Settings', 'yext')}>
@@ -444,6 +451,7 @@ const Inspector = (props) => {
 					onChange={(newFontWeight) => {
 						handleStyleUpdate('placeholderFontWeight', newFontWeight);
 					}}
+					__nextHasNoMarginBottom
 				/>
 			</PanelBody>
 			<PanelBody title={__('Autocomplete Settings', 'yext')} initialOpen={false}>
@@ -464,6 +472,7 @@ const Inspector = (props) => {
 					onChange={(newFontWeight) => {
 						handleStyleUpdate('autocompleteOptionFontWeight', newFontWeight);
 					}}
+					__nextHasNoMarginBottom
 				/>
 				<LineHeightControl
 					value={autocompleteOptionLineHeight}
@@ -478,6 +487,7 @@ const Inspector = (props) => {
 					onChange={(newFontWeight) => {
 						handleStyleUpdate('autocompleteHeaderFontWeight', newFontWeight);
 					}}
+					__nextHasNoMarginBottom
 				/>
 				<ColorPicker
 					id="yext-autocomplete-text-color"

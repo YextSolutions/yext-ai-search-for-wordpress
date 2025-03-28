@@ -4,7 +4,7 @@ const { BaseControl, ColorPalette } = wp.components;
 
 const ColorPicker = ({ id, label, colors, value, onChange }) => {
 	return (
-		<BaseControl id={id} label={label}>
+		<BaseControl id={id} label={label} __nextHasNoMarginBottom>
 			<span
 				style={{
 					backgroundColor: value,
