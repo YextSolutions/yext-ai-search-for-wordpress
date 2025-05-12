@@ -48,6 +48,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 - Initial closed release.
 
 [Unreleased]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/trunk...develop
+[1.0.5]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.1...1.0.2
