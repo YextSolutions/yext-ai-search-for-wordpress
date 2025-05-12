@@ -1,6 +1,6 @@
 {
   "name": "yext-ai-search-for-wordpress",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "GPL-2.0-or-later",
   "scripts": {
     "start": "10up-toolkit start",
