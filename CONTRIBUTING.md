@@ -30,7 +30,7 @@ The `develop` branch is the development branch which means it contains the next 
 
 1. Branch: Starting from `develop`, cut a release branch named `release/X.Y.Z` for your changes.
 1. Version bump: Bump the version number in `yext-ai-search-for-wordpress.php`, `readme.txt`, `package-lock.json`, and `package.json` if it does not already reflect the version being released.
-1. Changelog: Add/update the changelog in `CHANGELOG.md` and `readme.txt`
+1. Changelog: Add/update the changelog in `CHANGELOG.md` and `readme.txt`, ensuring to link the [X.Y.Z] release reference in the footer of CHANGELOG.md (e.g., https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/X.Y.Z-1...X.Y.Z).
 1. Props: update `CREDITS.md` file with any new contributors, confirm maintainers are accurate
 1. New files: Check to be sure any new files/paths that are unnecessary in the production version are included in `.distignore`.
 1. Readme updates: Make any other readme changes as necessary. `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content. The two are slightly different.
