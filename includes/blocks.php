@@ -7,8 +7,8 @@
 
 namespace Yext\Blocks;
 
-use \Yext\Admin\Settings;
-use \Yext\Utility;
+use Yext\Admin\Settings;
+use Yext\Utility;
 
 /**
  * Set up blocks
@@ -16,14 +16,10 @@ use \Yext\Utility;
  * @return void
  */
 function setup() {
-	$n = function( $function ) {
-		return __NAMESPACE__ . "\\$function";
-	};
+	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
+	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\blocks_editor_scripts' );
 
-	add_action( 'init', $n( 'register_blocks' ) );
-	add_action( 'enqueue_block_editor_assets', $n( 'blocks_editor_scripts' ) );
-
-	add_filter( 'block_categories_all', $n( 'blocks_categories' ), 10, 2 );
+	add_filter( 'block_categories_all', __NAMESPACE__ . '\\blocks_categories', 10, 2 );
 }
 
 /**

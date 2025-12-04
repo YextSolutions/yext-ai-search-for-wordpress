@@ -7,7 +7,7 @@
 
 namespace Yext\Blocks\SearchBar;
 
-use \Yext\Admin\Settings;
+use Yext\Admin\Settings;
 
 /**
  * Render Search Bar Block
@@ -86,7 +86,7 @@ function render( $atts ) {
 		data-prompt-header="<?php echo esc_attr( $prompt_header ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $redirect_url ) ) : ?>
-		data-redirect-url="<?php echo esc_attr( $redirect_url ); ?>"
+		data-redirect-url="<?php echo esc_url( $redirect_url ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $filtered_styles ) ) : ?>
 		style="<?php echo esc_attr( implode( ';', $filtered_styles ) ); ?>"
