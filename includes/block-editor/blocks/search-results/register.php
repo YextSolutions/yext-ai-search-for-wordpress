@@ -18,9 +18,5 @@ function register() {
 	$path = __DIR__;
 	require_once "$path/block.php";
 
-	$n = function ( $func ) {
-		return __NAMESPACE__ . "\\$func";
-	};
-
-	new Block( 'search-results', [], $n( 'render' ) );
+	new Block( 'search-results', [], __NAMESPACE__ . '\\render' );
 }
