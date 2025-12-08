@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file, per [the Keep a Changelog standard](http://keepachangelog.com/).
 
+## [1.0.6] - 2025-12-08
+
+### Fixed
+- Fix deprecated warnings. Props [@burhandodhy](https://github.com/burhandodhy) via [#172](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/175).
+
+### Changed
+- Update blocks apiVersion to 3. Props [@burhandodhy](https://github.com/burhandodhy) via [#172](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/175).
+- Bump WordPress version "tested up to" 6.9. Props [@burhandodhy](https://github.com/burhandodhy) via [#177](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/174)
+
 ## [1.0.5] - 2025-05-12
 
 ### Fixed
@@ -48,6 +57,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 - Initial closed release.
 
 [Unreleased]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/trunk...develop
+[1.0.6]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.2...1.0.3
