@@ -7,7 +7,7 @@
 
 namespace Yext\Blocks\SearchResults;
 
-use \Yext\Admin\Settings;
+use Yext\Admin\Settings;
 
 /**
  * Render Search Results Block

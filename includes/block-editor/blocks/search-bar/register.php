@@ -7,7 +7,7 @@
 
 namespace Yext\Blocks\SearchBar;
 
-use \Yext\Blocks\Block;
+use Yext\Blocks\Block;
 
 /**
  * Register Search Bar Block
@@ -18,9 +18,5 @@ function register() {
 	$path = __DIR__;
 	require_once "$path/block.php";
 
-	$n = function( $func ) {
-		return __NAMESPACE__ . "\\$func";
-	};
-
-	new Block( 'search-bar', [], $n( 'render' ) );
+	new Block( 'search-bar', [], __NAMESPACE__ . '\\render' );
 }

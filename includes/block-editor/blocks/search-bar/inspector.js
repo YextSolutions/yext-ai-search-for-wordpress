@@ -16,8 +16,14 @@ const {
 
 const { __ } = wp.i18n;
 const { InspectorControls, LineHeightControl, useSettings } = wp.blockEditor;
-const { PanelBody, PanelRow, FontSizePicker, RangeControl, TextControl, SelectControl } =
-	wp.components;
+const {
+	PanelBody,
+	FontSizePicker,
+	RangeControl,
+	TextControl,
+	SelectControl,
+	__experimentalSpacer: Spacer,
+} = wp.components;
 const { useEffect } = wp.element;
 const { Notice } = wp.components;
 
@@ -269,79 +275,73 @@ const Inspector = (props) => {
 						</p>
 					</Notice>
 				)}
-				<PanelRow>
-					<TextControl
-						label={__('Placeholder Text', 'yext')}
-						value={placeholderText}
-						help={__('', 'yext')}
-						onChange={(newPlaceholderText) => {
-							setAttributes({ placeholderText: newPlaceholderText });
-						}}
-						__nextHasNoMarginBottom
-					/>
-				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={__('Label Text', 'yext')}
-						value={labelText}
-						help={__('', 'yext')}
-						onChange={(newLabelText) => {
-							setAttributes({ labelText: newLabelText });
-						}}
-						__nextHasNoMarginBottom
-					/>
-				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={__('Submit Text', 'yext')}
-						value={submitText}
-						help={__('', 'yext')}
-						onChange={(newSubmitText) => {
-							setAttributes({ submitText: newSubmitText });
-						}}
-						__nextHasNoMarginBottom
-					/>
-				</PanelRow>
-				<PanelRow>
-					<SelectControl
-						label={__('Icon', 'yext')}
-						value={submitIcon}
-						help={__('', 'yext')}
-						options={Object.keys(iconOptions).reduce((arr, icon) => {
-							arr.push({
-								label: iconOptions[icon],
-								value: icon,
-							});
-
-							return arr;
-						}, [])}
-						onChange={(newSubmitIcon) => {
-							setAttributes({ submitIcon: newSubmitIcon });
-						}}
-						__nextHasNoMarginBottom
-					/>
-				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={__('Autocomplete Heading', 'yext')}
-						value={promptHeader}
-						help={__('', 'yext')}
-						onChange={(newPromptHeader) => {
-							setAttributes({ promptHeader: newPromptHeader });
-						}}
-						__nextHasNoMarginBottom
-					/>
-				</PanelRow>
-				<PanelRow>
-					<FontSizePicker
-						fontSizes={fontSizes}
-						fallbackFontSize={FALLBACK_FONT_SIZE}
-						value={fontSize}
-						onChange={(newFontSize) => {
-							handleStyleUpdate('fontSize', newFontSize, (value) => `${value}px`);
-						}}
-					/>
-				</PanelRow>
+				<TextControl
+					label={__('Placeholder Text', 'yext')}
+					value={placeholderText}
+					help={__('', 'yext')}
+					onChange={(newPlaceholderText) => {
+						setAttributes({ placeholderText: newPlaceholderText });
+					}}
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>
+				<TextControl
+					label={__('Label Text', 'yext')}
+					value={labelText}
+					help={__('', 'yext')}
+					onChange={(newLabelText) => {
+						setAttributes({ labelText: newLabelText });
+					}}
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>
+				<TextControl
+					label={__('Submit Text', 'yext')}
+					value={submitText}
+					help={__('', 'yext')}
+					onChange={(newSubmitText) => {
+						setAttributes({ submitText: newSubmitText });
+					}}
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>
+				<SelectControl
+					label={__('Icon', 'yext')}
+					value={submitIcon}
+					help={__('', 'yext')}
+					options={Object.keys(iconOptions).reduce((arr, icon) => {
+						arr.push({
+							label: iconOptions[icon],
+							value: icon,
+						});
+						return arr;
+					}, [])}
+					onChange={(newSubmitIcon) => {
+						setAttributes({ submitIcon: newSubmitIcon });
+					}}
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>
+				<TextControl
+					label={__('Autocomplete Heading', 'yext')}
+					value={promptHeader}
+					help={__('', 'yext')}
+					onChange={(newPromptHeader) => {
+						setAttributes({ promptHeader: newPromptHeader });
+					}}
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>
+				<FontSizePicker
+					fontSizes={fontSizes}
+					fallbackFontSize={FALLBACK_FONT_SIZE}
+					value={fontSize}
+					onChange={(newFontSize) => {
+						handleStyleUpdate('fontSize', newFontSize, (value) => `${value}px`);
+					}}
+					__next40pxDefaultSize
+				/>
+				<Spacer marginBottom="16px" />
 				<SelectControl
 					label={__('Font Weight', 'yext')}
 					value={fontWeight}
@@ -349,6 +349,7 @@ const Inspector = (props) => {
 					onChange={(newFontWeight) => {
 						handleStyleUpdate('fontWeight', newFontWeight);
 					}}
+					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 				/>
 				<LineHeightControl
@@ -357,7 +358,9 @@ const Inspector = (props) => {
 						handleStyleUpdate('lineHeight', newLineHeight);
 					}}
 					__unstableInputWidth="100%"
+					__next40pxDefaultSize
 				/>
+				<Spacer marginBottom="16px" />
 				<RangeControl
 					label={__('Border Radius', 'yext')}
 					value={borderRadius}
@@ -366,6 +369,7 @@ const Inspector = (props) => {
 					onChange={(newBorderRadius) => {
 						handleStyleUpdate('borderRadius', newBorderRadius, (value) => `${value}px`);
 					}}
+					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 				/>
 			</PanelBody>
@@ -455,16 +459,17 @@ const Inspector = (props) => {
 				/>
 			</PanelBody>
 			<PanelBody title={__('Autocomplete Settings', 'yext')} initialOpen={false}>
-				<PanelRow>
-					<FontSizePicker
-						fontSizes={fontSizes}
-						fallbackFontSize={FALLBACK_FONT_SIZE}
-						value={autocompleteOptionFontSize}
-						onChange={(newFontSize) => {
-							handleStyleUpdate('autocompleteOptionFontSize', newFontSize);
-						}}
-					/>
-				</PanelRow>
+				<FontSizePicker
+					fontSizes={fontSizes}
+					fallbackFontSize={FALLBACK_FONT_SIZE}
+					value={autocompleteOptionFontSize}
+					onChange={(newFontSize) => {
+						handleStyleUpdate('autocompleteOptionFontSize', newFontSize);
+					}}
+					__next40pxDefaultSize
+				/>
+				<Spacer marginBottom="16px" />
+
 				<SelectControl
 					label={__('Font Weight', 'yext')}
 					value={autocompleteOptionFontWeight}
@@ -479,7 +484,10 @@ const Inspector = (props) => {
 					onChange={(newLineHeight) => {
 						handleStyleUpdate('autocompleteOptionLineHeight', newLineHeight);
 					}}
+					__unstableInputWidth="100%"
+					__next40pxDefaultSize
 				/>
+				<Spacer marginBottom="16px" />
 				<SelectControl
 					label={__('Header Font Weight', 'yext')}
 					value={autocompleteHeaderFontWeight}
