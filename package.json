@@ -14,7 +14,8 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.1.0",
