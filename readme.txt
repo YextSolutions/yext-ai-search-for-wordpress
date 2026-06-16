@@ -110,6 +110,24 @@ __Fixed:__
 
 __Changed:__
 * Update blocks apiVersion to 3. Props [@burhandodhy](https://github.com/burhandodhy).
+__Fixed:__
+
+* Fix NPM deprecated packages warnings. Props [@sidsector9](https://github.com/sidsector9)
+
+__Changed:__
+
+* Bump WordPress version "tested up to" 6.9. Props [@sidsector9](https://github.com/sidsector9)
+* Update node version from 18 to 24. Props [@sidsector9](https://github.com/sidsector9)
+
+= 1.0.6 - 2025-12-08 =
+
+__Fixed:__
+
+* Fix deprecated warnings. Props [@burhandodhy](https://github.com/burhandodhy).
+
+__Changed:__
+
+* Update blocks apiVersion to 3. Props [@burhandodhy](https://github.com/burhandodhy).
 * Bump WordPress version "tested up to" 6.9. Props [@burhandodhy](https://github.com/burhandodhy).
 
 = 1.0.5 - 2025-05-12 =
