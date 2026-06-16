@@ -93,7 +93,7 @@ No, you can use our search bar block, and link out to a different page for the s
 
 == Changelog ==
 
-= 1.0.7 - 2025-12-08 =
+= 1.0.7 - 2026-06-25 =
 
 __Fixed:__
 * Fix NPM deprecated packages warnings. Props [@sidsector9](https://github.com/sidsector9)
