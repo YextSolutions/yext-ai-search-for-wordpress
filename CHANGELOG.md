@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ### Changed
 - Update blocks apiVersion to 3. Props [@burhandodhy](https://github.com/burhandodhy) via [#172](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/175).
-- Bump WordPress version "tested up to" 6.9. Props [@burhandodhy](https://github.com/burhandodhy) via [#177](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/174)
+- Bump WordPress version "tested up to" 6.9. Props [@burhandodhy](https://github.com/burhandodhy) via [#177](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/174).
 
 ## [1.0.5] - 2025-05-12
 
