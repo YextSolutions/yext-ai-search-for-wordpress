@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, per [the Keep a Changelog standard](http://keepachangelog.com/).
 
-## [1.0.7] - TBD
+## [1.0.7] - 2026-06-25
 
 ### Fixed
 - Fix NPM deprecated packages warnings. Props [@sidsector9](https://github.com/sidsector9) via [#179](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/179).
