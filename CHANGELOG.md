@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file, per [the Ke
 ## [1.0.7] - 2026-06-22
 
 ### Fixed
-- Fix NPM deprecated packages warnings. Props [@sidsector9](https://github.com/sidsector9) via [#179](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/179).
+- Fix NPM deprecated packages warnings. Props [@sidsector9](https://github.com/sidsector9) via [#180](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/180).
 
 ### Changed
-- Bump WordPress version "tested up to" 6.9. Props [@sidsector9](https://github.com/sidsector9) via [#179](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/179).
-- Update node version from 18 to 24. Props [@sidsector9](https://github.com/sidsector9) via [#179](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/179).
+- Bump WordPress version "tested up to" 6.9. Props [@sidsector9](https://github.com/sidsector9) via [#180](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/180).
+- Update node version from 18 to 24. Props [@sidsector9](https://github.com/sidsector9) via [#180](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/180).
 
 ## [1.0.6] - 2025-12-08
 
