@@ -24,9 +24,10 @@ Thank you to all the people who have already contributed to this repository via 
 [Julian Khalifa (@juliank131)](https://github.com/juliank131),
 [Jeffrey Carandang (@phpbits)](https://github.com/phpbits),
 [Ryan DiMascio (@rdimascio)](https://github.com/rdimascio),
-[Pablo Amato (@pabamato)](https://github.com/pabamato)
-and
+[Pablo Amato (@pabamato)](https://github.com/pabamato),
 [Burhan Nasir (@burhandodhy)](https://github.com/burhandodhy)
+and
+[Siddharth Thevaril (@sidsector9)](https://github.com/sidsector9)
 
 ## Libraries
 
