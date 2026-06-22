@@ -93,7 +93,7 @@ No, you can use our search bar block, and link out to a different page for the s
 
 == Changelog ==
 
-= 1.0.7 - 2026-06-25 =
+= 1.0.7 - 2026-06-22 =
 
 __Fixed:__
 
