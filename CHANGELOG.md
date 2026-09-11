@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file, per [the Keep a Changelog standard](http://keepachangelog.com/).
 
+## [1.0.8] - 2026-09-14
+
+### Changed
+- Bump WordPress version "tested up to" 7.1. Props [@sidsector9](https://github.com/sidsector9) via [#181](https://github.com/YextSolutions/yext-ai-search-for-wordpress/pull/181).
+
 ## [1.0.7] - 2026-06-22
 
 ### Fixed
@@ -66,6 +71,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 - Initial closed release.
 
 [Unreleased]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/trunk...develop
+[1.0.8]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.6...1.0.7
 [1.0.6]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/YextSolutions/yext-ai-search-for-wordpress/compare/1.0.4...1.0.5
