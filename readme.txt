@@ -2,7 +2,7 @@
 Contributors: yext
 Tags: search, site-search, yext, autocomplete, relevant-search, better-search, custom-search, search-by-category, natural-language-search, search-engine
 Requires at least: 5.8
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 1.0.7
 Requires PHP: 7.4
 License: GPLv2 or later
