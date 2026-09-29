@@ -25,9 +25,6 @@ function setup() {
 /**
  * Register editor assets declared by block.json.
  *
- * Runs on init, before the blocks are registered. enqueue_block_assets also
- * runs on public pages, and core enqueues editorScript handles from that hook.
- *
  * @return void
  */
 function register_editor_assets() {
