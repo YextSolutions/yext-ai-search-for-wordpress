@@ -100,22 +100,17 @@ class Block {
 	/**
 	 * Register Block
 	 *
-	 * @return \WP_Block_Type
+	 * @return \WP_Block_Type|false
 	 */
 	public function register() {
-		$block_name = self::block_name( $this->block );
+		$metadata_file = trailingslashit( self::block_path( $this->block ) ) . self::BLOCK_META;
+		$args          = $this->atts;
 
-		if ( empty( $this->atts ) ) {
-			$this->atts = self::get_block_data( $this->block );
+		if ( ! isset( $args['render_callback'] ) && function_exists( $this->callback ) ) {
+			$args['render_callback'] = $this->callback;
 		}
 
-		// If attributes do not contain a render_callback
-		// And a valid $callback parameter has been passed
-		if ( ( ! isset( $this->atts['render_callback'] ) ) && function_exists( $this->callback ) ) {
-			$this->atts['render_callback'] = $this->callback;
-		}
-
-		return $this->wp_blocks->register( $block_name, $this->atts );
+		return register_block_type( $metadata_file, $args );
 	}
 
 	/**

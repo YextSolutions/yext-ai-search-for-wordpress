@@ -5,6 +5,8 @@
   "name": "yext/search-results",
   "category": "yext-blocks",
   "text-domain": "yext",
+  "editorScript": "yext-blocks-editor",
+  "editorStyle": "yext-editor-style",
   "supports": {
     "multiple": false,
     "className": false,

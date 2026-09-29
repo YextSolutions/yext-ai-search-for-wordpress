@@ -16,54 +16,29 @@ use Yext\Utility;
  * @return void
  */
 function setup() {
+	add_action( 'init', __NAMESPACE__ . '\\register_editor_assets' );
 	add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
-	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\blocks_editor_scripts' );
 
 	add_filter( 'block_categories_all', __NAMESPACE__ . '\\blocks_categories', 10, 2 );
 }
 
 /**
- * Enqueue shared frontend and editor JavaScript for blocks.
+ * Register editor assets declared by block.json.
+ *
+ * Runs on init, before the blocks are registered. enqueue_block_assets also
+ * runs on public pages, and core enqueues editorScript handles from that hook.
  *
  * @return void
  */
-function blocks_scripts() {
-	wp_enqueue_script(
-		'blocks',
-		YEXT_URL . '/dist/js/blocks.js',
-		[],
-		YEXT_VERSION,
-		true
-	);
-}
+function register_editor_assets() {
+	$sdk_version = Utility\get_sdk_version();
 
-
-/**
- * Enqueue editor-only JavaScript/CSS for blocks.
- *
- * @return void
- */
-function blocks_editor_scripts() {
-	wp_enqueue_script(
+	wp_register_script(
 		'yext-blocks-editor',
 		YEXT_URL . '/dist/js/blocks.js',
 		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ],
 		YEXT_VERSION,
 		false
-	);
-
-	wp_enqueue_style( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-		'yext-search-bar',
-		'https://assets.sitescdn.net/answers-search-bar/v1/answers.css',
-		[],
-		null
-	);
-
-	wp_enqueue_style(
-		'yext-editor-style',
-		YEXT_URL . '/dist/blocks/editor-style.css',
-		[ 'yext-search-bar' ],
-		YEXT_VERSION
 	);
 
 	wp_localize_script(
@@ -74,6 +49,20 @@ function blocks_editor_scripts() {
 			'icons'       => Utility\get_icon_manifest(),
 			'iconOptions' => Utility\build_icon_options(),
 		]
+	);
+
+	wp_register_style(
+		'yext-search-bar',
+		'https://assets.sitescdn.net/answers-search-bar/' . $sdk_version . '/answers.css',
+		[],
+		null // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+	);
+
+	wp_register_style(
+		'yext-editor-style',
+		YEXT_URL . '/dist/blocks/editor-style.css',
+		[ 'yext-search-bar' ],
+		YEXT_VERSION
 	);
 }
 
